@@ -1,0 +1,725 @@
+@CHARSET "UTF-8";
+/*****************login_form************/
+.form-signin {
+	overflow-y: hidden;
+	width: 430px;
+	padding: 20px;
+	margin: 0 auto;
+	border: 3px solid #777;
+	border-radius: 4px;
+}
+
+.form-signin h2 {
+	display: block;
+}
+
+.form-signin td {
+	width: 330px;
+}
+
+.form-signin #id {
+	width: 100px;
+}
+
+.form-signin #email {
+	width: 150px;
+}
+
+.form-signin #password {
+	width: 275px;
+}
+
+.form-signin .tdName {
+	width: 100px;
+}
+
+.form-signin table {
+	margin: 15px;
+}
+
+.twoButtons td {
+	margin: 10px;
+	width: 120px;
+	margin: 5px;
+}
+/********* register & login_form *********/
+.trInput .tdName {
+	text-align: center;
+	font-family: 'NanumGothic_Bold';
+}
+
+.trInput td input, .trInput td select {
+	margin: 5px;
+	border-radius: 4px;
+	font-size: 12px;
+	line-height: 1.42857143;
+	padding: 5px 8px;
+	color: #444;
+	background-color: #fff;
+}
+
+.trInput input[type=submit].btn-block, .trInput input[type=reset].btn-block
+{
+	display: inline;
+	width: 25%;
+	padding: 5px;
+	margin: 5px 20px;
+	font-family: 'NanumGothic_Bold';
+}
+
+#registerForm {
+	max-width: 850px;
+	margin-left: 18%;
+	margin-top: 50px;
+}
+/***************** store_side_menu************/
+#sideMenu2 input[type=button].btn-block {
+	margin: 15px;
+	border-radius: 8px;
+	font-size: 15px;
+	line-height: 3;
+	color: #444;
+	background-color: #fff;
+	width: 80%;
+	padding: 5px;
+	font-family: 'NanumGothic_Bold';
+	margin-left: 10%;
+}
+
+#sideMenu2 .active {
+	margin-bottom: 40px;
+}
+
+/*스토어 사이드바 이미지*/
+#storeMainImage {
+	width: 100%;
+	height: 350px;
+}
+/********* address & seller_address ********/
+.form-post {
+	width: 430px;
+	padding: 10px;
+	margin: 0 auto;
+	border: 3px solid #777;
+	border-radius: 4px;
+	overflow-y: hidden;
+}
+
+.form-post .page-header {
+	padding-bottom: 9px;
+	margin: 20px 20px;
+	border-bottom: 1px solid #eee;
+}
+
+.form-post input, .form-post select {
+	display: inline;
+	padding: 5px;
+	border-radius: 4px;
+}
+
+.form-post #findDong {
+	font-size: 13px;
+	margin-left: 15px;
+	line-height: 1.5;
+	width: 80px;
+	color: #444;
+	background-color: #fff;
+	font-family: 'NanumGothic_Bold';
+}
+
+#write {
+	font-size: 13px;
+	line-height: 1.7;
+	width: 200px;
+	font-family: 'NanumGothic_Bold';
+}
+
+.form-post .addresses {
+	display: none;
+}
+/********* seller_register ********/
+.form-seller {
+	min-width: 600px;
+}
+
+.form-seller th {
+	font-family: 'NanumGothic_Bold';
+	width: 150px;
+	vertical-align: middle;
+}
+
+.form-seller input, .form-seller selelct, .form-seller textarea {
+	margin: 5px;
+	border-radius: 4px;
+	font-size: 12px;
+	padding: 5px;
+	width: 200px;
+}
+input#sellerZipcode
+{
+	width: 100px;
+}
+
+.form-seller input[type=submit].btn-block, .form-seller input[type=reset].btn-block
+	{
+	display: inline;
+	width: 25%;
+	padding: 5px;
+	margin: 5px 20px;
+	line-height: 1.5;
+	font-family: 'NanumGothic_Bold';
+	color: #444;
+	background-color: #fff;
+}
+
+#sameAddress, #btnZipcode {
+	min-width: 30px;
+}
+
+#sellerSubAddress {
+	width: 94%;
+}
+
+#sellerIntroduction {
+	width: 80%;
+}
+
+.form-seller input[type=submit].btn-block:hover {
+	background-color: rgb(76, 174, 76);
+	color: white;
+}
+
+.form-seller input[type=reset].btn-block:hover {
+	background-color: rgb(46, 109, 164);
+	color: white;
+}
+
+.form-seller input[type=button]{
+	background-color: white;
+	width: 50px;
+}
+
+.form-seller input[type=button]:hover{
+	background-color: #EAEAEA;
+	width: 50px;
+}
+
+#sellerIndustry {
+	padding: 5px;
+	margin: 5px 15px;
+	min-with: 150px;
+	width: 90%;
+}
+
+#sellerSubIndustry {
+	padding: 5px;
+	margin: 5px 0px;
+	min-with: 150px;
+	width: 40%;
+}
+
+.form-seller {
+	max-width: 850px;
+	margin-left: 150px;
+	margin-top: 50px;
+}
+/********* mypage ********/
+#sellerRegister, #memberEdit, #memberWithdrawal {
+	position: relative;
+	margin-top: 50px;
+}
+
+#memberWithdrawal {
+	margin-top: 25px;
+}
+
+.mypage-images
+{
+	margin: 15px;
+}
+
+.mypage-images:hover
+{
+	border: 2px solid purple;
+	border-radius: 20px;
+}
+/********* product_list ********/
+.product-content {
+	position: relative;
+	margin-bottom: 60px;
+	min-height: 600px;
+	left: 7%;
+}
+
+.products {
+	margin-bottom: 15px;
+	padding: 10px;
+}
+.registerProductBtn {
+	float: right;
+	margin-right: 100px;
+	position: absolute;
+	bottom: 0px;
+	left: 80%;
+	padding: 0;
+	text-align: center;
+	height: 60px;
+	font-size: large;
+}
+
+.product-lists-img:hover
+{
+	border: 2px solid purple;
+	border-radius: 20px;
+}
+
+.product-lists-img
+{
+	width: 250px; 
+	height: 250px;
+	padding: 10px;
+}
+
+/*상품리스트조회 페이징*/
+.pageGroup.product-lists-page
+{
+	font-size: large;
+	bottom: 20px;
+	padding: 0;
+	text-align: center;
+	height: 60px;
+	position: absolute;
+	left: 47%;
+}
+/********* product_detail ********/
+.reviewPageGroup {
+	font-size: 15px;
+}
+
+#reviewContent {
+	width: 500px;
+	height: 150px;
+}
+
+#optionId {
+	display: none;
+}
+
+.product-row {
+	border-bottom: 1px solid #eee;
+}
+
+.margins {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding: 10px;
+}
+
+.productTB {
+	width: 400px;
+}
+
+.productTB tr td {
+	text-align: center;
+	font-family: 'NanumGothic_Bold';
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.productTB tr td input, .productTB tr td select {
+	margin: 5px;
+	border-radius: 4px;
+	font-size: 12px;
+	padding: 5px;
+	min-width: 50px;
+	border: 2px solid #63439d;
+}
+
+.form-product {
+	overflow-y: hidden;
+	width: 420px;
+	padding: 5px;
+	margin: 0 auto;
+	border: 1px solid #604495;
+	border-radius: 4px;
+	font-size: large;
+}
+
+.detailInfo {
+	min-height: 400px;
+	border-bottom: 1px solid #eee;
+	width: 80%;
+}
+
+.reviewTable {
+	/* min-height: 400px; */
+	width: 65%;
+	font-size: medium;
+}
+
+.reviewTable tr td {
+	text-align: center;
+	font-family: 'NanumGothic_Bold';
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.reviewTable input[type=button], .reviewTable input[type=text] {
+	margin: 5px;
+	border-radius: 4px;
+	font-size: 12px;
+	padding: 5px;
+	min-width: 50px;
+	font-family: 'NanumGothic';
+}
+
+/*페이지 그룹*/
+.pageGroup {
+	font-size: large;
+	bottom: 20px;
+	padding: 0;
+	text-align: center;
+	height: 60px;
+	position: absolute;
+	left: 44%;
+}
+
+#main {
+	width: 80%;
+	margin-left: 5%;
+}
+
+#qnaRegisterTD {
+	text-align: right;
+}
+
+#qnaRegister {
+	margin-right: 50px;
+}
+/* header{
+	background-color:pink;
+	padding: 5px;
+	font-family: 'NanumGothic';
+	height:150px;
+	
+}
+header h2{
+	text-align:center;
+	font-family:'NanumGothic_Bold';
+	margin-top: 50px;
+}
+<!--header-->
+#navBar
+{
+	margin-top:150px;
+}
+nav{
+	line-height: 50px;
+	padding: 15px;
+	padding-top: 50px;
+	min-height:600px;
+	width:200px;
+	float:left;
+	position:static;
+} 
+section{
+	padding: 15px;
+	min-height:500px;
+	float:left;
+	position:absolute;
+}
+footer{
+	margin-bottom:10px;
+	text-align:center;
+	height:20px;
+	clear:both;
+}
+
+#home
+{
+	margin-left:10px;
+	float:left;
+}
+#menuLinks
+{
+	margin-right:10px;
+	float:right;
+} */
+/**************스토어둘러보기*****************/
+.store-names
+{
+	width: 250px;
+}
+
+.list-margins {
+	padding: 30px;
+	width: 315px;
+}
+.list-margins:hover{
+	border: 2px solid purple;
+	border-radius: 20px;
+}
+
+.store_look_around {
+	padding-left: 50px;
+	position: relative;
+	top: -50px;
+	width: 70%;
+	left: 13.5%;
+	color: gray;
+}
+/* 이미지 크기고정. */
+.sellerListImage {
+	width: 100%;
+	height: 100%;
+}
+
+.store_img {
+	width: 250px;
+	height: 250px;
+}
+
+/*소개글 크기고정 및 글자숨김처리.*/
+div .introduction {
+	height: 155px;
+	width: 250px;
+	/*글자수가 범위를 넘어가면 숨김.*/
+	overflow: hidden;
+	text-align: center;
+	/* display:table-cell; */
+	vertical-align: middle;
+}
+
+/*li태그 마크 삭제.*/
+li {
+	list-style-type: none;
+}
+
+.seller-list {
+	margin-top: 30px;
+	height: 600px;
+	display: table-cell;
+	margin-bottom: 70px;
+	padding-top: 20px;
+}
+
+.store_info {
+	width: 80%;
+	height: 170px;
+}
+
+.product_list {
+	max-height: 80px;
+	margin-top: 30px;
+	text-align: center;
+	width: 250px;
+}
+
+/*환불신청 폼*/
+.refund-div {
+	width: 450px;
+}
+
+.refundTB {
+	width: 500px;
+}
+/*판매자 등록 신청 현황 폼*/
+
+/*header*/
+
+/*body*/
+.body-block{
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+/*게시판*/
+.adminNoticePaging{
+	left: 19%;
+	bottom: 5px;
+	color: black;
+}
+.adminNotice{
+	margin-top: 50px;
+	margin-left: 150px;
+	width: 80%;
+}
+
+/*홈 헤더*/
+.home-header
+{
+	height: 250px;
+}
+.main-header
+{
+	height: 100%;
+	border-bottom: 2px solid #63439d;
+}
+.main-buttons
+{
+	/* width: 100%;
+	height: 100px;
+	position: absolute; */
+	margin-top: -10px;
+	margin-left: auto;
+	margin-right: auto;
+	left: 33%
+}
+.navbar-collapse.collapse.navbars.main-buttons
+{
+	/* 메인 버튼 크기. */
+	width: 100px;
+	min-height: 50px;
+	max-height: 50px;
+	position: relative;
+	top: -120px;
+	margin-right: 50px;
+}
+.container.main-footer
+{
+	width: 100%;
+}
+.container.main-footer p
+{
+	padding-right: 13.5%;
+	padding-left: 13.5%;
+}
+.nav.navbar-nav.navbar-right.links
+{
+	font-size: 13px;
+	padding-top: 0px;
+	padding-right: 200px;
+}
+.nav.navbar-nav.navbar-right.links.fixed-menus
+{
+	padding-right: 25%;
+}
+.nav.navbar-nav.navbar-right.links a
+{
+	color: #63439d;
+}
+.nav.navbar-nav.navbar-right.links a:HOVER
+{
+	color: #ccc;
+}
+.nav.navbar-nav.navbar-right.links input
+{
+	border: 1px solid #63439d;
+}
+.nav.navbar-nav.navbar-right.links input:HOVER
+{
+	color: #ccc;
+}
+.nav.navbar-nav.navbar-right.links img
+{
+	width: 100px;
+	height: 50px;
+}
+/*스토어 메인헤더*/
+.navbar-collapse.collapse.navbars.store-buttons
+{
+	/*스토어 버튼 크기.*/
+	width: 150px;
+	min-height: 70px;
+	max-height: 100px;
+	border: 0;
+	margin-right: 20px;
+	position: relative;
+	top: -135px;
+	left: 100%;
+	background-color: white;
+}
+.navbar-collapse.collapse.navbars.store-buttons img
+{
+	width: 150px;
+	height: 55px;
+}
+.store-buttons
+{
+	margin-left: auto;
+	margin-right: auto;
+	left: 23%;
+}
+.store-buttons.col-sm-6 img
+{
+	/*스토어메인이미지*/
+	max-width: 120px;
+	max-height: 70px;
+	border-radius: 40px;
+}
+.store-buttons.col-sm-6 a
+{
+	padding: 0px;
+	margin-right: 10px;
+}
+.homeMainImage{
+	padding-left: 200px;
+	padding-bottom: 60px;
+	position: relative;
+	top: -10px;
+	width: 450px;
+	height: 200px;
+	left: 55%;
+}
+.store-main-img{
+	display: none;
+	opacity: 0.5;
+}
+.store-main-img:hover{
+	opacity: 1;
+}
+/* 스토어 상품 등록 */
+#productRegister{
+	max-width: 700px;
+	margin-left: 150px;
+	margin-top: -20px;
+	left: 13%;
+	position: relative;
+}
+.registerProductBtn {
+	float: right;
+	margin-right: 100px;
+	position: absolute;
+	bottom: 0px;
+	left: 80%;
+	padding: 0;
+	text-align: center;
+	height: 60px;
+	font-size: large;
+}
+.registerProductInput{
+	background-color: white;
+	border: 1px solid whitegray;
+	border-radius: 5px;
+	font-size: 11pt;
+	position: relative;
+	bottom: 25px;
+}
+.registerProductInput:hover{
+	border: 1px solid gray;
+}
+.productRegister{
+	min-height: 1150px;
+	margin-bottom: 30px;
+}
+.btn.btn-lg.btn-danger.btn-block{
+	width: 25%;
+	font-family: 'NanumGothic_Bold';
+	position: relative;
+	left: 66%;
+	top: -39px;
+}
+.deleteOptionBtn,.deleteImgBtn{
+	border: 2px solid red;
+}
+.deleteOptionBtn:hover, .deleteImgBtn:hover{
+	background-color: red;
+	color: white;
+}
+/*에러메세지 폰트처리*/
+.error-message
+{
+	color: #FF5A5A;
+}

@@ -1,0 +1,96 @@
+<!-- spring MVC -->
+	<artifactId>spring-webmvc</artifactId>
+<!-- jstl -->
+	<artifactId>jstl</artifactId>
+<!-- tiles-jsp -->
+	<artifactId>tiles-jsp</artifactId>
+<!-- tiles-core -->
+	<artifactId>tiles-core</artifactId>
+
+<!-- 
+	File upload 처리를 위한 API
+	CommonsMultipartResolver가 파일 업로드 처리를 위해 사용하는 API
+ -->
+	<artifactId>commons-fileupload</artifactId>
+
+<!-- 유효성검사 @valid -->
+	<artifactId>hibernate-validator</artifactId>
+
+<!-- JSON처리 -->
+	<artifactId>jackson-core</artifactId>
+	<artifactId>jackson-databind</artifactId>
+
+<!-- Mybatis 연동. -->
+	<artifactId>spring-context</artifactId>
+	<artifactId>spring-jdbc</artifactId>
+	<artifactId>mybatis</artifactId>
+	<artifactId>mybatis-spring</artifactId>
+<!--(+) BasicDataSource -->
+	<artifactId>commons-dbcp2</artifactId>
+
+등록 API
+Spring MVC, jstl, tiles-jsp, tiles-core, fileUpload, valid(유효성검사), JSON
+Mybatis 연동(spring-context, spring-jdbc, mybatis, mybatis-spring, commons-dbcp2)
+6.17
+기본 프로젝트 틀 완성.
+(+) DB테이블 생성 1차완료.
+(+) vo생성 1차완료.
+
+6.18
+pom.xml에 Mybatis 관련 api 5가지 추가.
+mybatis-config.xml추가
+spring.xml에 mybatis관련 설정.(Dao Impl추가해서 사용하기..)
+
+6.18저녁
+디비 회원과 판매자 1:1관계설정에 따른 DB수정과 VO수정,
+수정과맛나겠다...
+무튼 교환, 환불 과 주문과의 1:1관계설정에 따른 DB, VO 수정.
+
+6.19오전
+디비 회원, 판매자 기존설정대로 돌리기... DB, VO수정.
+교환 환불과 주문과의 관계도 기존 설정대로 돌리기.
+
+6.21
+상품 리스트 1차완성.
+상품 상세보기 시작.
+옵션명으로 옵션 세부내용 조회(ajax)
+옵션 세부내용으로 추가가격, 재고량 조회.(ajax)
+
+6.22 (내일할일)
+아작스 기반 QnA 댓글 게시판.
+리뷰 게시판(댓글).
+추천기능구현.
+한일.
+리뷰게시판 페이징 ajax처리.
+
+6.25
+수정 할 사항 -> 	kinghwang 관리자 소식통 등록 후 디테일 보여줄 때 엔터, 스페이스바 처리. 태그처리.
+						목록 볼때 스페이스바처리 해줘야함. 태그.
+						수정할 때 <br>&nbsp 바꿔주기;; 태그.
+						판매자 공지(스토어 소식)도 마찬가지.
+				
+상품상세보기 일단 완성.
+상품QnA 
+엔터스페이스바태그처리완료. 
+등록,삭제,답변등록,조회 등등 판매자와 작성자만 가능하도록함.
+비로그인체크완료.
+
+리뷰게시판...
+엔터,스페이스바,태그처리안함. 그냥 한줄짜리니까라고는하지만 답이안나옴...
+
+상품 정보도 엔터스페이스바태그처리함.
+
+6.26
+카테고리 수정. 참조Id를 pk에서 카테고리 이름으로 변경.
+마이페이지 구현.(판매자, 일반회원, 관리자 나눔.)
+판매자 등록폼 구현중
+(패스워드 체크, 주소 동일할 경우 뿌려주는거 구현, 업종 카테고리까지완료.)
+
+6.28
+주문현황조회 시작.
+주문 vo수정.(OrderProduct랑 Product추가)
+EL태그부분 수정.
+
+6.29
+교환, 환불 Vo 수정.
+OrderProduct 주문형황 컬럼추가, Vo수정.

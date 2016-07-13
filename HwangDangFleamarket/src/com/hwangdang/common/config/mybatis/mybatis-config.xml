@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
+
+	<typeAliases>
+		<!-- 패키지 알리아스. com.hwangdang.vo.Member => member -->
+		<package name="com.hwangdang.vo"/>
+	</typeAliases>
+	
+	<!-- DB 연동은 BasicDataSource를 사용하고 Transaction은 Spring Container 가 처리하므로 environment는 설정하지 않는다. -->
+</configuration>

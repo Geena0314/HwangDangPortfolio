@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminNoticeMapper">
+	<sql id="adminNotice-columns">
+		notice_no, notice_title, notice_content, notice_date, notice_hit
+	</sql>
+	
+	<sql id="select-basic">
+		SELECT <include refid="adminNotice-columns"/> FROM notice
+	</sql>
+	
+	<resultMap type="notice" id="notice-basic-resultmap">
+		<id column="notice_no" property="noticeNo"/>
+		<result column="notice_title" property="noticeTitle"/>
+		<result column="notice_content" property="noticeContent"/>
+		<result column="notice_date" property="noticeDate"/>
+		<result column="notice_hit" property="noticeHit"/>
+	</resultMap>
+	
+	<insert id="insertNotice" parameterType="notice">
+		<selectKey keyProperty="noticeNo" resultType="_int" order="BEFORE">
+			select notice_no_seq.nextval from dual
+		</selectKey>
+		insert into notice values(#{noticeNo},#{noticeTitle},#{noticeContent},#{noticeDate},#{noticeHit})
+	</insert>
+	
+	<update id="updateNotice" parameterType="notice">
+		update notice
+		set    notice_title = #{noticeTitle},
+			   notice_content = #{noticeContent}
+		where  notice_no = #{noticeNo}
+	</update>
+	
+	<update id="updateNoticeHit" parameterType="_int">
+		update notice
+		set	   notice_hit = notice_hit + 1
+		where  notice_no = #{value}
+	</update>
+	
+	<delete id="deleteNoticeByNoticeNo" parameterType="_int">
+		delete from notice where notice_no = #{value}
+	</delete>
+	
+	<select id="selectNoticePaging" parameterType="map" resultMap="notice-basic-resultmap">
+		select <include refid="adminNotice-columns"/> from(
+			select ceil(rownum /#{itemsPerPage})page, <include refid="adminNotice-columns"/> from(
+				select <include refid="adminNotice-columns"/> from notice order by notice_no DESC) 
+				) where page = #{page}
+	</select>
+	
+	<select id="selectCountNotice" resultType="_int">
+		select count(notice_no) from notice
+	</select>
+	
+	<!-- <select id="selectAllNotice"  resultMap="notice-basic-resultmap">
+		<include refid="select-basic"/> 
+		ORDER BY notice_no_seq DESC
+	</select> paging처리 해줘야함 -->
+	
+	<select id="selectNoticeByNoticeNo" parameterType="_int" resultMap="notice-basic-resultmap">
+		<include refid="select-basic"/>
+		where notice_no = #{value}		
+	</select>
+</mapper>

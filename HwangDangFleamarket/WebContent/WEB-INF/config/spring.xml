@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- 트랜잭션처리 -->
+	<bean name="txmanager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+	<tx:annotation-driven transaction-manager="txmanager"/>
+	
+	<!-- Spring, Mybatis 연동. -->
+	<!-- BasicDataSource Bean으로 등록. -->
+	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+			 p:driverClassName="oracle.jdbc.driver.OracleDriver"
+			 p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
+			 p:username="hwang"
+			 p:password="dang"
+			 p:maxIdle="100" />
+	
+	<!-- 생성자에서 SqlSessionFactory를 만듦. -->		
+	<bean name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" 
+			 p:dataSource-ref="dataSource" 
+			 p:mapperLocations="classpath:com/hwangdang/common/config/mybatis/mapper/*Mapper.xml"
+			 p:configLocation="classpath:com/hwangdang/common/config/mybatis/mybatis-config.xml"/>
+	
+	<!-- SqlSession을 만듦. -->
+	<bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate"
+			 c:sqlSessionFactory-ref="sqlSessionFactory"/>
+
+	<!-- serviceImpl, controller, daoImpl -->
+	<context:component-scan
+		base-package="com.hwangdang.serviceimpl, com.hwangdang.controller, com.hwangdang.daoimpl" />
+
+	<mvc:annotation-driven >
+		 <mvc:message-converters>
+		 	 <bean class="org.springframework.http.converter.StringHttpMessageConverter"
+		 		c:defaultCharset="UTF-8" />
+		 </mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- 메인페이지 설정. -->
+	<mvc:view-controller path="/main.go" view-name="main.tiles" />
+	<mvc:view-controller path="/boardQnA_register_form.go"  view-name="admin/boardQnA_register_form.tiles"/>
+	    
+	<bean name="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/config/tiles-defs.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- multipartResolver를 Bean으로 등록: multipart/form-data로 넘어온 요청 파라미터 처리(파일처리.) 
+		Controller handler 메소드 호출 전에 먼저 호출된다. bean으로 등록시 식별값을 반드시 multipartResolver로 
+		한다. -->
+	<bean name="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!-- View Resolver bean으로 등록 -->
+	<!-- handler가 리턴한 View Name으로 등록된 bean을 view로 찾아주는 viewResolver 따라서 등록 순서를 
+		아래와 같에 해야함 -->
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="1" />
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="2"/>
+	<!-- 마지막 필수. -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="3" />
+	
+</beans>

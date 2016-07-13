@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sellerMapper">
+	<sql id="seller-columns">
+		seller_store_no, seller_store_name, seller_tax_id, seller_industry, 
+		seller_sub_industry, seller_zipcode, seller_address, seller_sub_address, 
+		seller_store_image, seller_product1, seller_product2, seller_product3, 
+		seller_introduction, seller_assign, member_id
+	</sql>
+	
+	<sql id="select-basic">
+		SELECT <include refid="seller-columns"/> FROM seller where seller_assign = 1
+	</sql>
+	
+	<resultMap type="seller" id="seller-basic-resultmap">
+		<id column="seller_store_no" property="sellerStoreNo"/>
+		<result column="seller_store_name" property="sellerStoreName"/>
+		<result column="seller_tax_id" property="sellerTaxId"/>
+		<result column="seller_industry" property="sellerIndustry"/>
+		<result column="seller_sub_industry" property="sellerSubIndustry"/>
+		<result column="seller_zipcode" property="sellerZipcode"/>
+		<result column="seller_address" property="sellerAddress"/>
+		<result column="seller_sub_address" property="sellerSubAddress"/>
+		<result column="seller_store_image" property="sellerStoreImage"/>
+		<result column="seller_product1" property="sellerProduct1"/>
+		<result column="seller_product2" property="sellerProduct2"/>
+		<result column="seller_product3" property="sellerProduct3"/>
+		<result column="seller_introduction" property="sellerIntroduction"/>
+		<result column="seller_assign" property="sellerAssign"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
+	
+	<!-- seller member 조인. -->
+	<resultMap type="seller" id="seller-member" extends="seller-basic-resultmap">
+		<association property="member" javaType="member" resultMap="memberMapper.member-basic-resultMap"/>
+	</resultMap>
+	
+	<!-- 판매자 전체조회 (+페이징) -->
+	<select id="selectSellerPaging" parameterType="map" resultMap="seller-basic-resultmap">
+		select <include refid="seller-columns"/> from(
+			select ceil(rownum /#{itemsPerPage})page, <include refid="seller-columns"/> from(
+				select <include refid="seller-columns"/> from seller where seller_assign = 1 order by seller_store_no DESC) 
+				) where page = #{page}
+	</select>
+	
+	<!-- 판매자 스토어 번호로 판매자 조회 -->
+	<select id="selectCountSeller" resultType="_int">
+		select count(seller_store_no) from seller where seller_assign = 1
+	</select>
+	
+	<select id="selectSellerBySellerStoreNo" parameterType="_int" resultMap="seller-basic-resultmap">
+		<include refid="select-basic"/>
+		and seller_store_no = #{value}		
+	</select>
+
+	<insert id="insertSeller" parameterType="seller">
+		<selectKey keyProperty="sellerStoreNo" resultType="_int" order="BEFORE">
+			select seller_store_no_seq.nextval from dual
+		</selectKey>
+		insert into seller values(#{sellerStoreNo}, #{sellerStoreName}, #{sellerTaxId}, #{sellerIndustry}, #{sellerSubIndustry}, #{sellerZipcode}
+		, #{sellerAddress}, #{sellerSubAddress}, #{sellerStoreImage}, #{sellerProduct1}, #{sellerProduct2}, #{sellerProduct3}
+		, #{sellerIntroduction}, 0, #{memberId})
+	</insert>
+	
+	<!-- 셀러 신청 현황 조회(seller_assign이 0인경우.)(+페이징) -->
+	<select id="selectSellerRegister" resultMap="seller-basic-resultmap" parameterType="map">
+		select <include refid="seller-columns"/> from(
+			select ceil(rownum /#{itemPerPage})page, <include refid="seller-columns"/> from(
+				select <include refid="seller-columns"/> from seller where seller_assign = 0 order by seller_store_no DESC) 
+				) where page = #{page}
+	</select>
+	
+	<!-- 판매자 등록신청한 총 갯수 조회. -->
+	<select id="selectCountSellerRegister" resultType="_int">
+		select count(seller_store_no) from seller where seller_assign = 0
+	</select>
+	
+	<!-- 스토어넘버로 셀러정보멤버정보조인 -->
+	<select id="selectSellerMember" resultMap="seller-member" parameterType="_int">
+		select 	s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, 
+					s.seller_sub_industry, s.seller_zipcode, s.seller_address, s.seller_sub_address, 
+					s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, 
+					s.seller_introduction, s.seller_assign, s.member_id, 
+					m.member_id, m.member_password, m.member_name, 
+					m.member_phone, m.member_zipcode, m.member_address, 
+					m.member_sub_address, m.member_assign
+		from 		seller s, member m
+		where 	s.seller_store_no=#{sellerStoreNo}
+		and		s.member_id=m.member_id
+	</select>
+	
+	<update id="sellerAssignUpdate" parameterType="_int">
+		update 	seller
+		set			seller_assign=1
+		where 	seller_store_no=#{sellerStoreNo}
+	</update>
+	
+	<delete id="deleteSellerByNo" parameterType="_int">
+		delete from seller where seller_store_no = #{sellerStoreNo}
+	</delete>
+</mapper>

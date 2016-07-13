@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cartMapper">
+	<sql id="cart-columns">
+		cart_no, cart_product_amount, cart_product_option, product_id, member_id, option_id
+	</sql>
+	
+	<sql id="select-basic">
+		select <include refid="cart-columns"/> from cart
+	</sql>
+	
+	<resultMap type="cart" id="cart-basic-resultmap">
+		<id column="cart_no" property="cartNo"/>
+		<result column="cart_product_amount" property="cartProductAmount"/>
+		<result column="cart_product_option" property="cartProductOption"/>
+		<result column="product_id" property="productId"/>
+		<result column="member_id" property="memberId"/>
+		<result column="option_id" property="optionId"/>
+	</resultMap>
+	
+	<resultMap type="cart" id="cart-product-join" extends="cart-basic-resultmap">
+		<collection property="productList" ofType="product" resultMap="productMapper.product-seller-productImage-join"/>
+	</resultMap>
+	
+	<insert id="insertCart" parameterType="cart">
+		<selectKey keyProperty="cartNo" resultType="_int" order="BEFORE">
+			select cart_no_seq.nextval from dual
+		</selectKey>
+		insert into cart values(#{cartNo},#{cartProductAmount},#{cartProductOption},#{productId},#{memberId},#{optionId})
+	</insert>
+	
+	<delete id="deleteCart" parameterType="_int">
+		delete from cart where cart_no = #{value}
+	</delete>
+	
+	<select id="selectCart" parameterType="map" resultMap="cart-basic-resultmap">
+		select <include refid="cart-columns"/>
+		from cart where member_id=#{memberId} order by cart_no DESC
+	</select>
+	
+	<select id="selectCountCart" resultType="_int">
+		select count(cart_no) from cart where member_id = #{memberId}
+	</select>
+	
+	<select id="selectCartByCartNo" parameterType="_int" resultMap="cart-basic-resultmap">
+		<include refid="select-basic"/>
+		where cart_no = #{value}
+	</select>
+	
+	<select id="selectCartProductJoin" parameterType="string" resultMap="cart-product-join">
+		select c.cart_no, c.cart_product_amount, c.cart_product_option, c.product_id, c.member_id, c.option_id,
+			   p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, p.product_info, p.product_like, p.seller_store_no, 
+			   s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, s.seller_sub_industry, s.seller_zipcode, s.seller_address, 
+			   s.seller_sub_address, s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, s.seller_introduction, s.seller_assign, s.member_id,
+			   o.option_id, o.option_name, o.option_sub_name, o.option_stock, o.option_add_price, o.product_id
+		from   cart c, product p, seller s, product_option o
+		where  c.product_id = p.product_id
+		and    p.seller_store_no = s.seller_store_no
+		and    c.member_id = #{memberId}
+		and    c.option_id = o.option_id
+	</select>
+	
+	
+</mapper>

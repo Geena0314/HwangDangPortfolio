@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<sql id="member-columns">
+			member_id, member_password, member_name, member_phone, member_zipcode, member_address, 
+			member_sub_address, member_assign ,member_mileage
+	</sql>
+	<sql id="select-basic">
+		SELECT <include refid="member-columns"/> FROM MEMBER
+	</sql>
+	
+	<resultMap type="member" id="member-basic-resultMap">
+		<id column="member_Id" property="memberId"/>
+		<result column="member_password" property="memberPassword"/>
+		<result column="member_name" property="memberName"/>
+		<result column="member_phone" property="memberPhone"/>
+		<result column="member_zipcode" property="memberZipcode"/>
+		<result column="member_address" property="memberAddress"/>
+		<result column="member_sub_address" property="memberSubAddress"/>
+		<result column="member_assign" property="memberAssign"/>
+		<result column="member_mileage" property="memberMileage"/>
+	</resultMap>
+	
+	<resultMap type="seller" id="seller-basic-resultMap">
+		<id column="seller_store_no" property="sellerStoreNo"/>
+		<result column="seller_store_name" property="sellerStoreName"/>
+		<result column="seller_tax_id" property="sellerTaxId"/>
+		<result column="seller_industry" property="sellerIndustry"/>
+		<result column="seller_sub_industry" property="sellerSubIndustry"/>
+		<result column="seller_zipcode" property="sellerZipcode"/>
+		<result column="seller_address" property="sellerAddress"/>
+		<result column="seller_sub_address" property="sellerSubAddress"/>
+		<result column="seller_store_image" property="sellerStoreImage"/>
+		<result column="seller_product1" property="sellerProduct1"/>
+		<result column="seller_product2" property="sellerProduct2"/>
+		<result column="seller_product3" property="sellerProduct3"/>
+		<result column="seller_introduction" property="sellerIntroduction"/>
+		<result column="seller_assign" property="sellerAssign"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
+	
+	<resultMap type="code" id="code-basic-resultMap">
+		<result column="code" property="code"/>
+		<result column="code_name" property="codeName"/>
+	</resultMap>
+	
+	<!-- zipcode resultMap -->
+	<resultMap type="zipcode" id="zipcode-basic-resultMap">
+		<id column="seq" property="seq"/>
+		<result column="zipcode" property="zipcode"/>
+		<result column="sido" property="sido"/>
+		<result column="gugun" property="gugun"/>
+		<result column="dong" property="dong"/>
+		<result column="bunji" property="bunji"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="member">
+		INSERT INTO MEMBER 
+		VALUES (#{memberId},#{memberPassword},#{memberName},#{memberPhone},
+		#{memberZipcode},#{memberAddress},#{memberSubAddress},#{memberAssign},1000)
+	</insert>
+	<update id="update" parameterType="member">
+		UPDATE MEMBER
+		SET 	member_password=#{memberPassword},
+			   	member_name=#{memberName},
+			   	member_phone=#{memberPhone},
+			   	member_zipcode=#{memberZipcode},
+			   	member_address=#{memberAddress},
+			   	member_sub_address=#{memberSubAddress},
+			   	member_assign=#{memberAssign}
+		WHERE member_id=#{memberId}
+	</update>
+	<delete id="deleteById" parameterType="string">
+		DELETE FROM MEMBER WHERE member_id=#{memberId}
+	</delete>
+	
+	<!-- select -->
+	<select id="selectById" parameterType="string" resultMap="member-basic-resultMap">
+		<include refid="select-basic"/>
+		WHERE member_id = #{memberId}
+	</select>
+	<!-- 전체 회원 select -->
+	<select id="selectAll" resultType="member">
+		<include refid="select-basic"/>
+	</select>
+	
+	<!-- Select 페이징 처리 -->
+	<select id="selectList" parameterType="map" resultType="member">
+		SELECT <include refid="member-columns"/> 
+		FROM(SELECT CEIL(rownum/#{itemPerPage}) page, <include refid="member-columns"/> 
+			     FROM(SELECT <include refid="member-columns"/> 
+					     FROM member order by id desc
+					     )
+				 )
+		WHERE page = #{page}
+	</select>
+	
+	<select id="selectMemberCount" resultType="_int">
+		SELECT count(member_id) FROM MEMBER
+	</select>
+	<!-- 등록시 중복검사에서 사용해서 추가. -->
+	<select id="selectCountById" parameterType="string" resultType="_int">
+		SELECT count(member_id) FROM MEMBER WHERE member_id=#{memberId}
+	</select>
+
+	<!-- memberId로 Seller정보 찾기. -->
+	<select id="selectSellerById" resultMap="seller-basic-resultMap" parameterType="string">
+		select 	seller_store_no, seller_store_name, seller_tax_id, seller_industry, seller_sub_industry, seller_zipcode, seller_address, seller_sub_address,
+				 	seller_store_image, seller_product1, seller_product2, seller_product3, seller_introduction, seller_assign, member_id
+	 	from		seller
+	 	where		member_id=#{memberId}
+	</select>
+	
+	<!-- 판매자 등록 시 상호명 중복체크. -->
+	<select id="selectSellerStoreName" parameterType="string" resultType="_int">
+		select count(seller_store_name) from seller where seller_store_name = #{sellerStoreName}
+	</select>
+	
+	<!-- 멤버 판매자등록승인(assign값 1로변경) -->
+	<update id="updateMemberAssign" parameterType="string">
+		update 	member
+		set			member_assign=1
+		where 	member_id=#{memberId}
+	</update>
+	
+	<!-- 이메일 리스트 조회 -->
+	<select id="selectEmailList" resultMap="code-basic-resultMap">
+		select code_name from code where code = 'email'
+	</select>
+	
+	<!-- 동명으로 주소 조회. -->
+	<select id="selectZipcode" parameterType="string" resultMap="zipcode-basic-resultMap">
+		select * from zipcode where dong like #{dong}||'%'
+	</select>
+	
+	
+	<!-- 회원정보 수정 
+	memberId=admin@admin.com, memberPassword=12341234, memberName=스토어관리자,
+	 memberPhone=010-1111-1111, memberZipcode=123123, memberAddress=관리자메인주소,
+	 memberSubAddress=관리자세부주소
+	 -->
+	
+	<update id="update-member-by-memberId"  parameterType="member">
+		UPDATE  member 
+		SET 	member_password = #{memberPassword} ,
+				member_name = #{memberName } , member_phone = #{memberPhone } , 
+				member_address = #{memberAddress } , member_sub_address =#{memberSubAddress } 
+		WHERE 	member_id = #{memberId }
+	</update>
+	
+</mapper>

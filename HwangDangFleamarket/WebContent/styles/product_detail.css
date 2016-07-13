@@ -1,0 +1,73 @@
+@CHARSET "UTF-8";
+.main-image
+{
+	max-width: 400px;
+	max-height: 300px;
+	min-width: 250px;
+}
+
+.detail-image
+{
+	min-width: 300px;
+	min-height: 200px;
+	margin-bottom: 50px;
+	max-width: 900px;
+}
+
+.page-header2
+{
+	margin-bottom: 50px;
+}
+
+.detailInfo
+{
+	margin-bottom: 50px;
+	border-bottom: none;
+}
+
+#reviewTable
+{
+	border: 3px solid #EAEAEA;
+}
+
+input[type=button]:hover, input[type=submit]:hover
+{
+	background-color: #EAEAEA;
+}
+
+.table-striped productTB input[type=button]
+{
+	border: 1px solid #604495;
+}
+
+#buyBtn, #editBtn
+{
+	background-color: #604495;
+	color: white;
+}
+
+#cartBtn, #listBtn, #deleteBtn
+{
+	background-color: white;
+	color: #604495;
+}
+
+#qnaRegister, #reviewRegister, #reviewDelete
+{
+	background-color: white;
+	border: 1px solid whitegray;
+}
+
+#qnaRegister:hover, #reviewRegister:hover, #reviewDelete:hover
+{
+	border: 1px solid gray;
+}
+.productTB
+{
+	color: gray;
+}
+#main
+{
+	position: relative;
+	left: 5%;
+}

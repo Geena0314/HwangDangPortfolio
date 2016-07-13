@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC 
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!-- Definitions for Tiles documentation  
+	속성 
+a. name : controller handler에게 리턴할 View name을 설정. 
+b. template : 틀이 되는 레이아웃 jsp파일의 위치 지정.
+c. extends : 기존 definition 태그의 내용을 상속받아 사용할때 사용받을 definition태그의 name 속성사용 
+
+ 하위태그 
+	<put-attribute>   : template을 구성할 요소 페이지를 지정하는 태그 
+	속성 : name :template 페이지에서 호출할 이름(id) 
+	value : 요소페이지의 경로
+	
+ -->
+<tiles-definitions>
+	<definition name="template" template="/WEB-INF/view/layout/template.jsp" >
+		<put-attribute name="header" value="/WEB-INF/view/layout/header.jsp" />
+		<put-attribute name="nav"  value="/WEB-INF/view/layout/side_menu.jsp" />
+		<put-attribute name="footer"  value="/WEB-INF/view/layout/footer.jsp" />
+		<put-attribute name="searchBar"  value="/WEB-INF/view/layout/searchBar.jsp" />
+	</definition>  
+
+	<definition name="*/*.tiles"  extends="template">
+		<put-attribute name="body"  value="/WEB-INF/view/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="seller/*/*.tiles"  extends="template">
+		<put-attribute name="header"  value="/WEB-INF/view/layout/store_header.jsp" />
+		<put-attribute name="nav"  value="/WEB-INF/view/layout/side_menu.jsp" />
+		<put-attribute name="body"  value="/WEB-INF/view/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="*.tiles"  extends="template">
+		<put-attribute name="body"  value="/WEB-INF/view/{1}.jsp" />
+	</definition>
+
+</tiles-definitions>
+

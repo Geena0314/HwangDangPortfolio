@@ -1,0 +1,81 @@
+@CHARSET "UTF-8";
+
+div.seller_listing{
+	float: left;
+	border-top: 3px solid #EAEAEA;
+	border-bottom: 3px solid #EAEAEA;
+	margin: 20px 20px 50px 250px;
+	padding: 0px 20px 20px 0px;
+	max-width: 800px;
+	min-height: 560px;
+}
+ul .product_lists
+{
+	border-bottom: 3px solid #EAEAEA;
+	margin: 0px;
+	padding: 0px;
+	height: 150px;
+	width: 210px;
+}
+
+.seller-register-page
+{
+	left: 47%
+}
+div.seller_listing li#list_block{
+	float: left;
+	overflow: hidden;
+	position: relative;
+	height: 150px;
+	min-width: 800px;
+}
+.thmb{
+	float: left;
+	width: 150px;
+	height: 150px;
+}
+.store_info{
+	float: left;
+	width: 400px;
+	height: 150px;
+	border-right: 3px solid #EAEAEA;
+	border-bottom: 3px solid #EAEAEA;
+}
+.store_products{
+	float: left;
+	width: 250px;
+	height: 150px;
+	border-bottom: 3px solid #EAEAEA;
+	font-size: 13pt;
+	padding-top: 40px;
+	text-align: center;
+	padding-right: 40px;
+}
+img{
+	width: 150px;
+	height: 150px;
+}
+.store_imgs{
+	width: 190px;
+	height: 150px;
+	padding-left: 20px;
+	overflow: hidden;
+	border-bottom: 3px solid #EAEAEA;
+	border-right: 3px solid #EAEAEA;
+}
+
+.store-names
+{
+	font-size: 20px;
+}
+
+li.introduction
+{
+	font-size: 18px;
+	text-align: left;
+	padding-left: 10px;
+	max-height: 120px;
+	margin: 0px;
+	width : 375px;
+	max-width: 360px;
+}

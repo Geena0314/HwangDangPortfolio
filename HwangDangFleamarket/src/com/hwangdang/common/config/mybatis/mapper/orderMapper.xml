@@ -1,0 +1,134 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orderMapper">
+	<sql id="orders-join">
+		o.orders_no, o.orders_receiver, o.orders_phone, o.orders_zipcode, o.orders_address, o.orders_sub_address,
+		o.orders_total_price, o.orders_payment, o.orders_request, o.payment_status,  o.orders_date , o.member_id
+	</sql>
+	<sql id="product-join">
+		p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, 
+		p.product_info, p.product_like, p.seller_store_no
+	</sql>
+	<sql id="orderProduct-join">
+		op.order_seq_no, op.order_amount, op.orders_no as op_orders_no, op.product_id as op_product_id, op.option_id, 
+		op.seller_store_no as op_seller_store_no, op.order_product_status
+	</sql>
+	<sql id="order-join-column">
+		order_seq_no, order_amount, op_orders_no, op_product_id, option_id, op_seller_store_no, order_product_status,
+		orders_no, orders_receiver, orders_phone, orders_zipcode, orders_address, orders_sub_address,
+		orders_total_price, orders_payment, orders_request, payment_status, member_id,
+		product_Id, product_name, product_price, product_stock, product_main_image, 
+		product_info, product_like, seller_store_no
+	</sql>
+	<!-- 주문 기본 리절트맵 -->
+	<resultMap type="orders" id="orders-basic-resultmap">
+		<id column="orders_no" property="ordersNo"/>
+		<result column="orders_receiver" property="ordersReceiver"/>
+		<result column="orders_phone" property="ordersPhone"/>
+		<result column="orders_zipcode" property="ordersZipcode"/>
+		<result column="orders_address" property="ordersAddress"/>
+		<result column="orders_sub_address" property="ordersSubAddress"/>
+		<result column="orders_total_price" property="ordersTotalPrice"/>
+		<result column="orders_payment" property="ordersPayment"/>
+		<result column="orders_request" property="ordersRequest"/>
+		<result column="payment_status" property="paymentStatus"/>
+		<result column="member_id" property="memberId"/>
+		<result column="orders_date"  property="orders_date"/>
+	</resultMap>
+	
+	<!-- 주문상품 리절트맵. -->
+	<resultMap type="orderProduct" id="orderProduct-basic-resultmap">
+		<id column="order_seq_no" property="orderSeqNo"/>
+		<result column="order_amount" property="orderAmount"/>
+		<result column="orders_no" property="ordersNo"/>
+		<result column="product_id" property="productId"/>
+		<result column="option_id" property="optionId"/>
+		<result column="seller_store_no" property="sellerStoreNo"/>
+		<result column="order_product_status" property="orderProductStatus"/>
+	</resultMap>
+	
+	<!-- 주문상품 + 상품정보. (1:1)-->
+	<resultMap type="orderProduct" id="orderProduct-product" extends="orderProduct-basic-resultmap">
+		<association property="product" javaType="Product" resultMap="productMapper.product-basic-resultMap"/>
+	</resultMap>
+		
+	<!-- 주문, 상품 ,주문상품 Join -->
+	<resultMap type="orders" id="orders-product-orderProduct" extends="orders-basic-resultmap">
+		<collection property="orderProductList" ofType="orderProduct" resultMap="orderProduct-product"/>
+	</resultMap>
+	
+	<!-- 환불정보 resultMap -->
+	<resultMap type="refundRequest" id="refund-basic-resultmap">
+		<result column="refund_title" property="refundTitle"/>
+		<result column="refund_content" property="refundContent"/>
+		<result column="order_seq_no" property="orderSeqNo"/>
+	</resultMap>
+	
+	<!-- 페이징추가해야함.  -->
+	<select id="selectOrderState" parameterType="map"  resultMap="orders-product-orderProduct">
+		select 	<include refid="order-join-column"/>
+		from		(select ceil(rownum/#{itemPerPage}) page, <include refid="order-join-column"/>
+					from (select 	<include refid="orderProduct-join"/>,<include refid="orders-join"/>, <include refid="product-join"/>
+							from 		orders o, order_product op, product p
+							where 	o.orders_no = op.orders_no
+							and	 	op.product_id = p.product_id
+							and		op.seller_store_no = #{sellerStoreNo} order by op.orders_no desc))
+		where		page = #{page}
+	</select>
+	
+	<!-- 주문상품갯수조회. -->
+	<select id="selectOrderCount" parameterType="_int" resultType="_int">
+		select 	count(op.orders_no)
+		from 		order_product op, orders o, product p 
+		where		op.orders_no = o.orders_no
+		and		op.product_id = p.product_id
+		and		op.seller_store_no = #{sellerStoreNo}
+	</select>
+	
+	<!-- 주문정보 조회.(주문 번호로) -->
+	<select id="selectOrderInfo" parameterType="string" resultMap="orders-basic-resultmap">
+		select <include refid="orders-join"/> from orders o where o.orders_no = #{ordersNo}
+	</select>
+	
+	<!-- 환불정보 조회.(주문상품 번호로) -->
+	<select id="selectRefundByNo" parameterType="_int" resultMap="refund-basic-resultmap">
+		select refund_title, refund_content, order_seq_no from refund_request where order_seq_no = #{orderSeqNo}
+	</select>
+	
+	<!-- 환불 승인 처리. -->
+	<!-- 주문상품 주문현황 변경.(환불승인처리 9번) -->
+	<update id="updateOrderProductStatus" parameterType="_int">
+		update 	order_product
+		set			order_product_status = 9
+		where 	order_seq_no = #{orderSeqNo}
+	</update>
+	
+	<!-- 주문상품 번호로 옵션 id, 구매상품수량 조회. -->
+	<select id="selectOptionAmount" parameterType="_int" resultType="map">
+		select 	option_id, order_amount
+		from 		order_product
+		where		order_seq_no = #{orderSeqNo}
+	</select>
+	
+	<!-- 반품된 수량만큼 옵션의 재고량 증가. -->
+	<update id="updateOptionStock" parameterType="map">
+		update 	product_option
+		set			option_stock = option_stock+#{ORDER_AMOUNT}
+		where		option_id = #{OPTION_ID}
+	</update>
+	<!-- 여기까지 -->
+	
+	<!-- 환불요청 정보저장. -->
+	<insert id="insertRefundRequest" parameterType="refundRequest">
+		insert into refund_request values (#{refundTitle}, #{refundContent}, #{orderSeqNo})
+	</insert>
+	
+	<!-- 환불 신청 처리. -->
+	<!-- 주문상품 주문현황 변경.(환불신청상태 6번) -->
+	<update id="updateOrderProductRefundStatus" parameterType="_int">
+		update 	order_product
+		set			order_product_status = 6
+		where 	order_seq_no = #{orderSeqNo}
+	</update>
+	
+
+</mapper>

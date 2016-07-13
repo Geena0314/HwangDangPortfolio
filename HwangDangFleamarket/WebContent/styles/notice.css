@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover{
+	background-color: white;
+}
+.noticeBtns{
+	background-color: white;
+	border: 1px solid whitegray;
+	border-radius: 5px;
+	font-size: 11pt;
+}
+.noticeBtns:hover{
+	border: 1px solid gray;
+}
+.notice{
+	margin-bottom: 30px;
+	min-height: 500px;
+	left: 25%;
+	position: relative;
+	color: gray;
+}

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sellerNoticeMapper">
+	<sql id="sellerNotice-columns">
+		seller_notice_no, seller_notice_title, seller_notice_content, seller_notice_date, seller_notice_hit, seller_store_no
+	</sql>
+	
+	<sql id="select-basic">
+		SELECT <include refid="sellerNotice-columns"/> FROM seller_notice
+	</sql>
+	
+	<resultMap type="sellerNotice" id="sellerNotice-basic-resultmap">
+		<id column="seller_notice_no" property="sellerNoticeNo"/>
+		<result column="seller_notice_title" property="sellerNoticeTitle"/>
+		<result column="seller_notice_content" property="sellerNoticeContent"/>
+		<result column="seller_notice_date" property="sellerNoticeDate"/>
+		<result column="seller_notice_hit" property="sellerNoticeHit"/>
+		<result column="seller_store_no" property="sellerStoreNo"/>
+	</resultMap>
+	
+	<insert id="insertSellerNotice" parameterType="sellerNotice">
+		<selectKey keyProperty="sellerNoticeNo" resultType="_int" order="BEFORE">
+			select seller_notice_no_seq.nextval from dual
+		</selectKey>
+		insert into seller_notice values(#{sellerNoticeNo},#{sellerNoticeTitle},#{sellerNoticeContent},
+										 #{sellerNoticeDate},#{sellerNoticeHit},#{sellerStoreNo})
+	</insert>
+	
+	<update id="updateSellerNotice" parameterType="sellerNotice">
+		update seller_notice
+		set    seller_notice_title = #{sellerNoticeTitle},
+			   seller_notice_content = #{sellerNoticeContent}
+		where  seller_notice_no = #{sellerNoticeNo}
+	</update>
+	
+	<update id="updateSellerNoticeHit" parameterType="_int">
+		update seller_notice
+		set	   seller_notice_hit = seller_notice_hit + 1
+		where  seller_notice_no = #{value}
+	</update>
+	
+	<delete id="deleteSellerNoticeByNoticeNo" parameterType="_int">
+		delete from seller_notice where seller_notice_no = #{value}
+	</delete>
+	
+	<select id="selectSellerNoticePaging" parameterType="map" resultMap="sellerNotice-basic-resultmap">
+		select <include refid="sellerNotice-columns"/> from(
+			select ceil(rownum /#{itemsPerPage})page, <include refid="sellerNotice-columns"/> from(
+				select <include refid="sellerNotice-columns"/> from seller_notice where seller_store_no=#{sellerStoreNo} order by seller_notice_no DESC) 
+				) where page = #{page}
+	</select>
+	
+	<select id="selectCountSellerNotice" resultType="_int">
+		select count(seller_notice_no) from seller_notice where seller_store_no = #{sellerStoreNo}
+	</select>
+	
+	<select id="selectSellerNoticeByNoticeNo" parameterType="_int" resultMap="sellerNotice-basic-resultmap">
+		<include refid="select-basic"/>
+		where seller_notice_no = #{value}		
+	</select>
+
+</mapper>
