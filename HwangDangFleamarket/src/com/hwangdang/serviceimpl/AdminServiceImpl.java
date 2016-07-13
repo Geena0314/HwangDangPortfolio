@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.PagingBean;
-import com.hwangdang.dao.AdminDao;
 import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.AdminService;
@@ -17,9 +16,6 @@ import com.hwangdang.vo.Seller;
 @Service
 public class AdminServiceImpl implements AdminService
 {
-	@Autowired
-	private AdminDao dao;
-	
 	@Autowired
 	private SellerDao sellerDao;
 	
