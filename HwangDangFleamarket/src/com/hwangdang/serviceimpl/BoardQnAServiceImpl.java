@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hwangdang.daoimpl.BoardQnADaoImpl;
+import com.hwangdang.dao.BoardQnADao;
 import com.hwangdang.service.Service;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
@@ -16,7 +16,7 @@ import com.hwangdang.vo.AdminQnAReply;
 public class BoardQnAServiceImpl implements Service {
 	
 	@Autowired
-	private BoardQnADaoImpl adminDao;
+	private BoardQnADao adminDao;
 	
 
 	

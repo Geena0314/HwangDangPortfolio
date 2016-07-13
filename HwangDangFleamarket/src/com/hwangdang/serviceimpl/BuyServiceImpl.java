@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hwangdang.daoimpl.BuyDaoImpl;
+import com.hwangdang.dao.BuyDao;
 import com.hwangdang.vo.Cart;
 import com.hwangdang.vo.OrderProduct;
 import com.hwangdang.vo.Orders;
@@ -18,7 +18,7 @@ import com.hwangdang.vo.Seller;
 public class BuyServiceImpl {
 
 	@Autowired
-	private BuyDaoImpl dao;
+	private BuyDao dao;
 	
 	public BuyServiceImpl () { }
 	
