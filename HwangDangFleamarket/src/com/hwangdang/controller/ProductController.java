@@ -219,12 +219,13 @@ public class ProductController
 	{
 		return service.selectSecondCategory(categoryIdRef);
 	}
-	
+	// 상품 등록 폼
 	@RequestMapping("registerProductForm")
 	public String registerProductForm(){
 		return "seller/seller/product_register.tiles";
 	}
 	
+	// 상품 등록
 	@RequestMapping("registerProduct") 
 	public ModelAndView registerProduct(@ModelAttribute Product product, ProductOption productOption, HttpServletRequest request, String sellerStoreImage) throws UnsupportedEncodingException {
 		
@@ -286,11 +287,13 @@ public class ProductController
 														+"&sellerStoreImage="+URLEncoder.encode(sellerStoreImage,"UTF-8"));
 	}
 	
+	// 상품 수정 폼
 	@RequestMapping("editProductForm")
 	public ModelAndView editProductForm(String productId){
 		 return new ModelAndView("seller/seller/product_edit_form.tiles", service.selectProductById(productId));
 	}
 	
+	// 상품 수정
 	@RequestMapping("editProduct")
 	public ModelAndView editProduct(@ModelAttribute Product product, ProductOption productOption, HttpServletRequest request, String sellerStoreImage) throws UnsupportedEncodingException{
 		
@@ -368,6 +371,7 @@ public class ProductController
 														+"&productId="+product.getProductId()+"&sellerStoreImage="+URLEncoder.encode(sellerStoreImage,"UTF-8")); //파라미터 값 넘겨주기
 	}
 	
+	// 상품 삭제
 	@RequestMapping("deleteProduct")
 	public ModelAndView deleteProduct(String productId, String sellerStoreImage, HttpServletRequest request) throws UnsupportedEncodingException{
 		service.deleteProductById(productId);

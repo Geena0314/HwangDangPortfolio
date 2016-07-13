@@ -25,6 +25,7 @@ public class AdminNoticeController{
 	@Autowired
 	private AdminNoticeService service;
 	
+	// 관리자 소식글 전체 목록 조회
 	@RequestMapping("/adminNotice")
 	public ModelAndView noticeList(int page){
 		HashMap map = new HashMap<>();
@@ -35,6 +36,7 @@ public class AdminNoticeController{
 		return new ModelAndView("admin/admin_notice_list.tiles", map);
 	}
 	
+	// 관리자 소식글 상세 보기
 	@RequestMapping("/adminNoticeDetail")
 	public ModelAndView noticeDetail(int page, int noticeNo){
 		Notice notice = service.getNoticeByNoticeNo(noticeNo);
@@ -45,11 +47,13 @@ public class AdminNoticeController{
 		return new ModelAndView("admin/admin_notice_detail.tiles", map);
 	}
 	
+	// 관리자 소식글 등록 폼으로 이동
 	@RequestMapping("/adminRegisterForm")
 	public String registerForm(){
 		return "admin/admin_register_notice.tiles";
 	}
 	
+	// 관리자 소식글 등록
 	@RequestMapping("/adminRegisterNotice")
 	public ModelAndView registerNotice(@ModelAttribute @Valid Notice notice, BindingResult errors, int page, HttpServletRequest request){
 		if(errors.hasErrors()){
@@ -65,6 +69,7 @@ public class AdminNoticeController{
 		return new ModelAndView("admin/admin_notice_detail.tiles", map);
 	}
 	
+	// 관리자 소식글 수정 폼으로 이동
 	@RequestMapping("/adminEditForm")
 	public ModelAndView editForm(int page, int noticeNo){
 		Notice notice = service.getNoticeByNoticeNo(noticeNo);
@@ -74,6 +79,7 @@ public class AdminNoticeController{
 		return new ModelAndView("admin/admin_edit_notice.tiles", map);
 	}
 
+	// 관리자 소식글 수정
 	@RequestMapping("/adminEditNotice")
 	public ModelAndView editNotice(@ModelAttribute @Valid Notice notice, BindingResult errors, int page, HttpServletRequest request){
 		if(errors.hasErrors()){
@@ -89,6 +95,7 @@ public class AdminNoticeController{
 		return new ModelAndView("admin/admin_notice_detail.tiles", map);
 	}
 	
+	// 관리자 소식글 삭제
 	@RequestMapping("/adminRemoveNotice")
 	public ModelAndView removeNotice(int page, int noticeNo){
 		service.removNotice(noticeNo);
@@ -100,6 +107,7 @@ public class AdminNoticeController{
 		return new ModelAndView("admin/admin_notice_list.tiles", map);
 	}
 	
+	// HTML <-> Text 변환
 	public Notice convertor(Notice notice){
 		notice.setNoticeTitle(notice.getNoticeTitle().replace(">", "&gt;"));
 		notice.setNoticeTitle(notice.getNoticeTitle().replace("<", "&lt;"));

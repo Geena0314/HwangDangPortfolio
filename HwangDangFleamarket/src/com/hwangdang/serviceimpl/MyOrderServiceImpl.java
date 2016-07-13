@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hwangdang.dao.MyOrderDao;
 import com.hwangdang.daoimpl.MyOrderDaoImpl;
 import com.hwangdang.service.MyOrderService;
 import com.hwangdang.vo.ExchangeRequest;
@@ -19,7 +20,7 @@ import com.hwangdang.vo.Seller;
 public class MyOrderServiceImpl implements MyOrderService {
 
 	@Autowired
-	private MyOrderDaoImpl dao;
+	private MyOrderDao dao;
 
 	public MyOrderServiceImpl() { } 
 	

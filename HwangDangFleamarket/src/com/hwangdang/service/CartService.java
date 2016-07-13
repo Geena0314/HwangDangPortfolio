@@ -8,15 +8,20 @@ import com.hwangdang.vo.Cart;
 
 public interface CartService {
 
+	//장바구니 상품 등록
 	@Transactional
 	public int addCart(Cart cart);
 	
+	//장바구니 상품 삭제
 	@Transactional
 	public int removeCart(int cartNo);
 	
+	//장바구니 전체 상품 목록 조회
 	public List<Cart> getAllCart(String memberId);
 	
+	//장바구니 카운트
 	public int getCountCart(String memberId);
 	
+	//장바구니 번호로 장바구니 조회
 	public Cart getCartByCartNo(int cartNo);
 }

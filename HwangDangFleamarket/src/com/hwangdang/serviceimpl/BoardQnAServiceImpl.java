@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.dao.BoardQnADao;
 import com.hwangdang.service.BoardQnAService;
-import com.hwangdang.service.Service;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
 
