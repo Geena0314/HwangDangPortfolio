@@ -12,11 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.SessionScope;
 
 import com.hwangdang.common.util.PagingBean;
-import com.hwangdang.serviceimpl.BoardQnAServiceImpl;
+import com.hwangdang.service.BoardQnAService;
 import com.hwangdang.serviceimpl.MemberServiceImpl;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
@@ -27,7 +25,7 @@ import com.hwangdang.vo.Member;
 public class QnABoardController {
 
 	@Autowired
-	private BoardQnAServiceImpl service;
+	private BoardQnAService service;
 	@Autowired
 	private MemberServiceImpl memberService;
 	

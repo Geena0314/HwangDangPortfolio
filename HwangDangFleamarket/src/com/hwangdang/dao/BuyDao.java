@@ -35,7 +35,6 @@ public interface BuyDao {
 	//최근배송주소지 조회  
 	Orders selectCurrentDeliveryAddress(String memberId);
 
-	//
 	Orders selectOrdersByOrdersNo(String ordersNo);
 
 	void updateMemberMileage(Map param);
