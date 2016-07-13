@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+#adminTable{
+	width: 800px;
+	min-height: 500px;
+	font-size: 13pt;
+	border-top: 1px solid lightgray;
+	border-collapse: separate;
+	position: relative;
+}
+td{
+	text-align: left;
+	border-left: none;
+	border-right: none;
+}
+.table-responsive.notice{
+	left: 20%;
+}

@@ -2,33 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
-<style type="text/css">
-#title {
-	border: none;
-	background-color: whitesmoke;
-}
-textarea {
-	border: none;
-	background-color: whitesmoke;
-}
-span{
-	font-size: 11pt;
-	color: red;
-}
-#adminTable{
-	width: 500px;
-	min-height: 300px;
-	font-size: 13pt;
-	border-top: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
-	border-collapse: separate;
-}
-.noticeRnE{
-	width: 800px;
-	min-height: 500px;
-	margin-bottom: 30px;
-}
-</style>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_edit_notice.css">
 <h2 class="page-header store_look_around">황당 플리마켓 소식통</h2>
 <div class="table-responsive notice">
 	<form action="/HwangDangFleamarket/admin/adminEditNotice.go" method="post">

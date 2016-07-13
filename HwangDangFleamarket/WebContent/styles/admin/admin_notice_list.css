@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+a {
+	text-decoration: none;
+	color: gray;
+}
+a:HOVER {
+	text-decoration: underline;
+	color: #8748E1;
+}
+b {
+	font-size: 15pt;
+}
+.main{
+	min-height: 600px;
+}
+#adminTable{
+	width: 700px;
+	font-size: 13pt;
+}
+.table-responsive{
+	overflow-x: hidden; 
+}

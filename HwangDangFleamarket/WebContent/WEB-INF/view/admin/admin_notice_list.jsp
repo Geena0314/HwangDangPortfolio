@@ -2,29 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
-<style type="text/css">
-a {
-	text-decoration: none;
-	color: gray;
-}
-a:HOVER {
-	text-decoration: underline;
-	color: #8748E1;
-}
-b {
-	font-size: 15pt;
-}
-.main{
-	min-height: 600px;
-}
-#adminTable{
-	width: 700px;
-	font-size: 13pt;
-}
-.table-responsive{
-	overflow-x: hidden; 
-}
-</style>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_notice_list.css">
 <h2 class="page-header store_look_around">황당 플리마켓 소식통</h2>
 <div class="table-responsive notice">
 	<table class="table table-striped" id="adminTable">
