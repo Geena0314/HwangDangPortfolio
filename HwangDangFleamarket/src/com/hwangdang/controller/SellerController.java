@@ -98,6 +98,7 @@ public class SellerController {
 	@RequestMapping("/sellerRefundCheck")
 	public ModelAndView sellerRefundCheck(String ordersNo, int orderSeqNo)
 	{
+		System.out.println(orderSeqNo);
 		return new ModelAndView("/WEB-INF/view/seller/seller_refund_check.jsp", service.selectOrderAndRefund(ordersNo, orderSeqNo));
 	}
 	

@@ -63,7 +63,7 @@ input{
 </style>
 <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
 <script type="text/javascript">
-$( document ).ready( function() {
+$( document ).ready( function(){
     $('#basketAll').on("click", function() {
     	if($("#basketAll").prop("checked")){
             $("input[name=checkBasket]").prop("checked",true);
@@ -113,8 +113,6 @@ $( document ).ready( function() {
 			"error":error
     	}); 
     });
-    
-    
     //구입하기 버튼 : 체그된 productId , productOptionId , sellerStoreNO 
     //stock  , 
     $("#buyBtn").on("click",function(){
@@ -204,7 +202,9 @@ function changeAmount(i){
 								</td>
 								<td>
 									<%-- 수량 --%>
-									<%--<input type="number" id="amount" value="${list.cartProductAmount}" onchange="changeAmount(this.value)"> --%>
+									${list.cartProductAmount}
+									<%-- <input type="number" class="amount" value="${list.cartProductAmount}" min="1" max="${product.productOption.optionStock}"> --%>
+								
 								</td>
 								<td id="price">
 									${product.productPrice*list.cartProductAmount} 
