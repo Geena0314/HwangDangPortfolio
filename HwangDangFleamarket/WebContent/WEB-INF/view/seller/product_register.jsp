@@ -15,7 +15,6 @@ $(document).ready(function(){
 				$("#optionStock").attr("readonly", "readonly");
 			}
 			
-			
 			var optionSubName = $('.optionSubName');
 			var optionStock = $('.optionStock');
 			if(optionSubName.length != 1){

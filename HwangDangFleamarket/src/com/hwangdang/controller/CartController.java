@@ -23,6 +23,7 @@ public class CartController {
 			@Autowired
 			private CartService service;
 		
+			//장바구니 상품 목록 전체 조회
 			@RequestMapping("/cartList")
 			public ModelAndView cartList(String memberId){
 				int sum = 0;
@@ -40,6 +41,7 @@ public class CartController {
 				return new ModelAndView("buyer/cart_list.tiles", map);
 			}
 			
+			// 장바구니 상품 등록
 			@RequestMapping("/addCart")
 			@ResponseBody
 			public Cart addCart(Cart cart){
@@ -47,6 +49,7 @@ public class CartController {
 				return cart; 
 			}
 			
+			// 장바구니 상품 삭제
 			@RequestMapping("/removeCart")
 			@ResponseBody
 			public HashMap<String, Object> removeCart(String memberId, @RequestParam String [] checkBasket){
