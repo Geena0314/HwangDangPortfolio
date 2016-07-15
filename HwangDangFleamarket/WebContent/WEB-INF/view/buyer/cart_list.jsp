@@ -57,6 +57,9 @@ ul li{
 	left: 14%;
 	color: gray;
 }
+input{
+	width: 70px;
+}
 </style>
 <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
 <script type="text/javascript">
@@ -120,8 +123,6 @@ $( document ).ready( function() {
 		$("form").prop("action" , url);    	
 		$("form").submit();
     });
-    
-    
 });
 function getRemoveCartList(){
 	var queryString = "";
@@ -138,6 +139,12 @@ function getRemoveCartList(){
 function error(xhr, status, err)
 {
 	alert(status+", "+xhr.readyState+" "+err);
+}
+function changeAmount(i){
+	var amount = parseInt(i);
+	if(amount < 0){
+		$('#amount').val(1);
+	}
 }
 </script>
 <h2 class="page-header store_look_around">황당 플리마켓 장바구니</h2>
@@ -172,8 +179,8 @@ function error(xhr, status, err)
 					<c:forEach items="${requestScope.cartList}" var="list">
 						<c:forEach items="${list.productList}" var="product">
 							<tr class="cartList">
-								<td class="first"><input type="checkbox" name="checkBasket"
-									checked="checked" title="장바구니 상품 선택" value="${list.cartNo}">
+								<td class="first">
+									<input type="checkbox" name="checkBasket" checked="checked" title="장바구니 상품 선택" value="${list.cartNo}">
 								</td>
 								<td>
 									<%-- 스토어 이름, 상품명, 선택한 옵션 --%>
@@ -181,14 +188,12 @@ function error(xhr, status, err)
 										<li id="listBlock">
 											<div class="thmb">
 												<div class="storeImg">
-													<a
-														href="/HwangDangFleamarket/product/detail.go?page=1&productId=${product.productId}&sellerStoreNo=${product.seller.sellerStoreNo}&sellerStoreImage=${product.seller.sellerStoreImage}"><img
-														src="../image_storage/${product.productMainImage}"></a>
+													<a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${product.productId}&sellerStoreNo=${product.seller.sellerStoreNo}&sellerStoreImage=${product.seller.sellerStoreImage}">
+													<img src="../image_storage/${product.productMainImage}"></a>
 												</div>
 											</div>
 											<ul class="storeInfo">
-												<li><a
-													href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${product.seller.sellerStoreNo}&sellerStoreImage=${product.seller.sellerStoreImage}">${product.seller.sellerStoreName}</a>
+												<li><a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${product.seller.sellerStoreNo}&sellerStoreImage=${product.seller.sellerStoreImage}">${product.seller.sellerStoreName}</a>
 												</li><br>
 												<li>
 													${product.productName}/${product.productOption.optionSubName}
@@ -198,10 +203,12 @@ function error(xhr, status, err)
 									</ul>
 								</td>
 								<td>
-									<%-- 수량 --%> ${list.cartProductAmount}
+									<%-- 수량 --%>
+									<%--<input type="number" id="amount" value="${list.cartProductAmount}" onchange="changeAmount(this.value)"> --%>
 								</td>
 								<td id="price">
-									${product.productPrice*list.cartProductAmount} <c:choose>
+									${product.productPrice*list.cartProductAmount} 
+									<c:choose>
 										<c:when test="${product.productOption.optionAddPrice != 0}">
 											<p>&nbsp;+&nbsp;${list.cartProductAmount*product.productOption.optionAddPrice}
 										</c:when>
@@ -230,7 +237,7 @@ function error(xhr, status, err)
 		<div class="estimatedPrice" style="border: 2px solid lightgray;">
 			결제 예상 금액 - 배송비&nbsp;&nbsp;
 			<hr style="border: 1px solid lightgray;">
-			<span id="checkedEstimatedPrice">${requestScope.sum}원&nbsp;&nbsp;</span> 
+			<span id="checkedEstimatedPrice"><b>${requestScope.sum}원</b>&nbsp;&nbsp;</span> 
 		</div>
 		<br>
 		<span class="bottomBtn"> 
