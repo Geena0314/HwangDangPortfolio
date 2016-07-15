@@ -21,7 +21,7 @@ $(document).ready(function(){
 			<div class="col-md-6" id="sellerRegister" >
 				<a href="/HwangDangFleamarket/admin/sellerRegisterStatus.go?page=1">
 					<!-- 판매자 신청 현황.(관리자) -->
-					<img class="mypage-images" src="../image_storage/sellerRegisterStatus.jpg">
+					<img class="mypage-images adminImages" src="../image_storage/sellerRegisterStatus.jpg">
 				</a>
 			</div>
 		</lee:when>
@@ -32,13 +32,13 @@ $(document).ready(function(){
 						<lee:when test="${ sessionScope.sellerRegister == 1}">
 							<div class="col-sm-4" id="sellerRegister">
 								<!-- 등록신청을 했는데 결과가 없는경우. -->
-								<img class="mypage-images" src="../image_storage/sellerRegisterResult.jpg">
+								<img class="mypage-images sellerImages" src="../image_storage/sellerRegisterResult.jpg">
 							</div>
 						</lee:when>
 						<lee:otherwise>
 							<div class="col-sm-4" id="sellerRegister">
 								<a href="/HwangDangFleamarket/member/sellerRegister.go">
-									<img class="mypage-images" src="../image_storage/sellerRegister.jpg"><!-- 등록폼으로이동. 판매자등록신청.-->
+									<img class="mypage-images sellerImages" src="../image_storage/sellerRegister.jpg"><!-- 등록폼으로이동. 판매자등록신청.-->
 								</a>
 							</div>
 						</lee:otherwise>
@@ -47,7 +47,7 @@ $(document).ready(function(){
 				<lee:otherwise>
 					<div class="col-sm-4" id="sellerRegister">
 						<a href="/HwangDangFleamarket/seller/salesStatus.go?page=1&sellerStoreNo=${ sessionScope.seller.sellerStoreNo }">
-							<img class="mypage-images" src="../image_storage/salesStatus.jpg"><!-- 판매현황조회. -->
+							<img class="mypage-images sellerImages" src="../image_storage/salesStatus.jpg"><!-- 판매현황조회. -->
 						</a>
 					</div>
 				</lee:otherwise>
