@@ -258,6 +258,18 @@ input#sellerZipcode
 	border: 2px solid purple;
 	border-radius: 20px;
 }
+
+.mypage-images.adminImages:hover
+{
+	border: 2px solid yellow;
+	border-radius: 20px;
+}
+
+.mypage-images.sellerImages:hover
+{
+	border: 2px solid yellowgreen;
+	border-radius: 20px;
+}
 /********* product_list ********/
 .product-content {
 	position: relative;
