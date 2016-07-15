@@ -1,5 +1,6 @@
 package com.hwangdang.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hwangdang.vo.Code;
@@ -31,5 +32,10 @@ public interface MemberService {
 	   
 	//회원정보수정 
 	public int setMemberInfoByMemberId(Member setMember);
+	
+	//멤버 이름과 전화번호로 멤버아이디 찾기.
+	String selectMemeberByName(String memberName, String memberPhone);
+	
+	//멤버 아이디로 패스워드 조회.
+	String selelctPasswordById(String memberId);
 }
-

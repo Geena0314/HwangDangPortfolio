@@ -108,4 +108,11 @@ public class SellerDaoImpl implements SellerDao{
 		// TODO Auto-generated method stub
 		return session.selectOne("orderMapper.selectOrderInfo", ordersNo);
 	}
+
+	@Override
+	public Seller selectSellerRegisterOne(int sellerStoreNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("sellerMapper.selectSellerRegisterOne", sellerStoreNo);
+	}
 }

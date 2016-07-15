@@ -48,6 +48,11 @@
 		select count(seller_store_no) from seller where seller_assign = 1
 	</select>
 	
+	<!-- 판매자 스토어 번호로 판매자 조회 -->
+	<select id="selectSellerRegisterOne" parameterType="_int" resultMap="seller-basic-resultmap">
+		select <include refid="seller-columns"/> from seller where seller_store_no = #{sellerStoreNo}
+	</select>
+	
 	<select id="selectSellerBySellerStoreNo" parameterType="_int" resultMap="seller-basic-resultmap">
 		<include refid="select-basic"/>
 		and seller_store_no = #{value}		

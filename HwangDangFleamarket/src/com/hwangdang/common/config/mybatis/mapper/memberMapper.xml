@@ -148,4 +148,18 @@
 		WHERE 	member_id = #{memberId }
 	</update>
 	
+	<!-- 아이디 찾기. (이름, 전화번호)-->
+	<select id="selectMemeberByName" resultMap="member-basic-resultMap" parameterType="map">
+		select 	member_id
+		from		member
+		where		member_name=#{memberName}
+		and		member_phone=#{memberPhone}
+	</select>
+	
+	<!-- 비밀번호 찾기. -->
+	<select id="selelctPasswordById" resultType="string" parameterType="string">
+		select		member_password
+		from 		member
+		where		member_id = #{member_id}
+	</select>
 </mapper>

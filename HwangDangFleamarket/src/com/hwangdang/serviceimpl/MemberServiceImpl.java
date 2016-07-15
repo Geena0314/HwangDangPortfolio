@@ -1,10 +1,12 @@
 package com.hwangdang.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hwangdang.common.util.MailSender;
 import com.hwangdang.dao.MemberDao;
 import com.hwangdang.service.MemberService;
 import com.hwangdang.vo.Code;
@@ -76,5 +78,25 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int setMemberInfoByMemberId(Member setMember) {
 		return  dao.updateMemberInfoByMemberId(setMember);
+	}
+
+	@Override
+	public String selectMemeberByName(String memberName, String memberPhone)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("memberName", memberName);
+		map.put("memberPhone", memberPhone);
+		dao.selectMemeberByName(map);
+		return dao.selectMemeberByName(map).getMemberId();
+	}
+
+
+
+	@Override
+	public String selelctPasswordById(String memberId)
+	{
+		// TODO Auto-generated method stub
+		return dao.selelctPasswordById(memberId);
 	}
 }

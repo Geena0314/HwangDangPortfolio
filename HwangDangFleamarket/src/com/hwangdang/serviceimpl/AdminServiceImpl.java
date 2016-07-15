@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hwangdang.common.util.MailSender;
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.SellerDao;
@@ -75,6 +76,9 @@ public class AdminServiceImpl implements AdminService
 	public int deleteSellerByNo(int sellerStoreNo)
 	{
 		// TODO Auto-generated method stub
+		MailSender mail = new MailSender();
+		String content = "<h1>죄송합니다. 판매자 등록 신청이 거부되었습니다.</h1><br><a href='http://192.168.0.119:4444/HwangDangFleamarket'><h2>황당플리마켓 메인으로...</h2></a>";
+		mail.mailSender(sellerDao.selectSellerRegisterOne(sellerStoreNo).getMemberId(), "판매자 등록 신청 결과.", content);
 		return sellerDao.deleteSellerByNo(sellerStoreNo);
 	}
 }

@@ -72,7 +72,13 @@
 						$("form").submit(); 
 					}
 				}); //btn
-
+				
+				$(".findform").on("click", function()
+				{
+					window.opener.location="/HwangDangFleamarket/member/findMemberForm.go";
+					window.close();
+				});
+				
 			});//ready
 
 	function idCheck(obj) {
@@ -151,6 +157,11 @@
 					<td colspan="2" align="center">
 					<input class="btn btn-lg btn-success btn-block" type="submit" value="로그인"id="login" /> 
 					<input class="btn btn-lg btn-primary btn-block" type="reset" value="초기화" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<input class="btn btn-lg btn-danger btn-block findform" type="button" value="ID/Password찾기"/>
+					</td>
 				</tr>
 			</table>
 		</form>

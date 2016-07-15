@@ -108,5 +108,18 @@ public class MemberDaoImpl implements MemberDao{
 	public int updateMemberInfoByMemberId(Member setMember){
 		return session.update("memberMapper.update-member-by-memberId", setMember);
 	}
-	
+
+	@Override
+	public Member selectMemeberByName(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("memberMapper.selectMemeberByName", map);
+	}
+
+	@Override
+	public String selelctPasswordById(String memberId)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("memberMapper.selelctPasswordById", memberId);
+	}
 }

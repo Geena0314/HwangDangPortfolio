@@ -42,6 +42,21 @@
 	width: 120px;
 	margin: 5px;
 }
+
+.btn.btn-lg.btn-danger.btn-block.findform
+{
+	width: 200px;
+	position: relative;
+    left: 0px;
+    top: 5px;
+    background-color: white;
+    color: black;
+}
+
+.btn.btn-lg.btn-danger.btn-block.findform:hover
+{
+    background-color: #FF3636;
+}
 /********* register & login_form *********/
 .trInput .tdName {
 	text-align: center;

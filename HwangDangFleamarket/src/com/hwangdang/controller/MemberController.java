@@ -3,8 +3,17 @@ package com.hwangdang.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -21,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hwangdang.common.util.MailSender;
 import com.hwangdang.service.MemberService;
 import com.hwangdang.service.ProductService;
 import com.hwangdang.service.SellerService;
@@ -352,8 +362,49 @@ public class MemberController {
 		return url;
 	}
 	
+	//멤버아이디찾기폼으로 이동.
+	@RequestMapping("/findMemberForm")
+	public ModelAndView findMemberForm()
+	{
+		return new ModelAndView("member/find_member_service.tiles", "emailList", service.selectEmailList());
+	}
 	
-	
-	
-	
+	//멤버 아이디 찾기.
+	@RequestMapping("/findMemberId")
+	@ResponseBody
+	public String findMemberId(String memberName, String memberPhone)
+	{
+		String memberId = "";
+		try
+		{
+			memberId = service.selectMemeberByName(memberName, memberPhone);
+		}
+		catch(Exception e)
+		{
+			return memberId;
+		}
+		return memberId;
+	}
+	//멤버 패스워드 찾기.
+	@RequestMapping("/findMemberPassword")
+	@ResponseBody
+	public String findMemberPassword(String memberId)
+	{
+		String password = "";
+		password = service.selelctPasswordById(memberId);
+		try
+		{
+			if(password.equals(""))
+			{
+			}
+		}
+		catch(Exception e)
+		{
+			return password;
+		}
+		MailSender mail = new MailSender();
+		mail.mailSender(memberId, "비밀번호입니다.", "<h2>" + memberId + "님의 비밀번호는</h2><h2>" + password + "입니다.</h2> <br><a href='http://192.168.0.119:4444/HwangDangFleamarket'><h2>황당플리마켓 메인으로...</h2></a>");
+		password = "고객님의 메일로 비밀번호를 전송해 드렸습니다.<br> 감사합니다.";
+		return password;
+	}
 }

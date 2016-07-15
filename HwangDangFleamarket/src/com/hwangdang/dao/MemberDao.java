@@ -1,5 +1,6 @@
 package com.hwangdang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hwangdang.vo.Code;
@@ -57,4 +58,10 @@ public interface MemberDao {
 	
 	//회원정보 수정 
 	public int updateMemberInfoByMemberId(Member setMember);
+	
+	//멤버 이름과 전화번호로 멤버아이디 찾기.
+	Member selectMemeberByName(HashMap<String, Object> map);
+	
+	//멤버 아이디로 패스워드 조회.
+	String selelctPasswordById(String memberId);
 }

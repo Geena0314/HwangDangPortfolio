@@ -44,4 +44,7 @@ public interface SellerDao {
 	
 	//주문번호로 주문정보조회.
 	Orders selectOrderInfo(String ordersNo);
+	
+	//셀러등록신청한 회원의 셀러정보조회.(이메일보내주기위함.)
+	Seller selectSellerRegisterOne(int sellerStoreNo);
 }
