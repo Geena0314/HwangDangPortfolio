@@ -1,16 +1,40 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="lee" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
+<link rel="stylesheet" href="/HwangDangFleamarket/uiscripts/jquery-ui.min.css">
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#withdtawalBtn').on("click", function(){
-		if(confirm("정말 탈퇴하실건가요ㅠㅠ?")){
-			if(confirm("진짜로ㅠㅠ?")){
-				alert("회원탈퇴가 처리되었습니다.");
-				location.href='/HwangDangFleamarket/member/memberWithdrawal.go?memberId=${sessionScope.login_info.memberId}';
-			}			
+	$("#withdrawalMsg").hide();
+	$('#withdrawalBtn').on("click", function(){
+		if("${sessionScope.seller.sellerStoreNo}"){
+			$("#withdrawalMsg").dialog({
+				resizable: false,
+			    height:150,
+		  		"modal":true,
+		  		buttons: {
+		  	        "판매자만 탈퇴": function() {
+		  	        	if(confirm("판매자 등록을 해지하시겠습니까?")){
+		  	         		location.href = "/HwangDangFleamarket/seller/sellerWithdrawal.go";
+		  	        	}
+		  	        	return false;
+	  	        	},
+		  	        "회원 전체 탈퇴": function() {
+	  	        		if(confirm("정말 탈퇴하실건가요ㅠㅠ?")){
+		  	        		location.href='/HwangDangFleamarket/member/memberWithdrawal.go?memberId=${sessionScope.login_info.memberId}';
+		  	        	}
+	  	        		return false;
+	  	        	}
+		  	      }
+		  	});
+		}else{
+			if(confirm("정말 탈퇴하실건가요ㅠㅠ?")){
+				if(confirm("진짜로ㅠㅠ?")){
+					alert("회원탈퇴가 처리되었습니다.");
+					location.href='/HwangDangFleamarket/member/memberWithdrawal.go?memberId=${sessionScope.login_info.memberId}';
+				}			
+			}
+			return false;
 		}
-		return false;
 	});
 });
 </script>
@@ -71,10 +95,13 @@ $(document).ready(function(){
 	<div id="memberWithdrawal">
 		<lee:if test="${ sessionScope.login_info.memberId != 'kinghwang@gmail.com' }">
 			<div class="col-sm-4" id="memberWithdrawal">
-				<a id="withdtawalBtn" href="#">
+				<a id="withdrawalBtn" href="#">
 					<img class="mypage-images" src="../image_storage/withdrawal.jpg">
 				</a>
 			</div>
 		</lee:if>
+	</div>
+	<div id="withdrawalMsg" title="회원탈퇴">
+		판매자로 등록된 회원이십니다.
 	</div>
 </div>

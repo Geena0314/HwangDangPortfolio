@@ -119,7 +119,14 @@
 	<!-- 멤버 판매자등록승인(assign값 1로변경) -->
 	<update id="updateMemberAssign" parameterType="string">
 		update 	member
-		set			member_assign=1
+		set		member_assign=1
+		where 	member_id=#{memberId}
+	</update>
+	
+	<!-- 멤버 판매자등록승인(assign값 0으로변경) -->
+	<update id="updateMemberAssignZero" parameterType="string">
+		update 	member
+		set		member_assign=0
 		where 	member_id=#{memberId}
 	</update>
 	

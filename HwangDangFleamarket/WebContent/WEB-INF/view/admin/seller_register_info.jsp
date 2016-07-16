@@ -28,7 +28,6 @@
 			width: 530px;
 		}
 	</style>
-	</head>
 
 	<body>
 		<h2 class="form-signin-heading seller-register-info" align="center">판매자 등록 신청</h2>
