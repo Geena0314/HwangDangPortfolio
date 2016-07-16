@@ -21,4 +21,7 @@ public interface SellerService {
 	
 	//주문번호로 주문정보조회, 주문상품번호로 환불정보 조회.
 	HashMap<String, Object> selectOrderAndRefund(String ordersNo, int orderSeqNo);
+	
+	//셀러 정보 삭제
+	int deleteSeller(int sellerStoreNo, String memberId);
 }

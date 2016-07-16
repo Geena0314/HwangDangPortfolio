@@ -1,18 +1,16 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script>
-	$(document).ready(function(){
-			
-			   $("#searchBtn").on("click" , function(){
-				   alert("test@@@@@@@@"); 
-		  			/* alert($("input[name='keyword']").val());
-		  			var keyword = $("input[name='keyword']").val();
-		  			if(keyword.length == 0){
-		  				alert("검색어를 입력하세요.");
-		  			} */
-		  		});
-		
-	});
+$(document).ready(function(){
+   $("#searchBtn").on("click" , function(){
+	   alert("test@@@@@@@@"); 
+ 			/* alert($("input[name='keyword']").val());
+ 			var keyword = $("input[name='keyword']").val();
+ 			if(keyword.length == 0){
+ 				alert("검색어를 입력하세요.");
+ 			} */
+ 		});
+});
 </script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid main-header">

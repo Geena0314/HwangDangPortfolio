@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.hwangdang.common.util.Constants;
 import com.hwangdang.common.util.PagingBean;
+import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.OrderProduct;
@@ -20,6 +21,9 @@ public class SellerSerivceImpl implements SellerService{
 
 	@Autowired
 	private SellerDao dao;
+	
+	@Autowired
+	private MemberDao memberDao;
 	
 	@Override
 	public int getCountSeller() {
@@ -83,5 +87,12 @@ public class SellerSerivceImpl implements SellerService{
 		map.put("orders", dao.selectOrderInfo(ordersNo));
 		map.put("refund", dao.selectRefundByNo(orderSeqNo));
 		return map;
+	}
+
+	@Override
+	public int deleteSeller(int sellerStoreNo, String memberId) {
+		// TODO Auto-generated method stub
+		memberDao.updateMemberAssignZero(memberId);
+		return dao.deleteSellerByNo(sellerStoreNo);
 	}
 }

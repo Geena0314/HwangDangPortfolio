@@ -3,6 +3,8 @@ package com.hwangdang.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -98,6 +100,7 @@ public class SellerController {
 	@RequestMapping("/sellerRefundCheck")
 	public ModelAndView sellerRefundCheck(String ordersNo, int orderSeqNo)
 	{
+		System.out.println(orderSeqNo);
 		return new ModelAndView("/WEB-INF/view/seller/seller_refund_check.jsp", service.selectOrderAndRefund(ordersNo, orderSeqNo));
 	}
 	
@@ -106,5 +109,19 @@ public class SellerController {
 	{
 		orderService.refundHandle(orderSeqNo);
 		return "/WEB-INF/view/seller/refund_success.jsp";
+	}
+	
+	@RequestMapping("/sellerWithdrawal")
+	public String sellerWithdrawal(HttpSession session){
+		Seller seller =  ((Seller)session.getAttribute("seller"));
+		session.removeAttribute("seller"); //session에 seller란 이름으로 등록된 정보를 지움
+		session.removeAttribute("sellerRegister");
+		service.deleteSeller(seller.getSellerStoreNo(), seller.getMemberId());
+		return "redirect:/seller/sellerWithdrawalSuccess.go";
+	}
+	
+	@RequestMapping("/sellerWithdrawalSuccess")
+	public String sellerWithdrawalSuccess(){
+		return "member/mypage.tiles";
 	}
 }

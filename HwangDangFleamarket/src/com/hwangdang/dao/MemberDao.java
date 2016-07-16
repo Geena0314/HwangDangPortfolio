@@ -50,6 +50,9 @@ public interface MemberDao {
 	//멤버어싸인 1로변경(판매자등록승인)
 	int updateMemberAssign(String memberId);
 	
+	//멤버어싸인 0으로변경(판매자 정보 삭제)
+	int updateMemberAssignZero(String memberId);
+	
 	//이메일 리스트.
 	List<Code> selectEmailList();
 	

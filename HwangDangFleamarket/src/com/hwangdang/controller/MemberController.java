@@ -292,9 +292,10 @@ public class MemberController {
 	{
 		return "/WEB-INF/view/member/seller_address.jsp";
 	}
+	
+	//회원 탈퇴
 	@RequestMapping("memberWithdrawal")
-	public String memberWithdrawal(String memberId, HttpSession session)
-	{	
+	public String memberWithdrawal(String memberId, HttpSession session){	
 		session.invalidate();
 		service.deleteMemberByMemberId(memberId);
 		return "redirect:/main.go";

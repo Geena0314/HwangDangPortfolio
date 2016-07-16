@@ -122,4 +122,10 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return session.selectOne("memberMapper.selelctPasswordById", memberId);
 	}
+
+	@Override
+	public int updateMemberAssignZero(String memberId) {
+		// TODO Auto-generated method stub
+		return session.update("memberMapper.updateMemberAssignZero", memberId);
+	}
 }
