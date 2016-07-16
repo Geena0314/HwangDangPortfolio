@@ -122,7 +122,7 @@
 		display: none;
 	}
 </style>
-<div style="float: left;">
+<div style="float: left; width: 40%; height: 500px; border-right: 2px solid #63439d; position: relative; left: 12%; padding-top: 200px;">
 	이름 : <input type="text" id="memberName"><br>
 	전화번호 : 	<select id="memberPhone1">
 		    	        <option>010</option>
@@ -136,7 +136,7 @@
 	<input type="button" id="findMemberId" value="아이디찾기">
 	<br><span id="id"></span>
 </div>
-<div>
+<div style="float: right; width: 50%; padding-left: 100px; position: relative; top: 200px;">
 	id : 	<input type="text" name="memberId" size=13 id="memberId" onkeydown="idCheck(this);">
 		  	@
 			<input type="text" name="domain" id="domain" size=13 readonly="readonly">

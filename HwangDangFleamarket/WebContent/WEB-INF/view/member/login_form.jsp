@@ -160,7 +160,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input class="btn btn-lg btn-danger btn-block findform" type="button" value="ID/Password찾기"/>
+						<input class="btn btn-lg btn-warning btn-block findform" type="button" value="ID/Password찾기"/>
 					</td>
 				</tr>
 			</table>

@@ -404,7 +404,7 @@ public class MemberController {
 		}
 		MailSender mail = new MailSender();
 		mail.mailSender(memberId, "비밀번호입니다.", "<h2>" + memberId + "님의 비밀번호는</h2><h2>" + password + "입니다.</h2> <br><a href='http://192.168.0.119:4444/HwangDangFleamarket'><h2>황당플리마켓 메인으로...</h2></a>");
-		password = "고객님의 메일로 비밀번호를 전송해 드렸습니다.<br> 감사합니다.";
+		password = "고객님의 메일로 비밀번호를 전송해 드렸습니다.\n 감사합니다.";
 		return password;
 	}
 }
