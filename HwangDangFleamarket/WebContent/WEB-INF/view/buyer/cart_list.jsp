@@ -57,8 +57,8 @@ ul li{
 	left: 14%;
 	color: gray;
 }
-input{
-	width: 70px;
+.bottomBtn input{
+	width: 110px;
 }
 </style>
 <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
@@ -244,6 +244,6 @@ function changeAmount(i){
 			<input class="noticeBtns" type="button" value="선택상품삭제" id="removeBtn">&nbsp;&nbsp; 
 			<input class="noticeBtns" type="button" value="구매하기" id="buyBtn">
 		</span>
-		</div>
+	</div>
 </div>
 

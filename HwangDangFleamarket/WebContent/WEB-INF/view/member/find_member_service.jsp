@@ -117,36 +117,83 @@
 	}
 </script>
 <style type="text/css">
-	#domain
-	{
-		display: none;
-	}
+#domain
+{
+	display: none;
+}
+.findMember{
+	border-radius: 20px;
+	width: 80%;
+	height: 180px;
+	padding: 30px;
+}
+#memberPhone2, #memberPhone3{
+	width: 14%;
+}
+#memberName{
+	width: 61%;
+}
+b{
+	font-size: 13pt;
+}
+.findMember input, .findMember select{
+	margin: 5px;
+	border-radius: 4px;
+	line-height: 1.4;
+	padding: 5px 8px;
+	color: #444;
+	background-color: #fff;
+}
+.findMember.secondDiv{
+	width: 85%;
+}
+#findMemberId, #findMemberPassword{
+	font-weight: bold;
+	width: 50%;
+	height: 50px;
+	background-color: purple;
+	color: white;
+}
+#findMemberId:hover, #findMemberPassword:hover{
+	background-color: white;
+	border: 1px solid purple;
+	color: purple;
+}
 </style>
 <div style="float: left; width: 40%; height: 500px; border-right: 2px solid #63439d; position: relative; left: 12%; padding-top: 200px;">
-	이름 : <input type="text" id="memberName"><br>
-	전화번호 : 	<select id="memberPhone1">
-		    	        <option>010</option>
-		    	        <option>011</option>
-		    	        <option>016</option>
-		    	        <option>017</option>
-		            	<option>018</option>
-						<option>019</option>
-					</select>
-	-<input type="text" id="memberPhone2">-<input type="text" id="memberPhone3">
-	<input type="button" id="findMemberId" value="아이디찾기">
-	<br><span id="id"></span>
+	<div class="findMember">
+		<b>이름</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="memberName"><br>
+		<b>전화번호</b>&nbsp;&nbsp;&nbsp;<select id="memberPhone1">
+			    	        <option>010</option>
+			    	        <option>011</option>
+			    	        <option>016</option>
+			    	        <option>017</option>
+			            	<option>018</option>
+							<option>019</option>
+						</select>
+		- <input type="text" id="memberPhone2"> - <input type="text" id="memberPhone3">
+		<p align="center">
+			<input type="button" id="findMemberId" value="아이디찾기">
+		</p>
+		<br><span id="id"></span>
+	</div>
 </div>
-<div style="float: right; width: 50%; padding-left: 100px; position: relative; top: 200px;">
-	id : 	<input type="text" name="memberId" size=13 id="memberId" onkeydown="idCheck(this);">
-		  	@
-			<input type="text" name="domain" id="domain" size=13 readonly="readonly">
-			<select id="selectEmail">
-				<option>이메일을 선택하세요.</option>
-				<lee:forEach items="${requestScope.emailList}" var="email">
-					<option>${ email.codeName }</option>
-				</lee:forEach>
-				<option>직접입력</option>
-			</select><br>
-			<input type="button" id="findMemberPassword" value="비밀번호찾기">
-			<span id="password"></span>
+<div style="float: right; width: 50%; padding-left: 120px; position: relative; top: 200px;">
+	<div class="findMember secondDiv" style="padding-top: 50px;">
+		<b>id</b>&nbsp;&nbsp;
+		   <input type="text" name="memberId" size=13 id="memberId" onkeydown="idCheck(this);"> @ 
+		   <input type="text" name="domain" id="domain" size=13 readonly="readonly">
+		   <select id="selectEmail">
+		   <option>이메일을 선택하세요.</option>
+		   <lee:forEach items="${requestScope.emailList}" var="email">
+		   <option>${ email.codeName }</option>
+		   </lee:forEach>
+		   <option>직접입력</option>
+		   </select>
+		   <br><br>
+		   <p align="center">
+		       <input type="button" id="findMemberPassword" value="비밀번호찾기">
+		   </p>
+		   <span id="password"></span>
+	</div>
 </div>
