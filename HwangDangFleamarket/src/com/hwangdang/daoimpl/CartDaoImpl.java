@@ -41,4 +41,10 @@ public class CartDaoImpl implements CartDao{
 	public Cart selectCartByCartNo(int cartNo) {
 		return session.selectOne("cartMapper.selectCartByCartNo", cartNo);
 	}
+
+	@Override
+	public List<Cart> selectCartById(String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectList("cartMapper.selectCartById", memberId);
+	}
 }

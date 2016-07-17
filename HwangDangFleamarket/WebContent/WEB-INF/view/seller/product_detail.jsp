@@ -867,7 +867,11 @@ $(document).ready(function(){
 					return false;
 				}
 			},
-			"success":function(){
+			"success":function(result){
+				if(!result){
+					alert("이미 등록된 상품입니다.\n장바구니에서 확인해주세요.");
+					return false;
+				}
 				$("#cartLayer").dialog({
 					resizable: false,
 				    height:150,

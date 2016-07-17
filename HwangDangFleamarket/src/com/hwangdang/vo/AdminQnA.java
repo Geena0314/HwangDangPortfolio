@@ -14,9 +14,10 @@ public class AdminQnA implements Serializable{
 	private Date adminQnaDate;  //작성일 
 	private int adminQnaHit;  //조회수 
 	private String adminQnaPublished;  // 공개여부 
-	private AdminQnAReply reply; 
 	private String adminQnaPassword;
 	private String adminQnaReplyExist;
+	
+	private AdminQnAReply reply; 
 	
 public AdminQnA(){};
 

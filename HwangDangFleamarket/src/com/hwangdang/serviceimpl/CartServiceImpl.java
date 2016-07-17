@@ -1,5 +1,6 @@
 package com.hwangdang.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,7 +18,15 @@ public class CartServiceImpl implements CartService{
 	private CartDao dao;
 
 	@Override
-	public int addCart(Cart cart) {
+	public int addCart(Cart cart, String memberId, String productId, String cartProductOption) {
+		ArrayList<Cart> list = (ArrayList<Cart>)dao.selectCartById(memberId);
+		for(int idx=0; idx<list.size(); idx++){
+			if(productId.equals(list.get(idx).getProductId())){
+				if(cartProductOption.equals(list.get(idx).getCartProductOption())){
+					return 0;
+				}
+			}
+		}
 		return dao.insertCart(cart);
 	}
 

@@ -12,7 +12,6 @@ public class AdminQnAReply implements Serializable
 	private int adminQnaNo;
 	private String adminReplyWriteDate;
 	
-	
 	public AdminQnAReply()
 	{
 		// TODO Auto-generated constructor stub

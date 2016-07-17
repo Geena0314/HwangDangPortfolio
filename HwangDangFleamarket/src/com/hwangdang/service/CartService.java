@@ -10,7 +10,7 @@ public interface CartService {
 
 	//장바구니 상품 등록
 	@Transactional
-	public int addCart(Cart cart);
+	public int addCart(Cart cart, String memberId, String productId, String cartProductOption);
 	
 	//장바구니 상품 삭제
 	@Transactional

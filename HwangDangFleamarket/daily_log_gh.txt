@@ -3,3 +3,29 @@
 
 2016.07.15.금
 **빨리 장바구니에서 벗어나시길~!!**
+
+
+2016.07.17.일
+
+DB 수정 최종
+
+member
+seller
+orders
+order_product
+refund_request
+exchange_request
+admin_QnA
+admin_QnA_reply
+cart
+category
+code
+notice
+product
+product_detail_image
+product_option
+review
+seller_notice
+store_QnA
+store_QnA_reply
+zipcode

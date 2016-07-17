@@ -140,7 +140,7 @@ and		s.member_id=m.member_id
 
 /* 판매자vvvvvvvvvvv */
 CREATE TABLE seller (
-	seller_store_no number not null unique,
+	seller_store_no number primary key,
 	seller_store_name VARCHAR2(60) not null unique, /* 상호명 */
 	seller_tax_id CHAR(11), /* 사업자번호 */
 	seller_industry VARCHAR2(30) NOT NULL, /* 업종 */
@@ -668,3 +668,5 @@ values (  '1467159669150apple.jpg' , '상품id7');
 
 
 select * from all_constraints where table_name='PRODUCT_OPTION';
+
+select product_id from cart where member_id = 'hwang1@gmail.com'

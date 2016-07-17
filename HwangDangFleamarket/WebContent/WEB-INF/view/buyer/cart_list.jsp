@@ -1,4 +1,4 @@
- <%@ page contentType="text/html;charset=utf-8"%>
+<%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
@@ -65,29 +65,28 @@ ul li{
 <script type="text/javascript">
 $( document ).ready( function(){
     $('#basketAll').on("click", function() {
+    	var sum = 0;
     	if($("#basketAll").prop("checked")){
             $("input[name=checkBasket]").prop("checked",true);
-            var sum = 0;
             $('tbody td:nth-child(4)').each(function(){
             	sum = sum + parseInt($(this).text().split("+")[0]) + parseInt($(this).text().split("+")[1]);
             });
-            $('#checkedEstimatedPrice').html(sum);
+            $('#sum').text(sum);
         }else{
             $("input[name=checkBasket]").prop("checked",false);
-            $('#checkedEstimatedPrice').html(0);
+            $('#sum').text(sum);
         }
     });
     $("input[name=checkBasket]").on("click", function(){
     	var totalPrice = parseInt($('#checkedEstimatedPrice').text());
-    	$('#checkedEstimatedPrice').empty();
     	var addPrice = $(this).parents().children("#price").text();
  		var price = addPrice.split("+");
     	if(this.checked){
     		totalPrice = totalPrice + parseInt(price[0]) + parseInt(price[1]);
-    		$('#checkedEstimatedPrice').append(totalPrice);
+    		$('#sum').text(totalPrice);
     	}else{
     		totalPrice = totalPrice - parseInt(price[0]) - parseInt(price[1]);
-    		$('#checkedEstimatedPrice').append(totalPrice);
+    		$('#sum').text(totalPrice);
     	}
     });
     $('#removeBtn').on("click", function(){
@@ -121,6 +120,69 @@ $( document ).ready( function(){
 		$("form").prop("action" , url);    	
 		$("form").submit();
     });
+   /*  $(".amount").on("change",function(){
+    	var amount = $(this).val();
+    	var price = $(this).parent().next().text().split("+");
+    	var priceOne = price[0]/amount; 
+    	if(price[1] == 0)
+    	{
+    		$(this).parent().next().text((priceOne*amount));
+    		$(this).parent().next().children("p").text("+0");
+    	}
+    	else
+   		{
+    		$(this).parent().next().text((price[0]*amount) + "\n + " + (price[1]*amount));
+   		}
+    }); */
+    $(".minus").on("click", function()
+	{
+    	var amount = $(this).siblings(".amountTxt").val();
+    	if(amount == 1){
+    		alert("주문 수량은 1개 이상으로 입력하세요.");
+    		return false;
+    	}
+    	var price = $(this).parent().next().text().split("+");
+    	var priceOne = price[0]/amount; 
+    	var addPriceOne = price[1]/amount;
+    	amount--;
+    	if(price[1] == 0)
+    	{
+    		$(this).parent().next().html(priceOne*amount + '<p style="display: none;">+0</p>');
+    	}
+    	else
+   		{
+    		$(this).parent().next().text((priceOne*amount) + "\n + " + (addPriceOne*amount));
+   		}
+    	$(this).siblings(".amountTxt").val(amount);
+    	var sum = parseInt($("#sum").text());
+    	sum = sum - (priceOne) - (addPriceOne);
+    	$("#sum").text(sum);
+	});
+    $(".plus").on("click", function()
+	{
+    	var amount = $(this).siblings(".amountTxt").val();
+    	if(amount == $(".stock").val()){
+    		alert("재고량이 부족합니다.");
+    		return false;
+    	}
+    	var price = $(this).parent().next().text().split("+");
+    	var priceOne = price[0]/amount; 
+    	var addPriceOne = price[1]/amount;
+    	amount++;
+    	if(price[1] == 0)
+    	{
+    		$(this).parent().next().html(priceOne*amount + '<p style="display: none;">+0</p>');
+    	}
+    	else
+   		{
+    		$(this).parent().next().text((priceOne*amount) + "\n + " + (addPriceOne*amount));
+   		}
+    	$(this).siblings(".amountTxt").val(amount);
+    	var sum = parseInt($("#sum").text());
+    	sum = sum + (priceOne) + (addPriceOne);
+    	$("#sum").text(sum);
+    	
+	});
 });
 function getRemoveCartList(){
 	var queryString = "";
@@ -137,12 +199,6 @@ function getRemoveCartList(){
 function error(xhr, status, err)
 {
 	alert(status+", "+xhr.readyState+" "+err);
-}
-function changeAmount(i){
-	var amount = parseInt(i);
-	if(amount < 0){
-		$('#amount').val(1);
-	}
 }
 </script>
 <h2 class="page-header store_look_around">황당 플리마켓 장바구니</h2>
@@ -202,29 +258,34 @@ function changeAmount(i){
 								</td>
 								<td>
 									<%-- 수량 --%>
-									${list.cartProductAmount}
-									<%-- <input type="number" class="amount" value="${list.cartProductAmount}" min="1" max="${product.productOption.optionStock}"> --%>
+									<%-- ${list.cartProductAmount} --%>
+									<img src="../image_storage/minus.png" style="width:15px; height:15px; cursor: pointer;" class="minus" id="minus">
+										<input size="3" readonly="readonly" type="text" class="amountTxt" value="${list.cartProductAmount}">
+										<input type="text" value="${product.productOption.optionStock}" class="stock" style="display: none;">
+									<img src="../image_storage/plus.png" style="width:15px; height:15px; cursor: pointer; float: right;" class="plus" id="plus">
 								
 								</td>
 								<td id="price">
-									${product.productPrice*list.cartProductAmount} 
+									<input class="delivery" type="text" value="${product.sellerStoreNo}" style="display: none;">
+									<input class="realPrice" type="text" value="${product.productPrice*list.cartProductAmount}" style="display: none;">
+									${product.productPrice*list.cartProductAmount}
 									<c:choose>
 										<c:when test="${product.productOption.optionAddPrice != 0}">
-											<p>&nbsp;+&nbsp;${list.cartProductAmount*product.productOption.optionAddPrice}
+											+${list.cartProductAmount*product.productOption.optionAddPrice}
 										</c:when>
 										<c:otherwise>
 											<p style="display: none;">+0</p>
 										</c:otherwise>
 									</c:choose>
 								</td>
-								<td id="delivery"><c:choose>
-										<c:when
-											test="${((product.productPrice*list.cartProductAmount)+(list.cartProductAmount*product.productOption.optionAddPrice))>= 30000}">
-												무료배송
-											</c:when>
+								<td id="delivery" class="deliveryPrice">
+									<c:choose>
+										<c:when test="${((product.productPrice*list.cartProductAmount)+(list.cartProductAmount*product.productOption.optionAddPrice))>= 30000}">
+											무료배송
+										</c:when>
 										<c:otherwise>
-												2500원
-											</c:otherwise>
+											2500원
+										</c:otherwise>
 									</c:choose>
 								</td>
 							</tr>
@@ -237,7 +298,7 @@ function changeAmount(i){
 		<div class="estimatedPrice" style="border: 2px solid lightgray;">
 			결제 예상 금액 - 배송비&nbsp;&nbsp;
 			<hr style="border: 1px solid lightgray;">
-			<span id="checkedEstimatedPrice"><b>${requestScope.sum}원</b>&nbsp;&nbsp;</span> 
+			<span id="checkedEstimatedPrice"><b id="sum">${requestScope.sum}</b><b>원</b>&nbsp;&nbsp;</span> 
 		</div>
 		<br>
 		<span class="bottomBtn"> 

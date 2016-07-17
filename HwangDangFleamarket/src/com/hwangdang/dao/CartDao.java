@@ -21,5 +21,7 @@ public interface CartDao {
 	
 	//장바구니 번호로 조회
 	Cart selectCartByCartNo(int cartNo);
-
+	
+	//회원 아이디로 장바구니 상품 조회
+	List<Cart> selectCartById(String memberId);
 }

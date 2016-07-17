@@ -98,12 +98,12 @@
 	<select id="selectMemberCount" resultType="_int">
 		SELECT count(member_id) FROM MEMBER
 	</select>
-	<!-- 등록시 중복검사에서 사용해서 추가. -->
+	<!-- 등록시 중복검사에서 사용해서 추가 -->
 	<select id="selectCountById" parameterType="string" resultType="_int">
 		SELECT count(member_id) FROM MEMBER WHERE member_id=#{memberId}
 	</select>
 
-	<!-- memberId로 Seller정보 찾기. -->
+	<!-- memberId로 Seller정보 찾기 -->
 	<select id="selectSellerById" resultMap="seller-basic-resultMap" parameterType="string">
 		select 	seller_store_no, seller_store_name, seller_tax_id, seller_industry, seller_sub_industry, seller_zipcode, seller_address, seller_sub_address,
 				 	seller_store_image, seller_product1, seller_product2, seller_product3, seller_introduction, seller_assign, member_id
@@ -111,7 +111,7 @@
 	 	where		member_id=#{memberId}
 	</select>
 	
-	<!-- 판매자 등록 시 상호명 중복체크. -->
+	<!-- 판매자 등록 시 상호명 중복체크 -->
 	<select id="selectSellerStoreName" parameterType="string" resultType="_int">
 		select count(seller_store_name) from seller where seller_store_name = #{sellerStoreName}
 	</select>
@@ -135,7 +135,7 @@
 		select code_name from code where code = 'email'
 	</select>
 	
-	<!-- 동명으로 주소 조회. -->
+	<!-- 동명으로 주소 조회 -->
 	<select id="selectZipcode" parameterType="string" resultMap="zipcode-basic-resultMap">
 		select * from zipcode where dong like #{dong}||'%'
 	</select>
@@ -155,7 +155,7 @@
 		WHERE 	member_id = #{memberId }
 	</update>
 	
-	<!-- 아이디 찾기. (이름, 전화번호)-->
+	<!-- 아이디 찾기 (이름, 전화번호)-->
 	<select id="selectMemeberByName" resultMap="member-basic-resultMap" parameterType="map">
 		select 	member_id
 		from		member
@@ -163,7 +163,7 @@
 		and		member_phone=#{memberPhone}
 	</select>
 	
-	<!-- 비밀번호 찾기. -->
+	<!-- 비밀번호 찾기 -->
 	<select id="selelctPasswordById" resultType="string" parameterType="string">
 		select		member_password
 		from 		member

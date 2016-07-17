@@ -3,6 +3,8 @@ package com.hwangdang.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.CartService;
 import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.Cart;
+import com.hwangdang.vo.Member;
 import com.hwangdang.vo.Product;
 
 @Controller
@@ -44,9 +47,12 @@ public class CartController {
 			// 장바구니 상품 등록
 			@RequestMapping("/addCart")
 			@ResponseBody
-			public Cart addCart(Cart cart){
-				service.addCart(cart);
-				return cart; 
+			public int addCart(Cart cart, HttpSession session){
+				int result = service.addCart(cart, ((Member)session.getAttribute("login_info")).getMemberId(), cart.getProductId(), cart.getCartProductOption());
+				if(result == 0){
+					return result;
+				}
+				return result; 
 			}
 			
 			// 장바구니 상품 삭제
