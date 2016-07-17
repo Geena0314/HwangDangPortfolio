@@ -103,4 +103,14 @@
 	<delete id="deleteSellerByNo" parameterType="_int">
 		delete from seller where seller_store_no = #{sellerStoreNo}
 	</delete>
+	
+	<!-- 셀러정보 수정 -->
+	<update id="updateSellerInfo" parameterType="Seller">
+		update 	seller
+		set			seller_store_name = #{sellerStoreName}, seller_tax_id = #{sellerTaxId}, seller_zipcode = #{sellerZipcode},
+				 	seller_address = #{sellerAddress}, seller_sub_address = #{sellerSubAddress},	seller_store_image = #{sellerStoreImage}, 
+				 	seller_product1 = #{sellerProduct1}, seller_product2 = #{sellerProduct2}, seller_product3 = #{sellerProduct3}, 
+					seller_introduction = #{sellerIntroduction}
+		where		seller_store_no = #{sellerStoreNo}
+	</update>
 </mapper>

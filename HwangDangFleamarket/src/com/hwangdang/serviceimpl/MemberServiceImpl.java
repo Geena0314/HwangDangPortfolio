@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hwangdang.common.util.MailSender;
 import com.hwangdang.dao.MemberDao;
+import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.MemberService;
 import com.hwangdang.vo.Code;
 import com.hwangdang.vo.Member;
@@ -17,6 +18,9 @@ import com.hwangdang.vo.Zipcode;
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDao dao;
+	
+	@Autowired
+	private SellerDao sellerDao;
 	
 	public MemberServiceImpl(){}
 	
@@ -91,12 +95,17 @@ public class MemberServiceImpl implements MemberService{
 		return dao.selectMemeberByName(map).getMemberId();
 	}
 
-
-
 	@Override
 	public String selelctPasswordById(String memberId)
 	{
 		// TODO Auto-generated method stub
 		return dao.selelctPasswordById(memberId);
+	}
+
+	@Override
+	public int updateSellerInfo(Seller seller)
+	{
+		// TODO Auto-generated method stub
+		return sellerDao.updateSellerInfo(seller);
 	}
 }

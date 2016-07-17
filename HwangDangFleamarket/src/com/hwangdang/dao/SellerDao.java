@@ -47,4 +47,7 @@ public interface SellerDao {
 	
 	//셀러등록신청한 회원의 셀러정보조회.(이메일보내주기위함.)
 	Seller selectSellerRegisterOne(int sellerStoreNo);
+	
+	//셀러정보수정
+	int updateSellerInfo(Seller seller);
 }

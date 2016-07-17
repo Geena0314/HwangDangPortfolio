@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -312,14 +313,15 @@ public class MemberController {
 			@RequestParam(value="hp3",required=false) String hp3 , 
 			@RequestParam(value="memberZipcode",required=false) String memberZipcode ,
 			@RequestParam(value="memberAddress",required=false) String memberAddress ,  Model model ,
-			@RequestParam(value="memberSubAddress",required=false) String memberSubAddress ,HttpSession session ){
-		 
+			@RequestParam(value="memberSubAddress",required=false) String memberSubAddress ,HttpSession session, HttpServletRequest request,
+			@RequestParam(value="sellerStoreImage",required=false) MultipartFile storeMainImage,
+			String sellerStoreName, String sellerTaxId, String sellerZipcode, String sellerAddress, String sellerSubAddress, String sellerProduct1, String sellerProduct2, String sellerProduct3, String sellerIntroduction
+			){
 		String url = "/";
 		String memberPhone = hp1+"-"+hp2+"-"+hp3;
 		//System.out.printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s%n",memberName ,oldPassword ,newPassword1 ,newPassword2, hp1,hp2,hp3,memberZipcode , memberAddress, memberSubAddress);
 		Member oldMember = (Member) session.getAttribute("login_info");
 		
-		  
 		if(memberName.isEmpty() && oldMember !=null){
 			memberName = oldMember.getMemberName();
 		}
@@ -354,13 +356,72 @@ public class MemberController {
 			int flag = service.setMemberInfoByMemberId(setMember);
 			if(flag == 1){ //회원정보 수정 
 				session.setAttribute("login_info", setMember);
-				url = "member/updateSuccess.tiles";
+				url = "redirect:/member/editInfo.go";
 			}
 		}else {
 			url = "/";
 		}  
 		
+		//셀러 정보수정
+		//System.out.println(seller);
+		Seller seller = (Seller)session.getAttribute("seller");
+		String sellerStoreImage;
+		Seller newSeller;
+		if(sellerIntroduction.equals(""))
+		{
+			sellerIntroduction = seller.getSellerIntroduction();
+		}
+		newSeller = new Seller(seller.getSellerStoreNo(), sellerStoreName, sellerTaxId, seller.getSellerIndustry(), seller.getSellerSubIndustry(), sellerZipcode, sellerAddress, sellerSubAddress, "", sellerProduct1, sellerProduct2, sellerProduct3, sellerIntroduction, seller.getSellerAssign(), seller.getMemberId());
+		if(storeMainImage.getOriginalFilename().equals(""))
+		{
+			sellerStoreImage = seller.getSellerStoreImage();
+			newSeller.setSellerStoreImage(sellerStoreImage);
+		}
+		else
+		{
+			//셀러 등록 신청.
+			//대표이미지 저장처리.(sellerMainImage -> setSellerStoreImage)이름만 저장.
+		    String originalFileName = storeMainImage.getOriginalFilename();//업로드 된 파일명.
+			
+			//임시 저장소에 저장된 업로드 된 파일을 최종 저장소로 이동.
+			//최종 저장소 디렉토리 조회.
+			//new File(디렉토리, 파일)
+			String path = "C:\\Users\\kosta\\git\\HwangDangPortfolio\\HwangDangFleamarket\\WebContent\\image_storage";
+			File image = new File(path, originalFileName);
+			
+		    //file중복체크
+		    if (image.exists())
+		    {
+				originalFileName = System.currentTimeMillis() + originalFileName;
+				image = new File(path, originalFileName);
+		    }
+		    // /는 application의 루트경로 => 파일경로로 알려준다.
+		    try
+			{
+		    	//톰캣 경로의 image_storage로 파일복사.
+		    	String imageStorage = request.getServletContext().getRealPath("/image_storage");
+		    	FileCopyUtils.copy(storeMainImage.getInputStream(), new FileOutputStream(imageStorage+"/"+originalFileName));
+		    	
+		    	//gits경로로 이미지 이동.
+		    	storeMainImage.transferTo(image);
+		    	sellerStoreImage = originalFileName;
+		    	newSeller.setSellerStoreImage(sellerStoreImage);
+		    	session.removeAttribute("seller");
+		    	session.setAttribute("seller", newSeller);
+			} catch (IllegalStateException | IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		service.updateSellerInfo(newSeller);
 		return url;
+	}
+	
+	@RequestMapping("/editInfo")
+	public String editInfo()
+	{
+		return "member/updateSuccess.tiles";
 	}
 	
 	//멤버아이디찾기폼으로 이동.
