@@ -115,4 +115,11 @@ public class SellerDaoImpl implements SellerDao{
 		// TODO Auto-generated method stub
 		return session.selectOne("sellerMapper.selectSellerRegisterOne", sellerStoreNo);
 	}
+
+	@Override
+	public int updateSellerInfo(Seller seller)
+	{
+		// TODO Auto-generated method stub
+		return session.update("sellerMapper.updateSellerInfo", seller);
+	}
 }

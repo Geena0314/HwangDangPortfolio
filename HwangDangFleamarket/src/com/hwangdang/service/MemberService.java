@@ -38,4 +38,7 @@ public interface MemberService {
 	
 	//멤버 아이디로 패스워드 조회.
 	String selelctPasswordById(String memberId);
+	
+	//셀러정보수정
+	int updateSellerInfo(Seller seller);
 }

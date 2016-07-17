@@ -65,6 +65,49 @@
 					}
 				});
 				
+				//상호명 중복 체크...
+				$("#sellerStoreName").on("blur", function()
+				{
+					if(this.value == null || this.value.trim().length < 3 || this.value.length > 20)
+					{
+						//널이거나 3글자보다 작거나 20글자보다 큰경우.
+						$("#sellerStoreName").val("");
+						alert("상호명은 3글자 이상 20자 이하로 입력해주세요.")
+						return false;
+					}
+					else
+					{
+						//상호명 중복 체크.
+						$.ajax(
+						{
+							"url" : "/HwangDangFleamarket/member/sellerStoreNameCheck.go",
+							"type" : "POST",
+							"data" : "sellerStoreName=" + $("#sellerStoreName").val(),
+							"dataType" : "text",
+							"beforeSend" : function()
+							{
+								
+							},
+							"success" : function(text)
+							{
+								if(text == 0)
+								{
+									return true;
+								}
+								else
+								{
+									alert("중복된 이름입니다.");
+									$("#sellerStoreName").val("");
+									return false;
+								}
+							},
+							"error" : function()
+							{
+							}
+						});
+					}
+				});
+				
 				//submit 클릭시.
 				$("#submit").on("click", function(){
 					var result;
@@ -86,8 +129,6 @@
 						$("#newPassword2").val("");
 						return false;
 					}
-					
-					
 					
 					if(nameFlag && $("#memberName").val().trim().length < 2 || $("#memberName").val().trim().length > 6)
 					{
@@ -114,6 +155,42 @@
 						$("#memberSubAddress").val("").focus();
 						return false;
 					}
+					
+					if(storeName && $("#sellerStoreName").val().trim().length < 3 || $("#sellerStoreName").val().trim().lengrh > 20)
+					{
+						alert("스토어 이름은 3자 이상 20자 이하로 입력해 주세요.");
+						$("#sellerStoreName").val("").focus();
+						return false;
+					}
+					
+					if(sellerTaxId && $("#sellerTaxId").val().trim().length != 11)
+					{
+						alert("사업자 번호는 11자리 숫자로 입력해주세요.");
+						$("#sellerTaxId").val("").focus();
+						return false;
+					}
+					
+					if(sellerAddress && !$("#sellerZipcode").val() || !$("#sellerAddress").val() || !$("#sellerSubAddress").val())
+					{
+						alert("여기왜와")
+						alert("주소를 다시 입력해 주세요.");
+						$("#sellerZipcode").val("");
+						$("#sellerAddress").val("");
+						$("#sellerSubAddress").val("").focus();
+						return false;
+					}
+					
+					//사진 등록여부 확인.
+					if(storeImage)
+					{
+						var fileName = document.getElementById("sellerStoreImage").value;
+						if(!fileName)
+						{
+							alert("스토어 대표 사진을 등록해 주세요.");
+							return false;
+						}
+					}
+
 					var id = $("#memberId").val()+"@"+$("#domain").val();
 					$.ajax({
 						"url" : "/HwangDangFleamarket/member/registerIdCheck.go",
@@ -233,13 +310,14 @@
 		$("#updateStoreName").on("click", function()
 		{
 			$("#hiddenStoreName").show();
+			$("#sellerStoreName").val("");
 			storeName = true;
 		});
 		
 		$("#deleteStoreName").on("click", function()
 		{
 			$("#hiddenStoreName").hide();
-			$("#sellerStoreName").val("");
+			$("#sellerStoreName").val("${ sessionScope.seller.sellerStoreName }");
 			storeName = false;
 		});
 
@@ -247,13 +325,14 @@
 		$("#updateSellerTaxId").on("click", function()
 		{
 			$("#hiddenSellerTaxId").show();
+			$("#sellerTaxId").val("");
 			sellerTaxId = true;
 		});
 		
 		$("#deleteSellerTaxId").on("click", function()
 		{
 			$("#hiddenSellerTaxId").hide();
-			$("#sellerTaxId").val("");
+			$("#sellerTaxId").val("${ sessionScope.seller.sellerTaxId }");
 			sellerTaxId = false;
 		});
 		
@@ -261,13 +340,14 @@
 		$("#updateSellerProduct1").on("click", function()
 		{
 			$("#hiddenSellerProduct1").show();
+			$("#sellerProduct1").val("");
 			sellerProduct1 = true;
 		});
 		
 		$("#deleteSellerProduct1").on("click", function()
 		{
 			$("#hiddenSellerProduct1").hide();
-			$("#sellerProduct1").val("");
+			$("#sellerProduct1").val("${ sessionScope.seller.sellerProduct1 }");
 			sellerProduct1 = false;
 		});
 		
@@ -275,13 +355,14 @@
 		$("#updateSellerProduct2").on("click", function()
 		{
 			$("#hiddenSellerProduct2").show();
+			$("#sellerProduct2").val("");
 			sellerProduct2 = true;
 		});
 		
 		$("#deleteSellerProduct2").on("click", function()
 		{
 			$("#hiddenSellerProduct2").hide();
-			$("#sellerProduct2").val("");
+			$("#sellerProduct2").val("${ sessionScope.seller.sellerProduct2 }");
 			sellerProduct2 = false;
 		});
 		
@@ -289,13 +370,14 @@
 		$("#updateSellerProduct3").on("click", function()
 		{
 			$("#hiddenSellerProduct3").show();
+			$("#sellerProduct3").val("");
 			sellerProduct3 = true;
 		});
 		
 		$("#deleteSellerProduct3").on("click", function()
 		{
 			$("#hiddenSellerProduct3").hide();
-			$("#sellerProduct3").val("");
+			$("#sellerProduct3").val("${ sessionScope.seller.sellerProduct3 }");
 			sellerProduct3 = false;
 		});
 	}); //ready
@@ -386,7 +468,7 @@
 				<td>
 					${ sessionScope.seller.sellerStoreName } <input type="button" value="수정" id="updateStoreName"/>
 					<span id="hiddenStoreName" hidden="true">
-						<input type="text" name="sellerStoreName" id="sellerStoreName" placeholder="3글자 이상 20자 이하">
+						<input type="text" name="sellerStoreName" id="sellerStoreName" placeholder="3글자 이상 20자 이하" value="${ sessionScope.seller.sellerStoreName }">
 						<input type="button"  id="deleteStoreName" value="수정취소"/>
 					</span>
 				</td>
@@ -396,7 +478,7 @@
 				<td>
 					${ sessionScope.seller.sellerTaxId } <input type="button" value="수정" id="updateSellerTaxId"/>
 					<span id="hiddenSellerTaxId" hidden="true">
-						<input type="number" name="sellerTaxId" id="sellerTaxId">
+						<input type="number" name="sellerTaxId" id="sellerTaxId" value="${ sessionScope.seller.sellerTaxId }">
 						<input type="button"  id="deleteSellerTaxId" value="수정취소"/>
 					</span>
 				</td>
@@ -407,10 +489,10 @@
 				[ ${sessionScope.seller.sellerZipcode } ] ${sessionScope.seller.sellerAddress } ${sessionScope.seller.sellerSubAddress }<input type="button" value="수정" id="updateSellerAddress"/><br/>
 			
 					<span id="hiddenSellerAddress" hidden="true">
-						<input type="text" name="sellerZipcode" size="30" readonly="readonly" id="sellerZipcode">
-						<input type="text" name="sellerAddress" size="60" readonly="readonly" id="sellerAddress">
+						<input type="text" name="sellerZipcode" size="30" readonly="readonly" id="sellerZipcode" value="${sessionScope.seller.sellerZipcode }">
+						<input type="text" name="sellerAddress" size="60" readonly="readonly" id="sellerAddress" value="${sessionScope.seller.sellerAddress }">
 						<input type="button" value="주소검색" id="findAddress" onclick="window.open('/HwangDangFleamarket/member/findSellerAddress.go', '주소검색', 'resizable=no scrollbars=yes width=700 height=500 left=500 top=200');"><br>
-						<input type="text" name="sellerSubAddress" size="60" id="sellerSubAddress">
+						<input type="text" name="sellerSubAddress" size="60" id="sellerSubAddress" value="${sessionScope.seller.sellerSubAddress }">
 						<input type="button"  id="deleteSellerAddress" value="수정취소"/>
 					</span>
 				</td>
@@ -420,7 +502,7 @@
 				<td colspan="2">
 					<input type="button" value="수정" id="updateStoreImage"/>
 					<span id="hiddenStoreImage" hidden="true">
-						<input type="file" name="sellerStoreImage" id="sellerStoreImage">
+						<input type="file" name="sellerStoreImage" id="storeMainImage">
 						<input type="button"  id="deleteStoreImage" value="수정취소"/>
 					</span>
 				</td>
@@ -431,7 +513,7 @@
 					${ sessionScope.seller.sellerProduct1 }
 					<input type="button" value="수정" id="updateSellerProduct1"/>
 					<span id="hiddenSellerProduct1" hidden="true">
-						<input type="text" name="sellerProduct1" id="sellerProduct1">
+						<input type="text" name="sellerProduct1" id="sellerProduct1" value="${ sessionScope.seller.sellerProduct1 }">
 						<input type="button"  id="deleteSellerProduct1" value="수정취소"/>
 					</span>
 				</td>
@@ -442,7 +524,7 @@
 					${ sessionScope.seller.sellerProduct2 }
 					<input type="button" value="수정" id="updateSellerProduct2"/>
 					<span id="hiddenSellerProduct2" hidden="true">
-						<input type="text" name="sellerProduct2" id="sellerProduct2">
+						<input type="text" name="sellerProduct2" id="sellerProduct2" value="${ sessionScope.seller.sellerProduct2 }">
 						<input type="button"  id="deleteSellerProduct2" value="수정취소"/>
 					</span>
 				</td>
@@ -452,7 +534,7 @@
 					${ sessionScope.seller.sellerProduct3 }
 					<input type="button" value="수정" id="updateSellerProduct3"/>
 					<span id="hiddenSellerProduct3" hidden="true">
-						<input type="text" name="sellerProduct3" id="sellerProduct3">
+						<input type="text" name="sellerProduct3" id="sellerProduct3" value="${ sessionScope.seller.sellerProduct3 }">
 						<input type="button"  id="deleteSellerProduct3" value="수정취소"/>
 					</span>
 				</td>
