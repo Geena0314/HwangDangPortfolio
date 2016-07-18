@@ -245,8 +245,8 @@
 		width: 
 	}
 </style>
-<div style="margin-left: 100px;">
 <h2 class="page-header store_look_around">황당 플리마켓 판매자 신청</h2>
+<div style="margin-left: 60px; position:relative; top: -50px;">
 	<form method="POST" enctype="multipart/form-data" action="/HwangDangFleamarket/member/sellerRegisterRequest.go" class="form-seller" name="sellerForm">
 		<table id="table" width='600' class="table table-striped">
 			<tr class="trInput">
