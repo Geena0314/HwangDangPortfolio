@@ -7,7 +7,7 @@
 + 장바구니 같은 스토어 합치기v
 + Transactional v
 + 스타일 빼기(완료)
-+ varchar2(4000)-> clob로 변경 (완료)
++ varchar2(4000) -> clob로 변경(완료)
 
 *포트폴리오*
 
