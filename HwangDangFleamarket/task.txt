@@ -8,7 +8,7 @@
 + Transactional v
 + 스타일 빼기(완료)
 
-** varchar2(4000) -> clob로 변경
+** varchar2(4000) -> clob로 변경(완료)
 
 *포트폴리오*
 

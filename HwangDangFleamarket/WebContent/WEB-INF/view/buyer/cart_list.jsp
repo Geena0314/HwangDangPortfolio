@@ -64,6 +64,45 @@ ul li{
 <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
 <script type="text/javascript">
 $( document ).ready( function(){
+	//셀러 스토어 넘버.
+	var sellerStoreNo = $(".delivery");
+	//상품가격.
+	var realPrice = $(".realPrice");
+	//$('.deliveryPrice:eq("7")').text()
+	for(var i = 0; i < realPrice.length; i++)
+	{
+		if(realPrice[i].value >= 30000)
+		{
+			continue;
+		}
+		else
+		{
+			var totalPrice = 0;
+			for(var j = 0 ; j < realPrice.length; j++)
+			{
+				//같은스토어 가격합침.
+				if(i==j)
+				{
+					continue;
+				}
+				else
+				{	
+					if(sellerStoreNo[i].value == sellerStoreNo[j].value)
+					{
+						totalPrice = totalPrice + parseInt(realPrice[i].value) + parseInt(realPrice[j].value);
+						if(totalPrice >= 30000)
+						{
+							$('.deliveryPrice:eq('+ i +')').text("무료배송");
+							$('.deliveryPrice:eq('+ j +')').text("무료배송");
+							totalPrice = 0;
+							break;
+						}
+					}
+				}
+			}
+		} 
+	}
+	
     $('#basketAll').on("click", function() {
     	var sum = 0;
     	if($("#basketAll").prop("checked")){
@@ -72,11 +111,60 @@ $( document ).ready( function(){
             	sum = sum + parseInt($(this).text().split("+")[0]) + parseInt($(this).text().split("+")[1]);
             });
             $('#sum').text(sum);
+            //전체 선택시 같은스토어 상품 가격이 30000원을 넘으면 무료배송 처리.
+            //셀러 스토어 넘버.
+			var sellerStoreNo = $(".delivery");
+			//상품가격.
+			var realPrice = $(".realPrice");
+			//$('.deliveryPrice:eq("7")').text()
+			for(var i = 0; i < realPrice.length; i++)
+			{
+				if(realPrice[i].value >= 30000)
+				{
+					continue;
+				}
+				else
+				{
+					var totalPrice = 0;
+					for(var j = 0 ; j < realPrice.length; j++)
+					{
+						//같은스토어 가격합침.
+						if(i==j)
+						{
+							continue;
+						}
+						else
+						{	
+							if(sellerStoreNo[i].value == sellerStoreNo[j].value)
+							{
+								totalPrice = totalPrice + parseInt(realPrice[i].value) + parseInt(realPrice[j].value);
+								if(totalPrice >= 30000)
+								{
+									$('.deliveryPrice:eq('+ i +')').text("무료배송");
+									$('.deliveryPrice:eq('+ j +')').text("무료배송");
+									totalPrice = 0;
+									break;
+								}
+							}
+						}
+					}
+				} 
+			}
         }else{
             $("input[name=checkBasket]").prop("checked",false);
             $('#sum').text(sum);
+            //전체 해제시 3만원 이하 상품 배송비 2500원 적용.
+            var realPrice = $(".realPrice");
+            for(var i = 0; i < realPrice.length; i++)
+        	{
+            	if(realPrice[i].value < 30000)
+            	{
+            		$('.deliveryPrice:eq('+ i +')').text("2500원");
+            	}
+        	}
         }
     });
+    /***********************여기해야한다.*****************************/
     $("input[name=checkBasket]").on("click", function(){
     	var totalPrice = parseInt($('#checkedEstimatedPrice').text());
     	var addPrice = $(this).parents().children("#price").text();
@@ -88,7 +176,80 @@ $( document ).ready( function(){
     		totalPrice = totalPrice - parseInt(price[0]) - parseInt(price[1]);
     		$('#sum').text(totalPrice);
     	}
+    	//배송비... 어후
+    	var allCheckBox = $("input:checkbox[name=checkBasket]").length;
+    	//체크된 체크박스들
+    	var checkedBox = $("input:checkbox[name=checkBasket]:checked");
+    	//셀러 스토어 넘버.
+    	var sellerStoreNo = $(".delivery");
+    	//상품가격.
+    	var realPrice = $(".realPrice");
+    	
+    	for(var i = 0; i < allCheckBox; i++)
+    	{
+    		if($("input:checkbox[name=checkBasket]")[i].checked)
+   			{
+    			//선택된 상품들.
+    			if(realPrice[i].value >= 30000)
+				{
+    				//개별가격이 3만원보다 높을경우.
+    				$('.deliveryPrice:eq('+ i +')').text("무료배송");
+					continue;
+				}
+    			else
+    			{
+    				//개별가격이 3만원보다 낮은경우.
+    				//선택된 상품들 중에서 같은 스토어의 상품들 가격 합산해서 배송비 입력.
+    				var totalPrice = 0;
+					for(var j = 0 ; j < allCheckBox; j++)
+					{
+						//같은스토어 가격합침.
+						if(i==j)
+						{
+							continue;
+						}
+						else
+						{	
+							if(sellerStoreNo[i].value == sellerStoreNo[j].value)
+							{
+								if($("input:checkbox[name=checkBasket]")[j].checked)
+								{
+									totalPrice = totalPrice + parseInt(realPrice[i].value) + parseInt(realPrice[j].value);
+									if(totalPrice >= 30000)
+									{
+										$('.deliveryPrice:eq('+ i +')').text("무료배송");
+										$('.deliveryPrice:eq('+ j +')').text("무료배송");
+										totalPrice = 0;
+										break;
+									}
+								}
+								else
+								{
+									$('.deliveryPrice:eq('+ i +')').text("2500원");
+									$('.deliveryPrice:eq('+ j +')').text("2500원");
+								}
+							}
+						}
+					}
+    			}
+   			}
+    		else
+    		{
+    			//선택되지않은 상품들.
+    			if(realPrice[i].value >= 30000)
+				{
+    				$('.deliveryPrice:eq('+ i +')').text("무료배송");
+					continue;
+				}
+    			else
+    			{
+    				$('.deliveryPrice:eq('+ i +')').text("2500원");
+					continue;
+    			}
+    		}
+    	}
     });
+    /****************************************************/
     $('#removeBtn').on("click", function(){
     	$.ajax({
     		"url":"/HwangDangFleamarket/cart/removeCart.go",
@@ -136,9 +297,15 @@ $( document ).ready( function(){
     }); */
     $(".minus").on("click", function()
 	{
+    	var checkedFlag = $(this).parent().prev().prev().children("input:checkbox[name=checkBasket]");
     	var amount = $(this).siblings(".amountTxt").val();
     	if(amount == 1){
     		alert("주문 수량은 1개 이상으로 입력하세요.");
+    		return false;
+    	}
+    	if(checkedFlag.prop("checked"))
+    	{
+    		alert("체크 해제 후 수량을 조절해 주세요.");
     		return false;
     	}
     	var price = $(this).parent().next().text().split("+");
@@ -147,22 +314,38 @@ $( document ).ready( function(){
     	amount--;
     	if(price[1] == 0)
     	{
-    		$(this).parent().next().html(priceOne*amount + '<p style="display: none;">+0</p>');
+    		$(this).parent().next().children(".realPrice").next().html(priceOne*amount + '<p style="display: none;">+0</p>');
     	}
     	else
    		{
-    		$(this).parent().next().text((priceOne*amount) + "\n + " + (addPriceOne*amount));
+    		$(this).parent().next().children(".realPrice").next().text((priceOne*amount) + "\n + " + (addPriceOne*amount));
    		}
     	$(this).siblings(".amountTxt").val(amount);
-    	var sum = parseInt($("#sum").text());
+    	/* var sum = parseInt($("#sum").text());
     	sum = sum - (priceOne) - (addPriceOne);
-    	$("#sum").text(sum);
+    	$("#sum").text(sum); */
+    	
+    	//배송가격이 3만원보다 작아진 배송비 2500원 처리.
+    	var realPrice = (priceOne*amount) + (addPriceOne*amount);
+    	if(realPrice < 30000)
+    	{
+    		$(this).parent().next().next().text("2500원");
+    	}
+    	
+    	//realPrice 에 가격 넣어두기.
+    	$(this).parent().next().children(".realPrice").val(realPrice);
 	});
     $(".plus").on("click", function()
 	{
+    	var checkedFlag = $(this).parent().prev().prev().children("input:checkbox[name=checkBasket]");
     	var amount = $(this).siblings(".amountTxt").val();
     	if(amount == $(".stock").val()){
     		alert("재고량이 부족합니다.");
+    		return false;
+    	}
+    	if(checkedFlag.prop("checked"))
+    	{
+    		alert("체크 해제 후 수량을 조절해 주세요.");
     		return false;
     	}
     	var price = $(this).parent().next().text().split("+");
@@ -171,17 +354,26 @@ $( document ).ready( function(){
     	amount++;
     	if(price[1] == 0)
     	{
-    		$(this).parent().next().html(priceOne*amount + '<p style="display: none;">+0</p>');
+    		$(this).parent().next().children(".realPrice").next().html(priceOne*amount + '<p style="display: none;">+0</p>');
     	}
     	else
    		{
-    		$(this).parent().next().text((priceOne*amount) + "\n + " + (addPriceOne*amount));
+    		$(this).parent().next().children(".realPrice").next().text((priceOne*amount) + "\n + " + (addPriceOne*amount));
    		}
     	$(this).siblings(".amountTxt").val(amount);
-    	var sum = parseInt($("#sum").text());
+    	/* var sum = parseInt($("#sum").text());
     	sum = sum + (priceOne) + (addPriceOne);
-    	$("#sum").text(sum);
+    	$("#sum").text(sum); */
     	
+    	//배송가격이 3만원보다 커진경우 무료배송 처리.
+    	var realPrice = (priceOne*amount) + (addPriceOne*amount);
+   		if(realPrice >= 30000)
+       	{
+       		$(this).parent().next().next().text("무료배송");
+       	}
+    	
+    	//realPrice 에 가격 넣어두기.
+    	$(this).parent().next().children(".realPrice").val(realPrice);
 	});
 });
 function getRemoveCartList(){
@@ -268,15 +460,16 @@ function error(xhr, status, err)
 								<td id="price">
 									<input class="delivery" type="text" value="${product.sellerStoreNo}" style="display: none;">
 									<input class="realPrice" type="text" value="${product.productPrice*list.cartProductAmount}" style="display: none;">
-									${product.productPrice*list.cartProductAmount}
-									<c:choose>
-										<c:when test="${product.productOption.optionAddPrice != 0}">
-											+${list.cartProductAmount*product.productOption.optionAddPrice}
-										</c:when>
-										<c:otherwise>
-											<p style="display: none;">+0</p>
-										</c:otherwise>
-									</c:choose>
+									<span>${product.productPrice*list.cartProductAmount}
+										<c:choose>
+											<c:when test="${product.productOption.optionAddPrice != 0}">
+												+${list.cartProductAmount*product.productOption.optionAddPrice}
+											</c:when>
+											<c:otherwise>
+												<p style="display: none;">+0</p>
+											</c:otherwise>
+										</c:choose>
+									</span>
 								</td>
 								<td id="delivery" class="deliveryPrice">
 									<c:choose>
