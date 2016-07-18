@@ -28,6 +28,32 @@
 			}
 		});
 		
+		$("#password2").on("blur", function()
+		{
+			//패스워드를 입력하지않고 패스워드 확인창 클릭시.
+			if(!$("#memberPassword").val())
+			{
+				alert("위의 패스워드를 먼저 입력하세요.");
+				$("#memberPassword").focus();
+				return false;
+			}
+			else
+			{
+				//패스워드는 맞고 패스워드확인창 입력 후
+				if($("#memberPassword").val() == $("#password2").val())
+				{
+					//패스워드가 모두 일치할 때.
+					return true;
+				}
+				else
+				{
+					//패스워드 확인이 틀릴경우.
+					alert("패스워드가 일치하지 않습니다.")
+					$("#password2").val("");
+				}
+			}
+		});
+		
 		//submit 클릭시.
 		$("#submit").on("click", function()
 		{
@@ -163,6 +189,12 @@
 			<td class='tdName'>Password</td>
 			<td>
 				<input type="password" name="memberPassword" size="20" id="memberPassword">
+			</td>
+		</tr>
+		<tr class="trInput">
+			<td class='tdName'>Password1</td>
+			<td>
+				<input type="password" name="password2" size="20" id="password2">
 			</td>
 		</tr>
 		<tr class="trInput">
