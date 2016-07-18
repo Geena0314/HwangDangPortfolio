@@ -149,12 +149,12 @@ CREATE TABLE store_QnA (
 
 /* 장바구니 */
 CREATE TABLE cart (
-	cart_no NUMBER PRIMARY KEY, /* 장바구니 번호 */
-	cart_product_amount NUMBER(4) NOT NULL, /* 장바구니 상품수량 */
-	cart_product_option VARCHAR2(100) NOT NULL, /* 장바구니 선택옵션 */
+	cart_no NUMBER PRIMARY KEY, /* 장바구니 상품 번호 */
+	cart_product_amount NUMBER(4) NOT NULL, /* 장바구니 상품 수량 */
+	cart_product_option VARCHAR2(100) NOT NULL, /* 장바구니 선택 옵션 */
 	product_id VARCHAR2(30) NOT NULL, /* 상품ID */
 	member_id VARCHAR2(30) NOT NULL, /* 아이디 */
-	option_id NUMBER NOT NULL, /* 상품옵션ID */
+	option_id NUMBER NOT NULL, /* 상품 옵션ID */
 	FOREIGN KEY(product_id) REFERENCES product(product_id),
 	FOREIGN KEY(member_id) REFERENCES member(member_id),
 	FOREIGN KEY(option_id) REFERENCES product_option(option_id)
