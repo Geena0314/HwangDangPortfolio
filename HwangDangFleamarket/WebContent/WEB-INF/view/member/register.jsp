@@ -166,8 +166,8 @@
 		display: none;
 	}
 </style>
+<h2 class="page-header store_look_around">황당 플리마켓 회원가입</h2>
 <form method="post" action="/HwangDangFleamarket/member/registerresult.go" name="register" id="registerForm">
-<h2 class="page-header">황당 플리마켓 회원가입</h2>
 <div class="table-responsive" >
 	<table width='600' class="table table-striped">
 		<tr class="trInput">
