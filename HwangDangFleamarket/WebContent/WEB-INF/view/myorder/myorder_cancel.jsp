@@ -110,9 +110,9 @@ div .child  {
 			</table>
 	</c:forEach> 
 	
-		<p class="text-center">
+	<%-- 	<p class="text-center">
 			<mark> <fmt:formatNumber value="${order.ordersTotalPrice }" type="currency" /></mark>
-		</p>
+		</p> --%>
 		<hr>
 </div>     
 </c:forEach>

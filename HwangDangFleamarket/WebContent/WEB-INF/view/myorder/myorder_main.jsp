@@ -10,7 +10,7 @@ img {
 }
 
 .container{
-	min-height:  300px;
+	min-height:  200px;
 	min-width:  500px;
 }   
 
@@ -175,10 +175,10 @@ img {
 	배송현황  - 배송완료 : 4
  -->
  
-<div class="container">
+<div class="container" style="margin-bottom: 30px;">
 	<h2 class="page-header store_look_around">나의주문 - 배송현황</h2>
 	
-	<div class="row">
+	<div class="row" style="position: relative; top: -20px;">
 	<!-- 네비게이션 바Area -->
 	 <ul class="nav nav-tabs">       
 	 	 <li role="presentation" class="active"><a class="btn btn-default" role="button"  href="/HwangDangFleamarket/myorder/main.go?loginId=${sessionScope.login_info.memberId }">배송 현황</a></li>
@@ -188,7 +188,7 @@ img {
 	
 	
 	 <!-- 본문 Area -->
-	<div class="col-md-12">
+	<div class="col-md-12 ">
 	<form action=""  method="post"  id="f2">
 	<input type="hidden" id="loginId" value="${sessionScope.login_info.memberId }" />
 		

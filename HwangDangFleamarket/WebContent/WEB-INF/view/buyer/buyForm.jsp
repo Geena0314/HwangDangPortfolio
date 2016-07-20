@@ -606,15 +606,15 @@
 			<span id="option"> ${op.productOption.optionSubName } </span><br/>
 			
 			배송비 : 
-			<span id="deriveryCharge">
+			<span id="deliveryCharge">
 			<c:choose>
-				<c:when test="${ (op.product.productPrice  + op.productOption.optionAddPrice  )  * op.orderAmount  >= 50000 }">0</c:when>
+				<c:when test="${ (op.product.productPrice  + op.productOption.optionAddPrice  )  * op.orderAmount  >= 30000 }">0</c:when>
 				<c:otherwise>2500</c:otherwise>
 			</c:choose>
 			</span>원<br/>   
 			<font color="gray" class="partProductPrice" size="5px" > 
 			<c:choose>
-				<c:when test="${ (op.product.productPrice  + op.productOption.optionAddPrice )  * op.orderAmount  >= 50000 }">${(op.product.productPrice+op.productOption.optionAddPrice)*op.orderAmount }</c:when>
+				<c:when test="${ (op.product.productPrice  + op.productOption.optionAddPrice )  * op.orderAmount  >= 30000 }">${(op.product.productPrice+op.productOption.optionAddPrice)*op.orderAmount }</c:when>
 				<c:otherwise>${(op.product.productPrice+op.productOption.optionAddPrice)*op.orderAmount + 2500 } </c:otherwise>
 			</c:choose>
 			</font>
@@ -626,7 +626,7 @@
 		</div>
 		<br/>
 		<h2>최종결제 정보</h2>
-			<div style="border: 3px solid black; padding: 15px; margin: 10px;">
+			<div style="border: 3px solid black; padding: 15px; margin: 10px; margin-bottom: 20px;">
 			 결제예정금액 : <strong><span id="productPrice"></span>원</strong><br/>
 			사용할 마일리지 :<strong><span id="useMileage" ></span></strong><br/>
 			 실제결제금액:<font size="9" color="red" ><span id="ordersTotalPrice"></span></font>원<br/>

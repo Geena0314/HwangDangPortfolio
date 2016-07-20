@@ -18,8 +18,6 @@ public class BoardQnAServiceImpl implements BoardQnAService{
 	@Autowired
 	private BoardQnADao adminDao;
 	
-
-	
 	//QnA게시판 시퀀스값 조회 
 	@Override
 	@Transactional(rollbackFor=Exception.class)

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
 <style type="text/css">
-table, td {
+table, td, th {
 	border-top: 2px solid lightgray;
 	border-bottom: 2px solid lightgray;
 	border-left: none;
@@ -414,7 +414,7 @@ function error(xhr, status, err)
 							</div>
 						</label>
 					</th>
-					<th scope="col"><span>상품</span></th>
+					<th scope="col"><span>상품정보</span></th>
 					<th scope="col"><span>수량</span></th>
 					<th scope="col" class="col2"><span>가격</span></th>
 					<th scope="col"><span>배송정보</span></th>

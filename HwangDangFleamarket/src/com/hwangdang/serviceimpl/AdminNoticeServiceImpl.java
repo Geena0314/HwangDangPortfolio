@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.dao.AdminNoticeDao;
 import com.hwangdang.service.AdminNoticeService;
@@ -16,13 +17,19 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	private AdminNoticeDao dao;
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int adminRegisterNotice(Notice notice) {
 		return dao.insertNotice(notice);
 	}
-
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int adminEditNotice(Notice notice) {
 		return dao.updateNotice(notice);
+	}
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public int removNotice(int noticeNo) {
+		return dao.deleteNotice(noticeNo);
 	}
 
 	@Override
@@ -49,8 +56,4 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return notice;
 	}
 
-	@Override
-	public int removNotice(int noticeNo) {
-		return dao.deleteNotice(noticeNo);
-	}
 }

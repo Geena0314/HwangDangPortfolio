@@ -53,7 +53,6 @@ $(document).ready(function(){
 				$("#optionStock").empty().val(0);
 				$("#error").empty();
 				$("#optionAddPriceTr").empty().hide();
-				//$("#optionStock").empty().html("<option>수량선택</option>");
 				$("#optionNameError").empty();
 				$("#optionStockError").empty();
 				$("#optionId").empty();
@@ -73,10 +72,6 @@ $(document).ready(function(){
 					$("#optionName option:eq(0)").attr('selected', 'true');
 					return false;
 				}
-				/* for(var i = json.optionStock; i > 0 ; i--)
-				{
-					$("#optionStock").append("<option>" + i + "</option>");
-				} */
 				if(json.optionAddPrice == 0)
 				{
 					$("#optionStockError").empty().append(json.optionStock).hide();
@@ -84,7 +79,8 @@ $(document).ready(function(){
 				}
 				else
 				{
-					$("#optionAddPriceTr").html("<td>추가 가격</td><td id='optionAddPrice' name='optionAddPrice'>" + json.optionAddPrice + "원</td>").show();
+					$("#optionAddPriceTr").html("<td>추가 가격</td><td id='optionAddPrice' name='optionAddPrice'>" 
+												+ json.optionAddPrice + "원</td>").show();
 					$("#optionStockError").empty().append(json.optionStock).hide();
 				}
 			},		

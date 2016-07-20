@@ -50,7 +50,7 @@
 	  <!--  결제여부 0 : 미결제  , 1. 결제완료  -->
 	</div>
 	
-	<div style="border: 6px solid lightgray; padding: 25px; margin: 20px; width: 500px; float: left">
+	<div style="border: 6px solid lightgray; padding: 25px; margin: 20px; margin-bottom: 50px; width: 500px; float: left">
 	<h2>결제정보</h2>
 	<hr>
 		결제방식 :

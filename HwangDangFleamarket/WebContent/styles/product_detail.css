@@ -71,3 +71,7 @@ input[type=button]:hover, input[type=submit]:hover
 	position: relative;
 	left: 5%;
 }
+#info{
+	position: relative;
+	bottom: -200px;
+}

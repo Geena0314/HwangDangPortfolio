@@ -17,6 +17,7 @@
 	<tx:annotation-driven transaction-manager="txmanager"/>
 	
 	<!-- Spring, Mybatis 연동. -->
+	
 	<!-- BasicDataSource Bean으로 등록. -->
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 			 p:driverClassName="oracle.jdbc.driver.OracleDriver"
