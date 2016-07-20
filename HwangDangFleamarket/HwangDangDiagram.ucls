@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.hwangdang.controller.AdminNoticeController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/AdminNoticeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="185" x="870" y="1781"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.hwangdang.controller.BuyController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/BuyController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="161" x="755" y="512"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.hwangdang.controller.ProductController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/ProductController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="156" x="528" y="217"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.hwangdang.controller.SellerController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/SellerController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="61" width="156" x="1376" y="211"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.hwangdang.controller.QnABoardController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/QnABoardController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="61" width="175" x="1153" y="530"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.hwangdang.controller.StoreQnAController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/StoreQnAController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="165" x="750" y="132"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.hwangdang.controller.MyOrderController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/MyOrderController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="158" x="1148" y="18"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.hwangdang.controller.MemberController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="156" x="755" y="312"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.hwangdang.controller.SellerNoticeController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/SellerNoticeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="184" x="366" y="1388"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.hwangdang.controller.AdminController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/AdminController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="156" x="1831" y="504"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.hwangdang.controller.CartController" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/controller/CartController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="156" x="545" y="713"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="12" language="java" name="com.hwangdang.common.util.Constants" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/common/util/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="173" x="1029" y="2049"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="13" language="java" name="com.hwangdang.common.util.MailSender" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/common/util/MailSender.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="173" x="1016" y="1269"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.hwangdang.common.util.MailSender.MyAuthentication" 
+    project="HwangDangFleamarket" file="/HwangDangFleamarket/src/com/hwangdang/common/util/MailSender.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="173" x="1015" y="1387"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.hwangdang.common.util.PagingBean" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/common/util/PagingBean.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="173" x="969" y="1972"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="com.hwangdang.vo.Seller" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Seller.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="231" x="902" y="1534"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="com.hwangdang.vo.StoreQnAReply" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/StoreQnAReply.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="133" x="336" y="1588"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.hwangdang.vo.Cart" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Cart.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="1482" y="1535"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.hwangdang.vo.SellerNotice" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/SellerNotice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="553" y="1971"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.hwangdang.vo.ExchangeRequest" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/ExchangeRequest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="154" x="853" y="2049"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.hwangdang.vo.StoreQnA" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/StoreQnA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="345" y="1486"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.hwangdang.vo.ProductOption" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/ProductOption.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="128" x="1441" y="1401"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.hwangdang.vo.Zipcode" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Zipcode.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="419" y="2051"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="com.hwangdang.vo.Notice" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Notice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="829" y="1973"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.hwangdang.vo.Code" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Code.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="556" y="2050"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.hwangdang.vo.Category" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Category.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="418" y="1971"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.hwangdang.vo.RefundRequest" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/RefundRequest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="136" x="697" y="2048"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.hwangdang.vo.Member" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Member.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="958" y="1639"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="com.hwangdang.vo.Review" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Review.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="690" y="1972"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="com.hwangdang.vo.Product" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Product.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="243" x="1194" y="1534"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="com.hwangdang.vo.AdminQnA" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/AdminQnA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="117" x="1025" y="1880"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="com.hwangdang.vo.ProductDetailImage" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/ProductDetailImage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="163" x="1234" y="1633"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="com.hwangdang.vo.OrderProduct" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/OrderProduct.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="127" x="1251" y="1399"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="com.hwangdang.vo.AdminQnAReply" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/AdminQnAReply.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="137" x="841" y="1882"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="com.hwangdang.vo.Orders" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/vo/Orders.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="206" x="1211" y="1266"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="com.hwangdang.serviceimpl.CartServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/CartServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="738" y="612"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="com.hwangdang.serviceimpl.AdminNoticeServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/AdminNoticeServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="197" x="617" y="1779"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="com.hwangdang.serviceimpl.MyOrderServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/MyOrderServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="170" x="959" y="119"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="com.hwangdang.serviceimpl.MemberServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/MemberServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="1158" y="414"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="com.hwangdang.serviceimpl.OrderServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/OrderServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="1368" y="14"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="com.hwangdang.serviceimpl.SellerSerivceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/SellerSerivceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="1599" y="416"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="com.hwangdang.serviceimpl.AdminServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/AdminServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="1394" y="504"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="com.hwangdang.serviceimpl.BoardQnAServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/BoardQnAServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="181" x="1147" y="711"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="com.hwangdang.serviceimpl.BuyServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/BuyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="926" y="704"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="com.hwangdang.serviceimpl.ProductServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/ProductServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="529" y="307"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="com.hwangdang.serviceimpl.SellerNoticeServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/SellerNoticeServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="196" x="590" y="1388"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="com.hwangdang.serviceimpl.StoreQnAServiceImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/serviceimpl/StoreQnAServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="177" x="518" y="23"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="48" language="java" name="com.hwangdang.service.AdminNoticeService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/AdminNoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="168" x="633" y="1882"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="49" language="java" name="com.hwangdang.service.StoreQnAService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/StoreQnAService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="148" x="532" y="130"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="50" language="java" name="com.hwangdang.service.ProductService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/ProductService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="761" y="215"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="51" language="java" name="com.hwangdang.service.MemberService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="763" y="412"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="52" language="java" name="com.hwangdang.service.OrderService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/OrderService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="1380" y="118"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="53" language="java" name="com.hwangdang.service.BuyService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/BuyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="938" y="611"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="54" language="java" name="com.hwangdang.service.SellerNoticeService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/SellerNoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="167" x="491" y="1489"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="55" language="java" name="com.hwangdang.service.AdminService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/AdminService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="1634" y="504"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="56" language="java" name="com.hwangdang.service.BoardQnAService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/BoardQnAService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="152" x="1164" y="623"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="57" language="java" name="com.hwangdang.service.CartService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/CartService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="551" y="610"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="58" language="java" name="com.hwangdang.service.MyOrderService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/MyOrderService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="970" y="219"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="59" language="java" name="com.hwangdang.service.SellerService" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/service/SellerService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="144" x="1380" y="312"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="60" language="java" name="com.hwangdang.daoimpl.OrderDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/OrderDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="1550" y="16"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="com.hwangdang.daoimpl.CartDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/CartDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="745" y="836"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="com.hwangdang.daoimpl.SellerDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/SellerDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="1166" y="341"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="com.hwangdang.daoimpl.ProductDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/ProductDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="335" y="212"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="com.hwangdang.daoimpl.MemberDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/MemberDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="1400" y="742"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="com.hwangdang.daoimpl.MyOrderDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/MyOrderDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="1180" y="119"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="com.hwangdang.daoimpl.ProductDetailImageDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/ProductDetailImageDaoImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="220" x="506" y="512"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="com.hwangdang.daoimpl.BoardQnADaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/BoardQnADaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="154" x="1160" y="926"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="com.hwangdang.daoimpl.AdminNoticeDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/AdminNoticeDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="170" x="439" y="1778"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="com.hwangdang.daoimpl.ProductOptionDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/ProductOptionDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="185" x="300" y="511"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="com.hwangdang.daoimpl.BuyDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/BuyDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="935" y="927"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="com.hwangdang.daoimpl.SellerNoticeDaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/SellerNoticeDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="169" x="826" y="1388"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="com.hwangdang.daoimpl.StoreQnADaoImpl" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/daoimpl/StoreQnADaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="150" x="902" y="24"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="73" language="java" name="com.hwangdang.dao.ProductOptionDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/ProductOptionDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="156" x="317" y="414"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="74" language="java" name="com.hwangdang.dao.CartDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/CartDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="761" y="704"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="75" language="java" name="com.hwangdang.dao.StoreQnADao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/StoreQnADao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="738" y="23"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="76" language="java" name="com.hwangdang.dao.AdminNoticeDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/AdminNoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="141" x="452" y="1882"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="77" language="java" name="com.hwangdang.dao.BuyDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/BuyDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="947" y="832"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="78" language="java" name="com.hwangdang.dao.ProductDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/ProductDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="348" y="309"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="79" language="java" name="com.hwangdang.dao.BoardQnADao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/BoardQnADao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="1174" y="840"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="80" language="java" name="com.hwangdang.dao.ProductDetailImageDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/ProductDetailImageDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="191" x="519" y="419"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="81" language="java" name="com.hwangdang.dao.MemberDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="1415" y="639"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="82" language="java" name="com.hwangdang.dao.SellerNoticeDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/SellerNoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="140" x="698" y="1489"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="83" language="java" name="com.hwangdang.dao.SellerDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/SellerDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="1413" y="416"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="84" language="java" name="com.hwangdang.dao.MyOrderDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/MyOrderDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="1154" y="219"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="85" language="java" name="com.hwangdang.dao.OrderDao" project="HwangDangFleamarket" 
+    file="/HwangDangFleamarket/src/com/hwangdang/dao/OrderDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="126" x="1564" y="118"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <association id="86">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="87" name="cartService"/>      
+      <multiplicity id="88" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="90" name="dao"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="92">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="93" name="dao"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="75" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="95">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="49"/>  
+  </realization>  
+  <realization id="96">    
+    <end type="SOURCE" refId="43"/>    
+    <end type="TARGET" refId="56"/>  
+  </realization>  
+  <association id="97">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="98" name="service"/>      
+      <multiplicity id="99" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="53" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="101" name="productService">        
+        <position height="20" width="93" x="933" y="191"/>      
+      </attribute>      
+      <multiplicity id="102" minimum="0" maximum="1">        
+        <position height="18" width="27" x="838" y="194"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="103">    
+    <end type="SOURCE" refId="62"/>    
+    <end type="TARGET" refId="83"/>  
+  </realization>  
+  <nesting id="104">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="14"/>  
+  </nesting>  
+  <association id="105">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="106" name="service"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="108">    
+    <end type="SOURCE" refId="63"/>    
+    <end type="TARGET" refId="78"/>  
+  </realization>  
+  <association id="109">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="110" name="dao"/>      
+      <multiplicity id="111" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="84" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="112">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="113" name="productOption">        
+        <position height="20" width="89" x="1417" y="1490"/>      
+      </attribute>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="115">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="116" name="adminDao"/>      
+      <multiplicity id="117" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="118">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="119" name="service"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="121">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="122" name="member"/>      
+      <multiplicity id="123" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="124">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="53"/>  
+  </realization>  
+  <association id="125">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="126" name="service"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="56" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <end type="SOURCE" refId="44" navigable="false">      
+      <attribute id="129" name="dao"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="77" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="132" name="memberDao">        
+        <position height="20" width="78" x="1435" y="565"/>      
+      </attribute>      
+      <multiplicity id="133" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1625" y="583"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="81" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="134">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="135" name="sellerService"/>      
+      <multiplicity id="136" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="137">    
+    <end type="SOURCE" refId="39"/>    
+    <end type="TARGET" refId="51"/>  
+  </realization>  
+  <realization id="138">    
+    <end type="SOURCE" refId="66"/>    
+    <end type="TARGET" refId="80"/>  
+  </realization>  
+  <realization id="139">    
+    <end type="SOURCE" refId="65"/>    
+    <end type="TARGET" refId="84"/>  
+  </realization>  
+  <association id="140">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="141" name="dao"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="85" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="143">    
+    <end type="SOURCE" refId="64"/>    
+    <end type="TARGET" refId="81"/>  
+  </realization>  
+  <association id="144">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="145" name="dao"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="76" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="147">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="148" name="detailImageDao"/>      
+      <multiplicity id="149" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="150">    
+    <end type="SOURCE" refId="41"/>    
+    <end type="TARGET" refId="59"/>  
+  </realization>  
+  <association id="151">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="152" name="product"/>      
+      <multiplicity id="153" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="154">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="155" name="dao">        
+        <position height="20" width="29" x="1383" y="603"/>      
+      </attribute>      
+      <multiplicity id="156" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1423" y="606"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="81" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="157">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="158" name="orderService"/>      
+      <multiplicity id="159" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="52" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="160">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="161" name="productOption">        
+        <position height="20" width="89" x="1382" y="1380"/>      
+      </attribute>      
+      <multiplicity id="162" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="163">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="164" name="dao"/>      
+      <multiplicity id="165" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="166">    
+    <end type="SOURCE" refId="61"/>    
+    <end type="TARGET" refId="74"/>  
+  </realization>  
+  <association id="167">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="168" name="seller"/>      
+      <multiplicity id="169" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="170">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="171" name="storeQnAReply"/>      
+      <multiplicity id="172" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="173">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="174" name="qnaService">        
+        <position height="20" width="71" x="533" y="196"/>      
+      </attribute>      
+      <multiplicity id="175" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="176">    
+    <end type="SOURCE" refId="68"/>    
+    <end type="TARGET" refId="76"/>  
+  </realization>  
+  <association id="177">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="178" name="reply"/>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="180">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="181" name="seller"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="183">    
+    <end type="SOURCE" refId="60"/>    
+    <end type="TARGET" refId="85"/>  
+  </realization>  
+  <realization id="184">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="57"/>  
+  </realization>  
+  <association id="185">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="186" name="orderService"/>      
+      <multiplicity id="187" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="52" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="188">    
+    <end type="SOURCE" refId="41" navigable="false">      
+      <attribute id="189" name="dao"/>      
+      <multiplicity id="190" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="191">    
+    <end type="SOURCE" refId="45" navigable="false">      
+      <attribute id="192" name="optionDao"/>      
+      <multiplicity id="193" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="194">    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="75"/>  
+  </realization>  
+  <realization id="195">    
+    <end type="SOURCE" refId="67"/>    
+    <end type="TARGET" refId="79"/>  
+  </realization>  
+  <realization id="196">    
+    <end type="SOURCE" refId="38"/>    
+    <end type="TARGET" refId="58"/>  
+  </realization>  
+  <association id="197">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="198" name="productDetailImage"/>      
+      <multiplicity id="199" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="200">    
+    <end type="SOURCE" refId="46"/>    
+    <end type="TARGET" refId="54"/>  
+  </realization>  
+  <association id="201">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="202" name="sellerDao"/>      
+      <multiplicity id="203" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="204">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="50"/>  
+  </realization>  
+  <association id="205">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="206" name="service"/>      
+      <multiplicity id="207" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="208">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="209" name="memberService"/>      
+      <multiplicity id="210" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="211">    
+    <end type="SOURCE" refId="70"/>    
+    <end type="TARGET" refId="77"/>  
+  </realization>  
+  <association id="212">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="213" name="service"/>      
+      <multiplicity id="214" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="215">    
+    <end type="SOURCE" refId="40"/>    
+    <end type="TARGET" refId="52"/>  
+  </realization>  
+  <association id="216">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="217" name="productList"/>      
+      <multiplicity id="218" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="219">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="220" name="service"/>      
+      <multiplicity id="221" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="48" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="222">    
+    <end type="SOURCE" refId="39" navigable="false">      
+      <attribute id="223" name="sellerDao"/>      
+      <multiplicity id="224" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="83" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="225">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="226" name="productService"/>      
+      <multiplicity id="227" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="228">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="229" name="orderProductList"/>      
+      <multiplicity id="230" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="231">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="232" name="service"/>      
+      <multiplicity id="233" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="50" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="234">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="235" name="service"/>      
+      <multiplicity id="236" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="51" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="237">    
+    <end type="SOURCE" refId="71"/>    
+    <end type="TARGET" refId="82"/>  
+  </realization>  
+  <association id="238">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="239" name="memberService"/>      
+      <multiplicity id="240" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="51" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="241">    
+    <end type="SOURCE" refId="69"/>    
+    <end type="TARGET" refId="73"/>  
+  </realization>  
+  <association id="242">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="243" name="memberDao">        
+        <position height="20" width="78" x="1548" y="580"/>      
+      </attribute>      
+      <multiplicity id="244" minimum="0" maximum="1">        
+        <position height="18" width="27" x="1511" y="567"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="81" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="245">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="246" name="service"/>      
+      <multiplicity id="247" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="55" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="248">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="249" name="service"/>      
+      <multiplicity id="250" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="59" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="251">    
+    <end type="SOURCE" refId="37"/>    
+    <end type="TARGET" refId="48"/>  
+  </realization>  
+  <association id="252">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="253" name="dao"/>      
+      <multiplicity id="254" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="255">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="55"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -76,7 +76,7 @@ public class MemberController {
 		return new ModelAndView("redirect:/member/registerSuccess.go");
 	}
 	
-	@RequestMapping("/registerSuccess") //DB에 내용을 기입하고 회원가입을 완료함
+	@RequestMapping("/registerSuccess") //DB에 내용을 저장하고 회원가입을 완료함
 	public String registerSuccess()
 	{
 		return "member/register_success.tiles";
