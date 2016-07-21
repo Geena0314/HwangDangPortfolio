@@ -86,12 +86,12 @@
 		if (event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37
 				|| event.keyCode == 39 || event.keyCode == 46)
 			return;
-		//obj.value = obj.value.replace(/[\a-zㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
 		obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
 		obj.value = obj.value.replace(
 				/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi, '');
 		obj.value = obj.value.replace(/\s/gi, '');
 	}
+	
 </script>
 <style type="text/css">
 #domain {

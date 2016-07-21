@@ -231,15 +231,15 @@ CREATE TABLE review (
 );
 drop sequence review_no_seq
 create sequence review_no_seq nocache;
-insert into review values (review_no_seq.nextval, '너무나 잘 받았습니다...', sysdate, 'posese4@hanmail.net', 'case6');
-insert into review values (review_no_seq.nextval, '감사감사합니다.', sysdate, 'susu222@naver.com', 'case6');
-insert into review values (review_no_seq.nextval, '기스가 나있어요 ㅜㅜ', sysdate, 'sasuy2@gmail.com', 'case6');
-insert into review values (review_no_seq.nextval, '좋아좋아좋아좋아', sysdate, 'aaong77@naver.com', 'case6');
-insert into review values (review_no_seq.nextval, '굳굳굳굳굳!', sysdate, 'geena321@gmail.com', 'case6');
-insert into review values (review_no_seq.nextval, '아주 좋군요~~', sysdate, 'saloko22@gmail.com', 'case6');
-insert into review values (review_no_seq.nextval, '좋습니다~ 좋구요~', sysdate, 'hololo@gmail.com', 'case6');
-insert into review values (review_no_seq.nextval, '또 사고싶어요.', sysdate, 'bumbumpow@gmail.com', 'case6');
-insert into review values (review_no_seq.nextval, '너무너무 이쁘네요~', sysdate, 'sirundae2@gmail.com', 'case6');
+insert into review values (review_no_seq.nextval, '너무나 잘 받았습니다...', sysdate, 'posese4@hanmail.net', 'ironMan07');
+insert into review values (review_no_seq.nextval, '감사감사합니다.', sysdate, 'susu222@naver.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '기스가 나있어요 ㅜㅜ', sysdate, 'sasuy2@gmail.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '좋아좋아좋아좋아', sysdate, 'aaong77@naver.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '굳굳굳굳굳!', sysdate, 'geena321@gmail.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '아주 좋군요~~', sysdate, 'saloko22@gmail.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '좋습니다~ 좋구요~', sysdate, 'hololo@gmail.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '또 사고싶어요.', sysdate, 'bumbumpow@gmail.com', 'ironMan07');
+insert into review values (review_no_seq.nextval, '너무너무 이쁘네요~', sysdate, 'sirundae2@gmail.com', 'ironMan07');
 
 select count(REVIEW_no) from REVIEW
 select count(review_no) from review where review_writer = 'isj4216' and product_id='상품id5'
@@ -263,12 +263,12 @@ CREATE TABLE store_QnA (
 );
 drop sequence storeQnA_no_seq
 create sequence storeQnA_no_seq nocache;
-insert into store_qna values (storeQnA_no_seq.nextval, '재입고 문의', '재고는 언제 들어오나요???????', 11, 0, 'sayong@gmail.com', sysdate, 'case6');
-insert into store_qna values (storeQnA_no_seq.nextval, '재고관련 문의', '재고가 언제 들어오나요??', 1, 1, 'sayong@gmail.com', sysdate, 'case6');
-insert into store_qna values (storeQnA_no_seq.nextval, '상품 관련 문의', '기스난 제품은 어떻게 하나요?', 21, 1, 'sajonn@gmail.com', sysdate, 'case6');
-insert into store_qna values (storeQnA_no_seq.nextval, '가격관련 문의', '할인은 안되나요?', 11, 0, 'rayong@naver.com', sysdate, 'case6');
-insert into store_qna values (storeQnA_no_seq.nextval, '문의드립니다.', '단체주문 하고싶은데, 어떻게 해야하나요?', 1, 1, 'tyyong@gmail.com', sysdate, 'case6');
-insert into store_qna values (storeQnA_no_seq.nextval, '문의드립니다.', '단체주문 하고싶은데, 어떻게 해야하나요?', 21, 1, 'aasung@naver.com', sysdate, 'case6');
+insert into store_qna values (storeQnA_no_seq.nextval, '재입고 문의', '재고는 언제 들어오나요???????', 11, 0, 'sayong@gmail.com', sysdate, 'ironMan07');
+insert into store_qna values (storeQnA_no_seq.nextval, '재고관련 문의', '재고가 언제 들어오나요??', 1, 1, 'sayong@gmail.com', sysdate, 'ironMan07');
+insert into store_qna values (storeQnA_no_seq.nextval, '상품 관련 문의', '기스난 제품은 어떻게 하나요?', 21, 1, 'sajonn@gmail.com', sysdate, 'ironMan07');
+insert into store_qna values (storeQnA_no_seq.nextval, '가격관련 문의', '할인은 안되나요?', 11, 0, 'rayong@naver.com', sysdate, 'ironMan07');
+insert into store_qna values (storeQnA_no_seq.nextval, '문의드립니다.', '단체주문 하고싶은데, 어떻게 해야하나요?', 1, 1, 'tyyong@gmail.com', sysdate, 'ironMan07');
+insert into store_qna values (storeQnA_no_seq.nextval, '문의드립니다.', '단체주문 하고싶은데, 어떻게 해야하나요?', 21, 1, 'aasung@naver.com', sysdate, 'ironMan07');
 
 select storeQnA_no, storeQnA_title, storeQnA_content, storeQnA_hit, storeQnA_published, storeQnA_writer, storeQnA_date, product_id
 		from (select ceil(rownum/6) page, storeQnA_no, storeQnA_title, storeQnA_content, storeQnA_hit, storeQnA_published, storeQnA_writer, storeQnA_date, product_id

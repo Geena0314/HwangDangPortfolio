@@ -89,7 +89,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/loginResult.go") //로그인 후 화면
-	public ModelAndView loginResult(String memberId, String domain, String memberPassword, HttpSession session, HttpServletRequest request){
+	public ModelAndView loginResult(String memberId, String domain, String memberPassword, HttpSession session, HttpServletRequest request)
+	{
 		String memberIds = memberId + "@" + domain;
 		Member member = service.findById(memberIds);
 		if(member!=null){

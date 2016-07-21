@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.dao.ProductDao;
@@ -150,6 +151,7 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int insertReview(String memberId, String reviewContent, String productId, int productLike)
 	{
 		// TODO Auto-generated method stub
@@ -168,6 +170,7 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int deleteReview(String memberId, String productId)
 	{
 		// TODO Auto-generated method stub
@@ -182,10 +185,6 @@ public class ProductServiceImpl implements ProductService
 	{
 		// TODO Auto-generated method stub
 		StoreQnA qna = dao.selectQnAByNo(storeQnANo);
-		/* qna.setStoreQnAContent(qna.getStoreQnAContent().replace(">", "&gt;"));
-		qna.setStoreQnAContent(qna.getStoreQnAContent().replace("<", "&lt;"));
-		qna.setStoreQnAContent(qna.getStoreQnAContent().replace("\n", "<br>"));
-		qna.setStoreQnAContent(qna.getStoreQnAContent().replace(" ", "&nbsp;"));*/
 		return dao.selectQnAByNo(storeQnANo);
 	}
 

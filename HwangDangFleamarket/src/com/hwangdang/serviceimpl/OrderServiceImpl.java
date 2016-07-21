@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.service.OrderService;
@@ -30,6 +31,7 @@ public class OrderServiceImpl implements OrderService
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int insertRefundRequest(RefundRequest refund)
 	{
 		// TODO Auto-generated method stub

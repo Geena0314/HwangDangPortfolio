@@ -63,7 +63,7 @@
 		<result column="order_seq_no" property="orderSeqNo"/>
 	</resultMap>
 	
-	<!-- 페이징추가해야함.  -->
+	<!-- 주문, 상품, 주문상품 Join  -->
 	<select id="selectOrderState" parameterType="map"  resultMap="orders-product-orderProduct">
 		select 	<include refid="order-join-column"/>
 		from		(select ceil(rownum/#{itemPerPage}) page, <include refid="order-join-column"/>

@@ -62,7 +62,7 @@ $(document).ready(function(){
 						<lee:otherwise>
 							<div class="col-sm-4" id="sellerRegister">
 								<a href="/HwangDangFleamarket/member/sellerRegister.go">
-									<img class="mypage-images sellerImages" src="../image_storage/sellerRegister.jpg"><!-- 등록폼으로이동. 판매자등록신청.-->
+									<img class="mypage-images sellerImages" src="../image_storage/sellerRegister.jpg">z<!-- 등록폼으로이동. 판매자등록신청.-->
 								</a>
 							</div>
 						</lee:otherwise>

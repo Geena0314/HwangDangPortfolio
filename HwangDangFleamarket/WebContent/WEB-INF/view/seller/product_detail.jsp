@@ -777,12 +777,12 @@ $(document).ready(function(){
 									{
 										if(!json.qnaBean.page == i)
 										{
-											$("#qnaPaging").prepend("<a id='qnaCurrentPage'><b>" + endPage + "</b></a>");
+											$("#qnaPaging").prepend("<a id='qnaCurrentPage'><b> " + endPage + "</b></a>");
 											endPage--;
 										}
 										else
 										{
-											$("#qnaPaging").prepend("<a class='qnaMovePage'>" + endPage + "</a>");
+											$("#qnaPaging").prepend("<a class='qnaMovePage'> " + endPage + " </a>");
 											endPage--;
 										}
 									}

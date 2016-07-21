@@ -192,7 +192,6 @@ public class ProductController
 			if(((Member)session.getAttribute("login_info")).getMemberId().equals(qnaService.selectSellerByNo(sellerStoreNo)))
 			{
 				int result = service.insertQnAReply(sellerStoreNo, storeReplyContent, storeQnANo);
-				System.out.println(result);
 				if(result == 0)
 				{
 					return null;
@@ -201,13 +200,11 @@ public class ProductController
 			}
 			else
 			{
-				System.out.println("머냐");
 				return null;
 			}
 		}
 		catch (Exception e)
 		{
-			System.out.println("asdfasdf");
 			e.printStackTrace();
 			return null;
 		}

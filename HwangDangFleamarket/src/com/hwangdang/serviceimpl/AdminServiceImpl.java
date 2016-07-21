@@ -73,11 +73,13 @@ public class AdminServiceImpl implements AdminService
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int deleteSellerByNo(int sellerStoreNo)
 	{
 		// TODO Auto-generated method stub
 		MailSender mail = new MailSender();
-		String content = "<h1>죄송합니다. 판매자 등록 신청이 거부되었습니다.</h1><br><a href='http://192.168.0.119:4444/HwangDangFleamarket'><h2>황당플리마켓 메인으로...</h2></a>";
+		String content = "<h1>죄송합니다. 판매자 등록 신청이 거부되었습니다.</h1>"
+				+ "<br><a href='http://192.168.0.119:4444/HwangDangFleamarket'><h2>황당플리마켓 메인으로...</h2></a>";
 		mail.mailSender(sellerDao.selectSellerRegisterOne(sellerStoreNo).getMemberId(), "판매자 등록 신청 결과.", content);
 		return sellerDao.deleteSellerByNo(sellerStoreNo);
 	}

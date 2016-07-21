@@ -64,16 +64,6 @@ public class SellerSerivceImpl implements SellerService{
 		map.put("page", page);
 		map.put("sellerStoreNo", sellerStoreNo);
 		map.put("orderList", dao.selectOrderState(map));
-		/*List<Orders> orders= dao.selectOrderState(map);
-		ArrayList<OrderProduct> orderProductList = new ArrayList<>();
-		for(int i = 0; i < orders.size(); i++)
-		{
-			for(int o = 0; o < orders.get(i).getOrderProductList().size(); o++)
-			{
-				orderProductList.add(orders.get(i).getOrderProductList().get(o));
-			}
-		}
-		map.put("orderProductList", orderProductList);*/
 		PagingBean bean = new PagingBean(dao.selectOrderCount(sellerStoreNo), page);
 		map.put("bean", bean);
 		return map;
