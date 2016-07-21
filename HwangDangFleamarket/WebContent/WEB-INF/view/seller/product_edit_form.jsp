@@ -23,7 +23,7 @@ $(document).ready(function(){
 				for(var i=0; i<optionSubName.length-1; i++){
 					for(var j=i+1; j<optionSubName.length; j++){
 						if(!optionSubName[j].value || !optionStock[j].value){
-							alert("필수 사항 입력해라")							
+							alert("필수 사항을 입력해주세요.")							
 							return false;
 						}
 						else{

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.dao.CartDao;
 import com.hwangdang.service.CartService;
@@ -18,6 +19,7 @@ public class CartServiceImpl implements CartService{
 	private CartDao dao;
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int addCart(Cart cart, String memberId, String productId, String cartProductOption) {
 		ArrayList<Cart> list = (ArrayList<Cart>)dao.selectCartById(memberId);
 		for(int idx=0; idx<list.size(); idx++){

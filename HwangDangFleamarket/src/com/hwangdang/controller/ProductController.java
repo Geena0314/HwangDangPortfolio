@@ -219,6 +219,7 @@ public class ProductController
 	{
 		return service.selectSecondCategory(categoryIdRef);
 	}
+	
 	// 상품 등록 폼
 	@RequestMapping("registerProductForm")
 	public String registerProductForm(){

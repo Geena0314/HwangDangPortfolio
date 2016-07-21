@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.dao.ProductDao;
@@ -257,6 +258,7 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int updateProductById(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		Product product = (Product) map.get("product");
