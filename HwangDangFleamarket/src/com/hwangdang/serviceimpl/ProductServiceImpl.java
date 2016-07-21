@@ -256,6 +256,7 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int updateProductById(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		Product product = (Product) map.get("product");

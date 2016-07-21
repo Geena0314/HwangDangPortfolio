@@ -21,7 +21,7 @@ $(document).ready(function(){
 				for(var i=0; i<optionSubName.length-1; i++){
 					for(var j=i+1; j<optionSubName.length; j++){
 						if(!optionSubName[j].value || !optionStock[j].value){
-							alert("필수 사항 입력해라")							
+							alert("필수 사항을 입력해주세요.")							
 							return false;
 						}
 						else{
@@ -122,16 +122,15 @@ $(document).ready(function(){
 		}
 	});
 });
-function idCheck(obj)
-{
-	 //좌우 방향키, 백스페이스, 딜리트, 탭키에 대한 예외
-    if(event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39
-    || event.keyCode == 46 ) return;
-    //obj.value = obj.value.replace(/[\a-zㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
-    obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
-    obj.value = obj.value.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi, '');
-    obj.value = obj.value.replace(/\s/gi, '');
-}
+		function idCheck(obj)
+		{
+			 //좌우 방향키, 백스페이스, 딜리트, 탭키에 대한 예외
+		    if(event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39
+		    || event.keyCode == 46 ) return;
+		    obj.value = obj.value.replace(/[\ㄱ-ㅎㅏ-ㅣ가-힣]/g, '');
+		    obj.value = obj.value.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi, '');
+		    obj.value = obj.value.replace(/\s/gi, '');
+		}
 </script>
 <h2 class="page-header store_look_around">스토어 상품 등록</h2>
 <div class="productRegister">
@@ -143,30 +142,45 @@ function idCheck(obj)
 			<table id="table" class="table table-striped">
 				<tr class="trInput">
 					<th class='tdName'>상품 ID</th>
-					<td colspan="2"><input type="text" name="productId" id="productId" placeholder="ID는 영어+숫자 조합 " onkeydown="idCheck(this)"></td>
+					<td colspan="2">
+						<input type="text" name="productId" id="productId" 
+							   placeholder="ID는 영어+숫자 조합 " onkeydown="idCheck(this)">
+					</td>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>상품명</th>
-					<td colspan="2"><input type="text" name="productName" id="productName"></td>
+					<td colspan="2">
+						<input type="text" name="productName" id="productName">
+					</td>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>상품 가격</th>
-					<td colspan="2"><input type="number" name="productPrice" id="productPrice"></td>
+					<td colspan="2">
+						<input type="number" name="productPrice" id="productPrice">
+					</td>
 				</tr>
 				<tr class="trInput">
 					<th colspan="3"><hr></th>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>상품 옵션</th>
-					<td colspan="2"><input type="text" name="optionList[0].optionName" class="optionName" placeholder="필수 입력 사항" id="optionName"></td>
+					<td colspan="2">
+						<input type="text" name="optionList[0].optionName" class="optionName" 
+								placeholder="필수 입력 사항" id="optionName">
+					</td>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>상품 세부 옵션</th>
-					<td colspan="2"><input type="text" name="optionList[0].optionSubName" class="optionSubName" placeholder="필수 입력 사항" id="optionSubName"></td>
+					<td colspan="2">
+						<input type="text" name="optionList[0].optionSubName" class="optionSubName" 
+								placeholder="필수 입력 사항" id="optionSubName">
+					</td>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>옵션별 재고</th>
-					<td colspan="2"><input type="number" name="optionList[0].optionStock" class="optionStock" placeholder="필수 입력 사항" id="optionStock"></td>
+					<td colspan="2">
+						<input type="number" name="optionList[0].optionStock" class="optionStock" placeholder="필수 입력 사항" id="optionStock">
+					</td>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>옵션별 추가 가격</th>

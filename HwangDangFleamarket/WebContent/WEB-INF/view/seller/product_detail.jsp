@@ -827,14 +827,14 @@ $(document).ready(function(){
 		 $("form").prop("action","/HwangDangFleamarket/buy/moveBuyPage.go?page=${param.page}&productId=${param.productId }&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}&amount="+amount+"&memberId=${sessionScope.login_info.memberId}&option="+option );
 		 $("form").submit();
 	}); //btn 
-	$("#cartLayer").hide();
+	$("#cartLayer").hide(); // modal 창 처음에 숨겨주기
 	$("#cartBtn").on("click", function(){
 		var productId = $("#productId").text();
 		if(!'${sessionScope.login_info.memberId}')
 		{
 			var result = confirm("로그인이 필요한 서비스입니다.\n로그인하시겠습니까?");
 			if(result){
-				return window.open('/HwangDangFleamarket/member/login.go', '로그인창', 'resizable=no scrollbars=yes width=700 height=450 left=500 top=200');
+				return window.open('/HwangDangFleamarket/member/login.go', '로그인창');
 			}else{
 				return false;
 			}
@@ -843,8 +843,6 @@ $(document).ready(function(){
 			"url":"/HwangDangFleamarket/cart/addCart.go",
 			"type":"POST",
 			"data":{
-					//"productName": "${ requestScope.product.productName }",
-					//"productPrice": "${ requestScope.product.productPrice }",
 					"cartProductAmount": $("#optionStock").val(),
 					"cartProductOption": $("#optionName option:selected").val(),
 					"sellerStoreName":"${requestScope.product.seller.sellerStoreName}",
@@ -854,7 +852,7 @@ $(document).ready(function(){
 					},
 			"dataType":"json",
 			"beforeSend":function(){
-				if($("#optionName option:selected").val() == "${requestScope.optionList[0].optionName}"){// 이게 첫번째 인덱스면 경고창
+				if($("#optionName option:selected").val() == "${requestScope.optionList[0].optionName}"){//첫번째 인덱스면 경고창
 					alert("옵션을 선택해주세요.");
 					return false;
 				}
@@ -951,7 +949,12 @@ function error(xhr, status, err)
 				<tr id="optionAddPriceTr">
 				</tr>
 				<tr>
-					<td colspan="2"><input type="button" value="장바구니" id="cartBtn"><input type="submit" value="바로구매" id="buyBtn" ><input type="button" id="listBtn" value="목록으로" onclick="window.location='/HwangDangFleamarket/product/list.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }'"></td>
+					<td colspan="2">
+						<input type="button" value="장바구니" id="cartBtn">
+						<input type="submit" value="바로구매" id="buyBtn" >
+						<input type="button" id="listBtn" value="목록으로" 
+							   onclick="window.location='/HwangDangFleamarket/product/list.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }'">
+					</td>
 				</tr>
 				<lee:if test="${sessionScope.seller.sellerStoreNo == param.sellerStoreNo}">
 					<tr>

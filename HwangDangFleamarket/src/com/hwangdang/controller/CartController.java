@@ -48,7 +48,8 @@ public class CartController {
 			@RequestMapping("/addCart")
 			@ResponseBody
 			public int addCart(Cart cart, HttpSession session){
-				int result = service.addCart(cart, ((Member)session.getAttribute("login_info")).getMemberId(), cart.getProductId(), cart.getCartProductOption());
+				int result = service.addCart(cart, ((Member)session.getAttribute("login_info")).getMemberId(), 
+														  cart.getProductId(), cart.getCartProductOption());
 				if(result == 0){
 					return result;
 				}
