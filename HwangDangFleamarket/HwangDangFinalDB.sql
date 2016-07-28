@@ -300,3 +300,13 @@ CREATE TABLE zipcode (
 	dong VARCHAR2(50), /* 동 */
 	bunji VARCHAR2(50) /* 번지 */
 );
+
+/*수정 사항*/
+/*사업자번호 000-00-00000*/
+ALTER TABLE seller MODIFY (seller_tax_id CHAR(12));
+/*교환테이블*/
+ALTER TABLE exchange_request rename column exchage_title to exchange_title;
+ALTER TABLE exchange_request ADD exchange_stock NUMBER(4);
+ALTER TABLE exchange_request ADD option_id NUMBER;
+ALTER TABLE exchange_request ADD FOREIGN KEY (option_id) REFERENCES product_option(option_id)
+ON DELETE SET NULL;

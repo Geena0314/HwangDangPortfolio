@@ -96,17 +96,29 @@
 			}
 		});
 		
-		$("#sellerTaxId").on("blur", function()
+		//사업자번호 3자리-2자리-5자리.
+		$(".sellerTaxId").on("blur", function()
 		{
 			$("#sellerTaxIdError").empty().hide();
-			if(this.value.trim().length != 11)
+			
+			if(this.value == "")
+				return true;
+			else
 			{
-				if(this.value.trim().length == 0)
-					return true;
-				else
+				if($(".sellerTaxId")[0].value != "" && $(".sellerTaxId")[0].value.trim().length != 3)
 				{
-					$("#sellerTaxId").val("");
-					$("#sellerTaxIdError").append("11자리 숫자를 입력해주세요.").show();
+					$(".sellerTaxId")[0].value = "";
+					$("#sellerTaxIdError").append("사업자 번호 : 3자리-2자리-5자리").show();
+				}
+				else if($(".sellerTaxId")[1].value != "" && $(".sellerTaxId")[1].value.trim().length != 2)
+				{
+					$(".sellerTaxId")[1].value = "";
+					$("#sellerTaxIdError").append("사업자 번호 : 3자리-2자리-5자리").show();
+				}
+				else if($(".sellerTaxId")[2].value != "" && $(".sellerTaxId")[2].value.trim().length != 5)
+				{
+					$(".sellerTaxId")[2].value = "";
+					$("#sellerTaxIdError").append("사업자 번호 : 3자리-2자리-5자리").show();
 				}
 			}
 		});
@@ -202,6 +214,34 @@
 				return false;
 			}
 			
+			//사업자번호 확인.
+			$("#sellerTaxIdError").empty().hide();
+			if($(".sellerTaxId")[0].value == "" && $(".sellerTaxId")[1].value == "" && $(".sellerTaxId")[2].value == ""){}
+			else
+			{
+				if($(".sellerTaxId")[0].value.trim().length != 3)
+				{
+					$(".sellerTaxId")[0].value = "";
+					$("#sellerTaxIdError").append("사업자 번호 : 3자리-2자리-5자리").show();
+					$(".sellerTaxId")[0].focus();
+					return false;
+				}
+				else if($(".sellerTaxId")[1].value.trim().length != 2)
+				{
+					$(".sellerTaxId")[1].value = "";
+					$("#sellerTaxIdError").append("사업자 번호 : 3자리-2자리-5자리").show();
+					$(".sellerTaxId")[1].focus();
+					return false;
+				}
+				else if($(".sellerTaxId")[2].value.trim().length != 5)
+				{
+					$(".sellerTaxId")[2].value = "";
+					$("#sellerTaxIdError").append("사업자 번호 : 3자리-2자리-5자리").show();
+					$(".sellerTaxId")[2].focus();
+					return false;
+				}
+			}
+			
 			//업종 미선택시
 			$("#sellerIndustryError").empty().hide();
 			if($("#sellerIndustry").val() == "대분류")
@@ -292,7 +332,11 @@
 			</tr>
 			<tr class="trInput">
 				<th rowspan="2" class='tdName'>사업자 번호</th>
-				<td colspan="2"><input type="number" name="sellerTaxId" id="sellerTaxId" size="20"></td>
+				<td colspan="2">
+					<input type="number" name="sellerTaxIds" class="sellerTaxId" id="tax1" min="0">
+					 - <input type="number" name="sellerTaxIds" class="sellerTaxId" id="tax2" min="0">
+					 - <input type="number" name="sellerTaxIds" class="sellerTaxId" id="tax3" min="0">
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" id="sellerTaxIdError" class="registerError error-message"></td>
@@ -333,7 +377,7 @@
 				<td colspan="2"><input type="text" name="sellerSubAddress" id="sellerSubAddress" size="43"></td>
 			</tr>
 			<tr>
-				<td colspan="2" id="addressError error-message"></td>
+				<td colspan="2" id="addressError" class="error-message"></td>
 			</tr>
 			<tr class="trInput">
 				<th rowspan="2" class='tdName'>사진 등록</th>

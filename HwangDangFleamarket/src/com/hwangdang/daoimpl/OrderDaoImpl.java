@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.hwangdang.dao.OrderDao;
+import com.hwangdang.vo.ExchangeRequest;
+import com.hwangdang.vo.OrderProduct;
 import com.hwangdang.vo.RefundRequest;
 
 @Repository
@@ -53,5 +55,26 @@ public class OrderDaoImpl implements OrderDao
 	{
 		// TODO Auto-generated method stub
 		return session.update("orderMapper.updateOrderProductRefundStatus", orderSeqNo);
+	}
+
+	@Override
+	public OrderProduct orderProductProductOption(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.orderProductProductOption", orderSeqNo);
+	}
+
+	@Override
+	public int insertRequestExchange(ExchangeRequest exchange)
+	{
+		// TODO Auto-generated method stub
+		return session.insert("orderMapper.insertRequestExchange", exchange);
+	}
+
+	@Override
+	public int updateOrderProductExchangeStatus(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updateOrderProductExchangeStatus", orderSeqNo);
 	}
 }

@@ -50,6 +50,11 @@
 	<resultMap type="orderProduct" id="orderProduct-product" extends="orderProduct-basic-resultmap">
 		<association property="product" javaType="Product" resultMap="productMapper.product-basic-resultMap"/>
 	</resultMap>
+	
+	<!-- 주문상품 + 상품옵션. (1:1)-->
+	<resultMap type="orderProduct" id="orderProduct-productOption" extends="orderProduct-basic-resultmap">
+		<association property="productOption" javaType="ProductOption" resultMap="productMapper.productOption-basic-resultMap"/>
+	</resultMap>
 		
 	<!-- 주문, 상품 ,주문상품 Join -->
 	<resultMap type="orders" id="orders-product-orderProduct" extends="orders-basic-resultmap">
@@ -130,5 +135,26 @@
 		where 	order_seq_no = #{orderSeqNo}
 	</update>
 	
+	<!-- 교환신청로직 -->
+	<!-- orderSeqNo로 order_product 와  product_option 조회. -->
+	<select id="orderProductProductOption" resultMap="orderProduct-productOption" parameterType="_int">
+		select		op.order_seq_no, op.order_amount, op.product_id, op.option_id, 
+					op.seller_store_no, po.option_sub_name, po.option_add_price
+		from		order_product op, product_option po
+		where		op.option_id = po.option_id
+		and		op.order_seq_no = 57
+	</select>
 
+	<!-- 교환신청 처리  -->
+	<insert id="insertRequestExchange"  parameterType="exchangeRequest">
+		INSERT INTO  exchange_request
+		VALUES ( #{exchangeTitle}, #{exchangeContent}, #{orderSeqNo}, #{exchangeStock}, #{optionId} )
+	</insert>
+	
+	<!-- 주문상품 주문현황 변경.(교환신청상태 5번) -->
+	<update id="updateOrderProductExchangeStatus" parameterType="_int">
+		update 	order_product
+		set			order_product_status = 5
+		where 	order_seq_no = #{orderSeqNo}
+	</update>
 </mapper>

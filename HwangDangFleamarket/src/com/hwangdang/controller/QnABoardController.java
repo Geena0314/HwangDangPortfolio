@@ -97,7 +97,6 @@ public class QnABoardController {
 	public String boardQnADetail(int page , int no , Model model , HttpSession session ,
 					@RequestParam(value="password" , required=false) String password ){
 	
-		System.out.println("디테일메소드:" + "페이지 :"+page +",NO: " +no + "password :" + password); 
 		String url = "";
 		AdminQnA findQnA = service.getAdminQnAByNo(no);
 		//System.out.println("파람패스워드:"+password +" , 객체패스워드:" + findQnA.getAdminQnaPassword());
@@ -240,7 +239,4 @@ public class QnABoardController {
 		
 	return "/admin/boardQnADetail.go?page="+contentPage +"&no="+contentNo+"&password="+adminQnA.getAdminQnaPassword();
 	}
-	
-
-	
 }

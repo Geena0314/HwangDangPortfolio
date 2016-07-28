@@ -58,14 +58,9 @@ public class MyOrderServiceImpl implements MyOrderService {
 	public Seller getSellerDetailBySellerName(String sellerName){
 		return dao.selectSellerBySellerName(sellerName);
 	}
-	//전체튶플수 조회 -Orders TB  
+	//전체튜플수 조회 -Orders TB  
 	@Override
 	public int getOrdersTotalItems(Map<String ,Integer> param ){
 		return dao.selectOrdersTotalItems( param );
 	}
-	//교환신청 요청사항 처리 : 글 + 내용  
-		@Override
-		public int addExchageRequest(ExchangeRequest exchage){
-			return dao.insertExchangeRequestByOrdersNo(exchage);
-		}
 }

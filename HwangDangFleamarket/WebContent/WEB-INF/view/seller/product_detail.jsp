@@ -843,12 +843,12 @@ $(document).ready(function(){
 			"url":"/HwangDangFleamarket/cart/addCart.go",
 			"type":"POST",
 			"data":{
-					"cartProductAmount": $("#optionStock").val(),
-					"cartProductOption": $("#optionName option:selected").val(),
-					"sellerStoreName":"${requestScope.product.seller.sellerStoreName}",
-					"memberId":"${sessionScope.login_info.memberId}",
-					"productId":"${ requestScope.product.productId }",
-					"optionId":$('#optionId').text()
+						"cartProductAmount": $("#optionStock").val(),
+						"cartProductOption": $("#optionName option:selected").val(),
+						"sellerStoreName":"${requestScope.product.seller.sellerStoreName}",
+						"memberId":"${sessionScope.login_info.memberId}",
+						"productId":"${ requestScope.product.productId }",
+						"optionId":$('#optionId').text()
 					},
 			"dataType":"json",
 			"beforeSend":function(){

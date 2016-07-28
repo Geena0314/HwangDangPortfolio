@@ -373,8 +373,6 @@ public class ProductController
 	@RequestMapping("deleteProduct")
 	public ModelAndView deleteProduct(String productId, String sellerStoreImage, HttpServletRequest request) throws UnsupportedEncodingException{
 		service.deleteProductById(productId);
-		System.out.println(request.getParameter("page"));
-		System.out.println(request.getParameter("sellerStoreNo"));
 		return new ModelAndView("redirect:/product/list.go?page="+request.getParameter("page")+"&sellerStoreNo="+request.getParameter("sellerStoreNo")
 													+"&sellerStoreImage="+URLEncoder.encode(sellerStoreImage,"UTF-8"));
 	}

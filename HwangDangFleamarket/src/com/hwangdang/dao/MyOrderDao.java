@@ -29,7 +29,4 @@ public interface MyOrderDao {
 
 	//order TB 튜플총개수 조회 
 	int selectOrdersTotalItems(Map<String, Integer> param);
-
-	int insertExchangeRequestByOrdersNo(ExchangeRequest exchage);
-
 }

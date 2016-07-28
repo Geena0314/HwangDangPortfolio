@@ -222,8 +222,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/sellerRegisterRequest")
-	public ModelAndView sellerRegisterRequest(Seller seller, MultipartFile sellerMainImage, HttpServletRequest request, HttpSession session)
+	public ModelAndView sellerRegisterRequest(Seller seller, MultipartFile sellerMainImage, HttpServletRequest request, HttpSession session, String[] sellerTaxIds)
 	{
+		//사업자번호 등록
+		if(sellerTaxIds.length == 3)
+		{
+			seller.setSellerTaxId(sellerTaxIds[0] + "-" + sellerTaxIds[1] + "-" + sellerTaxIds[2]);
+		}
 		//셀러 등록 신청.
 		//대표이미지 저장처리.(sellerMainImage -> setSellerStoreImage)이름만 저장.
 	    String originalFileName = sellerMainImage.getOriginalFilename();//업로드 된 파일명.

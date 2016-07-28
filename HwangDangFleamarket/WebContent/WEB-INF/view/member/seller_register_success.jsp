@@ -3,7 +3,7 @@
 <script type="text/javascript">
 	$(document).keydown(function(e){   
 	    if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA"){       
-	        if(e.keyCode === 8){   
+	        if(e.keyCode == 8){   
 	       		return false;
 	        }
 	    }

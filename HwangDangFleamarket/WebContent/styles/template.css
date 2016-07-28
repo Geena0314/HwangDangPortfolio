@@ -241,6 +241,21 @@ input#sellerZipcode
 	margin-left: 150px;
 	margin-top: 50px;
 }
+
+#tax1
+{
+	width: 55px;
+}
+
+#tax2
+{
+	width: 50px;
+}
+
+#tax3
+{
+	width: 65px;
+}
 /********* mypage ********/
 #sellerRegister, #memberEdit, #memberWithdrawal {
 	position: relative;

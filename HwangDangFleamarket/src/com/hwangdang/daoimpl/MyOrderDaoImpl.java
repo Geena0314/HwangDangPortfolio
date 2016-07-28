@@ -77,17 +77,4 @@ public class MyOrderDaoImpl implements  MyOrderDao {
 	public int selectOrdersTotalItems(Map<String,Integer> param){
 		return session.selectOne("myorder.select-orders-total-couont" , param);
 	}
-	
-	@Override
-	@Transactional
-	public int insertExchangeRequestByOrdersNo(ExchangeRequest exchage){
-		
-		int cnt = session.insert("myorder.insert-requestExchange" , exchage);
-		Map<String,Object> param = new HashMap<>();
-		param.put("status", 5);
-		param.put("no",exchage.getOrderSeqNo());
-		cnt = session.update("myorder.update-by-orderNo",param );
-		return cnt;
-	}
-	
 }

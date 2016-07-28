@@ -23,10 +23,6 @@ public interface MyOrderService {
 	//셀러 정보 조회 1명 
 	Seller getSellerDetailBySellerName(String sellerName);
 
-	//전체튶플수 조회 -Orders TB  
+	//전체튜플수 조회 -Orders TB  
 	int getOrdersTotalItems(Map<String, Integer> param);
-
-	//교환신청 요청사항 처리 : 글 + 내용  
-	int addExchageRequest(ExchangeRequest exchage);
-
 }

@@ -120,24 +120,24 @@ img {
 		});
 		
 		// 교환신청 
-		$("#btnRequestChange").on("click",function(){
-			var yesNO = confirm("정말 교환 신청을 하시겠습니까?");
-			if(yesNO){
-				//1.교환신청시 검증 수행 
-				checkboxValidation(4,4, 4, "배송완료상품만 교환을 신청할수 있습니다.");
-				
-				//2. 검증통과 되었을 경우에만 폼오픈!
-				if(flag){
-					var option ='resizable=no scrollbars=yes width=513 height=660 left=500 top=200';
-					window.open("/HwangDangFleamarket/myorder/exchangeRequestFormMove.go?orderSeqNo="+$(":checkbox:checked").val(), "교환신청", option);
-				}
-				//3. 교환로직, 입력폼 입력 끝나면 이동
-				/* url	="/HwangDangFleamarket/myorder/cancel.go?loginId=${sessionScope.login_info.memberId}";
-				$("#f2").prop("action" , url);
-				$("#f2").submit(); */
+		$("#btnRequestChange").on("click",function()
+		{
+			if($(":checkbox:checked").length == 0)
+			{
+				alert("교환할 상품을 1개 선택해 주세요.")
+				return false;
 			}
-			
-		});//교환신청
+			if($(":checkbox:checked").length != 1)
+			{
+				alert("한번에 하나의 상품만 교환 가능합니다.");
+				$(":checkbox:checked").removeAttr("checked");
+				return false;
+			}
+			else
+			{
+				window.open('/HwangDangFleamarket/myorder/exchangeForm.go?orderSeqNo='+$(":checkbox:checked").val(), '교환신청', 'resizable=no scrollbars=no width=463 height=800 left=500 top=80')
+			}
+		});
 		
 		//구매확정 
 		$("button").on("click",function(){
@@ -227,13 +227,13 @@ img {
 					<td>
 							<!-- 배송상태  -->
 			<strong class="ordersStatus">  
-			<c:choose>
-				<c:when test="${orderProduct.orderProductStatus  == 0 }">입금대기중</c:when>
-				<c:when test="${orderProduct.orderProductStatus  == 1 }">결제완료</c:when>
-				<c:when test="${orderProduct.orderProductStatus  == 2 }">배송준비중</c:when>
-				<c:when test="${orderProduct.orderProductStatus  == 3 }">배송중</c:when>
-				<c:when test="${orderProduct.orderProductStatus ==  4 }">배송완료</c:when>
-			</c:choose> 
+				<c:choose>
+					<c:when test="${orderProduct.orderProductStatus == 0 }">입금대기중</c:when>
+					<c:when test="${orderProduct.orderProductStatus == 1 }">결제완료</c:when>
+					<c:when test="${orderProduct.orderProductStatus == 2 }">배송준비중</c:when>
+					<c:when test="${orderProduct.orderProductStatus == 3 }">배송중</c:when>
+					<c:when test="${orderProduct.orderProductStatus == 4 }">배송완료</c:when>
+				</c:choose> 
 			</strong>  
 					</td>
 				  

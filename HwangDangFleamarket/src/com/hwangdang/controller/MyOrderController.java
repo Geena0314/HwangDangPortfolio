@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.OrderService;
@@ -27,10 +28,10 @@ import com.hwangdang.vo.Seller;
 public class MyOrderController {
 	
 	@Autowired
-	MyOrderServiceImpl service;
+	private MyOrderServiceImpl service;
 	
 	@Autowired
-	OrderService orderService;
+	private OrderService orderService;
 	
 	public Map<String ,Integer > getTotalItemsParam(int num1 ,int num2 , int num3 , 
 																	int num4 , int num5 ){
@@ -42,8 +43,6 @@ public class MyOrderController {
 		param.put("value5", new Integer(num5));
 		return param;
 	}
-	
-	
 	
 	//나의주문 - 메인페이지 (배송현황 조회 ) 이동 
 	@RequestMapping("/main.go") 
@@ -152,14 +151,29 @@ public class MyOrderController {
 		return service.getSellerDetailBySellerName(sellerName);
 	}  
 	
-	//교환신청시 교환폼 띄우기 
-	@RequestMapping("/exchangeRequestFormMove.go") 
-	public String exchangeRequestFormMove(){
-		return "/WEB-INF/view/myorder/myorder_exchange_form.jsp";
-	}  
+	//교환신청폼으로 이동
+	@RequestMapping("/exchangeForm")
+	public ModelAndView exchangeForm(int orderSeqNo)
+	{
+		return new ModelAndView("/WEB-INF/view/myorder/myorder_exchange_form.jsp", orderService.orderProductProductOption(orderSeqNo));
+	}
 	
-	//교환신청 내용 DB에 저장 
-	@RequestMapping("/exchangeRequest.go")
+	//교환신청 내용 DB에 저장, OrderProduct 상태변경.
+	@RequestMapping("/exchangeSuccess")
+	public String exchangeSuccessForm(ExchangeRequest exchange, HttpServletRequest request)
+	{
+		int result = orderService.insertRequestExchange(exchange);
+		if(result  == 1)
+		{
+			request.setAttribute("result", 1);
+			return "/WEB-INF/view/myorder/myorder_exchange_success.jsp";
+		}
+		else
+		{
+			return "/WEB-INF/view/myorder/myorder_exchange_success.jsp";
+		}
+	}
+	/*@RequestMapping("/exchangeRequest.go")
 	public String exchangeRequest(ExchangeRequest  exchange, HttpServletRequest request){
 		
 		//System.out.println(exchange);
@@ -170,7 +184,7 @@ public class MyOrderController {
 		}else{
 			return "/WEB-INF/view/myorder/myorder_exchange_success.jsp";
 		}
-	}
+	}*/
 	
 	@RequestMapping("/refundForm")
 	public String refundRegisterForm()
