@@ -142,7 +142,7 @@
 					op.seller_store_no, po.option_sub_name, po.option_add_price
 		from		order_product op, product_option po
 		where		op.option_id = po.option_id
-		and		op.order_seq_no = 57
+		and			op.order_seq_no = #{orderSeqNo}
 	</select>
 
 	<!-- 교환신청 처리  -->
