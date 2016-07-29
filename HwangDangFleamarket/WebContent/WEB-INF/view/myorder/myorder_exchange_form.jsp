@@ -39,7 +39,7 @@
 				{
 					if($("#optionError").text() == "재고량이 부족합니다.")
 						return false;
-					if($("#optionError").text() == "선택할 수 없는 옵션입니다.")
+					if($("#optionError").text() == "선택할 수 없는 옵션입니다." || !$("#optionError").text())
 					{
 						alert("옵션을 선택해 주세요.");
 						return false;
@@ -171,7 +171,9 @@
 						<td colspan="2">
 							옵션 : ${ requestScope.orderProduct.productOption.optionSubName }<br>
 							수량 : ${ requestScope.orderProduct.orderAmount }개<br>
-							추가가격 : ${ requestScope.orderProduct.productOption.optionAddPrice }원
+							<lee:if test="${ not empty requestScope.orderProduct.productOption.optionAddPrice }">
+								추가가격 : ${ requestScope.orderProduct.productOption.optionAddPrice }원
+							</lee:if>
 						</td>
 					</tr>
 					<tr class="trInput">

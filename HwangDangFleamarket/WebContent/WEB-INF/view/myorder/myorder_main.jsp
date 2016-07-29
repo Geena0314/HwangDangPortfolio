@@ -26,7 +26,7 @@ img {
 	$(document).ready(function(){
 		
 		var flag = false;
-		var orderCancelList = "";
+		var ordercancleList = "";
 		var url = "";
 		var loginId = $("#loginId").val();
 		
@@ -35,20 +35,21 @@ img {
 			
 			if(flag){ 
 				flag = false;
-				orderCancelList = orderCancelList.substring( 0 ,orderCancelList.length-1);
-				//console.log("split실행후:" +orderCancelList);
-				//alert("split실행후:" +orderCancelList);
+				ordercancleList = ordercancleList.substring( 0 ,ordercancleList.length-1);
+				//console.log("split실행후:" +ordercancleList);
+				//alert("split실행후:" +ordercancleList);
 				$("#f2").prop("action" , url);
 				$("#f2").submit();
 			}
 		}  
-		//체크박스검증 및 orderList 검증  함수 
+		
+		/* //체크박스검증 및 orderList 검증  함수 
 		function checkboxValidation(num1 , num2 , num3 , msg ){
 			if( !$("input:checkbox").is(":checked") ){  //true,false
 				alert("체크박스를선택해주세요.");
 			}else{
 				// 체크박스선택하였고 주문취소가 가능한 상태인지 검증 
-				orderCancelList = "";
+				ordercancleList = "";
 				$("input:checkbox:checked").each(function(){
 					//console.log(this);
 					//console.log("ordersSeqNo: " + $(this).val());
@@ -76,7 +77,7 @@ img {
 					
 					if(orderStatus == num1 || orderStatus ==num2 || orderStatus ==num3 ){
 						//취소할 주문번호 배열에 누적 
-						orderCancelList = orderCancelList + orderNo +","
+						ordercancleList = ordercancleList + orderNo +","
 						flag = true;
 					}else{
 						alert(msg);
@@ -86,18 +87,40 @@ img {
 				}); //orderList 누적 for문
 			} //else 
 				
-		}
+		} */
 		
-		// 주문취소
-		$("#btnRequestCancel").on("click",function(){
-			var yesNO = confirm("정말취소하시겠습니까?");
-			if(yesNO){
+			/* var flag = confirm("정말취소하시겠습니까?");
+			if(flag)
+			{
 				var page =  $("#currentPage").text().trim();
 				checkboxValidation(0 , 1 , 2 ,  "상품 발송후에는 주문취소를 할수없습니다.");
-				url	="/HwangDangFleamarket/myorder/orderCancelList.go?orderCancelList="+orderCancelList+"&loginId="+loginId+"&status="+7+"&page="+page;
+				url	="/HwangDangFleamarket/myorder/ordercancleList.go?ordercancleList="+ordercancleList+"&loginId="+loginId+"&status="+7+"&page="+page;
 				sendForm(url);
+			} */
+		// 주문취소
+		$("#btnRequestcancle").on("click",function()
+		{
+			if($(":checkbox:checked").length == 0)
+			{
+				alert("주문취소할 상품을 1개 선택해 주세요.");
+				return false;
 			}
-		}); //btn 
+			if($(":checkbox:checked").length != 1)
+			{
+				alert("한번에 하나의 상품만 주문취소 가능합니다.");
+				$(":checkbox:checked").removeAttr("checked");
+				return false;
+			}
+			else
+			{
+				var flag = confirm("정말취소하시겠습니까?");
+				if(flag)
+				{
+					url ='/HwangDangFleamarket/myorder/ordercancle.go?orderSeqNo='+$(":checkbox:checked").val();
+					sendForm(url);
+				}
+			}
+		});
 		
 		
 		// 환불신청 
@@ -183,7 +206,7 @@ img {
 	 <ul class="nav nav-tabs">       
 	 	 <li role="presentation" class="active"><a class="btn btn-default" role="button"  href="/HwangDangFleamarket/myorder/main.go?loginId=${sessionScope.login_info.memberId }">배송 현황</a></li>
 	  	<li role="presentation"><a class="btn btn-default" role="button" href="/HwangDangFleamarket/myorder/success.go?loginId=${sessionScope.login_info.memberId }">구매 확정</a></li>
-	  	<li role="presentation">	<a class="btn btn-default" role="button" href="/HwangDangFleamarket/myorder/cancel.go?loginId=${sessionScope.login_info.memberId }">교환/환불/취소</a></li>
+	  	<li role="presentation">	<a class="btn btn-default" role="button" href="/HwangDangFleamarket/myorder/cancle.go?loginId=${sessionScope.login_info.memberId }">교환/환불/취소</a></li>
 	</ul>
 	
 	
@@ -285,7 +308,7 @@ img {
 	</c:choose>
 	<br/>  
 	<!-- 버튼 -->
-	<input type="button" value="주문취소" id="btnRequestCancel" class="btn btn-default"/>
+	<input type="button" value="주문취소" id="btnRequestcancle" class="btn btn-default"/>
 	<input type="button" value="환불신청" id="btnRequestRefund" class="btn btn-default"/>
 	<input type="button" value="교환신청" id="btnRequestChange" class="btn btn-default"/>
 	</p>

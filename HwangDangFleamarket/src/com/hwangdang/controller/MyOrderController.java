@@ -85,8 +85,8 @@ public class MyOrderController {
 	}
 	
 	// 주문취소 ,환불 , 교환 페이지 이동 
-	@RequestMapping("/cancel.go")
-	public String goCancelPage(String loginId , Model model , @RequestParam(value="page" ,defaultValue="1") int page ){
+	@RequestMapping("/cancle.go")
+	public String goCanclePage(String loginId , Model model , @RequestParam(value="page" ,defaultValue="1") int page ){
 		
 		// 전체피이지수 ,  보고픈  page번호   : 디폴트 1  
 		Map<String ,Integer> param = getTotalItemsParam(5, 6, 7, 8, 9);
@@ -99,7 +99,7 @@ public class MyOrderController {
 		model.addAttribute("orderList" ,orderList); 
 		model.addAttribute("pagingBean" , pagingBean);
 		
-		return "myorder/myorder_cancel.tiles";  
+		return "myorder/myorder_cancle.tiles";  
 	}
 	
 	//체크박스 list  콤마 split 메소드 
@@ -113,7 +113,7 @@ public class MyOrderController {
 	}
 	
 	//주문취소 로직수행
-	//0:입금대기중 ,1:결제완료 , 2:배송준비중 삭제   
+	/*//0:입금대기중 ,1:결제완료 , 2:배송준비중 삭제   
 	@RequestMapping("/orderCancelList.go") 
 	public String orderCancelList(String orderCancelList , String loginId , int status , 
 		@RequestParam(value="page" ,defaultValue="1") int page ){
@@ -121,6 +121,11 @@ public class MyOrderController {
 		ArrayList<String> param  = listSplit(orderCancelList);
 		service.setOrderStatus(param,status);
 		return "redirect:/myorder/main.go?loginId="+loginId+"&page="+page;
+	}*/
+	@RequestMapping("/orderCancle")
+	public String orderCancle(int orderSeqNo)
+	{
+		return "redirect:/myorder/cancle.go?";
 	}
 	
 	//구매확정 
@@ -134,7 +139,7 @@ public class MyOrderController {
 		int flag = service.setOrderStatus(param , status);  
 		if(status != 10 && flag == 1 ){
 			// 6:환불신청 status //5: 교환신청status
-			url = "redirect:/myorder/cancel.go?loginId="+loginId;
+			url = "redirect:/myorder/cancle.go?loginId="+loginId;
 		}else{
 			//10:구매확정
 			url = "redirect:/myorder/success.go?loginId="+loginId;
@@ -173,18 +178,6 @@ public class MyOrderController {
 			return "/WEB-INF/view/myorder/myorder_exchange_success.jsp";
 		}
 	}
-	/*@RequestMapping("/exchangeRequest.go")
-	public String exchangeRequest(ExchangeRequest  exchange, HttpServletRequest request){
-		
-		//System.out.println(exchange);
-		int flag = service.addExchageRequest(exchange);
-		if(flag  == 1){
-			request.setAttribute("result", 1);
-			return "/WEB-INF/view/myorder/myorder_exchange_success.jsp";
-		}else{
-			return "/WEB-INF/view/myorder/myorder_exchange_success.jsp";
-		}
-	}*/
 	
 	@RequestMapping("/refundForm")
 	public String refundRegisterForm()

@@ -12,12 +12,12 @@
 						<c:choose>
 							<c:when test="${ productList.orderProductStatus == 5}">
 								<!-- 교환신청 Controller Url주소 입력. -->
-								<a href="#" onClick="window.open('/HwangDangFleamarket/admin/salesInfo.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&page=${ requestScope.bean.page }', '판매자 등록 신청 내용', 'scrollbars=yes width=600 height=600 left=450 top=100');">
-									<img src="../image_storage/${productList.product.productMainImage}">
+								<a href="#" onClick="window.open('/HwangDangFleamarket/seller/sellerExchangeCheck.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&page=${ requestScope.bean.page }&ordersNo=${ productList.ordersNo }&orderSeqNo=${ productList.orderSeqNo }', '교환 신청 현황', 'scrollbars=yes width=600 height=800 left=450 top=50');">
+									<img src="../image_storage/${productList.product.productMainImage}" style="border: 2px solid blue; float: left; height: 147px;">
 								</a>
 							</c:when>
 							<c:when test="${ productList.orderProductStatus == 6}">
-								<a href="#" onClick="window.open('/HwangDangFleamarket/seller/sellerRefundCheck.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&page=${ requestScope.bean.page }&ordersNo=${ productList.ordersNo }&orderSeqNo=${ productList.orderSeqNo }', '환불 현황', 'scrollbars=yes width=600 height=645 left=450 top=100');">
+								<a href="#" onClick="window.open('/HwangDangFleamarket/seller/sellerRefundCheck.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&page=${ requestScope.bean.page }&ordersNo=${ productList.ordersNo }&orderSeqNo=${ productList.orderSeqNo }', '환불 신청 현황', 'scrollbars=yes width=600 height=645 left=450 top=100');">
 									<img src="../image_storage/${productList.product.productMainImage}" style="border: 2px solid red; float: left; height: 147px;">
 								</a>
 							</c:when>
@@ -40,7 +40,7 @@
 				<div class="store_products">
 					<ul class="product_lists">
 						<li>구매자 : ${list.memberId}</li>
-						<c:forEach begin="0" end="10" step="1" varStatus="status">
+						<c:forEach begin="0" end="11" step="1" varStatus="status">
 							<c:if test="${ productList.orderProductStatus ==  status.index}">
 								<li>주문 현황 : ${requestScope.status[status.index]}</li>
 							</c:if>
