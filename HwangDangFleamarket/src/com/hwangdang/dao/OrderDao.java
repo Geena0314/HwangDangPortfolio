@@ -51,4 +51,7 @@ public interface OrderDao
 	
 	//주문상태변경 (교환거부처리 11번);
 	int updateOrderProductStatus11(int orderSeqNo);
+	
+	//주문상품, 주문 Join
+	OrderProduct selectOrderProductAndProduct(int orderSeqNo);
 }

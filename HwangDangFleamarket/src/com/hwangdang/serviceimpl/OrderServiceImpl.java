@@ -65,6 +65,12 @@ public class OrderServiceImpl implements OrderService
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("orderProduct", orderProduct);
 		map.put("optionList", optionList);
+		//주문상품(수량), 상품(가격)
+		OrderProduct price = dao.selectOrderProductAndProduct(orderSeqNo);
+		map.put("price", price);
+		//주문한 상품 총 가격
+		int priceAll = (price.getProduct().getProductPrice() + orderProduct.getProductOption().getOptionAddPrice()) * price.getOrderAmount();
+		map.put("priceAll", priceAll);
 		return map;
 	}
 

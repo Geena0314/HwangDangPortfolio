@@ -161,6 +161,14 @@
 		and		op.order_seq_no = #{orderSeqNo}
 	</select>
 
+	<!-- 주문상품, 주문 Join -->
+	<select id="selectOrderProductAndProduct" parameterType="_int" resultMap="orderProduct-product">
+		select 	op.order_amount, p.product_price
+		from 		order_product op, product p
+		where		op.product_id = p.product_id
+		and		op.order_seq_no = #{orderSeqNo}
+	</select>
+
 	<!-- 교환신청 처리  -->
 	<insert id="insertRequestExchange"  parameterType="exchangeRequest">
 		INSERT INTO  exchange_request
@@ -215,5 +223,4 @@
 		where		option_id = #{exchangeOptionId}
 	</update>
 	
-	<!-- 구매취소처리 -->
 </mapper>

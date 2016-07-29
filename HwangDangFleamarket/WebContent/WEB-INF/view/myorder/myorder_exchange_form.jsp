@@ -30,7 +30,7 @@
 						alert("주문 수량은 1개 이상으로 입력하세요.");
 						return false;
 					}
-					var amount = $("#optionStock").val()
+					var amount = $("#optionStock").val();
 					amount--;
 					$("#optionStock").empty().val(amount);
 				});
@@ -172,8 +172,9 @@
 							옵션 : ${ requestScope.orderProduct.productOption.optionSubName }<br>
 							수량 : ${ requestScope.orderProduct.orderAmount }개<br>
 							<lee:if test="${ not empty requestScope.orderProduct.productOption.optionAddPrice }">
-								추가가격 : ${ requestScope.orderProduct.productOption.optionAddPrice }원
+								추가가격 : ${ requestScope.orderProduct.productOption.optionAddPrice }원<br>
 							</lee:if>
+							총 주문가격 : ${ requestScope.priceAll }원
 						</td>
 					</tr>
 					<tr class="trInput">
@@ -194,6 +195,7 @@
 					<tr><td colspan="2"><input type="text" id="optionId" name="optionId"></td></tr>
 					<tr id="optionError"></tr>
 					<tr id="optionAddPriceTr"></tr>
+					<tr id="exchangePriceAll"></tr>
 					<tr class="trInput">
 						<td colspan="2" align="right">
 							<input type="submit" value="교환신청" id="submit">
