@@ -9,20 +9,23 @@ public class ExchangeRequest implements Serializable
 	private int orderSeqNo;
 	private int exchangeStock;
 	private int optionId;
+	private String exchangeCharge;
 	
 	public ExchangeRequest()
 	{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ExchangeRequest(String exchageTitle, String exchangeContent, int orderSeqNo, int exchangeStock, int optionId)
+	public ExchangeRequest(String exchangeTitle, String exchangeContent, int orderSeqNo, int exchangeStock,
+			int optionId, String exchangeCharge)
 	{
 		super();
-		this.exchangeTitle = exchageTitle;
+		this.exchangeTitle = exchangeTitle;
 		this.exchangeContent = exchangeContent;
 		this.orderSeqNo = orderSeqNo;
 		this.exchangeStock = exchangeStock;
 		this.optionId = optionId;
+		this.exchangeCharge = exchangeCharge;
 	}
 
 	public String getExchangeTitle()
@@ -30,9 +33,9 @@ public class ExchangeRequest implements Serializable
 		return exchangeTitle;
 	}
 
-	public void setExchangeTitle(String exchageTitle)
+	public void setExchangeTitle(String exchangeTitle)
 	{
-		this.exchangeTitle = exchageTitle;
+		this.exchangeTitle = exchangeTitle;
 	}
 
 	public String getExchangeContent()
@@ -75,14 +78,25 @@ public class ExchangeRequest implements Serializable
 		this.optionId = optionId;
 	}
 
+	public String getExchangeCharge()
+	{
+		return exchangeCharge;
+	}
+
+	public void setExchangeCharge(String exchangeCharge)
+	{
+		this.exchangeCharge = exchangeCharge;
+	}
+
 	@Override
 	public int hashCode()
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((exchangeTitle == null) ? 0 : exchangeTitle.hashCode());
+		result = prime * result + ((exchangeCharge == null) ? 0 : exchangeCharge.hashCode());
 		result = prime * result + ((exchangeContent == null) ? 0 : exchangeContent.hashCode());
 		result = prime * result + exchangeStock;
+		result = prime * result + ((exchangeTitle == null) ? 0 : exchangeTitle.hashCode());
 		result = prime * result + optionId;
 		result = prime * result + orderSeqNo;
 		return result;
@@ -98,11 +112,11 @@ public class ExchangeRequest implements Serializable
 		if (getClass() != obj.getClass())
 			return false;
 		ExchangeRequest other = (ExchangeRequest) obj;
-		if (exchangeTitle == null)
+		if (exchangeCharge == null)
 		{
-			if (other.exchangeTitle != null)
+			if (other.exchangeCharge != null)
 				return false;
-		} else if (!exchangeTitle.equals(other.exchangeTitle))
+		} else if (!exchangeCharge.equals(other.exchangeCharge))
 			return false;
 		if (exchangeContent == null)
 		{
@@ -111,6 +125,12 @@ public class ExchangeRequest implements Serializable
 		} else if (!exchangeContent.equals(other.exchangeContent))
 			return false;
 		if (exchangeStock != other.exchangeStock)
+			return false;
+		if (exchangeTitle == null)
+		{
+			if (other.exchangeTitle != null)
+				return false;
+		} else if (!exchangeTitle.equals(other.exchangeTitle))
 			return false;
 		if (optionId != other.optionId)
 			return false;
@@ -122,7 +142,8 @@ public class ExchangeRequest implements Serializable
 	@Override
 	public String toString()
 	{
-		return "ExchangeRequest [exchageTitle=" + exchangeTitle + ", exchangeContent=" + exchangeContent
-				+ ", orderSeqNo=" + orderSeqNo + ", exchangeStock=" + exchangeStock + ", optionId=" + optionId + "]";
+		return "ExchangeRequest [exchangeTitle=" + exchangeTitle + ", exchangeContent=" + exchangeContent
+				+ ", orderSeqNo=" + orderSeqNo + ", exchangeStock=" + exchangeStock + ", optionId=" + optionId
+				+ ", exchangeCharge=" + exchangeCharge + "]";
 	}
 }

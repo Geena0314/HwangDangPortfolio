@@ -25,4 +25,7 @@ public interface OrderService
 	
 	//교환 승인 처리.
 	int exchangeHandle(int orderSeqNo);
+	
+	//교환시 차액 마일리지지급
+	int updateMileage(int orderSeqNo, int mileage);
 }

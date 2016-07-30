@@ -272,7 +272,7 @@
 					<tr id="exchangePriceAll">
 						<th class='tdName'>추가 금액(차액)</th>
 						<td colspan="2">
-							<input type="text" readonly="readonly" name="mileage" id="mileage">
+							<input type="text" readonly="readonly" name="exchangeCharge" id="mileage">
 						</td>
 					</tr>
 					<tr class="trInput">
