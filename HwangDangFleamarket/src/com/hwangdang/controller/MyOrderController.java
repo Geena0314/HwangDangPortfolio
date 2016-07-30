@@ -56,7 +56,6 @@ public class MyOrderController {
 		}
 		List<Orders> orderList =  service.getOrdersMain(loginId , page);
 		for(Orders temp : orderList){
-			System.out.println("temp:"+temp);     
 		}
 		
 		model.addAttribute("orderList" ,orderList); 
@@ -75,7 +74,6 @@ public class MyOrderController {
 		}
 		List<Orders> orderList =  service.getOrdersSuccess(loginId, page);
 		for(Orders temp : orderList){
-			System.out.println(temp.toString());
 		} 
 		model.addAttribute("orderList" ,orderList); 
 		model.addAttribute("pagingBean" , pagingBean);
@@ -116,7 +114,6 @@ public class MyOrderController {
 	@RequestMapping("/orderCancelList.go") 
 	public String orderCancelList(String orderCancelList , String loginId , int status , 
 		@RequestParam(value="page" ,defaultValue="1") int page ){
-		//System.out.println(orderCancelList);
 		ArrayList<String> param  = listSplit(orderCancelList);
 		service.setOrderStatus(param,status);
 		return "redirect:/myorder/main.go?loginId="+loginId+"&page="+page;
@@ -131,8 +128,6 @@ public class MyOrderController {
 	@RequestMapping("/orderStatusChange.go") 
 	public String orderStatus10(String orderList ,String loginId , int status){
 		
-		System.out.println("구매확정 : "+ orderList);
-		System.out.println("status: "+status); 
 		String url = "";
 		ArrayList<String> param  = listSplit(orderList);   
 		int flag = service.setOrderStatus(param , status);  
@@ -151,7 +146,6 @@ public class MyOrderController {
 	@RequestMapping("/SellerDetail.go") 
 	@ResponseBody
 	public Seller orderStatusRefund(String  sellerName ,String loginId ){
-		//System.out.println("sellerName:"+sellerName + "loginId:"+loginId);
 		return service.getSellerDetailBySellerName(sellerName);
 	}  
 	
@@ -163,7 +157,7 @@ public class MyOrderController {
 		return new ModelAndView("/WEB-INF/view/myorder/myorder_exchange_form.jsp", orderService.orderProductProductOption(orderSeqNo));
 	}
 	
-	//교환신청 내용 DB에 저장, OrderProduct 상태변경.
+	//교환신청 내용 DB에 저장, OrderProduct 상태변경
 	@RequestMapping("/exchangeSuccess")
 	public String exchangeSuccessForm(ExchangeRequest exchange, HttpServletRequest request)
 	{
