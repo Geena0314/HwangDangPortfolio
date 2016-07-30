@@ -70,8 +70,8 @@ DROP TABLE code
 DROP TABLE category 
 	CASCADE CONSTRAINTS;
 
-/* seller_notice */
-DROP TABLE 판매자 공지사항 
+/* 판매자 공지사항 */
+DROP TABLE seller_notice 
 	CASCADE CONSTRAINTS;
 
 /* 우편번호 */
@@ -93,8 +93,8 @@ CREATE TABLE member (
 
 /* 판매자 */
 CREATE TABLE seller (
-	seller_store_no PRIMARY KEY, /* 스토어넘버 */
-	seller_store_name VARCHAR2(60) DEFAULT unique NOT NULL, /* 상호명 */
+	seller_store_no NUMBER PRIMARY KEY, /* 스토어넘버 */
+	seller_store_name VARCHAR2(60) unique NOT NULL, /* 상호명 */
 	seller_tax_id CHAR(11), /* 사업자번호 */
 	seller_industry VARCHAR2(30) NOT NULL, /* 업종 */
 	seller_sub_industry VARCHAR2(150), /* 업종 소분류 */
@@ -199,7 +199,7 @@ CREATE TABLE notice (
 
 /* 관리자QnA */
 CREATE TABLE admin_QnA (
-	admin_qna_no NUMBER NOT NULL, /* 관리자QnA no */
+	admin_qna_no NUMBER PRIMARY KEY, /* 관리자QnA no */
 	admin_qna_title VARCHAR2(30) NOT NULL, /* 관리자QnA 제목 */
 	admin_qna_content CLOB NOT NULL, /* 관리자QnA 내용 */
 	admin_qna_writer VARCHAR2(30) NOT NULL, /* 관리자QnA 작성자id */
