@@ -75,6 +75,7 @@
 		<result column="order_seq_no" property="orderSeqNo"/>
 		<result column="exchange_stock" property="exchangeStock"/>
 		<result column="option_id" property="optionId"/>
+		<result column="exchange_charge" property="exchangeCharge"/>
 	</resultMap>
 	
 	<!-- 주문, 상품, 주문상품 Join  -->
@@ -146,7 +147,7 @@
 	
 	<!-- 교환정보 조회.(주문상품 번호로) -->
 	<select id="selectExchangeByNo" parameterType="_int" resultMap="exchange-basic-resultmap">
-		select		exchange_title, exchange_content, order_seq_no, exchange_stock, option_id
+		select		exchange_title, exchange_content, order_seq_no, exchange_stock, option_id, exchange_charge
 		from		exchange_request
 		where	order_seq_no = #{orderSeqNo}
 	</select>
@@ -161,7 +162,7 @@
 		and			op.order_seq_no = #{orderSeqNo}
 	</select>
 
-	<!-- 주문상품, 주문 Join -->
+	<!-- 주문상품, 상품 Join -->
 	<select id="selectOrderProductAndProduct" parameterType="_int" resultMap="orderProduct-product">
 		select 	op.order_amount, p.product_price
 		from 		order_product op, product p
@@ -172,7 +173,7 @@
 	<!-- 교환신청 처리  -->
 	<insert id="insertRequestExchange"  parameterType="exchangeRequest">
 		INSERT INTO  exchange_request
-		VALUES ( #{exchangeTitle}, #{exchangeContent}, #{orderSeqNo}, #{exchangeStock}, #{optionId} )
+		VALUES ( #{exchangeTitle}, #{exchangeContent}, #{orderSeqNo}, #{exchangeStock}, #{optionId}, #{exchangeCharge})
 	</insert>
 	
 	<!-- 주문상품 주문현황 변경.(교환신청상태 5번) -->
@@ -223,4 +224,11 @@
 		where		option_id = #{exchangeOptionId}
 	</update>
 	
+	<!-- 주문, 주문상품 Join(memberId찾기) -->
+	<select id="selectOrdersOrderProduct" parameterType="_int" resultMap="orders-product-orderProduct">
+		select 	o.member_id
+		from 		order_product op, orders o
+		where		op.orders_no = o.orders_no
+		and		op.order_seq_no = #{orderSeqNo}
+	</select>
 </mapper>

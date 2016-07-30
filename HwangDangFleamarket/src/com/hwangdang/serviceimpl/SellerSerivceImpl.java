@@ -96,9 +96,7 @@ public class SellerSerivceImpl implements SellerService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("orders", dao.selectOrderInfo(ordersNo));
-		System.out.println("주문정보" + dao.selectOrderInfo(ordersNo));
 		ExchangeRequest exchange = dao.selectExchangeByNo(orderSeqNo);
-		System.out.println("교환정보" + exchange);
 		map.put("exchange", exchange);
 		//기존 옵션 정보(교환전)를 담고있음.
 		map.put("originalOption", orderDao.orderProductProductOption(orderSeqNo));

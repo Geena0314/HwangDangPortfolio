@@ -67,4 +67,7 @@ public interface MemberDao {
 	
 	//멤버 아이디로 패스워드 조회.
 	String selelctPasswordById(String memberId);
+	
+	//멤버마일리지 변경
+	int updateMileage(HashMap<String, Object> map);
 }

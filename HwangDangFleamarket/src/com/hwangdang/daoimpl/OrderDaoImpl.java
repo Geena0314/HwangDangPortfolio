@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.RefundRequest;
 
@@ -126,5 +127,12 @@ public class OrderDaoImpl implements OrderDao
 	{
 		// TODO Auto-generated method stub
 		return session.selectOne("orderMapper.selectOrderProductAndProduct", orderSeqNo);
+	}
+
+	@Override
+	public Orders selectOrdersOrderProduct(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectOrdersOrderProduct", orderSeqNo);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.RefundRequest;
 
@@ -54,4 +55,7 @@ public interface OrderDao
 	
 	//주문상품, 주문 Join
 	OrderProduct selectOrderProductAndProduct(int orderSeqNo);
+	
+	//주문, 주문상품 Join(memberId찾기)
+	Orders selectOrdersOrderProduct(int orderSeqNo);
 }
