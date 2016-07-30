@@ -19,4 +19,13 @@ public interface OrderService
 	
 	//교환정보저장.
 	int insertRequestExchange(ExchangeRequest exchange);
+	
+	//교환정보삭제(거절)
+	int deleteExchangeRequest(int orderSeqNo);
+	
+	//교환 승인 처리.
+	int exchangeHandle(int orderSeqNo);
+	
+	//교환시 차액 마일리지지급
+	int updateMileage(int orderSeqNo, int mileage);
 }

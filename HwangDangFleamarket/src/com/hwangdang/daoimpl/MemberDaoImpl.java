@@ -128,4 +128,11 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return session.update("memberMapper.updateMemberAssignZero", memberId);
 	}
+
+	@Override
+	public int updateMileage(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.update("memberMapper.updateMileage", map);
+	}
 }

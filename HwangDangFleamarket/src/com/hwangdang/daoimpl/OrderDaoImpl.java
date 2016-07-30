@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
+import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.RefundRequest;
 
 @Repository
@@ -76,5 +78,61 @@ public class OrderDaoImpl implements OrderDao
 	{
 		// TODO Auto-generated method stub
 		return session.update("orderMapper.updateOrderProductExchangeStatus", orderSeqNo);
+	}
+
+	@Override
+	public ProductOption selectOptionByOptionId(int optionId)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectOptionByOptionId", optionId);
+	}
+
+	@Override
+	public int deleteExchangeRequest(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.delete("orderMapper.deleteExchangeRequest", orderSeqNo);
+	}
+
+	@Override
+	public int updateOrderProductStatus8(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updateOrderProductStatus8", orderSeqNo);
+	}
+
+	@Override
+	public int updatePlusOptionStock(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updatePlusOptionStock", map);
+	}
+
+	@Override
+	public int updateMinusOptionStock(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updateMinusOptionStock", map);
+	}
+
+	@Override
+	public int updateOrderProductStatus11(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updateOrderProductStatus11", orderSeqNo);
+	}
+
+	@Override
+	public OrderProduct selectOrderProductAndProduct(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectOrderProductAndProduct", orderSeqNo);
+	}
+
+	@Override
+	public Orders selectOrdersOrderProduct(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectOrdersOrderProduct", orderSeqNo);
 	}
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
+import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.RefundRequest;
 
 public interface OrderDao
@@ -32,4 +34,28 @@ public interface OrderDao
 	
 	//주문상품 주문현황 변경.(교환신청상태 5번)
 	int updateOrderProductExchangeStatus(int orderSeqNo);
+	
+	//옵션id로 옵션조회
+	ProductOption selectOptionByOptionId(int optionId);
+	
+	//교환 신청 삭제(거절)
+	int deleteExchangeRequest(int orderSeqNo);
+	
+	//주문상품 주문현황 변경.(교환승인처리 8번)
+	int updateOrderProductStatus8(int orderSeqNo);
+	
+	//기존 옵션 재고량 더해주기.
+	int updatePlusOptionStock(HashMap<String, Object> map);
+	
+	//바꿀 옵션 재고량 빼주기.
+	int updateMinusOptionStock(HashMap<String, Object> map);
+	
+	//주문상태변경 (교환거부처리 11번);
+	int updateOrderProductStatus11(int orderSeqNo);
+	
+	//주문상품, 주문 Join
+	OrderProduct selectOrderProductAndProduct(int orderSeqNo);
+	
+	//주문, 주문상품 Join(memberId찾기)
+	Orders selectOrdersOrderProduct(int orderSeqNo);
 }

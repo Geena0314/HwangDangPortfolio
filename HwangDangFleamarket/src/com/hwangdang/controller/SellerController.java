@@ -15,6 +15,7 @@ import com.hwangdang.service.OrderService;
 import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.OrderProduct;
 import com.hwangdang.vo.Orders;
+import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.Seller;
 
 
@@ -52,7 +53,7 @@ public class SellerController {
 		HashMap<String, Object> map = service.selectOrderState(page, sellerStoreNo);
 		ArrayList<Orders> orderList = (ArrayList<Orders>) map.get("orderList");
 		ArrayList<String> status = new ArrayList<>();
-		for(int i = 0; i < 11; i++)
+		for(int i = 0; i < 12; i++)
 		{
 			switch(i)
 			{
@@ -81,13 +82,16 @@ public class SellerController {
 					status.add("구매취소");
 					break;
 				case 8 :
-					status.add("교환승인처리");
+					status.add("교환승인");
 					break;
 				case 9 :
-					status.add("환불승인처리");
+					status.add("환불승인");
 					break;
 				case 10 : 
 					status.add("구매확정");
+					break;
+				case 11 : 
+					status.add("교환거부");
 					break;
 				default:
 					break;
@@ -100,7 +104,6 @@ public class SellerController {
 	@RequestMapping("/sellerRefundCheck")
 	public ModelAndView sellerRefundCheck(String ordersNo, int orderSeqNo)
 	{
-		System.out.println(orderSeqNo);
 		return new ModelAndView("/WEB-INF/view/seller/seller_refund_check.jsp", service.selectOrderAndRefund(ordersNo, orderSeqNo));
 	}
 	
@@ -109,6 +112,38 @@ public class SellerController {
 	{
 		orderService.refundHandle(orderSeqNo);
 		return "/WEB-INF/view/seller/refund_success.jsp";
+	}
+	
+	//교환 신청 확인
+	@RequestMapping("/sellerExchangeCheck")
+	public ModelAndView sellerExchangeCheck(String ordersNo, int orderSeqNo)
+	{
+		return new ModelAndView("/WEB-INF/view/seller/seller_exchange_check.jsp", service.selectOrderAndExchange(ordersNo, orderSeqNo));
+	}
+	
+	//교환 신청 거부
+	@RequestMapping("/exchangeReject")
+	public String exchangeReject(int orderSeqNo)
+	{
+		orderService.deleteExchangeRequest(orderSeqNo);
+		return "/WEB-INF/view/seller/seller_exchange_reject.jsp";
+	}
+	
+	//교환 신청 승인
+	@RequestMapping("/exchangeHandle")
+	public String exchangeHandle(int orderSeqNo, String exchangeCharge)
+	{
+		if(!exchangeCharge.equals(""))
+		{
+			if(exchangeCharge.indexOf("-") == 0)
+			{
+				int endIdx = exchangeCharge.indexOf("원");
+				int mileage = Integer.parseInt(exchangeCharge.substring(1, endIdx));
+				orderService.updateMileage(orderSeqNo, mileage);
+			}
+		}
+		orderService.exchangeHandle(orderSeqNo);
+		return "/WEB-INF/view/seller/seller_exchange_recognize.jsp";
 	}
 	
 	@RequestMapping("/sellerWithdrawal")

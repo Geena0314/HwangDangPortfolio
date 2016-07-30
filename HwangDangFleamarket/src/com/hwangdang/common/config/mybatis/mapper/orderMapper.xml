@@ -68,6 +68,16 @@
 		<result column="order_seq_no" property="orderSeqNo"/>
 	</resultMap>
 	
+	<!-- 교환정보 resultMap -->
+	<resultMap type="exchangeRequest" id="exchange-basic-resultmap">
+		<result column="exchange_title" property="exchangeTitle"/>
+		<result column="exchange_content" property="exchangeContent"/>
+		<result column="order_seq_no" property="orderSeqNo"/>
+		<result column="exchange_stock" property="exchangeStock"/>
+		<result column="option_id" property="optionId"/>
+		<result column="exchange_charge" property="exchangeCharge"/>
+	</resultMap>
+	
 	<!-- 주문, 상품, 주문상품 Join  -->
 	<select id="selectOrderState" parameterType="map"  resultMap="orders-product-orderProduct">
 		select 	<include refid="order-join-column"/>
@@ -135,20 +145,35 @@
 		where 	order_seq_no = #{orderSeqNo}
 	</update>
 	
+	<!-- 교환정보 조회.(주문상품 번호로) -->
+	<select id="selectExchangeByNo" parameterType="_int" resultMap="exchange-basic-resultmap">
+		select		exchange_title, exchange_content, order_seq_no, exchange_stock, option_id, exchange_charge
+		from		exchange_request
+		where	order_seq_no = #{orderSeqNo}
+	</select>
+	
 	<!-- 교환신청로직 -->
 	<!-- orderSeqNo로 order_product 와  product_option 조회. -->
 	<select id="orderProductProductOption" resultMap="orderProduct-productOption" parameterType="_int">
-		select		op.order_seq_no, op.order_amount, op.product_id, op.option_id, 
-					op.seller_store_no, po.option_sub_name, po.option_add_price
-		from		order_product op, product_option po
+		select			op.order_seq_no, op.order_amount, op.product_id, op.option_id, 
+						op.seller_store_no, po.option_sub_name, po.option_add_price
+		from			order_product op, product_option po
 		where		op.option_id = po.option_id
-		and		op.order_seq_no = 57
+		and			op.order_seq_no = #{orderSeqNo}
+	</select>
+
+	<!-- 주문상품, 상품 Join -->
+	<select id="selectOrderProductAndProduct" parameterType="_int" resultMap="orderProduct-product">
+		select 	op.order_amount, p.product_price
+		from 		order_product op, product p
+		where		op.product_id = p.product_id
+		and		op.order_seq_no = #{orderSeqNo}
 	</select>
 
 	<!-- 교환신청 처리  -->
 	<insert id="insertRequestExchange"  parameterType="exchangeRequest">
 		INSERT INTO  exchange_request
-		VALUES ( #{exchangeTitle}, #{exchangeContent}, #{orderSeqNo}, #{exchangeStock}, #{optionId} )
+		VALUES ( #{exchangeTitle}, #{exchangeContent}, #{orderSeqNo}, #{exchangeStock}, #{optionId}, #{exchangeCharge})
 	</insert>
 	
 	<!-- 주문상품 주문현황 변경.(교환신청상태 5번) -->
@@ -157,4 +182,53 @@
 		set			order_product_status = 5
 		where 	order_seq_no = #{orderSeqNo}
 	</update>
+	
+	<!-- 옵션id로 옵션조회 -->
+	<select id="selectOptionByOptionId" parameterType="_int" resultMap="productMapper.productOption-basic-resultMap">
+		select		option_id, option_name, option_sub_name, option_stock, option_add_price, product_id
+		from		product_option
+		where		option_id = #{optionId}
+	</select>
+	
+	<!-- 교환 신청 삭제(거절) -->
+	<delete id="deleteExchangeRequest" parameterType="_int">
+		delete from exchange_request where order_seq_no = #{orderSeqNo}
+	</delete>
+	
+	<!-- 주문상품 주문현황 변경.(교환거부처리 11번) -->
+	<update id="updateOrderProductStatus11" parameterType="_int">
+		update 	order_product
+		set			order_product_status = 11
+		where 	order_seq_no = #{orderSeqNo}
+	</update>
+	
+	<!-- 교환 승인 처리 -->
+	<!-- 주문상품 주문현황 변경.(교환승인처리 8번) -->
+	<update id="updateOrderProductStatus8" parameterType="_int">
+		update 	order_product
+		set			order_product_status = 8
+		where 	order_seq_no = #{orderSeqNo}
+	</update>
+	
+	<!-- 기존 옵션 재고량 더해주기. -->
+	<update id="updatePlusOptionStock" parameterType="map">
+		update 	product_option
+		set			option_stock = option_stock+#{originalStock}
+		where		option_id = #{originalOptionId}
+	</update>
+	
+	<!-- 바꿀 옵션 재고량 빼주기. -->
+	<update id="updateMinusOptionStock" parameterType="map">
+		update 	product_option
+		set			option_stock = option_stock-#{exchangeStock}
+		where		option_id = #{exchangeOptionId}
+	</update>
+	
+	<!-- 주문, 주문상품 Join(memberId찾기) -->
+	<select id="selectOrdersOrderProduct" parameterType="_int" resultMap="orders-product-orderProduct">
+		select 	o.member_id
+		from 		order_product op, orders o
+		where		op.orders_no = o.orders_no
+		and		op.order_seq_no = #{orderSeqNo}
+	</select>
 </mapper>

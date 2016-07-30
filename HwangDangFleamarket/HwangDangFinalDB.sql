@@ -310,3 +310,4 @@ ALTER TABLE exchange_request ADD exchange_stock NUMBER(4);
 ALTER TABLE exchange_request ADD option_id NUMBER;
 ALTER TABLE exchange_request ADD FOREIGN KEY (option_id) REFERENCES product_option(option_id)
 ON DELETE SET NULL;
+ALTER TABLE exchange_request ADD exchange_charge VARCHAR2(30);
