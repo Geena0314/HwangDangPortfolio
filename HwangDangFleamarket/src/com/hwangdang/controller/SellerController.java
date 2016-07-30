@@ -118,6 +118,8 @@ public class SellerController {
 	@RequestMapping("/sellerExchangeCheck")
 	public ModelAndView sellerExchangeCheck(String ordersNo, int orderSeqNo)
 	{
+		System.out.println(orderSeqNo);
+		System.out.println("asdfasdf" + service.selectOrderAndExchange(ordersNo, orderSeqNo));
 		return new ModelAndView("/WEB-INF/view/seller/seller_exchange_check.jsp", service.selectOrderAndExchange(ordersNo, orderSeqNo));
 	}
 	

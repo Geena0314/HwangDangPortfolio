@@ -148,17 +148,17 @@
 	<select id="selectExchangeByNo" parameterType="_int" resultMap="exchange-basic-resultmap">
 		select		exchange_title, exchange_content, order_seq_no, exchange_stock, option_id
 		from		exchange_request
-		where		order_seq_no = #{orderSeqNo}
+		where	order_seq_no = #{orderSeqNo}
 	</select>
 	
 	<!-- 교환신청로직 -->
 	<!-- orderSeqNo로 order_product 와  product_option 조회. -->
 	<select id="orderProductProductOption" resultMap="orderProduct-productOption" parameterType="_int">
-		select		op.order_seq_no, op.order_amount, op.product_id, op.option_id, 
-					op.seller_store_no, po.option_sub_name, po.option_add_price
-		from		order_product op, product_option po
+		select			op.order_seq_no, op.order_amount, op.product_id, op.option_id, 
+						op.seller_store_no, po.option_sub_name, po.option_add_price
+		from			order_product op, product_option po
 		where		op.option_id = po.option_id
-		and		op.order_seq_no = #{orderSeqNo}
+		and			op.order_seq_no = #{orderSeqNo}
 	</select>
 
 	<!-- 주문상품, 주문 Join -->
