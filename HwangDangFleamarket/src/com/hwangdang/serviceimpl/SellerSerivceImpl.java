@@ -1,19 +1,19 @@
 package com.hwangdang.serviceimpl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.Constants;
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.dao.MemberDao;
+import com.hwangdang.dao.OrderDao;
 import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.SellerService;
-import com.hwangdang.vo.OrderProduct;
-import com.hwangdang.vo.Orders;
+import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.Seller;
 
 @Service
@@ -24,6 +24,9 @@ public class SellerSerivceImpl implements SellerService{
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private OrderDao orderDao;
 	
 	@Override
 	public int getCountSeller() {
@@ -80,9 +83,27 @@ public class SellerSerivceImpl implements SellerService{
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int deleteSeller(int sellerStoreNo, String memberId) {
 		// TODO Auto-generated method stub
 		memberDao.updateMemberAssignZero(memberId);
 		return dao.deleteSellerByNo(sellerStoreNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectOrderAndExchange(String ordersNo, int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("orders", dao.selectOrderInfo(ordersNo));
+		System.out.println("주문정보" + dao.selectOrderInfo(ordersNo));
+		ExchangeRequest exchange = dao.selectExchangeByNo(orderSeqNo);
+		System.out.println("교환정보" + exchange);
+		map.put("exchange", exchange);
+		//기존 옵션 정보(교환전)를 담고있음.
+		map.put("originalOption", orderDao.orderProductProductOption(orderSeqNo));
+		//새로운 옵션 정보(교환할)
+		map.put("exchangeOption", orderDao.selectOptionByOptionId(exchange.getOptionId()));
+		return map;
 	}
 }

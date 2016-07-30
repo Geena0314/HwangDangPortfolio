@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.SellerDao;
+import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.RefundRequest;
 import com.hwangdang.vo.Seller;
@@ -121,5 +122,12 @@ public class SellerDaoImpl implements SellerDao{
 	{
 		// TODO Auto-generated method stub
 		return session.update("sellerMapper.updateSellerInfo", seller);
+	}
+
+	@Override
+	public ExchangeRequest selectExchangeByNo(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectExchangeByNo", orderSeqNo);
 	}
 }

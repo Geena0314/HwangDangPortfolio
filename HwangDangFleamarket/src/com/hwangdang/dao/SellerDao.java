@@ -3,6 +3,7 @@ package com.hwangdang.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.RefundRequest;
 import com.hwangdang.vo.Seller;
@@ -50,4 +51,7 @@ public interface SellerDao {
 	
 	//셀러정보수정
 	int updateSellerInfo(Seller seller);
+	
+	//주문상품 번호로 교환정보 조회.
+	ExchangeRequest selectExchangeByNo(int orderSeqNo);
 }
