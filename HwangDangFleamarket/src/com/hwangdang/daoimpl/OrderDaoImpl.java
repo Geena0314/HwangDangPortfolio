@@ -120,4 +120,11 @@ public class OrderDaoImpl implements OrderDao
 		// TODO Auto-generated method stub
 		return session.update("orderMapper.updateOrderProductStatus11", orderSeqNo);
 	}
+
+	@Override
+	public OrderProduct selectOrderProductAndProduct(int orderSeqNo)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectOrderProductAndProduct", orderSeqNo);
+	}
 }
