@@ -44,40 +44,40 @@
 	</resultMap>
 	
 	<!-- 주문 기본 리절트맵 -->
-		<resultMap type="orders" id="orders-basic-resultmap">
-			<id column="orders_no" property="ordersNo"/>
-			<result column="orders_receiver" property="ordersReceiver"/>
-			<result column="orders_phone" property="ordersPhone"/>
-			<result column="orders_zipcode" property="ordersZipcode"/>
-			<result column="orders_address" property="ordersAddress"/>
-			<result column="orders_sub_address" property="ordersSubAddress"/>
-			<result column="orders_total_price" property="ordersTotalPrice"/>
-			<result column="orders_payment" property="ordersPayment"/>
-			<result column="orders_request" property="ordersRequest"/>
-			<result column="payment_status" property="paymentStatus"/>
-			<result column="member_id" property="memberId"/>
-			<result column="orders_date"  property="orders_date"/>
-		</resultMap>
+	<resultMap type="orders" id="orders-basic-resultmap">
+		<id column="orders_no" property="ordersNo"/>
+		<result column="orders_receiver" property="ordersReceiver"/>
+		<result column="orders_phone" property="ordersPhone"/>
+		<result column="orders_zipcode" property="ordersZipcode"/>
+		<result column="orders_address" property="ordersAddress"/>
+		<result column="orders_sub_address" property="ordersSubAddress"/>
+		<result column="orders_total_price" property="ordersTotalPrice"/>
+		<result column="orders_payment" property="ordersPayment"/>
+		<result column="orders_request" property="ordersRequest"/>
+		<result column="payment_status" property="paymentStatus"/>
+		<result column="member_id" property="memberId"/>
+		<result column="orders_date"  property="orders_date"/>
+	</resultMap>
 	
 	<!-- seller 기본 리절트맵 -->
-		<resultMap type="seller" id="seller-basic-resultmap">
-			<id column="s_seller_store_no" property="sellerStoreNo"/>
-			<result column="seller_store_name" property="sellerStoreName"/>
-			<result column="seller_tax_id" property="sellerTaxId"/>
-			<result column="seller_industry" property="sellerIndustry"/>
-			<result column="seller_sub_industry" property="sellerSubIndustry"/>
-			<result column="seller_zipcode" property="sellerZipcode"/>
-			<result column="seller_address" property="sellerAddress"/>
-			<result column="seller_sub_address" property="sellerSubAddress"/>
-			<result column="seller_store_image" property="sellerStoreImage"/>
-			<result column="seller_product1" property="sellerProduct1"/>
-			<result column="seller_product2" property="sellerProduct2"/>
-			<result column="seller_product3" property="sellerProduct3"/>
-			<result column="seller_introduction" property="sellerIntroduction"/>
-			<result column="seller_assign" property="sellerAssign"/>
-			<result column="member_id" property="memberId"/>
-		</resultMap>
-	
+	<resultMap type="seller" id="seller-basic-resultmap">
+		<id column="s_seller_store_no" property="sellerStoreNo"/>
+		<result column="seller_store_name" property="sellerStoreName"/>
+		<result column="seller_tax_id" property="sellerTaxId"/>
+		<result column="seller_industry" property="sellerIndustry"/>
+		<result column="seller_sub_industry" property="sellerSubIndustry"/>
+		<result column="seller_zipcode" property="sellerZipcode"/>
+		<result column="seller_address" property="sellerAddress"/>
+		<result column="seller_sub_address" property="sellerSubAddress"/>
+		<result column="seller_store_image" property="sellerStoreImage"/>
+		<result column="seller_product1" property="sellerProduct1"/>
+		<result column="seller_product2" property="sellerProduct2"/>
+		<result column="seller_product3" property="sellerProduct3"/>
+		<result column="seller_introduction" property="sellerIntroduction"/>
+		<result column="seller_assign" property="sellerAssign"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
+
 	<!-- 재고량 조회 -->
 	<select id="product-stock-by-productId" parameterType="map" resultType="_int">
 		SELECT option_stock 
@@ -106,7 +106,6 @@
 		VALUES ( 
 		 #{orderSeqNo },#{orderAmount }, #{ordersNo }, #{productId },
 		 #{optionId }, #{sellerStoreNo },#{orderProductStatus }
-		 
 		)
 	</insert>
 	

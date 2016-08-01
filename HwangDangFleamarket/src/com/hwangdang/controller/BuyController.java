@@ -144,6 +144,7 @@ public class BuyController {
 			}
 			
 		}
+		System.out.println(orderProductList);
 		model.addAttribute("flaN" , "ok");
 		model.addAttribute("ordersNo",ordersNo );
 		model.addAttribute("orderProductList",orderProductList);
@@ -220,6 +221,7 @@ public class BuyController {
 		
 		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
 		OrderProduct op = new OrderProduct(orderAmount, ordersNo, productId, optionId, sellerStoreNo, orderProductStatus );
+		System.out.println(op);
 		Product product = service.getProductInfo(productId);
 		Seller seller = service.getSellerByNo(sellerStoreNo);
 		ProductOption po = service.getProductOptionInfoByoptionNo(optionId);

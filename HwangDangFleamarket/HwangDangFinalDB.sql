@@ -357,3 +357,5 @@ create sequence category_id_seq nocache;
 
 drop sequence seller_notice_no_seq
 create sequence seller_notice_no_seq nocache;
+
+select order_seq_no_seq.nextval from dual
