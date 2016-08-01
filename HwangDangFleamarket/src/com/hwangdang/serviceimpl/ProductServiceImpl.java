@@ -296,6 +296,7 @@ public class ProductServiceImpl implements ProductService
 		map.put("page", 1);//현재 페이지.
 		map.put("searchCode", searchCode);
 		map.put("productList", dao.selectSearchProductByName(map));
+		System.out.println(dao.selectSearchProductByName(map));
 		map.put("bean", bean);
 		
 		return map;

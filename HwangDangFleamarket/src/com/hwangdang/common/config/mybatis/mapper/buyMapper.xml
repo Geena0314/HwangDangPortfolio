@@ -31,7 +31,7 @@
 	
 	 <!-- product : seller 조인  -->
 	<resultMap type="Product" id="product-seller-join"  extends="basic-productmap">
-		<association property="seller" javaType="seller" resultMap="seller-basic-resultmap" />
+		<association property="seller" javaType="Seller" resultMap="seller-basic-resultmap" />
 	</resultMap> 
 		
 	<resultMap type="ProductOption" id="basic-productOption-resultmap">

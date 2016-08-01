@@ -57,4 +57,7 @@ public interface SellerDao {
 	
 	//판매자 해쉬태그 검색(+페이징)
 	List<Seller> selectSearchSeller(HashMap<String, Object> map);
+	
+	//판매물품으로 판매자 수 조회
+	int selectCountSellerByProduct(String keyword);
 }

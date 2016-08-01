@@ -482,25 +482,24 @@ public class BuyController {
 	 메인페이지 상품검색 기능 : 키워드로 상품이나 스토어 검색!
 	 * */
 	@RequestMapping("/search")
-	public ModelAndView findProductByKeyword(String searchCode, String keyword)
+	public ModelAndView findProductByKeyword(String searchCode, String keyword, int page)
 	{
-		System.out.println(searchCode);
 		HashMap<String, Object> map = new HashMap<>();
-		if(searchCode.equals("해쉬태그"))
+		if(searchCode.equals("태그"))
 		{
 			//판매물품으로 판매자 조회해서 seller_list로
 			map = sellerService.selectSearchSeller(keyword);
 			return new ModelAndView("seller/seller_list.tiles", map);
 		}
-		else if(searchCode.equals("상품 명"))
+		else if(searchCode.equals("상품명"))
 		{
-			//상품 명으로 상품 조회해서 product_list로
-			return new ModelAndView("seller/seller/product_list.tiles", productService.selectSearchProductByName(keyword));
+			//상품 명으로 상품 조회해서 search_product_list로
+			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductByName(keyword));
 		}
 		else
 		{
-			//상품 id로 상품 조회해서 product_list로
-			return new ModelAndView("seller/seller/product_list.tiles", productService.selectSearchProductById(keyword));
+			//상품 id로 상품 조회해서 search_product_list로
+			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductById(keyword));
 		}
 	}
 	

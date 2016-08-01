@@ -3,6 +3,9 @@
 	<sql id="product-columns">
 		product_Id, product_name, product_price, product_stock, product_main_image, product_info, product_like, seller_store_no
 	</sql>
+	<sql id="product-join-columns">
+		product_Id, product_name, product_price, product_main_image, p_seller_store_no, s_seller_store_image
+	</sql>
 	<sql id="select-basic">
 		SELECT <include refid="product-columns"/> FROM product 
 	</sql>
@@ -88,6 +91,11 @@
 		<collection property="optionList" ofType="ProductOption" resultMap="productOption-basic-resultMap"/>
 	</resultMap>
 	
+	<!-- product seller join resultMap -->
+	<resultMap type="Product" id="product-seller-join"  extends="product-basic-resultMap">
+		<association property="seller" javaType="seller" resultMap="sellerMapper.seller-basic-resultmap" />
+	</resultMap> 
+	
 	<!-- 상품 전체 조회. (추천 순, Paging, sellerStoreNo로 조회.)-->
 	<select id="selectAll" resultMap="product-basic-resultMap" parameterType="map">
 		select <include refid="product-columns"/> 
@@ -98,13 +106,15 @@
 	</select>
 	
 	<!-- 상품 (상품명으로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)-->
-	<select id="selectSearchProductByName" resultMap="product-basic-resultMap" parameterType="map">
-		select <include refid="product-columns"/> 
-		from (select ceil(rownum/#{itemPerPage}) page, <include refid="product-columns"/>
-				from (select 	<include refid="product-columns"/> 
-						from 		product 
-						where 	product_name like '%'||#{keyword}||'%'
-						order by product_like desc))
+	<select id="selectSearchProductByName" resultMap="product-seller-join" parameterType="map">
+		select <include refid="product-join-columns"/>
+		from (select ceil(rownum/#{itemPerPage}) page, <include refid="product-join-columns"/>
+				from (select 	p.product_Id, p.product_name, p.product_price, p.product_main_image, p.seller_store_no p_seller_store_no, 
+									s.seller_store_image s_seller_store_image
+						from 		product p, seller s
+						where		p.seller_store_no = s.seller_store_no
+						and 		p.product_name like '%'||#{keyword}||'%'
+						order by 	p.product_like desc))
 		where page = #{page}
 	</select>
 	
