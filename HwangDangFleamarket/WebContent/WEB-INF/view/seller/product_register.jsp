@@ -79,8 +79,8 @@ $(document).ready(function(){
 			$('#productId').focus();
 			return false;
 		}
-		if(!$('#productName').val() || $('#productName').val().trim().length == 0 || $('#productName').val().trim().length > 10){
-			alert("상품명을 10글자 이하로 입력해주세요.");
+		if(!$('#productName').val() || $('#productName').val().trim().length == 0 || $('#productName').val().trim().length > 100){
+			alert("상품명을 100글자 이하로 입력해주세요.");
 			$('#productName').focus();
 			return false;
 		}
