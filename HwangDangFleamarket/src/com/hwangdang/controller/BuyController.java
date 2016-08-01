@@ -101,8 +101,7 @@ public class BuyController {
 				Seller seller = service.getSellerByNo(sellerStoreNo);
 				long randomNumber = (int) (Math.random() * 999999999) + 1;
 				String ordersNo = "" + randomNumber;
-				int orderSeqNo = service.getOrderProductSeq();
-				OrderProduct orderProduct = new OrderProduct(orderSeqNo ,amount, ordersNo, productId, productOption.getOptionId()  ,product.getSellerStoreNo() , 0 , product, productOption, seller);
+				OrderProduct orderProduct = new OrderProduct(0 ,amount, ordersNo, productId, productOption.getOptionId()  ,product.getSellerStoreNo() , 0 , product, productOption, seller);
 				orderProductList.add(orderProduct);
 				model.addAttribute("orderProductList",orderProductList);
 				model.addAttribute("ordersNo",ordersNo);
@@ -221,6 +220,7 @@ public class BuyController {
 		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
 		OrderProduct op = new OrderProduct(orderAmount, ordersNo, productId, optionId, sellerStoreNo, orderProductStatus );
 		Product product = service.getProductInfo(productId);
+		System.out.println(op);
 		Seller seller = service.getSellerByNo(sellerStoreNo);
 		ProductOption po = service.getProductOptionInfoByoptionNo(optionId);
 		op.setProduct(product);
