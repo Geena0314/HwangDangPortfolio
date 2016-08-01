@@ -97,6 +97,28 @@
 		where page = #{page}
 	</select>
 	
+	<!-- 상품 (상품명으로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)-->
+	<select id="selectSearchProductByName" resultMap="product-basic-resultMap" parameterType="map">
+		select <include refid="product-columns"/> 
+		from (select ceil(rownum/#{itemPerPage}) page, <include refid="product-columns"/>
+				from (select 	<include refid="product-columns"/> 
+						from 		product 
+						where 	product_name like '%'||#{keyword}||'%'
+						order by product_like desc))
+		where page = #{page}
+	</select>
+	
+	<!-- 상품 (상품id로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)-->
+	<select id="selectSearchProductById" resultMap="product-basic-resultMap" parameterType="map">
+		select <include refid="product-columns"/> 
+		from (select ceil(rownum/#{itemPerPage}) page, <include refid="product-columns"/>
+				from (select 	<include refid="product-columns"/> 
+						from 		product 
+						where 	product_id like '%'||#{keyword}||'%'
+						order by product_like desc))
+		where page = #{page}
+	</select>
+	
 	<!-- 상품 전체 갯수 조회. -->
 	<select id="selectCount" resultType="_int">
 		select count(product_id) from product

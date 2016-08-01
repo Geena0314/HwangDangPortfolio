@@ -130,4 +130,11 @@ public class SellerDaoImpl implements SellerDao{
 		// TODO Auto-generated method stub
 		return session.selectOne("orderMapper.selectExchangeByNo", orderSeqNo);
 	}
+
+	@Override
+	public List<Seller> selectSearchSeller(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.selectList("sellerMapper.selectSearchSeller", map);
+	}
 }

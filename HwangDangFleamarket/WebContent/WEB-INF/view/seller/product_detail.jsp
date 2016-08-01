@@ -917,7 +917,6 @@ function error(xhr, status, err)
 				<tr>
 					<td>옵션</td>
 					<td>
-						<!-- <option value=${ option.optionId } hidden="true"></option> -->
 						<select id="optionName">
 							<option>${ requestScope.optionList[0].optionName }</option>
 							<lee:forEach items="${ requestScope.optionList }" var="option">
@@ -932,12 +931,6 @@ function error(xhr, status, err)
 				</tr>
 				<tr><td colspan="2" id="optionNameError"></td></tr>
 				<tr>
-					<!-- <td>수량</td>
-					<td>
-						<select id="optionStock">
-							<option>수량선택</option>
-						</select>
-					</td> -->
 					<td>수량</td>
 					<td>
 						<img src="../image_storage/minus.png" style="width:15px; height:15px; cursor: pointer;" class="amount" id="minus">
