@@ -236,4 +236,18 @@ public class ProductDaoImpl implements ProductDao
 		// TODO Auto-generated method stub
 		return session.delete("productMapper.deleteProductById", productId);
 	}
+
+	@Override
+	public List<Product> selectSearchProductByName(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.selectList("productMapper.selectSearchProductByName", map);
+	}
+
+	@Override
+	public List<Product> selectSearchProductById(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.selectList("productMapper.selectSearchProductById", map);
+	}
 }

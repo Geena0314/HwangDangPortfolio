@@ -285,4 +285,34 @@ public class ProductServiceImpl implements ProductService
 		// TODO Auto-generated method stub
 		return dao.deleteProductById(productId);
 	}
+
+	@Override
+	public HashMap<String, Object> selectSearchProductByName(String searchCode)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		PagingBean bean = new PagingBean(dao.selectCountProduct(), 1);
+		map.put("itemPerPage", 6);//한 페이지에 표시할 갯수.
+		map.put("page", 1);//현재 페이지.
+		map.put("searchCode", searchCode);
+		map.put("productList", dao.selectSearchProductByName(map));
+		map.put("bean", bean);
+		
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchProductById(String keyword)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		PagingBean bean = new PagingBean(dao.selectCountProduct(), 1);
+		map.put("itemPerPage", 6);//한 페이지에 표시할 갯수.
+		map.put("page", 1);//현재 페이지.
+		map.put("keyword", keyword);
+		map.put("productList", dao.selectSearchProductByName(map));
+		map.put("bean", bean);
+		
+		return map;
+	}
 }

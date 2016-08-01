@@ -21,24 +21,6 @@
     <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
     <script src="/HwangDangFleamarket/js/bootstrap.min.js"></script>
     <script src="/HwangDangFleamarket/js/vendor/holder.js"></script>
-    <script type="text/javascript">
-    /*$(document).ready(function(){
-	  $(window).resize(function(){
-		console.log('resize event !!', this.innerWidth);
-		 var size = (this.innerWidth)*0.85 - 250;
-		if(size < 300){
-	 		$('section').css('width',300);			
-		}else{
-	 		$('section').css('width',size);
-		} 
-		 var size = (this.innerHeight);
-		 $('section').css('height',size);
-			  
-	 }); 
-	 
- }); */
-     
- </script>
 </head>
 <body>
 	<div class="body-block">

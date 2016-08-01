@@ -140,13 +140,6 @@
 		select * from zipcode where dong like #{dong}||'%'
 	</select>
 	
-	
-	<!-- 회원정보 수정 
-	memberId=admin@admin.com, memberPassword=12341234, memberName=스토어관리자,
-	 memberPhone=010-1111-1111, memberZipcode=123123, memberAddress=관리자메인주소,
-	 memberSubAddress=관리자세부주소
-	 -->
-	
 	<update id="update-member-by-memberId"  parameterType="member">
 		UPDATE  member 
 		SET 	member_password = #{memberPassword} ,
@@ -173,7 +166,7 @@
 	<!-- 멤버 마일리지 변경 -->
 	<update id="updateMileage" parameterType="map">
 		UPDATE 		member
-		SER			member_mileage = #{memberMileage}
+		SET			member_mileage = member_mileage+#{memberMileage}
 		WHERE		member_id = #{memberId}
 	</update>
 </mapper>

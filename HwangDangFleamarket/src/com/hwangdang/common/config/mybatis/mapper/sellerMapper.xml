@@ -43,6 +43,20 @@
 				) where page = #{page}
 	</select>
 	
+	<!-- 판매자 해쉬태그 검색(+페이징) -->
+	<select id="selectSearchSeller" parameterType="map" resultMap="seller-basic-resultmap">
+		select <include refid="seller-columns"/> from(
+			select ceil(rownum /#{itemsPerPage})page, <include refid="seller-columns"/> from(
+				select 	<include refid="seller-columns"/> 
+				from 		seller 
+				where 	seller_assign = 1 
+				and		seller_product1 like '%'||#{keyword}||'%'
+				or			seller_product2 like '%'||#{keyword}||'%'
+				or			seller_product3 like '%'||#{keyword}||'%'
+				order by seller_store_no DESC) 
+				) where page = #{page}
+	</select>
+	
 	<!-- 판매자 스토어 번호로 판매자 조회 -->
 	<select id="selectCountSeller" resultType="_int">
 		select count(seller_store_no) from seller where seller_assign = 1
