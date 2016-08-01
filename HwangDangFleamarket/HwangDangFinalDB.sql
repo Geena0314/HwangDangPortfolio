@@ -93,8 +93,8 @@ CREATE TABLE member (
 
 /* 판매자 */
 CREATE TABLE seller (
-	seller_store_no PRIMARY KEY, /* 스토어넘버 */
-	seller_store_name VARCHAR2(60) DEFAULT unique NOT NULL, /* 상호명 */
+	seller_store_no NUMBER PRIMARY KEY, /* 스토어넘버 */
+	seller_store_name VARCHAR2(60) unique NOT NULL, /* 상호명 */
 	seller_tax_id CHAR(11), /* 사업자번호 */
 	seller_industry VARCHAR2(30) NOT NULL, /* 업종 */
 	seller_sub_industry VARCHAR2(150), /* 업종 소분류 */
@@ -199,7 +199,7 @@ CREATE TABLE notice (
 
 /* 관리자QnA */
 CREATE TABLE admin_QnA (
-	admin_qna_no NUMBER NOT NULL, /* 관리자QnA no */
+	admin_qna_no NUMBER PRIMARY KEY, /* 관리자QnA no */
 	admin_qna_title VARCHAR2(30) NOT NULL, /* 관리자QnA 제목 */
 	admin_qna_content CLOB NOT NULL, /* 관리자QnA 내용 */
 	admin_qna_writer VARCHAR2(30) NOT NULL, /* 관리자QnA 작성자id */
@@ -310,3 +310,5 @@ ALTER TABLE exchange_request ADD exchange_stock NUMBER(4);
 ALTER TABLE exchange_request ADD option_id NUMBER;
 ALTER TABLE exchange_request ADD FOREIGN KEY (option_id) REFERENCES product_option(option_id)
 ON DELETE SET NULL;
+/*멤버 세부 주소 컬럼값 수정*/
+ALTER TABLE member rename column member_sub_adress to member_sub_address;
