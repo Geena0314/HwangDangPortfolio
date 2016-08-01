@@ -255,11 +255,11 @@ CREATE TABLE store_QnA_reply (
 CREATE TABLE order_product (
 	order_seq_no NUMBER PRIMARY KEY, /* 주문상품번호 */
 	order_amount NUMBER(4) NOT NULL, /* 주문상품수량 */
-	order_product_status NUMBER(2) NOT NULL, /* 주문상품상태 */
 	orders_no VARCHAR2(10) NOT NULL, /* 주문번호 */
 	product_id VARCHAR2(30) NOT NULL, /* 상품ID */
 	option_id NUMBER NOT NULL, /* 상품옵션ID */
 	seller_store_no NUMBER NOT NULL, /* 스토어넘버 */
+	order_product_status NUMBER(2) NOT NULL, /* 주문상품상태 */
 	FOREIGN KEY(orders_no) REFERENCES orders(orders_no) ON DELETE CASCADE,
 	FOREIGN KEY(product_id) REFERENCES product(product_id) ON DELETE SET NULL,
 	FOREIGN KEY(option_id) REFERENCES product_option(option_id) ON DELETE SET NULL,
@@ -357,3 +357,5 @@ create sequence category_id_seq nocache;
 
 drop sequence seller_notice_no_seq
 create sequence seller_notice_no_seq nocache;
+
+select order_seq_no_seq.nextval from dual
