@@ -495,7 +495,7 @@ CREATE TABLE order_product  (
 );
 create sequence order_product_seq 
 drop sequence order_seq_no_seq
-create sequence order_seq_no_seq nocache
+create sequence order_seq_no_seq nocache;
 
 select refund_title, refund_content, order_seq_no from refund_request
 

@@ -93,8 +93,8 @@ CREATE TABLE member (
 
 /* 판매자 */
 CREATE TABLE seller (
-	seller_store_no PRIMARY KEY, /* 스토어넘버 */
-	seller_store_name VARCHAR2(60) DEFAULT unique NOT NULL, /* 상호명 */
+	seller_store_no NUMBER PRIMARY KEY, /* 스토어넘버 */
+	seller_store_name VARCHAR2(60) unique NOT NULL, /* 상호명 */
 	seller_tax_id CHAR(11), /* 사업자번호 */
 	seller_industry VARCHAR2(30) NOT NULL, /* 업종 */
 	seller_sub_industry VARCHAR2(150), /* 업종 소분류 */
@@ -199,7 +199,7 @@ CREATE TABLE notice (
 
 /* 관리자QnA */
 CREATE TABLE admin_QnA (
-	admin_qna_no NUMBER NOT NULL, /* 관리자QnA no */
+	admin_qna_no NUMBER PRIMARY KEY, /* 관리자QnA no */
 	admin_qna_title VARCHAR2(30) NOT NULL, /* 관리자QnA 제목 */
 	admin_qna_content CLOB NOT NULL, /* 관리자QnA 내용 */
 	admin_qna_writer VARCHAR2(30) NOT NULL, /* 관리자QnA 작성자id */
@@ -283,10 +283,10 @@ CREATE TABLE category (
 /* 판매자 공지사항 */
 CREATE TABLE seller_notice (
 	seller_notice_no NUMBER NOT NULL, /* 판매자 소식글 번호 */
-	seller_notice_title VARCHAR2(300) NOT NULL, /* 새 컬럼 */
-	seller_notice_content CLOB NOT NULL, /* 새 컬럼2 */
-	seller_notice_date DATE NOT NULL, /* 새 컬럼3 */
-	seller_notice_hit NUMBER NOT NULL, /* 새 컬럼4 */
+	seller_notice_title VARCHAR2(300) NOT NULL, /* 판매자 소식글 제목 */
+	seller_notice_content CLOB NOT NULL, /* 판매자 소식글 내용 */
+	seller_notice_date DATE NOT NULL, /* 판매자 소식글 등록일 */
+	seller_notice_hit NUMBER NOT NULL, /* 판매자 소식글 조회수 */
 	seller_store_no NUMBER NOT NULL, /* 스토어넘버 */
 	FOREIGN KEY(seller_store_no) REFERENCES seller(seller_store_no) ON DELETE SET NULL
 );
@@ -311,3 +311,49 @@ ALTER TABLE exchange_request ADD option_id NUMBER;
 ALTER TABLE exchange_request ADD FOREIGN KEY (option_id) REFERENCES product_option(option_id)
 ON DELETE SET NULL;
 ALTER TABLE exchange_request ADD exchange_charge VARCHAR2(30);
+
+/*멤버 세부 주소 컬럼값 수정*/
+ALTER TABLE member rename column member_sub_adress to member_sub_address;
+
+/*카테고리 참조아이디 type number -> varchar2(30)으로 변경*/
+ALTER TABLE category MODIFY (category_id_ref varchar2(30));
+
+/*제목 type 10글자 제한 -> varchar2(300)으로 변경*/
+ALTER TABLE store_QnA MODIFY (storeQnA_title VARCHAR2(300));
+ALTER TABLE notice MODIFY (notice_title VARCHAR2(300));
+ALTER TABLE admin_QnA MODIFY (admin_qna_title VARCHAR2(300));
+ALTER TABLE product MODIFY (product_name VARCHAR2(300));
+
+/*시퀀스*/
+drop sequence seller_store_no_seq
+create sequence seller_store_no_seq nocache;
+
+drop sequence review_no_seq
+create sequence review_no_seq nocache;
+
+drop sequence storeQnA_no_seq
+create sequence storeQnA_no_seq nocache;
+
+drop sequence cart_no_seq;
+create sequence cart_no_seq nocache;
+
+drop sequence option_id_seq
+create sequence option_id_seq nocache;
+
+drop sequence notice_no_seq
+create sequence notice_no_seq nocache;
+
+drop sequence admin_qna_no_seq
+create sequence admin_qna_no_seq nocache;
+
+drop sequence admin_reply_no_seq
+create sequence admin_reply_no_seq nocache;
+
+drop sequence order_seq_no_seq
+create sequence order_seq_no_seq nocache;
+
+drop sequence category_id_seq
+create sequence category_id_seq nocache;
+
+drop sequence seller_notice_no_seq
+create sequence seller_notice_no_seq nocache;
