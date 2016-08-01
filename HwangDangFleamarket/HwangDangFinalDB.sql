@@ -318,10 +318,11 @@ ALTER TABLE member rename column member_sub_adress to member_sub_address;
 /*카테고리 참조아이디 type number -> varchar2(30)으로 변경*/
 ALTER TABLE category MODIFY (category_id_ref varchar2(30));
 
-/*게시판 제목 type varchar2(300)으로 변경*/
+/*제목 type 10글자 제한 -> varchar2(300)으로 변경*/
 ALTER TABLE store_QnA MODIFY (storeQnA_title VARCHAR2(300));
 ALTER TABLE notice MODIFY (notice_title VARCHAR2(300));
 ALTER TABLE admin_QnA MODIFY (admin_qna_title VARCHAR2(300));
+ALTER TABLE product MODIFY (product_name VARCHAR2(300));
 
 /*시퀀스*/
 drop sequence seller_store_no_seq
