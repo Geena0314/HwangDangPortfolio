@@ -133,15 +133,19 @@ public class SellerController {
 	@RequestMapping("/exchangeHandle")
 	public String exchangeHandle(int orderSeqNo, String exchangeCharge)
 	{
-		if(!exchangeCharge.equals(""))
+		try
 		{
-			if(exchangeCharge.indexOf("-") == 0)
+			if(!exchangeCharge.equals(""))
 			{
-				int endIdx = exchangeCharge.indexOf("원");
-				int mileage = Integer.parseInt(exchangeCharge.substring(1, endIdx));
-				orderService.updateMileage(orderSeqNo, mileage);
+				if(exchangeCharge.indexOf("-") == 0)
+				{
+					int endIdx = exchangeCharge.indexOf("원");
+					int mileage = Integer.parseInt(exchangeCharge.substring(1, endIdx));
+					orderService.updateMileage(orderSeqNo, mileage);
+				}
 			}
 		}
+		catch(NullPointerException e){}
 		orderService.exchangeHandle(orderSeqNo);
 		return "/WEB-INF/view/seller/seller_exchange_recognize.jsp";
 	}
