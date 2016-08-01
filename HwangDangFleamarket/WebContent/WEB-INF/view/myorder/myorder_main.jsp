@@ -198,7 +198,7 @@ img {
 				<td>      
 				<!-- 구매확정 버튼 -->       
 					<c:if test="${orderProduct.orderProductStatus  == 4 }">
-						<button class="btn btn-success"  value="${orderProduct.orderSeqNo}"  >구매확정</button>
+						<button class="btn btn-success"  value="${orderProduct.orderSeqNo}">구매확정</button>
 					</c:if>
 				</td>
 				</tr>

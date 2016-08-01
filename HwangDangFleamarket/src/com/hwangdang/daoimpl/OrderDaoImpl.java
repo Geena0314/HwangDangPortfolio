@@ -144,8 +144,8 @@ public class OrderDaoImpl implements OrderDao
 	}
 
 	@Override
-	public int selectCountOrders() {
+	public int selectCountOrders(String memberId) {
 		// TODO Auto-generated method stub
-		return session.selectOne("orderMapper.selectCountOrders");
+		return session.selectOne("orderMapper.selectCountOrders", memberId);
 	}
 }
