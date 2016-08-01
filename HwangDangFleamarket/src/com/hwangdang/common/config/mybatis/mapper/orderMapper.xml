@@ -4,14 +4,17 @@
 		o.orders_no, o.orders_receiver, o.orders_phone, o.orders_zipcode, o.orders_address, o.orders_sub_address,
 		o.orders_total_price, o.orders_payment, o.orders_request, o.payment_status,  o.orders_date , o.member_id
 	</sql>
+	
 	<sql id="product-join">
 		p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, 
 		p.product_info, p.product_like, p.seller_store_no
 	</sql>
+	
 	<sql id="orderProduct-join">
 		op.order_seq_no, op.order_amount, op.orders_no as op_orders_no, op.product_id as op_product_id, op.option_id, 
 		op.seller_store_no as op_seller_store_no, op.order_product_status
 	</sql>
+	
 	<sql id="order-join-column">
 		order_seq_no, order_amount, op_orders_no, op_product_id, option_id, op_seller_store_no, order_product_status,
 		orders_no, orders_receiver, orders_phone, orders_zipcode, orders_address, orders_sub_address,
@@ -19,6 +22,15 @@
 		product_Id, product_name, product_price, product_stock, product_main_image, 
 		product_info, product_like, seller_store_no
 	</sql>
+	
+	<sql id="orders-join-column" >
+		o_orders_no, orders_total_price, payment_status,
+		op_order_seq_no, order_amount, order_product_status, 
+		p_product_id, product_name, product_main_image,
+		s_seller_store_no, seller_store_image,
+		option_sub_name
+	</sql>
+	
 	<!-- 주문 기본 리절트맵 -->
 	<resultMap type="orders" id="orders-basic-resultmap">
 		<id column="orders_no" property="ordersNo"/>
@@ -76,6 +88,18 @@
 		<result column="exchange_stock" property="exchangeStock"/>
 		<result column="option_id" property="optionId"/>
 		<result column="exchange_charge" property="exchangeCharge"/>
+	</resultMap>
+	
+	<!-- 주문상품 + 상품정보. (1:1)-->
+	<resultMap type="orderProduct" id="dilivery-resultMap" extends="orderProduct-basic-resultmap">
+		<association property="product" javaType="Product" resultMap="productMapper.product-basic-resultMap"/>
+		<association property="productOption" javaType="ProductOption" resultMap="productMapper.productOption-basic-resultMap"/>
+		<association property="seller" javaType="Seller" resultMap="sellerMapper.seller-basic-resultmap"/>
+	</resultMap>
+	
+	<!-- 주문, 주문상품 Join -->
+	<resultMap type="orders" id="orders-orderProduct" extends="orders-basic-resultmap">
+		<collection property="orderProductList" ofType="orderProduct" resultMap="orderProduct-product"/>
 	</resultMap>
 	
 	<!-- 주문, 상품, 주문상품 Join  -->
@@ -231,4 +255,38 @@
 		where		op.orders_no = o.orders_no
 		and		op.order_seq_no = #{orderSeqNo}
 	</select>
+	
+	<!-- 나의 주문 관련 -->
+	<!-- 배송 현황 조회 -->
+	<select id="selectDiliveryStatus" resultMap="dilivery-resultMap" parameterType="map">
+		select		<include refid="orders-join-column"/> from(
+			select ceil(rownum/#{itemPerPage}) page, <include refid="order-join-column"/> from(
+				select 		o.orders_no o_orders_no, o.orders_total_price, o.payment_status,
+								op.order_seq_no op_order_seq_no, op.order_amount, op.order_product_status, 
+								p.product_Id p_product_id, p.product_name, p.product_main_image,
+								s.seller_store_no s_seller_store_no, s.seller_store_image,
+								po.option_sub_name
+				from 			orders o, order_product op, product p, product_option po, seller s
+				where 		o.orders_no = op.orders_no
+				and	 		op.product_id = p.product_id
+				and			op.option_id = po.option_id
+				and			op.seller_store_no = s.seller_store_no 
+				and			op.order_product_status IN (0,1,2,3,4) 
+				and			o.member_id = #{memberId}
+				order by		o.orders_date desc))
+		where page = #{page}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
