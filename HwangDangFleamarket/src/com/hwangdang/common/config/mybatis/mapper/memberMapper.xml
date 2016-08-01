@@ -169,4 +169,11 @@
 		from 		member
 		where		member_id = #{member_id}
 	</select>
+	
+	<!-- 멤버 마일리지 변경 -->
+	<update id="updateMileage" parameterType="map">
+		UPDATE 		member
+		SER			member_mileage = #{memberMileage}
+		WHERE		member_id = #{memberId}
+	</update>
 </mapper>

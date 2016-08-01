@@ -131,8 +131,17 @@ public class SellerController {
 	
 	//교환 신청 승인
 	@RequestMapping("/exchangeHandle")
-	public String exchangeHandle(int orderSeqNo)
+	public String exchangeHandle(int orderSeqNo, String exchangeCharge)
 	{
+		if(!exchangeCharge.equals(""))
+		{
+			if(exchangeCharge.indexOf("-") == 0)
+			{
+				int endIdx = exchangeCharge.indexOf("원");
+				int mileage = Integer.parseInt(exchangeCharge.substring(1, endIdx));
+				orderService.updateMileage(orderSeqNo, mileage);
+			}
+		}
 		orderService.exchangeHandle(orderSeqNo);
 		return "/WEB-INF/view/seller/seller_exchange_recognize.jsp";
 	}

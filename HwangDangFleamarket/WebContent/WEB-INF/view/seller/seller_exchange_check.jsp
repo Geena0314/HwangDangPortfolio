@@ -78,6 +78,16 @@
 							</lee:if>
 						</td>
 					</tr>
+					<lee:choose>
+						<lee:when test="${ not empty requestScope.exchange.exchangeCharge }">
+							<tr>
+								<th>추가 금액(차액)</th>
+								<td colspan="2">
+									<input type="text" readonly="readonly" name="exchangeCharge" value="${ requestScope.exchange.exchangeCharge }">
+								</td>
+							</tr>
+						</lee:when>
+					</lee:choose>
 					<tr>
 						<td colspan="3" align="right">
 							<input type="submit" value="승인하기">

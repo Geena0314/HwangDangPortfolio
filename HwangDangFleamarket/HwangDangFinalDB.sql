@@ -310,5 +310,8 @@ ALTER TABLE exchange_request ADD exchange_stock NUMBER(4);
 ALTER TABLE exchange_request ADD option_id NUMBER;
 ALTER TABLE exchange_request ADD FOREIGN KEY (option_id) REFERENCES product_option(option_id)
 ON DELETE SET NULL;
+ALTER TABLE exchange_request ADD exchange_charge VARCHAR2(30);
 /*멤버 세부 주소 컬럼값 수정*/
 ALTER TABLE member rename column member_sub_adress to member_sub_address;
+/*카테고리 참조아이디 type number -> varchar2(30)으로 변경*/
+ALTER TABLE category MODIFY (category_id_ref varchar2(30));

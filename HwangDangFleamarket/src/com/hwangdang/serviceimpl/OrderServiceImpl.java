@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.dao.ProductDao;
 import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.OrderService;
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.RefundRequest;
 
@@ -27,6 +29,9 @@ public class OrderServiceImpl implements OrderService
 	
 	@Autowired
 	private SellerDao sellerDao;
+	
+	@Autowired
+	private MemberDao memberDao;
 	
 	public OrderServiceImpl()
 	{
@@ -122,5 +127,18 @@ public class OrderServiceImpl implements OrderService
 		
 		//교환 정보 삭제
 		return dao.deleteExchangeRequest(orderSeqNo);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int updateMileage(int orderSeqNo, int mileage)
+	{
+		// TODO Auto-generated method stub
+		Orders orders = dao.selectOrdersOrderProduct(orderSeqNo);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("memberId", orders.getMemberId());
+		map.put("memberMileage", mileage);
+		return memberDao.updateMileage(map);
 	}
 }
