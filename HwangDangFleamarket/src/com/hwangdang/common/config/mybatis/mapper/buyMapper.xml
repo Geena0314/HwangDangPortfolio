@@ -1,275 +1,252 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="buy">
 
-     
-<sql id="product-column">
-	product_id , product_name ,product_price ,product_stock ,
-	product_main_image  , product_info , product_like , seller_store_no
-</sql>
-
-<sql id="seller-column">
-	seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
-	seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
-	seller_store_image , seller_product1  , seller_product2, seller_product3 , 
-	seller_introduction , seller_assign ,  member_id 
-
-</sql>
+	<sql id="product-column">
+		product_id , product_name ,product_price ,product_stock ,
+		product_main_image  , product_info , product_like , seller_store_no
+	</sql>
+	
+	<sql id="seller-column">
+		seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
+		seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
+		seller_store_image , seller_product1  , seller_product2, seller_product3 , 
+		seller_introduction , seller_assign ,  member_id 
+	</sql>
 
 	<sql id="orders-column">
 		orders_no, orders_receiver, orders_phone, orders_zipcode, orders_address, orders_sub_address,
 		orders_total_price, orders_payment,orders_request, payment_status, member_id ,orders_date
 	</sql>
 
-<resultMap type="product" id="basic-productmap">
-	<id column="product_id" property="productId" />
-	<result column="product_name" property="productName"/>
-	<result column="product_price" property="productPrice"/>
-	<result column="product_stock" property="productStock"/>
-	<result column="product_main_image" property="productMainImage"/>
-	<result column="product_info" property="productInfo"/>
-	<result column="product_like" property="productLike"/>
-	<result column="seller_store_no" property="sellerStoreNo"/>
-</resultMap>
-
- <!-- product : seller 조인  -->
-<resultMap type="Product" id="product-seller-join"  extends="basic-productmap">
-	<association property="seller" javaType="seller" resultMap="seller-basic-resultmap" />
-</resultMap> 
+	<resultMap type="product" id="basic-productmap">
+		<id column="product_id" property="productId" />
+		<result column="product_name" property="productName"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_stock" property="productStock"/>
+		<result column="product_main_image" property="productMainImage"/>
+		<result column="product_info" property="productInfo"/>
+		<result column="product_like" property="productLike"/>
+		<result column="seller_store_no" property="sellerStoreNo"/>
+	</resultMap>
 	
-<resultMap type="ProductOption" id="basic-productOption-resultmap">
-	<id column="option_id" property="optionId" />
-	<result column="option_name" property="optionName"/>
-	<result column="option_sub_name" property="optionSubName" />
-	<result column="product_id" property="productId"/>
-	<result column="option_stock" property="optionStock"/>
-	<result column="option_add_price" property="optionAddPrice"/>
-</resultMap>
-
-
-
-
-<!-- 주문 기본 리절트맵 -->
-	<resultMap type="orders" id="orders-basic-resultmap">
-		<id column="orders_no" property="ordersNo"/>
-		<result column="orders_receiver" property="ordersReceiver"/>
-		<result column="orders_phone" property="ordersPhone"/>
-		<result column="orders_zipcode" property="ordersZipcode"/>
-		<result column="orders_address" property="ordersAddress"/>
-		<result column="orders_sub_address" property="ordersSubAddress"/>
-		<result column="orders_total_price" property="ordersTotalPrice"/>
-		<result column="orders_payment" property="ordersPayment"/>
-		<result column="orders_request" property="ordersRequest"/>
-		<result column="payment_status" property="paymentStatus"/>
-		<result column="member_id" property="memberId"/>
-		<result column="orders_date"  property="orders_date"/>
-	</resultMap>
-
-
-
-<!-- seller 기본 리절트맵 -->
-	<resultMap type="seller" id="seller-basic-resultmap">
-		<id column="s_seller_store_no" property="sellerStoreNo"/>
-		<result column="seller_store_name" property="sellerStoreName"/>
-		<result column="seller_tax_id" property="sellerTaxId"/>
-		<result column="seller_industry" property="sellerIndustry"/>
-		<result column="seller_sub_industry" property="sellerSubIndustry"/>
-		<result column="seller_zipcode" property="sellerZipcode"/>
-		<result column="seller_address" property="sellerAddress"/>
-		<result column="seller_sub_address" property="sellerSubAddress"/>
-		<result column="seller_store_image" property="sellerStoreImage"/>
-		<result column="seller_product1" property="sellerProduct1"/>
-		<result column="seller_product2" property="sellerProduct2"/>
-		<result column="seller_product3" property="sellerProduct3"/>
-		<result column="seller_introduction" property="sellerIntroduction"/>
-		<result column="seller_assign" property="sellerAssign"/>
-		<result column="member_id" property="memberId"/>
-	</resultMap>
-
-
-<!-- 재고량 조회 -->
-<select id="product-stock-by-productId" parameterType="map" resultType="_int">
-	SELECT option_stock 
-	FROM   product_option
-	WHERE product_id = #{productId} 
-	AND   option_sub_name =  #{optionSubName}
-</select>
-
-<!-- orders TB INSERT -->
-<insert id="insert-orders" parameterType="orders">
-	INSERT INTO orders 
-	VALUES ( 
-	 #{ordersNo },#{ordersReceiver },#{ordersPhone },#{ordersZipcode },
-	 #{ordersAddress },#{ordersSubAddress },#{ordersTotalPrice },#{ordersPayment },
-	 #{ordersRequest },#{paymentStatus },#{orders_date },#{memberId }
-	)
-</insert>
-
-<!-- order_product TB INSERT   -->
-<insert id="insert-order-product" parameterType="OrderProduct">
-	<selectKey order="BEFORE" keyProperty="orderSeqNo" resultType="_int" >
-		SELECT  order_product_seq.nextval
-		FROM dual
-	</selectKey>
-	INSERT INTO order_product
-	VALUES ( 
-	 #{orderSeqNo },#{orderAmount }, #{ordersNo }, #{productId },
-	 #{optionId }, #{sellerStoreNo },#{orderProductStatus }
-	 
-	)
-</insert>
-
-<select id="select-product-by-productId" parameterType="string" resultMap="basic-productmap">
-	SELECT <include refid="product-column"/>
-	FROM   product
-	WHERE  product_id = #{productId} 
+	 <!-- product : seller 조인  -->
+	<resultMap type="Product" id="product-seller-join"  extends="basic-productmap">
+		<association property="seller" javaType="seller" resultMap="seller-basic-resultmap" />
+	</resultMap> 
 		
-</select>
-
-
-<select id="select-productOption-by-OptionSubName" resultMap="basic-productOption-resultmap" parameterType="string">
-
-	SELECT  	option_id , option_name , option_sub_name ,
-				product_id , option_stock , option_add_price
-				
-	FROM 		product_option
-	WHERE 		option_sub_name = #{optionName } 
-</select>
-
-
-<select id="select-product-option-by-optionNo" resultMap="basic-productOption-resultmap" parameterType="_int">
+	<resultMap type="ProductOption" id="basic-productOption-resultmap">
+		<id column="option_id" property="optionId" />
+		<result column="option_name" property="optionName"/>
+		<result column="option_sub_name" property="optionSubName" />
+		<result column="product_id" property="productId"/>
+		<result column="option_stock" property="optionStock"/>
+		<result column="option_add_price" property="optionAddPrice"/>
+	</resultMap>
 	
-	SELECT  	option_id , option_name , option_sub_name ,
-				product_id , option_stock , option_add_price
-				
-	FROM 		product_option
-	WHERE 		option_id  = #{optionNo } 
-</select>
-
-
-<select id="select-seller-by-sellerStoreNo" parameterType="_int" resultMap="seller-basic-resultmap">
-	SELECT  <include refid="seller-column"/>
-	FROM   seller
-	WHERE  seller_store_no = #{value}
-</select>
-
-<select id="select-orders-by-date" parameterType="string" resultMap="orders-basic-resultmap">
-	SELECT <include refid="orders-column"/>
-	FROM orders  
-	WHERE orders_date = 
-	(  
-		SELECT MAX(orders_date) FROM orders WHERE member_id =  #{memberId}  
-	)    
-</select>
-
-
-<select id="select-orders-by-ordersNo" parameterType="string" resultMap="orders-basic-resultmap">
-	SELECT <include refid="orders-column"/>
-	FROM orders  
-	WHERE orders_no = #{ordersNo} 
-
-</select>
-
-<update id="update-mileage-by-id" parameterType="map">
-
-<selectKey order="BEFORE" keyProperty="memberMileage" resultType="_int" >
-	  SELECT member_mileage
-	  FROM member
-	  WHERE  member_id = #{memberId}
-</selectKey>
-	UPDATE member 
-	SET member_mileage = #{memberMileage} - #{mileage}
-	WHERE member_id = #{memberId}
-</update>
-
-
-<!-- Cart TB 조회  -->
-<select id="select-cart-by-cartNo" parameterType="_int" resultType="cart">
-	SELECT  cart_no cartNo, cart_product_Amount cartProductAmount , 
-			 cart_product_option cartProductOption , product_id productId ,
-			 member_id memberId , option_id optionId
-	FROM cart
-	WHERE cart_no = #{cartNo} 
-</select>
-
-<!-- order_product 시퀀스 조회 -->
-<select id="select_orderProduct_seq" resultType="_int">
-	SELECT  order_product_seq.nextval
-	FROM dual
-</select>
-
-<!-- 상품추가후 Product_option TB 개별옵션상품별 재고량 마이너스  -->
-<update id="update-optionStock-by-optionId" parameterType="map">
-	UPDATE   product_option
-	SET      option_stock =  option_stock - #{buyStock}
-	WHERE    option_id = #{optionId}
+	<!-- 주문 기본 리절트맵 -->
+		<resultMap type="orders" id="orders-basic-resultmap">
+			<id column="orders_no" property="ordersNo"/>
+			<result column="orders_receiver" property="ordersReceiver"/>
+			<result column="orders_phone" property="ordersPhone"/>
+			<result column="orders_zipcode" property="ordersZipcode"/>
+			<result column="orders_address" property="ordersAddress"/>
+			<result column="orders_sub_address" property="ordersSubAddress"/>
+			<result column="orders_total_price" property="ordersTotalPrice"/>
+			<result column="orders_payment" property="ordersPayment"/>
+			<result column="orders_request" property="ordersRequest"/>
+			<result column="payment_status" property="paymentStatus"/>
+			<result column="member_id" property="memberId"/>
+			<result column="orders_date"  property="orders_date"/>
+		</resultMap>
 	
-</update>
-
-<!-- 상품추가후  product TB의 전체 재고량 마이너스  -->
-<update id="update-productStock-by-productId" parameterType="map">
-	UPDATE   product 
-	SET      product_stock =  product_stock - #{buyStock}
-	WHERE    product_id = #{productId}
-</update>
-
-<!-- 키워드로 상품,또는 스토어 조회 
-	OR seller_store_name LIKE '%' || #{keyword } || '%'  
-	OR seller_product1 LIKE '%' || #{keyword } || '%'  
-	OR seller_product2 LIKE '%' || #{keyword } || '%'  
-	OR seller_product3 LIKE '%' || #{keyword } || '%' 
-	OR product_info LIKE ''%' || #{keyword } || '%'  
--->
-<select id="select-product-by-like" parameterType="map"  resultMap="product-seller-join" >
-
-SELECT  product_id , product_name ,product_price ,product_stock ,
-		product_main_image  , product_info , product_like , p_seller_store_no ,
-		s_seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
-		seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
-		seller_store_image , seller_product1  , seller_product2, seller_product3 , 
-		seller_introduction , seller_assign ,  member_id 
-FROM (
-
-SELECT 	product_id , product_name ,product_price ,product_stock ,
-		product_main_image  , product_info , product_like , p_seller_store_no ,
-		s_seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
-		seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
-		seller_store_image , seller_product1  , seller_product2, seller_product3 , 
-		seller_introduction , seller_assign ,  member_id  , ceil(rownum / #{itemPerPage} ) page 
-FROM (
-		SELECT    product_id , product_name ,product_price ,product_stock ,
-		product_main_image  , product_info , product_like , p.seller_store_no p_seller_store_no ,
-		s.seller_store_no s_seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
-		seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
-		seller_store_image , seller_product1  , seller_product2, seller_product3 , 
-		seller_introduction , seller_assign ,  member_id 
-		FROM   
-		(
-			SELECT     product_id , product_name ,product_price ,product_stock ,
-			     	   product_main_image  , product_info , product_like , p.seller_store_no ,rownum
-			FROM 	   product p  
-			ORDER BY   product_like DESC	
-		) p , seller s
-		WHERE     p.seller_store_no = s.seller_store_no 
-		AND        product_name LIKE '%' || #{keyword } || '%'  
-)
-
-) WHERE page = #{page}
-
-</select>
-
-<select id="select-product-by-totalItemsCount" resultType="_int"  parameterType="string">
-SELECT  count(*)
-		FROM   
-		(
-			SELECT     product_id , product_name ,product_price ,product_stock ,
-			     	   product_main_image  , product_info , product_like , p.seller_store_no ,rownum
-			FROM 	   product p  
-			ORDER BY   product_like DESC	
-		) p , seller s
-		WHERE     p.seller_store_no = s.seller_store_no 
-		AND       product_name LIKE '%' || #{keyword } || '%'  
-</select>
+	<!-- seller 기본 리절트맵 -->
+		<resultMap type="seller" id="seller-basic-resultmap">
+			<id column="s_seller_store_no" property="sellerStoreNo"/>
+			<result column="seller_store_name" property="sellerStoreName"/>
+			<result column="seller_tax_id" property="sellerTaxId"/>
+			<result column="seller_industry" property="sellerIndustry"/>
+			<result column="seller_sub_industry" property="sellerSubIndustry"/>
+			<result column="seller_zipcode" property="sellerZipcode"/>
+			<result column="seller_address" property="sellerAddress"/>
+			<result column="seller_sub_address" property="sellerSubAddress"/>
+			<result column="seller_store_image" property="sellerStoreImage"/>
+			<result column="seller_product1" property="sellerProduct1"/>
+			<result column="seller_product2" property="sellerProduct2"/>
+			<result column="seller_product3" property="sellerProduct3"/>
+			<result column="seller_introduction" property="sellerIntroduction"/>
+			<result column="seller_assign" property="sellerAssign"/>
+			<result column="member_id" property="memberId"/>
+		</resultMap>
 	
-
-  
+	<!-- 재고량 조회 -->
+	<select id="product-stock-by-productId" parameterType="map" resultType="_int">
+		SELECT option_stock 
+		FROM   product_option
+		WHERE product_id = #{productId} 
+		AND   option_sub_name =  #{optionSubName}
+	</select>
+	
+	<!-- orders TB INSERT -->
+	<insert id="insert-orders" parameterType="orders">
+		INSERT INTO orders 
+		VALUES ( 
+		 #{ordersNo },#{ordersReceiver },#{ordersPhone },#{ordersZipcode },
+		 #{ordersAddress },#{ordersSubAddress },#{ordersTotalPrice },#{ordersPayment },
+		 #{ordersRequest },#{paymentStatus },#{orders_date },#{memberId }
+		)
+	</insert>
+	
+	<!-- order_product TB INSERT   -->
+	<insert id="insert-order-product" parameterType="OrderProduct">
+		<selectKey order="BEFORE" keyProperty="orderSeqNo" resultType="_int" >
+			SELECT  order_seq_no_seq.nextval
+			FROM dual
+		</selectKey>
+		INSERT INTO order_product
+		VALUES ( 
+		 #{orderSeqNo },#{orderAmount }, #{ordersNo }, #{productId },
+		 #{optionId }, #{sellerStoreNo },#{orderProductStatus }
+		 
+		)
+	</insert>
+	
+	<select id="select-product-by-productId" parameterType="string" resultMap="basic-productmap">
+		SELECT <include refid="product-column"/>
+		FROM   product
+		WHERE  product_id = #{productId} 
+	</select>
+	
+	<select id="select-productOption-by-OptionSubName" resultMap="basic-productOption-resultmap" parameterType="string">
+		SELECT  	option_id , option_name , option_sub_name ,
+						product_id , option_stock , option_add_price
+					
+		FROM 		product_option
+		WHERE 		option_sub_name = #{optionName } 
+	</select>
+	
+	<select id="select-product-option-by-optionNo" resultMap="basic-productOption-resultmap" parameterType="_int">
+		SELECT  	option_id , option_name , option_sub_name ,
+						product_id , option_stock , option_add_price
+					
+		FROM 		product_option
+		WHERE 		option_id  = #{optionNo } 
+	</select>
+	
+	<select id="select-seller-by-sellerStoreNo" parameterType="_int" resultMap="seller-basic-resultmap">
+		SELECT  <include refid="seller-column"/>
+		FROM   seller
+		WHERE  seller_store_no = #{value}
+	</select>
+	
+	<select id="select-orders-by-date" parameterType="string" resultMap="orders-basic-resultmap">
+		SELECT <include refid="orders-column"/>
+		FROM orders  
+		WHERE orders_date = 
+		(  
+			SELECT MAX(orders_date) FROM orders WHERE member_id =  #{memberId}  
+		)    
+	</select>
+	
+	<select id="select-orders-by-ordersNo" parameterType="string" resultMap="orders-basic-resultmap">
+		SELECT <include refid="orders-column"/>
+		FROM orders  
+		WHERE orders_no = #{ordersNo} 
+	</select>
+	
+	<update id="update-mileage-by-id" parameterType="map">
+		<selectKey order="BEFORE" keyProperty="memberMileage" resultType="_int" >
+			  SELECT member_mileage
+			  FROM member
+			  WHERE  member_id = #{memberId}
+		</selectKey>
+			UPDATE member 
+			SET member_mileage = #{memberMileage} - #{mileage}
+			WHERE member_id = #{memberId}
+	</update>
+	
+	<!-- Cart TB 조회  -->
+	<select id="select-cart-by-cartNo" parameterType="_int" resultType="cart">
+		SELECT  cart_no cartNo, cart_product_Amount cartProductAmount , 
+				 	 cart_product_option cartProductOption , product_id productId ,
+					 member_id memberId , option_id optionId
+		FROM cart
+		WHERE cart_no = #{cartNo} 
+	</select>
+	
+	<!-- order_product 시퀀스 조회 -->
+	<select id="select_orderProduct_seq" resultType="_int">
+		SELECT  order_seq_no_seq.nextval
+		FROM dual
+	</select>
+	
+	<!-- 상품추가후 Product_option TB 개별옵션상품별 재고량 마이너스  -->
+	<update id="update-optionStock-by-optionId" parameterType="map">
+		UPDATE   product_option
+		SET     	  option_stock =  option_stock - #{buyStock}
+		WHERE    option_id = #{optionId}
+	</update>
+	
+	<!-- 상품추가후  product TB의 전체 재고량 마이너스  -->
+	<update id="update-productStock-by-productId" parameterType="map">
+		UPDATE   product 
+		SET      product_stock =  product_stock - #{buyStock}
+		WHERE    product_id = #{productId}
+	</update>
+	
+	<!-- 키워드로 상품,또는 스토어 조회 
+		OR seller_store_name LIKE '%' || #{keyword } || '%'  
+		OR seller_product1 LIKE '%' || #{keyword } || '%'  
+		OR seller_product2 LIKE '%' || #{keyword } || '%'  
+		OR seller_product3 LIKE '%' || #{keyword } || '%' 
+		OR product_info LIKE ''%' || #{keyword } || '%'  
+	-->
+	<select id="select-product-by-like" parameterType="map"  resultMap="product-seller-join" >
+	
+	SELECT  product_id , product_name ,product_price ,product_stock ,
+			product_main_image  , product_info , product_like , p_seller_store_no ,
+			s_seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
+			seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
+			seller_store_image , seller_product1  , seller_product2, seller_product3 , 
+			seller_introduction , seller_assign ,  member_id 
+	FROM (
+	
+	SELECT 	product_id , product_name ,product_price ,product_stock ,
+			product_main_image  , product_info , product_like , p_seller_store_no ,
+			s_seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
+			seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
+			seller_store_image , seller_product1  , seller_product2, seller_product3 , 
+			seller_introduction , seller_assign ,  member_id  , ceil(rownum / #{itemPerPage} ) page 
+	FROM (
+			SELECT    product_id , product_name ,product_price ,product_stock ,
+			product_main_image  , product_info , product_like , p.seller_store_no p_seller_store_no ,
+			s.seller_store_no s_seller_store_no , seller_store_name , seller_tax_id , seller_industry ,
+			seller_sub_industry , seller_zipcode , seller_address , seller_sub_address ,
+			seller_store_image , seller_product1  , seller_product2, seller_product3 , 
+			seller_introduction , seller_assign ,  member_id 
+			FROM   
+			(
+				SELECT     product_id , product_name ,product_price ,product_stock ,
+				     	   product_main_image  , product_info , product_like , p.seller_store_no ,rownum
+				FROM 	   product p  
+				ORDER BY   product_like DESC	
+			) p , seller s
+			WHERE     p.seller_store_no = s.seller_store_no 
+			AND        product_name LIKE '%' || #{keyword } || '%'  
+	)
+	
+	) WHERE page = #{page}
+	</select>
+	
+	<select id="select-product-by-totalItemsCount" resultType="_int"  parameterType="string">
+	SELECT  count(*)
+			FROM   
+			(
+				SELECT     product_id , product_name ,product_price ,product_stock ,
+				     	   product_main_image  , product_info , product_like , p.seller_store_no ,rownum
+				FROM 	   product p  
+				ORDER BY   product_like DESC	
+			) p , seller s
+			WHERE     p.seller_store_no = s.seller_store_no 
+			AND       product_name LIKE '%' || #{keyword } || '%'  
+	</select>
 </mapper>
