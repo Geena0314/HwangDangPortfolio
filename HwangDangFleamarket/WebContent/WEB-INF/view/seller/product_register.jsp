@@ -150,13 +150,13 @@ $(document).ready(function(){
 				<tr class="trInput">
 					<th class='tdName'>상품명</th>
 					<td colspan="2">
-						<input type="text" name="productName" id="productName" min="0">
+						<input type="text" name="productName" id="productName">
 					</td>
 				</tr>
 				<tr class="trInput">
 					<th class='tdName'>상품 가격</th>
 					<td colspan="2">
-						<input type="number" name="productPrice" id="productPrice">
+						<input type="number" name="productPrice" id="productPrice" min="0">
 					</td>
 				</tr>
 				<tr class="trInput">
