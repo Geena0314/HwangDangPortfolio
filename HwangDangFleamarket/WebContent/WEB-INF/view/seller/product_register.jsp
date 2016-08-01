@@ -150,7 +150,7 @@ $(document).ready(function(){
 				<tr class="trInput">
 					<th class='tdName'>상품명</th>
 					<td colspan="2">
-						<input type="text" name="productName" id="productName">
+						<input type="text" name="productName" id="productName" min="0">
 					</td>
 				</tr>
 				<tr class="trInput">
