@@ -1,47 +1,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="myorder">
-
-	<sql id="basic-column-ordersTB">
-		orders_no , orders_receiver , orders_phone ,
-		orders_zipcode , orders_address , orders_sub_address ,
-		orders_total_price , orders_payment , orders_request ,
-		orders_payment_status , orders_status ,
-		member_id , seller_id , product_id
+	<sql id="orders-columns">
+		orders_no, orders_receiver , orders_phone, orders_zipcode, orders_address, orders_sub_address,
+		orders_total_price, orders_payment , orders_request, orders_payment_status, orders_status,
+		member_id, seller_id, product_id
 	</sql>
 	
-	<sql id="join-column" >
-				o.orders_no , o.orders_receiver , o.orders_phone ,
-				o.orders_zipcode , o.orders_address , o.orders_sub_address ,
-				o.orders_total_price , o.orders_payment , o.orders_request ,
-				o.payment_status , o.orders_date ,
-				o.member_id buyer ,
-		
-				op.order_amount  , op.orders_no ,  op.product_id  ,op.option_id , 
-				op.seller_store_no , op.order_product_status , 
-				
-				p.product_Id, p.product_name, p.product_price, p.product_stock, 
-				p.product_main_image, p.product_info, p.product_like, 
-				p.seller_store_no ,
-				
-				s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, 
-				s.seller_sub_industry, s.seller_zipcode, s.seller_address, s.seller_sub_address, 
-				s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, 
-				s.seller_introduction, s.seller_assign, s.member_id  , 
-			
-				po.option_id , po.option_name , po.option_sub_name , po.option_stock , po.option_add_price , po.product_id 
+	<sql id="orders-join-column" >
+		o.orders_no, o.orders_total_price, o.payment_status,
+		op.order_seq_no, op.order_amount, op.order_product_status, 
+		p.product_Id, p.product_name, p.product_main_image,
+		s.seller_store_no, s.seller_store_image,
+		po.option_sub_name
 	</sql>
 	
 	<sql id="seller-column">
-				s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, 
-				s.seller_sub_industry, s.seller_zipcode, s.seller_address, s.seller_sub_address, 
-				s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, 
-				s.seller_introduction, s.seller_assign
+		s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, 
+		s.seller_sub_industry, s.seller_zipcode, s.seller_address, s.seller_sub_address, 
+		s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, 
+		s.seller_introduction, s.seller_assign
 	</sql>
-	
-	
-	<resultMap type="com.hwangdang.vo.Orders" id="order-select-basic-resultmap">
-		<id  column="orders_no_1"   property="ordersNo" />
-		<result column="orders_receiver"   property="ordersReceiver" />
+
+	<!-- 주문 resultMap  -->
+	<resultMap type="orders" id="order-select-basic-resultmap">
+		<id  column="orders_no" property="ordersNo" />
+		<result column="orders_receiver" property="ordersReceiver" />
 		<result column="orders_phone" property="ordersPhone" />
 		<result column="orders_zipcode" property="ordersZipcode" />
 		<result column="orders_address" property="ordersAddress" />
@@ -51,83 +34,80 @@
 		<result column="orders_request" property="ordersRequest" />
 		<result column="orders_payment_status" property="paymentStatus" />
 		<result column="orders_date" property="orders_date" /> 
-		<result column="buyer" property="memberId" />
+		<result column="member_id" property="memberId" />
 	</resultMap>
 	
+	<!-- 주문 상품 resultMap -->
+	<resultMap type="orderProduct" id="orderProduct-basic-resultMap">
+		<id column="order_seq_no" property="orderSeqNo"/>
+		<result column="order_amount" property="orderAmount"/>
+		<result column="orders_no" property="ordersNo"/>
+		<result column="product_id" property="productId"/>
+		<result column="option_id" property="optionId"/>
+		<result column="seller_store_no" property="sellerStoreNo"/>
+		<result column="order_product_status" property="orderProductStatus"/>
+	</resultMap>
 	
-		<resultMap type="orderProduct" id="orderProduct-basic-resultmap">
-			<id column="order_seq_no" property="orderSeqNo"/>
-			<result column="order_amount" property="orderAmount"/>
-			<result column="orders_no_2" property="ordersNo"/>
-			<result column="product_id_1" property="productId"/>
-			<result column="option_id_1" property="optionId"/>
-			<result column="seller_store_no_1" property="sellerStoreNo"/>
-			<result column="order_product_status" property="orderProductStatus"/>
-		</resultMap>
+	<!-- 판매자 resultMap  -->
+	<resultMap type="seller" id="seller-basic-resultMap">
+		<id column="seller_store_no" property="sellerStoreNo"/>
+		<result column="seller_store_name" property="sellerStoreName"/>
+		<result column="seller_tax_id" property="sellerTaxId"/>
+		<result column="seller_industry" property="sellerIndustry"/>
+		<result column="seller_sub_industry" property="sellerSubIndustry"/>
+		<result column="seller_zipcode" property="sellerZipcode"/>
+		<result column="seller_address" property="sellerAddress"/>
+		<result column="seller_sub_address" property="sellerSubAddress"/>
+		<result column="seller_store_image" property="sellerStoreImage"/>
+		<result column="seller_product1" property="sellerProduct1"/>
+		<result column="seller_product2" property="sellerProduct2"/>
+		<result column="seller_product3" property="sellerProduct3"/>
+		<result column="seller_introduction" property="sellerIntroduction"/>
+		<result column="seller_assign" property="sellerAssign"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
+	  
+	<!-- 상품 resultMap -->
+	<resultMap type="product" id="product-basic-resultMap">
+		<id column="product_Id" property="productId"/>
+		<result column="product_name" property="productName"/>
+		<result column="product_price" property="productPrice"/>
+		<result column="product_stock" property="productStock"/>
+		<result column="product_main_image" property="productMainImage"/>
+		<result column="product_info" property="productInfo"/>
+		<result column="product_like" property="productLike"/>
+		<result column="seller_store_no" property="sellerStoreNo"/>
+	</resultMap>
 	
-		<!-- seller 리절트맵  -->
-		<resultMap type="seller" id="seller-basic-resultmap">
-			<id column="seller_store_no_2" property="sellerStoreNo"/>
-			<result column="seller_store_name" property="sellerStoreName"/>
-			<result column="seller_tax_id" property="sellerTaxId"/>
-			<result column="seller_industry" property="sellerIndustry"/>
-			<result column="seller_sub_industry" property="sellerSubIndustry"/>
-			<result column="seller_zipcode" property="sellerZipcode"/>
-			<result column="seller_address" property="sellerAddress"/>
-			<result column="seller_sub_address" property="sellerSubAddress"/>
-			<result column="seller_store_image" property="sellerStoreImage"/>
-			<result column="seller_product1" property="sellerProduct1"/>
-			<result column="seller_product2" property="sellerProduct2"/>
-			<result column="seller_product3" property="sellerProduct3"/>
-			<result column="seller_introduction" property="sellerIntroduction"/>
-			<result column="seller_assign" property="sellerAssign"/>
-			<result column="member_id" property="memberId"/>
-		</resultMap>
-		  
+	<!-- 상품옵션 resultMap -->
+	<resultMap type="productOption" id="productoption-basic-resultMap">
+		<id column="option_id" property="optionId"/>
+		<result column="option_name" property="optionName"/>
+		<result column="option_sub_name" property="optionSubName"/>
+		<result column="option_stock" property="optionStock"/>
+		<result column="option_add_price" property="optionAddPrice"/>
+		<result column="product_id" property="productId"/>
+	</resultMap>
+	
+	<!-- 주문상품 + 상품 (1:1)-->
+	<resultMap type="orderProduct" id="orderProduct-product" extends="orderProduct-basic-resultMap">
+		<association property="product" javaType="Product" resultMap="product-basic-resultMap"/>
+	</resultMap>
+	<!-- 주문상품 + 상품옵션. (1:1)-->
+	<resultMap type="orderProduct" id="orderProduct-productoption" extends="orderProduct-product">
+		<association property="productOption" javaType="productOption" resultMap="productoption-basic-resultMap"/>
+	</resultMap>
+	
+	<!-- 주문상품 + 셀러. (1:1)-->
+	<resultMap type="orderProduct" id="orderProduct-seller" extends="orderProduct-productoption">
+		<association property="seller" javaType="seller" resultMap="orderProduct-basic-resultMap"/>
+	</resultMap>  
+	
+	<!-- 주문, 상품 ,주문상품 Join -->
+	<resultMap type="orders" id="orders-orderProduct-join" extends="order-select-basic-resultmap">
+		<collection property="orderProductList" ofType="orderProduct" resultMap="orderProduct-seller"/>
+	</resultMap>
 		
-		<!-- 상품 resultMap -->
-		<resultMap type="product" id="product-basic-resultMap">
-			<id column="product_Id_2" property="productId"/>
-			<result column="product_name" property="productName"/>
-			<result column="product_price" property="productPrice"/>
-			<result column="product_stock" property="productStock"/>
-			<result column="product_main_image" property="productMainImage"/>
-			<result column="product_info" property="productInfo"/>
-			<result column="product_like" property="productLike"/>
-			<result column="seller_store_no" property="sellerStoreNo"/>
-		</resultMap>
-		
-		
-		<!-- 상품옵션 resultmap -->
-		<resultMap type="productOption" id="productoption-basic-resultMap">
-			<id column="option_id_2" property="optionId"/>
-			<result column="option_name" property="optionName"/>
-			<result column="option_sub_name" property="optionSubName"/>
-			<result column="option_stock" property="optionStock"/>
-			<result column="option_add_price" property="optionAddPrice"/>
-			<result column="product_id" property="productId"/>
-		</resultMap>
-		
-		<!-- 주문상품 + 상품 (1:1)-->
-		<resultMap type="orderProduct" id="orderProduct-product" extends="orderProduct-basic-resultmap">
-			<association property="product" javaType="Product" resultMap="product-basic-resultMap"/>
-		</resultMap>
-		<!-- 주문상품 + 상품옵션. (1:1)-->
-		<resultMap type="orderProduct" id="orderProduct-productoption" extends="orderProduct-product">
-			<association property="productOption" javaType="productOption" resultMap="productoption-basic-resultMap"/>
-		</resultMap>
-		
-		<!-- 주문상품 + 셀러. (1:1)-->
-		<resultMap type="orderProduct" id="orderProduct-seller" extends="orderProduct-productoption">
-			<association property="seller" javaType="seller" resultMap="seller-basic-resultmap"/>
-		</resultMap>  
-		
-		<!-- 주문, 상품 ,주문상품 Join -->
-		<resultMap type="orders" id="orders-orderProduct-join" extends="order-select-basic-resultmap">
-			<collection property="orderProductList" ofType="orderProduct" resultMap="orderProduct-seller"/>
-		</resultMap>
-		
-	  	
 	<!-- 배송현황 조회
 		배송현황 - 입금대기중 : 0 
 		배송현황 - 결제완료 : 1
@@ -139,7 +119,7 @@
 		교환/환불/취소 - 구매취소(배송전) :  7 
 	 -->	
 		
-	<select id="select-diliver-status" parameterType="map"  resultMap="orders-orderProduct-join" >
+	<select id="selectDiliveryStatus" parameterType="map"  resultMap="orders-orderProduct-join" >
 		
 		SELECT 
 			orders_no_1 , orders_receiver , orders_phone ,    orders_zipcode ,
@@ -157,7 +137,7 @@
 			seller_store_image, seller_product1, seller_product2, seller_product3,    
 			seller_introduction, seller_assign, member_id  ,        
 					
-			option_id_2 , option_name , option_sub_name , option_stock , 
+			option_i  d_2 , option_name , option_sub_name , option_stock , 
 			option_add_price ,  product_id 
 			
 		FROM ( SELECT   
@@ -376,7 +356,7 @@
 	</update>
 	
 	<!-- 셀러명으로 셀러정보 조회 -->
-	<select id="select-seller-by-sellerName" parameterType="string" resultMap="seller-basic-resultmap">
+	<select id="select-seller-by-sellerName" parameterType="string" resultMap="orderProduct-basic-resultMap">
 		SELECT  <include refid="seller-column"/>
 		FROM seller s
 		WHERE  s.seller_store_name = #{storeName}
@@ -388,4 +368,5 @@
 		WHERE order_product_status IN (
 		#{value1} ,#{value2},#{value3},#{value4},#{value5}  )    
 	</select>
+	
 </mapper>

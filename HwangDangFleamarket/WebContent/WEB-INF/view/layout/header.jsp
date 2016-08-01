@@ -1,17 +1,12 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script>
-	$(document).ready(function(){
-		$("#searchBtn").on("click" , function(){
-			 alert("test@@@@@@@@"); 
-			 /* alert($("input[name='keyword']").val());
-	  			var keyword = $("input[name='keyword']").val();
-	  			if(keyword.length == 0){
-	  				alert("검색어를 입력하세요.");
-	  			} */
-	  	});
-		
-	}); //ready
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$("#searchBtn").on("click", function(){
+			alert("asdfasdf")
+		});
+	});
 </script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid main-header">
@@ -32,7 +27,12 @@
 			<ul class="nav navbar-nav navbar-right links fixed-menus">
 				<li>
 					<!-- 검색바 -->
-					<form action="/HwangDangFleamarket/buy/findProductByKeyword.go" method="POST" id="searchForm" >
+					<form action="/HwangDangFleamarket/buy/search.go" method="POST" id="searchForm" >
+						<select id="searchCode" name="searchCode">
+							<option>해쉬태그</option>
+							<option>상품 명</option>
+							<option>상품 ID</option>
+						</select>
 						<input type="text"  size="25" name="keyword" placeholder=" search for product..." >
 						<input class="btn btn-default" type="submit" value="go"  id="searchBtn">
 					</form>   
@@ -41,7 +41,7 @@
 					<c:when test="${not empty sessionScope.login_info }">
 						<li><a href="/HwangDangFleamarket/member/logout.go" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a></li>
 						<li><a href="/HwangDangFleamarket/member/passwordConfirm.go">my page</a></li>
-						<li><a href="/HwangDangFleamarket/myorder/myorderMain.go?loginId=${sessionScope.login_info.memberId }">나의주문</a></li>
+						<li><a href="/HwangDangFleamarket/order/diliveryStatus.go">나의주문</a></li>
 						<li><a href="/HwangDangFleamarket/cart/cartList.go?memberId=${sessionScope.login_info.memberId}">장바구니</a></li>
 					</c:when>
 					<c:otherwise> 

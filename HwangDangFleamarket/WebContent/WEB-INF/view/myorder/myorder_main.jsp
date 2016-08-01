@@ -1,4 +1,4 @@
-+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt"  %> 
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
@@ -198,7 +198,7 @@ img {
 				<td>      
 				<!-- 구매확정 버튼 -->       
 					<c:if test="${orderProduct.orderProductStatus  == 4 }">
-						<button class="btn btn-success"  value="${orderProduct.orderSeqNo}"  >구매확정</button>
+						<button class="btn btn-success"  value="${orderProduct.orderSeqNo}">구매확정</button>
 					</c:if>
 				</td>
 				</tr>

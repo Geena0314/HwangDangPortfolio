@@ -1,9 +1,11 @@
 package com.hwangdang.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.RefundRequest;
 
 public interface OrderService
@@ -28,4 +30,7 @@ public interface OrderService
 	
 	//교환시 차액 마일리지지급
 	int updateMileage(int orderSeqNo, int mileage);
+	
+	//배송 현황 조회
+	HashMap<String, Object> selectDiliveryStatus(String memberId);
 }

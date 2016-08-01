@@ -68,4 +68,10 @@ public interface ProductService
 	
 	//상품ID로 상품 삭제
 	int deleteProductById(String productId);
+	
+	//상품 (상품명으로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
+	HashMap<String, Object> selectSearchProductByName(String keyword);
+	
+	//상품 (상품id로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
+	HashMap<String, Object> selectSearchProductById(String keyword);
 }

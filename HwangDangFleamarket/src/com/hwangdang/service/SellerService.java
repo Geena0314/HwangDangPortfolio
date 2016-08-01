@@ -3,6 +3,7 @@ package com.hwangdang.service;
 import java.util.HashMap;
 import java.util.List;
 
+import com.hwangdang.vo.Product;
 import com.hwangdang.vo.Seller;
 
 public interface SellerService {
@@ -27,4 +28,7 @@ public interface SellerService {
 	
 	//주문번호로 주문정보조회, 주문상품번호로 교환정보 조회.
 	HashMap<String, Object> selectOrderAndExchange(String ordersNo, int orderSeqNo);
+	
+	//판매자 해쉬태그 검색(+페이징)
+	HashMap<String, Object> selectSearchSeller(String keyword);
 }

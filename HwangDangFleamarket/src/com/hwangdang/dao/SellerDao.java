@@ -54,4 +54,7 @@ public interface SellerDao {
 	
 	//주문상품 번호로 교환정보 조회.
 	ExchangeRequest selectExchangeByNo(int orderSeqNo);
+	
+	//판매자 해쉬태그 검색(+페이징)
+	List<Seller> selectSearchSeller(HashMap<String, Object> map);
 }

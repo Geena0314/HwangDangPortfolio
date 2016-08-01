@@ -16,12 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.common.util.Constants;
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.BuyService;
 import com.hwangdang.service.CartService;
 import com.hwangdang.service.MemberService;
+import com.hwangdang.service.ProductService;
+import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.Cart;
 import com.hwangdang.vo.Code;
 import com.hwangdang.vo.Member;
@@ -34,7 +37,6 @@ import com.hwangdang.vo.Seller;
 @Controller
 @RequestMapping("/buy")
 public class BuyController {
-
 	
 	@Autowired
 	private BuyService service;
@@ -45,6 +47,11 @@ public class BuyController {
 	@Autowired
 	private CartService cartService;
 	
+	@Autowired
+	private SellerService sellerService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	//구매전 재고수량 확인 로직 - ajax 
 	@ResponseBody
@@ -101,8 +108,7 @@ public class BuyController {
 				Seller seller = service.getSellerByNo(sellerStoreNo);
 				long randomNumber = (int) (Math.random() * 999999999) + 1;
 				String ordersNo = "" + randomNumber;
-				int orderSeqNo = service.getOrderProductSeq();
-				OrderProduct orderProduct = new OrderProduct(orderSeqNo ,amount, ordersNo, productId, productOption.getOptionId()  ,product.getSellerStoreNo() , 0 , product, productOption, seller);
+				OrderProduct orderProduct = new OrderProduct(0 ,amount, ordersNo, productId, productOption.getOptionId()  ,product.getSellerStoreNo() , 0 , product, productOption, seller);
 				orderProductList.add(orderProduct);
 				model.addAttribute("orderProductList",orderProductList);
 				model.addAttribute("ordersNo",ordersNo);
@@ -144,6 +150,7 @@ public class BuyController {
 			}
 			
 		}
+		System.out.println(orderProductList);
 		model.addAttribute("flaN" , "ok");
 		model.addAttribute("ordersNo",ordersNo );
 		model.addAttribute("orderProductList",orderProductList);
@@ -220,7 +227,9 @@ public class BuyController {
 		
 		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
 		OrderProduct op = new OrderProduct(orderAmount, ordersNo, productId, optionId, sellerStoreNo, orderProductStatus );
+		System.out.println(op);
 		Product product = service.getProductInfo(productId);
+		System.out.println(op);
 		Seller seller = service.getSellerByNo(sellerStoreNo);
 		ProductOption po = service.getProductOptionInfoByoptionNo(optionId);
 		op.setProduct(product);
@@ -472,31 +481,28 @@ public class BuyController {
 	/**
 	 메인페이지 상품검색 기능 : 키워드로 상품이나 스토어 검색!
 	 * */
-	@RequestMapping("/findProductByKeyword.go")
-	public String findProductByKeyword(Model model,
-					@RequestParam(value="keyword" ,required=false) String keyword , 
-					@RequestParam(value="page" , defaultValue="1") int page){
-		//System.out.println("키워드:"+keyword);
-		if(!keyword.isEmpty()){
-			Map<String ,Object> param = new HashMap<String,Object>();
-			param.put("keyword", keyword);
-			param.put("itemPerPage", Constants.ITEMS_PER_PAGE);
-			param.put("page" , page);
-			List<Product> productList = service.getProductByLikeKeyword(param);
-			/*for(Product p : productList){
-				System.out.println(p);
-			}*/
-			int totalItems = service.getProductTotalByLikeKeyword(keyword);
-			PagingBean pagingBean = new PagingBean(totalItems, page);
-			
-			model.addAttribute("pagingBean", pagingBean);
-			model.addAttribute("productList", productList);
-			model.addAttribute("keyword" ,keyword);
-		}		
-		
-		return "buyer/product_list.tiles";
+	@RequestMapping("/search")
+	public ModelAndView findProductByKeyword(String searchCode, String keyword)
+	{
+		System.out.println(searchCode);
+		HashMap<String, Object> map = new HashMap<>();
+		if(searchCode.equals("해쉬태그"))
+		{
+			//판매물품으로 판매자 조회해서 seller_list로
+			map = sellerService.selectSearchSeller(keyword);
+			return new ModelAndView("seller/seller_list.tiles", map);
+		}
+		else if(searchCode.equals("상품 명"))
+		{
+			//상품 명으로 상품 조회해서 product_list로
+			return new ModelAndView("seller/seller/product_list.tiles", productService.selectSearchProductByName(keyword));
+		}
+		else
+		{
+			//상품 id로 상품 조회해서 product_list로
+			return new ModelAndView("seller/seller/product_list.tiles", productService.selectSearchProductById(keyword));
+		}
 	}
-	
 	
 	/**
 	결제버튼 클릭시 결제정보입력
@@ -505,5 +511,4 @@ public class BuyController {
 	public String findProductByKeyword(){
 		return "/WEB-INF/view/buyer/pay_info_form.jsp";
 	}
-	
 }

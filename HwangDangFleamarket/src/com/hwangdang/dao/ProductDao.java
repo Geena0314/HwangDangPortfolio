@@ -103,4 +103,10 @@ public interface ProductDao
 	
 	//상품아이디로 상품 삭제
 	int deleteProductById(String productId);
+	
+	//상품 (상품명으로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
+	List<Product> selectSearchProductByName(HashMap<String, Object> map);
+	
+	//상품 (상품id로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
+	List<Product> selectSearchProductById(HashMap<String, Object> map);
 }
