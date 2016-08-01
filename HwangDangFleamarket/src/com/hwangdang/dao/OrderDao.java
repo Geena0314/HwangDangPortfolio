@@ -1,6 +1,7 @@
 package com.hwangdang.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.OrderProduct;
@@ -58,4 +59,10 @@ public interface OrderDao
 	
 	//주문, 주문상품 Join(memberId찾기)
 	Orders selectOrdersOrderProduct(int orderSeqNo);
+	
+	//배송 현황 조회
+	List<Orders> selectDiliveryStatus(HashMap<String, Object> map);
+	
+	//주문 총 갯수 조회
+	int selectCountOrders();
 }

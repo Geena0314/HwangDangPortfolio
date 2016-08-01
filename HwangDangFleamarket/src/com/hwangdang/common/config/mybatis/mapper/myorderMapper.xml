@@ -22,7 +22,7 @@
 	</sql>
 
 	<!-- 주문 resultMap  -->
-	<resultMap type="orders" id="orders-basic-resultMap">
+	<resultMap type="orders" id="order-select-basic-resultmap">
 		<id  column="orders_no" property="ordersNo" />
 		<result column="orders_receiver" property="ordersReceiver" />
 		<result column="orders_phone" property="ordersPhone" />

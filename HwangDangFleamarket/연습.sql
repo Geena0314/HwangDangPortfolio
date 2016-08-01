@@ -28,8 +28,8 @@ select seller_store_no, seller_store_name, seller_tax_id, seller_industry,
 		seller_introduction, seller_assign, member_id 
 				from 		seller 
 				where 	seller_assign = 1 
-				and		seller_product1 like '%판%'
-				or			seller_product2 like '%판%'
-				or			seller_product3 like '%판%'
+				and		seller_product1 like '%하드 케이스%'
+				or			seller_product2 like '%하드 케이스%'
+				or			seller_product3 like '%하드 케이스%'
 				order by seller_store_no DESC) 
 				) where page = 1

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hwangdang.common.util.Constants;
+import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.dao.ProductDao;
@@ -140,5 +142,18 @@ public class OrderServiceImpl implements OrderService
 		map.put("memberId", orders.getMemberId());
 		map.put("memberMileage", mileage);
 		return memberDao.updateMileage(map);
+	}
+
+	@Override
+	public HashMap<String, Object> selectDiliveryStatus(String memberId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+		map.put("page", 1);
+		map.put("memberId", memberId);
+		map.put("diliveryStatus", dao.selectDiliveryStatus(map));
+		PagingBean pageBean = new PagingBean(dao.selectCountOrders(), 1);
+		map.put("pageBean", pageBean);
+		return map;
 	}
 }

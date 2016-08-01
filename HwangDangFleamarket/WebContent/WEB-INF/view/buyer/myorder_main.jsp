@@ -10,6 +10,7 @@
 		  	<li role="presentation"><a href="/HwangDangFleamarket/myorder/cancel.go?loginId=${sessionScope.login_info.memberId }">교환/환불/취소</a></li>
 		 </ul>
 		 
+		 
 		 <!-- 주문일자 | 주문번호 -->
 		 <!-- 상품 img, 상품 id, 상품명, 옵션, 수량, 가격 -->
 		 <!-- 배송 현황이 '배송중' 이전 일 경우 배송 현황 + 주문취소 버튼 -->

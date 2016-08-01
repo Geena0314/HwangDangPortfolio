@@ -1,6 +1,7 @@
 package com.hwangdang.daoimpl;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,5 +135,17 @@ public class OrderDaoImpl implements OrderDao
 	{
 		// TODO Auto-generated method stub
 		return session.selectOne("orderMapper.selectOrdersOrderProduct", orderSeqNo);
+	}
+
+	@Override
+	public List<Orders> selectDiliveryStatus(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("orderMapper.selectDiliveryStatus", map);
+	}
+
+	@Override
+	public int selectCountOrders() {
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectCountOrders");
 	}
 }

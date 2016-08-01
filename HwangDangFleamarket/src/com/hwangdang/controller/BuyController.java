@@ -484,6 +484,7 @@ public class BuyController {
 	@RequestMapping("/search")
 	public ModelAndView findProductByKeyword(String searchCode, String keyword)
 	{
+		System.out.println(searchCode);
 		HashMap<String, Object> map = new HashMap<>();
 		if(searchCode.equals("해쉬태그"))
 		{

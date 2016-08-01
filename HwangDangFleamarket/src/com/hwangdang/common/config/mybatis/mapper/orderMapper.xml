@@ -260,7 +260,7 @@
 	<!-- 배송 현황 조회 -->
 	<select id="selectDiliveryStatus" resultMap="dilivery-resultMap" parameterType="map">
 		select		<include refid="orders-join-column"/> from(
-			select ceil(rownum/#{itemPerPage}) page, <include refid="order-join-column"/> from(
+			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
 				select 		o.orders_no o_orders_no, o.orders_total_price, o.payment_status,
 								op.order_seq_no op_order_seq_no, op.order_amount, op.order_product_status, 
 								p.product_Id p_product_id, p.product_name, p.product_main_image,
@@ -277,7 +277,10 @@
 		where page = #{page}
 	</select>
 	
-	
+	<!-- 주문 총 갯수 조회 -->
+	<select id="selectCountOrders" resultType="_int">
+		select count(orders_no) from orders
+	</select>
 	
 	
 	
