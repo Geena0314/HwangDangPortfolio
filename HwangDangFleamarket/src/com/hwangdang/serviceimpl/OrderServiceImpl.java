@@ -152,7 +152,7 @@ public class OrderServiceImpl implements OrderService
 		map.put("page", 1);
 		map.put("memberId", memberId);
 		map.put("diliveryStatus", dao.selectDiliveryStatus(map));
-		PagingBean pageBean = new PagingBean(dao.selectCountOrders(), 1);
+		PagingBean pageBean = new PagingBean(dao.selectCountOrders(memberId), 1);
 		map.put("pageBean", pageBean);
 		return map;
 	}

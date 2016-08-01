@@ -64,5 +64,5 @@ public interface OrderDao
 	List<Orders> selectDiliveryStatus(HashMap<String, Object> map);
 	
 	//주문 총 갯수 조회
-	int selectCountOrders();
+	int selectCountOrders(String memberId);
 }

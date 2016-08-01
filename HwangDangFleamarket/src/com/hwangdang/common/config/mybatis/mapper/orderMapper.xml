@@ -278,18 +278,8 @@
 	</select>
 	
 	<!-- 주문 총 갯수 조회 -->
-	<select id="selectCountOrders" resultType="_int">
-		select count(orders_no) from orders
+	<select id="selectCountOrders" resultType="_int" parameterType="string">
+		select count(orders_no) from orders where member_id = #{value}
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </mapper>
