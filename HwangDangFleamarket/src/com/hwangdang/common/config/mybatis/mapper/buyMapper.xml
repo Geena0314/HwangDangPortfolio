@@ -172,12 +172,6 @@
 		WHERE cart_no = #{cartNo} 
 	</select>
 	
-	<!-- order_product 시퀀스 조회 -->
-	<select id="select_orderProduct_seq" resultType="_int">
-		SELECT  order_seq_no_seq.nextval
-		FROM dual
-	</select>
-	
 	<!-- 상품추가후 Product_option TB 개별옵션상품별 재고량 마이너스  -->
 	<update id="update-optionStock-by-optionId" parameterType="map">
 		UPDATE   product_option
