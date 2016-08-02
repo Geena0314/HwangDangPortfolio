@@ -250,4 +250,11 @@ public class ProductDaoImpl implements ProductDao
 		// TODO Auto-generated method stub
 		return session.selectList("productMapper.selectSearchProductById", map);
 	}
+
+	@Override
+	public int selectCountByKeyword(String keyword)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("productMapper.selectCountByKeyword", keyword);
+	}
 }

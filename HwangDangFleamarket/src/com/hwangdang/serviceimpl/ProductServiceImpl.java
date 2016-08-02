@@ -287,31 +287,30 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
-	public HashMap<String, Object> selectSearchProductByName(String searchCode)
+	public HashMap<String, Object> selectSearchProductByName(String keyword, int page)
 	{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
-		PagingBean bean = new PagingBean(dao.selectCountProduct(), 1);
+		PagingBean bean = new PagingBean(dao.selectCountByKeyword(keyword), page);
 		map.put("itemPerPage", 6);//한 페이지에 표시할 갯수.
-		map.put("page", 1);//현재 페이지.
-		map.put("searchCode", searchCode);
+		map.put("page", page);//현재 페이지.
+		map.put("keyword", keyword);
 		map.put("productList", dao.selectSearchProductByName(map));
-		System.out.println(dao.selectSearchProductByName(map));
 		map.put("bean", bean);
 		
 		return map;
 	}
 
 	@Override
-	public HashMap<String, Object> selectSearchProductById(String keyword)
+	public HashMap<String, Object> selectSearchProductById(String keyword, int page)
 	{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
-		PagingBean bean = new PagingBean(dao.selectCountProduct(), 1);
+		PagingBean bean = new PagingBean(dao.selectCountByKeyword(keyword), page);
 		map.put("itemPerPage", 6);//한 페이지에 표시할 갯수.
-		map.put("page", 1);//현재 페이지.
+		map.put("page", page);//현재 페이지.
 		map.put("keyword", keyword);
-		map.put("productList", dao.selectSearchProductByName(map));
+		map.put("productList", dao.selectSearchProductById(map));
 		map.put("bean", bean);
 		
 		return map;

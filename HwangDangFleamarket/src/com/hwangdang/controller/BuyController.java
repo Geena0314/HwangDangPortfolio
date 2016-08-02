@@ -485,21 +485,25 @@ public class BuyController {
 	public ModelAndView findProductByKeyword(String searchCode, String keyword, int page)
 	{
 		HashMap<String, Object> map = new HashMap<>();
+		if(keyword.equals(""))
+		{
+			return new ModelAndView("seller/seller/search_empty.tiles");
+		}
 		if(searchCode.equals("태그"))
 		{
 			//판매물품으로 판매자 조회해서 seller_list로
-			map = sellerService.selectSearchSeller(keyword);
+			map = sellerService.selectSearchSeller(keyword, page);
 			return new ModelAndView("seller/seller_list.tiles", map);
 		}
 		else if(searchCode.equals("상품명"))
 		{
 			//상품 명으로 상품 조회해서 search_product_list로
-			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductByName(keyword));
+			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductByName(keyword, page));
 		}
 		else
 		{
 			//상품 id로 상품 조회해서 search_product_list로
-			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductById(keyword));
+			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductById(keyword, page));
 		}
 	}
 	

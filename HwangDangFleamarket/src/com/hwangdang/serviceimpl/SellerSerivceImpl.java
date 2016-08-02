@@ -106,15 +106,15 @@ public class SellerSerivceImpl implements SellerService{
 	}
 
 	@Override
-	public HashMap<String, Object> selectSearchSeller(String keyword)
+	public HashMap<String, Object> selectSearchSeller(String keyword, int page)
 	{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
-		map.put("page", 1);
+		map.put("page", page);
 		map.put("keyword", keyword);
 		map.put("list", dao.selectSearchSeller(map));
-		PagingBean bean = new PagingBean(dao.selectCountSellerByProduct(keyword), 1);
+		PagingBean bean = new PagingBean(dao.selectCountSellerByProduct(keyword), page);
 		map.put("pagingBean", bean);
 		return map;
 	}
