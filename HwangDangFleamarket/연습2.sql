@@ -21,4 +21,35 @@ select		o_orders_no, orders_total_price, payment_status,
 									and		op.order_product_status IN (0,1,2,3,4) 
 									and		o.member_id = 'hwang1@gmail.com'
 									order by o.orders_date desc))
-		where		page = 1
+		where		page = 2
+		
+		select count(orders_no) from orders where member_id = 'hwang1@gmail.com'
+		
+select		orders_no, payment_status, orders_date,
+		order_seq_no, order_amount, order_product_status, 
+		product_id, product_name, product_main_image,
+		seller_store_no, seller_store_image,
+		option_sub_name from(
+			select ceil(rownum/6) page, orders_no, payment_status, orders_date,
+		order_seq_no, order_amount, order_product_status, 
+		product_id, product_name, product_main_image,
+		seller_store_no, seller_store_image,
+		option_sub_name from(
+				select 		o.orders_no, o.payment_status, o.orders_date,
+								op.order_seq_no, op.order_amount, op.order_product_status, 
+								p.product_Id, p.product_name, p.product_main_image,
+								s.seller_store_no, s.seller_store_image,
+								po.option_sub_name
+				from 			orders o, order_product op, product p, seller s, product_option po
+				where 		o.orders_no = op.orders_no
+				and	 		op.product_id = p.product_id
+				and			op.option_id = po.option_id
+				and			op.seller_store_no = s.seller_store_no 
+				and			op.order_product_status IN (0,1,2,3,4) 
+				and			o.member_id = 'hwang1@gmail.com'
+				order by		o.orders_date desc))
+		where page = 2
+		
+		select  op.order_seq_no from orders o, order_product op 
+		where  o.orders_no = op.orders_no
+		and 	  o.member_id = 'hwang1@gmail.com'

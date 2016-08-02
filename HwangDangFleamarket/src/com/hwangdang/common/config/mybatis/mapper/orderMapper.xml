@@ -26,9 +26,9 @@
 	<sql id="orders-join-column" >
 		orders_no, payment_status, orders_date,
 		order_seq_no, order_amount, order_product_status, 
-		product_id, product_name, product_main_image,
+		product_id, product_name, product_price, product_main_image,
 		seller_store_no, seller_store_image,
-		option_sub_name
+		option_sub_name, option_add_price
 	</sql>
 	
 	<!-- 주문 기본 리절트맵 -->
@@ -92,6 +92,7 @@
 	
 	<!-- 주문상품 + 상품정보. (1:1)-->
 	<resultMap type="orderProduct" id="dilivery-resultMap" extends="orderProduct-basic-resultmap">
+		<association property="orders" javaType="Orders" resultMap="orders-basic-resultmap"/>
 		<association property="product" javaType="Product" resultMap="productMapper.product-basic-resultMap"/>
 		<association property="productOption" javaType="ProductOption" resultMap="productMapper.productOption-basic-resultMap"/>
 		<association property="seller" javaType="Seller" resultMap="sellerMapper.seller-basic-resultmap"/>
@@ -258,14 +259,14 @@
 	
 	<!-- 나의 주문 관련 -->
 	<!-- 배송 현황 조회 -->
-	<select id="selectDiliveryStatus" resultMap="orders-orderProduct" parameterType="map">
+	<select id="selectDiliveryStatus" resultMap="dilivery-resultMap" parameterType="map">
 		select		<include refid="orders-join-column"/> from(
 			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
 				select 		o.orders_no, o.payment_status, o.orders_date,
 								op.order_seq_no, op.order_amount, op.order_product_status, 
-								p.product_Id, p.product_name, p.product_main_image,
+								p.product_Id, p.product_name, p.product_price, p.product_main_image,
 								s.seller_store_no, s.seller_store_image,
-								po.option_sub_name
+								po.option_sub_name, po.option_add_price
 				from 			orders o, order_product op, product p, seller s, product_option po
 				where 		o.orders_no = op.orders_no
 				and	 		op.product_id = p.product_id
@@ -278,8 +279,10 @@
 	</select>
 	
 	<!-- 주문 총 갯수 조회 -->
-	<select id="selectCountOrders" resultType="_int" parameterType="string">
-		select count(orders_no) from orders where member_id = #{value}
+	<select id="selectCountOrderProduct" resultType="_int" parameterType="string">
+		select  count(op.order_seq_no) from orders o, order_product op 
+		where  o.orders_no = op.orders_no
+		and 	  o.member_id = #{value}
 	</select>
 	
 </mapper>

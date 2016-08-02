@@ -138,14 +138,14 @@ public class OrderDaoImpl implements OrderDao
 	}
 
 	@Override
-	public List<Orders> selectDiliveryStatus(HashMap<String, Object> map) {
+	public List<OrderProduct> selectDiliveryStatus(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return session.selectList("orderMapper.selectDiliveryStatus", map);
 	}
 
 	@Override
-	public int selectCountOrders(String memberId) {
+	public int selectCountOrderProduct(String memberId) {
 		// TODO Auto-generated method stub
-		return session.selectOne("orderMapper.selectCountOrders", memberId);
+		return session.selectOne("orderMapper.selectCountOrderProduct", memberId);
 	}
 }

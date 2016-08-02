@@ -1,5 +1,6 @@
 package com.hwangdang.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -145,15 +146,17 @@ public class OrderServiceImpl implements OrderService
 	}
 
 	@Override
-	public HashMap<String, Object> selectDiliveryStatus(String memberId) {
+	public HashMap<String, Object> selectDiliveryStatus(String memberId, int page) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
-		map.put("page", 1);
+		map.put("page", page);
 		map.put("memberId", memberId);
-		map.put("diliveryStatus", dao.selectDiliveryStatus(map));
-		PagingBean pageBean = new PagingBean(dao.selectCountOrders(memberId), 1);
-		map.put("pageBean", pageBean);
+		PagingBean pageBean = new PagingBean(dao.selectCountOrderProduct(memberId), page);
+		map.put("pagingBean", pageBean);
+		
+		ArrayList<OrderProduct> list = (ArrayList<OrderProduct>) dao.selectDiliveryStatus(map);
+		map.put("diliveryStatus", list);
 		return map;
 	}
 }

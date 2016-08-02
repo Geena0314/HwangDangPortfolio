@@ -56,7 +56,7 @@
 					<c:when test="${not empty sessionScope.login_info }">
 						<li><a href="/HwangDangFleamarket/member/logout.go" onclick="return confirm('로그아웃 하시겠습니까?')">로그아웃</a></li>
 						<li><a href="/HwangDangFleamarket/member/passwordConfirm.go">my page</a></li>
-						<li><a href="/HwangDangFleamarket/order/diliveryStatus.go">나의주문</a></li>
+						<li><a href="/HwangDangFleamarket/order/diliveryStatus.go?page=1">나의주문</a></li>
 						<li><a href="/HwangDangFleamarket/cart/cartList.go?memberId=${sessionScope.login_info.memberId}">장바구니</a></li>
 					</c:when>
 					<c:otherwise> 

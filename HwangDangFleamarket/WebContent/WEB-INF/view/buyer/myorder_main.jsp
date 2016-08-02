@@ -4,9 +4,12 @@
 <style type="text/css">
 div.myorder-tabs{
    float: left;
-   margin: 20px 20px 20px 20px;
+   position: relative;
+   left: 16%;
+   top: -20px;
+   margin: 0px 20px 20px 20px;
    padding: 20px 20px 20px 20px;
-   max-width: 800px;
+   max-width: 850px;
 }
 ul{
    display: block;
@@ -71,25 +74,38 @@ img{
 		 </ul>
 		 
 		 <ul>
-      		<c:forEach items="${requestScope.diliveryStatus}" var="myorderList">
-      			주문일자  <fmt:formatDate value="${myorderList.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.ordersNo}<br>
-	      		<c:forEach items="${myorderList.orderProductList}" var="productList">
+      		<c:forEach items="${requestScope.diliveryStatus}" var="myorderList" varStatus="no">
+      				<c:choose>
+      					<c:when test="${no.index == 0}">
+      						<p>
+	      						<b>주문일자  <fmt:formatDate value="${myorderList.orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.orders.ordersNo}</b>
+      						</p>
+      					</c:when>
+      					<c:when test="${myorderList.ordersNo != requestScope.diliveryStatus[no.index-1].ordersNo}">
+      						<p>
+	      						<b>주문일자  <fmt:formatDate value="${myorderList.orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.orders.ordersNo}</b>
+      						</p>
+      					</c:when>
+      				</c:choose>
 	      		<li id="list_block">
 	      			<div class="thmb">
 		               <div class="product_img">
-		                  <a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${productList.seller.sellerStoreNo}&sellerStoreImage=${productList.seller.sellerStoreImage}">
-		                  	<img src="../image_storage/${productList.product.productMainImage}">
+		                  <a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+		                  	<img src="../image_storage/${myorderList.product.productMainImage}">
 	                  	  </a>
 		               </div>
 		            </div>
 		            <ul class="product_info">
 		               <li>
-		                  <a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${productList.seller.sellerStoreNo}&sellerStoreImage=${productList.seller.sellerStoreImage}">
-		                  	[${productList.product.productId}] ${productList.product.productName}
+		                  <a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+		                  	[${myorderList.product.productId}] ${myorderList.product.productName}
 	                  	  </a>
 		               </li>
 		               <li>
-		                  ${productList.productOption.optionSubName} ${productList.orderAmount}
+		                  ${myorderList.productOption.optionSubName} ${myorderList.orderAmount}개
+		               </li>
+		               <li>
+		               	  ${myorderList.product.productPrice + myorderList.productOption.optionAddPrice}	원
 		               </li>
 		            </ul>
 		            <div class="status">
@@ -98,7 +114,6 @@ img{
 		               </ul>
 		            </div>
 		         </li>
-	      		</c:forEach>
    			</c:forEach>
    		 </ul>
 		 
@@ -126,19 +141,19 @@ img{
 			<c:choose>
 				<c:when test="${page == requestScope.pagingBean.page}">
 		  				<b>${page}</b>
-		 			</c:when>
+	 			</c:when>
 				<c:otherwise>
-					<a href="/HwangDangFleamarket/order/diliveryStatus.go?page=${page }">
+					<a href="/HwangDangFleamarket/order/diliveryStatus.go?page=${page}">
 						${page}
 					</a>
 				</c:otherwise>
-			</c:choose>
+		</c:choose>
 		&nbsp;&nbsp;
 		</c:forEach>
 		<%--다음 페이지 그룹 처리 ▶--%>
 		<c:choose>
 			<c:when test="${requestScope.pagingBean.nextPageGroup}">
-				<a href="/HwangDangFleamarket/order/diliveryStatus.go?page=${requestScope.pagingBean.endPage +1 }">
+				<a href="/HwangDangFleamarket/order/diliveryStatus.go?page=${requestScope.pagingBean.endPage +1}">
 					▶
 				</a>
 			</c:when>

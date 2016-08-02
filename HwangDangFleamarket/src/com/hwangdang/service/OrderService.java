@@ -32,5 +32,5 @@ public interface OrderService
 	int updateMileage(int orderSeqNo, int mileage);
 	
 	//배송 현황 조회
-	HashMap<String, Object> selectDiliveryStatus(String memberId);
+	HashMap<String, Object> selectDiliveryStatus(String memberId, int page);
 }

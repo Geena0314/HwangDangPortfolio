@@ -61,8 +61,8 @@ public interface OrderDao
 	Orders selectOrdersOrderProduct(int orderSeqNo);
 	
 	//배송 현황 조회
-	List<Orders> selectDiliveryStatus(HashMap<String, Object> map);
+	List<OrderProduct> selectDiliveryStatus(HashMap<String, Object> map);
 	
 	//주문 총 갯수 조회
-	int selectCountOrders(String memberId);
+	int selectCountOrderProduct(String memberId);
 }
