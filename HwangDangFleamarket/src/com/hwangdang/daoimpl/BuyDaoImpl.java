@@ -94,11 +94,6 @@ public class BuyDaoImpl implements BuyDao {
 	public ProductOption selectProductOptionByOptionNo(int optionNo){
 		return session.selectOne("buy.select-product-option-by-optionNo", optionNo);
 	}
-	@Override
-	@Transactional
-	public int selectOrderProductSeq(){
-		return session.selectOne("buy.select_orderProduct_seq");
-	}
 	
 	@Override
 	@Transactional
