@@ -274,7 +274,7 @@
 				and			op.seller_store_no = s.seller_store_no 
 				and			op.order_product_status IN (0,1,2,3,4) 
 				and			o.member_id = #{memberId}
-				order by		o.orders_date desc))
+				order by	o.orders_date desc))
 		where page = #{page}
 	</select>
 	

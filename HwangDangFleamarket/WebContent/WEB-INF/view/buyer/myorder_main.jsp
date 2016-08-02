@@ -14,6 +14,7 @@ div.myorder-tabs{
 ul{
    display: block;
    list-style: none;
+   margin: 10px;
 }
 div.myorder-tabs li#list_block{
    float: left;
@@ -25,7 +26,7 @@ div.myorder-tabs li#list_block{
 }
 li{
    display: list-item;
-   margin: 0px;
+   margin: 10px;
 }
 
 div{
@@ -90,14 +91,14 @@ img{
 	      		<li id="list_block">
 	      			<div class="thmb">
 		               <div class="product_img">
-		                  <a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
 		                  	<img src="../image_storage/${myorderList.product.productMainImage}">
 	                  	  </a>
 		               </div>
 		            </div>
 		            <ul class="product_info">
 		               <li>
-		                  <a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
 		                  	[${myorderList.product.productId}] ${myorderList.product.productName}
 	                  	  </a>
 		               </li>
