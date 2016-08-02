@@ -100,11 +100,6 @@ public class BuyServiceImpl implements BuyService {
 	public Cart getCartByCartNo(int cartNo){
 		return dao.selectCartByCartNo(cartNo);
 	}
-	// order_product TB 시퀀스 조회    
-	@Override
-	public int getOrderProductSeq(){
-		return dao.selectOrderProductSeq();
-	}
 	
 	// product TB 전체상품 수량 변경 (마이너스) 
 	@Override

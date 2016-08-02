@@ -43,8 +43,6 @@ public interface BuyDao {
 
 	ProductOption selectProductOptionByOptionNo(int optionNo);
 
-	int selectOrderProductSeq();
-
 	int updateProductStockByProductId(Map param);
 
 	int updateOptionStockByOptionId(Map param);

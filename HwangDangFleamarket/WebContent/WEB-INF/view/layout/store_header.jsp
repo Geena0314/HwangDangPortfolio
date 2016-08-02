@@ -19,15 +19,30 @@
 			<ul class="nav navbar-nav navbar-right links fixed-menus">
 				<li>
 					<!-- 검색바 -->
-					<form action="/HwangDangFleamarket/buy/findProductByKeyword.go" method="POST" id="searchForm" >
-						<select id="searchCode">
-							<option>해쉬태그</option>
-							<option>상품 명</option>
-							<option>상품 ID</option>
-						</select>
-						<input type="text"  size="25" name="keyword" placeholder=" search for product..." >
-						<input class="btn btn-default" type="submit" value="go"  id="searchBtn">
-					</form>  
+					<c:choose>
+						<c:when test="${ not empty param.page }">
+							<form action="/HwangDangFleamarket/buy/search.go?page=${param.page}" method="POST" id="searchForm" >
+								<select id="searchCode" name="searchCode">
+									<option>태그</option>
+									<option>상품명</option>
+									<option>상품ID</option>
+								</select>
+								<input type="text"  size="25" name="keyword" placeholder=" search for product..." >
+								<input class="btn btn-default" type="submit" value="go"  id="searchBtn">
+							</form>
+						</c:when>
+						<c:otherwise>
+							<form action="/HwangDangFleamarket/buy/search.go?page=1" method="POST" id="searchForm" >
+								<select id="searchCode" name="searchCode">
+									<option>태그</option>
+									<option>상품명</option>
+									<option>상품ID</option>
+								</select>
+								<input type="text"  size="25" name="keyword" placeholder=" search for product..." >
+								<input class="btn btn-default" type="submit" value="go"  id="searchBtn">
+							</form>
+						</c:otherwise>
+					</c:choose>  
 				</li>
 				<c:choose>
 					<c:when test="${not empty sessionScope.login_info }">

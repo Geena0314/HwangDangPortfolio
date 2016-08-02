@@ -109,4 +109,7 @@ public interface ProductDao
 	
 	//상품 (상품id로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
 	List<Product> selectSearchProductById(HashMap<String, Object> map);
+	
+	//keyword로 검색된 상품 전체 갯수 조회.
+	int selectCountByKeyword(String keyword);
 }

@@ -30,5 +30,5 @@ public interface SellerService {
 	HashMap<String, Object> selectOrderAndExchange(String ordersNo, int orderSeqNo);
 	
 	//판매자 해쉬태그 검색(+페이징)
-	HashMap<String, Object> selectSearchSeller(String keyword);
+	HashMap<String, Object> selectSearchSeller(String keyword, int page);
 }

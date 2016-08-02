@@ -57,6 +57,16 @@
 				) where page = #{page}
 	</select>
 	
+	<!-- 판매물품으로 판매자 수 조회 -->
+	<select id="selectCountSellerByProduct" resultType="_int">
+		select 	count(seller_store_no) 
+		from 		seller 
+		where 	seller_assign = 1 
+		and 		seller_product1 like '%'||#{keyword}||'%'
+		or			seller_product2 like '%'||#{keyword}||'%'
+		or			seller_product3 like '%'||#{keyword}||'%'
+	</select>
+	
 	<!-- 판매자 스토어 번호로 판매자 조회 -->
 	<select id="selectCountSeller" resultType="_int">
 		select count(seller_store_no) from seller where seller_assign = 1
