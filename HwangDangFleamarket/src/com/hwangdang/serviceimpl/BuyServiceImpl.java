@@ -33,6 +33,7 @@ public class BuyServiceImpl implements BuyService {
 	@Override
 	public int addProductOne(Orders orders , OrderProduct orderProduct){
 		int flag = dao.insertOrdersOne(orders);
+		System.out.println(orderProduct);
 		flag = dao.insertOrderProductOne(orderProduct);
 		return flag;
 	}

@@ -142,8 +142,7 @@ public class BuyController {
 				Product product = service.getProductInfo(cart.getProductId());
 				ProductOption productOption = service.getProductOptionInfoByoptionNo(cart.getOptionId());
 				Seller seller = service.getSellerByNo(product.getSellerStoreNo());
-				int orderSeqNo = service.getOrderProductSeq();
-				OrderProduct orderProduct = new OrderProduct(orderSeqNo ,cart.getCartProductAmount(), ordersNo, cart.getProductId(), cart.getOptionId(),product.getSellerStoreNo() , 0 , product, productOption, seller);
+				OrderProduct orderProduct = new OrderProduct(0 ,cart.getCartProductAmount(), ordersNo, cart.getProductId(), cart.getOptionId(),product.getSellerStoreNo() , 0 , product, productOption, seller);
 				orderProductList.add(orderProduct);
 			}else{
 				System.out.println("127라인 널! : cart 객체");
@@ -227,14 +226,12 @@ public class BuyController {
 		
 		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
 		OrderProduct op = new OrderProduct(orderAmount, ordersNo, productId, optionId, sellerStoreNo, orderProductStatus );
-		System.out.println(op);
 		Product product = service.getProductInfo(productId);
-		System.out.println(op);
 		Seller seller = service.getSellerByNo(sellerStoreNo);
 		ProductOption po = service.getProductOptionInfoByoptionNo(optionId);
-		op.setProduct(product);
-		op.setSeller(seller);
-		op.setProductOption(po);
+		//op.setProduct(product);
+		//op.setSeller(seller);
+		//op.setProductOption(po);
 		ArrayList<OrderProduct> orderProductList = new ArrayList<>();
 		orderProductList.add(op);
 		orders.setOrderProductList(orderProductList);

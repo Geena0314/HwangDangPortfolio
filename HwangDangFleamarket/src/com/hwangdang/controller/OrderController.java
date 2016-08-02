@@ -23,6 +23,8 @@ public class OrderController {
 	
 	@RequestMapping("/diliveryStatus")
 	public ModelAndView diliveryStatus(HttpSession session){
+		System.out.println(service.selectDiliveryStatus(((Member)session.getAttribute("login_info")).getMemberId()));
+		
 		return new ModelAndView("buyer/myorder_main.tiles", 
 				service.selectDiliveryStatus(((Member)session.getAttribute("login_info")).getMemberId()));
 	}

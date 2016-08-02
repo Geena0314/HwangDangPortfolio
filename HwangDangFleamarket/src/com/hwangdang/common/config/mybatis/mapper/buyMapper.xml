@@ -56,7 +56,7 @@
 		<result column="orders_request" property="ordersRequest"/>
 		<result column="payment_status" property="paymentStatus"/>
 		<result column="member_id" property="memberId"/>
-		<result column="orders_date"  property="orders_date"/>
+		<result column="orders_date"  property="ordersDate"/>
 	</resultMap>
 	
 	<!-- seller 기본 리절트맵 -->
@@ -92,7 +92,7 @@
 		VALUES ( 
 		 #{ordersNo },#{ordersReceiver },#{ordersPhone },#{ordersZipcode },
 		 #{ordersAddress },#{ordersSubAddress },#{ordersTotalPrice },#{ordersPayment },
-		 #{ordersRequest },#{paymentStatus },#{orders_date },#{memberId }
+		 #{ordersRequest },#{paymentStatus },#{ordersDate },#{memberId }
 		)
 	</insert>
 	
