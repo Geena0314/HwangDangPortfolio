@@ -1,6 +1,17 @@
 <%@page contentType="text/html;charset=utf-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".cancelBtn").onclick(function(){
+		if(!confirm("해당 상품의 주문을 취소하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/HwangDangFleamarket/order/requestStatus.go?page=1'
+		}
+	});
+});
+</script>
 <style type="text/css">
 div.myorder-tabs{
    float: left;
@@ -41,7 +52,7 @@ div{
    float: left;
    width: 400px;
    height: 150px;
-   border-right: 1px solid gray;
+   border-right: 2px solid lightgray;
 }
 .status{
    float: left;
@@ -62,6 +73,9 @@ img{
    border-radius: 10px;
    overflow: hidden;
 }
+ul.btns{
+	margin: 0px;
+}
 </style>
 <div class="myorder-container">
 	<h2 class="page-header store_look_around">나의주문 - 배송현황</h2>
@@ -69,9 +83,9 @@ img{
 	<div class="myorder-tabs">
 		<!-- 네비게이션 바Area -->
 		<ul class="nav nav-tabs">       
-		 	<li role="presentation" class="active"><a href="/HwangDangFleamarket/order/diliveryStatus.go">배송 현황</a></li>
+		 	<li role="presentation" class="active"><a href="/HwangDangFleamarket/order/diliveryStatus.go?page=1">배송 현황</a></li>
 		  	<li role="presentation"><a href="/HwangDangFleamarket/myorder/success.go">구매 확정</a></li>
-		  	<li role="presentation"><a href="/HwangDangFleamarket/myorder/cancel.go">교환/환불/취소</a></li>
+		  	<li role="presentation"><a href="/HwangDangFleamarket/order/requestStatus.go?page=1">교환/환불/취소</a></li>
 		 </ul>
 		 
 		 <ul>
@@ -99,7 +113,7 @@ img{
 		            <ul class="product_info">
 		               <li>
 		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
-		                  	[${myorderList.product.productId}] ${myorderList.product.productName}
+		                  	[${myorderList.seller.sellerStoreName}] ${myorderList.product.productId} - ${myorderList.product.productName}
 	                  	  </a>
 		               </li>
 		               <li>
@@ -109,21 +123,36 @@ img{
 		               	  ${myorderList.product.productPrice + myorderList.productOption.optionAddPrice}	원
 		               </li>
 		            </ul>
+<!-- 배송현황 조회
+	배송현황 - 입금대기중 : 0 
+	배송현황 - 결제완료    : 1
+	배송현황 - 배송준비중 : 2
+	배송현황 - 배송중       : 3
+	배송현황 - 배송완료    : 4
+ -->
 		            <div class="status">
 		               <ul class="btns">
-		                  <li>show btn</li>
+		               		<c:choose>
+		               			<c:when test="${myorderList.orderProductStatus < 3}">
+		               				<c:if test="${myorderList.orderProductStatus == 0}">입금 대기</c:if>
+		               				<c:if test="${myorderList.orderProductStatus == 1}">결제 완료</c:if>
+		               				<c:if test="${myorderList.orderProductStatus == 2}">배송 준비</c:if>
+		               				<li><input type="button" value="주문취소" class="cancelBtn"></li>
+		               			</c:when>
+		               			<c:when test="${myorderList.orderProductStatus == 3}">
+		               				배송 중
+		               			</c:when>
+		               			<c:when test="${myorderList.orderProductStatus == 4}">
+		               				<li><input type="button" value="구매확정" class="confirmBtn"></li>
+		               				<li><input type="button" value="교환신청" class="exchangeBtn"></li>
+		               				<li><input type="button" value="반품신청" class="refundBtn"></li>
+		               			</c:when>
+		               		</c:choose>
 		               </ul>
 		            </div>
 		         </li>
    			</c:forEach>
    		 </ul>
-		 
-		 <!-- 주문일자 | 주문번호 -->
-		 <!-- 상품 img, 상품 id, 상품명, 옵션, 수량, 가격 -->
-		 <!-- 배송 현황이 '배송중' 이전 일 경우 배송 현황 + 주문취소 버튼 -->
-		 <!-- 배송 중 일 경우에는................배송중만 보여줌.............. -->
-		 <!-- 배송 완료 이후에는 구매확정 (action), 교환신청, 환불신청 버튼 -->
-		 
 	</div> <!-- my order tabs -->
 	<%-- *********페이징 처리********* --%>
 	<div class="pageGroup" align="center">

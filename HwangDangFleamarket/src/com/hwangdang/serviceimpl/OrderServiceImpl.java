@@ -107,7 +107,7 @@ public class OrderServiceImpl implements OrderService
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
 		
-		//기존 옵션 재고량 ++
+		//기존 옵션 재고량 ↑
 		OrderProduct orderProduct = dao.orderProductProductOption(orderSeqNo);
 		int originalStock = orderProduct.getOrderAmount(); //더해줘야하는 수량.
 		int originalOptionId = orderProduct.getOptionId(); //기존의 옵션정보를 담고있는 옵션.
@@ -116,7 +116,7 @@ public class OrderServiceImpl implements OrderService
 		map.put("originalOptionId", originalOptionId);
 		dao.updatePlusOptionStock(map);
 		
-		//바꿀 옵션 재고량 --
+		//바꿀 옵션 재고량 ↓
 		ExchangeRequest exchange = sellerDao.selectExchangeByNo(orderSeqNo);
 		int exchangeStock = exchange.getExchangeStock(); //빼줘야하는 수량.
 		int exchangeOptionId = exchange.getOptionId(); //교환 옵션정보를 담고있는 옵션.
@@ -157,6 +157,37 @@ public class OrderServiceImpl implements OrderService
 		
 		ArrayList<OrderProduct> list = (ArrayList<OrderProduct>) dao.selectDiliveryStatus(map);
 		map.put("diliveryStatus", list);
+		return map;
+	}
+
+	@Override
+	public int deleteOrderProduct(int orderSeqNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		
+		//주문 취소한 상품의 재고량 ↑
+		OrderProduct orderProduct = dao.orderProductProductOption(orderSeqNo);
+		int originalStock = orderProduct.getOrderAmount();
+		int originalOptionId = orderProduct.getOptionId();
+		
+		map.put("originalStock", originalStock);
+		map.put("originalOptionId", originalOptionId);
+		dao.updatePlusOptionStock(map);
+		return dao.deleteOrderProduct(orderSeqNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectRequestStatus(String memberId, int page) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+		map.put("page", page);
+		map.put("memberId", memberId);
+		PagingBean pageBean = new PagingBean(dao.selectCountRequestOrderProduct(memberId), page);
+		map.put("pagingBean", pageBean);
+		
+		ArrayList<OrderProduct> list = (ArrayList<OrderProduct>) dao.selectRequestStatus(map);
+		map.put("requestStatus", list);
 		return map;
 	}
 }
