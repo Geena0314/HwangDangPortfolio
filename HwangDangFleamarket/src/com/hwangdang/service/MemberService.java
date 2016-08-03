@@ -22,6 +22,9 @@ public interface MemberService {
 	//이메일리스트
 	List<Code> selectEmailList();
 	
+	//은행리스트
+	List<Code> selectBankCode();
+	
 	//동명으로 검색한 주소 리스트.
 	List<Zipcode> selectZipcode(String dong);
 	

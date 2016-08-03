@@ -37,6 +37,8 @@
 		<result column="seller_introduction" property="sellerIntroduction"/>
 		<result column="seller_assign" property="sellerAssign"/>
 		<result column="member_id" property="memberId"/>
+		<result column="seller_bank" property="sellerBank"/>
+		<result column="seller_account" property="sellerAccount"/>
 	</resultMap>
 	
 	<resultMap type="code" id="code-basic-resultMap">
@@ -106,7 +108,7 @@
 	<!-- memberId로 Seller정보 찾기 -->
 	<select id="selectSellerById" resultMap="seller-basic-resultMap" parameterType="string">
 		select 	seller_store_no, seller_store_name, seller_tax_id, seller_industry, seller_sub_industry, seller_zipcode, seller_address, seller_sub_address,
-				 	seller_store_image, seller_product1, seller_product2, seller_product3, seller_introduction, seller_assign, member_id
+				 	seller_store_image, seller_product1, seller_product2, seller_product3, seller_introduction, seller_assign, member_id, seller_bank, seller_account
 	 	from		seller
 	 	where		member_id=#{memberId}
 	</select>
@@ -169,4 +171,9 @@
 		SET			member_mileage = member_mileage+#{memberMileage}
 		WHERE		member_id = #{memberId}
 	</update>
+	
+	<!-- 은행명 조회 -->
+	<select id="selectBankCode" resultMap="code-basic-resultMap">
+		select code_name from code where code = 'bank' 
+	</select>
 </mapper>

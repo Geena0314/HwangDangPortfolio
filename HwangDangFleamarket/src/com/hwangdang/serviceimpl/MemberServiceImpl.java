@@ -24,8 +24,6 @@ public class MemberServiceImpl implements MemberService{
 	
 	public MemberServiceImpl(){}
 	
-	
-	
 	@Override
 	public Member findById(String memberId) {
 		// TODO Auto-generated method stub
@@ -58,6 +56,14 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return dao.selectEmailList();
 	}
+	
+	@Override
+	public List<Code> selectBankCode()
+	{
+		// TODO Auto-generated method stub
+		return dao.selectBankCode();
+	}
+
 	@Override
 	public List<Zipcode> selectZipcode(String dong)
 	{

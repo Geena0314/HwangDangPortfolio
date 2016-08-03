@@ -46,7 +46,7 @@ public interface ProductService
 	int insertQnAReply(int sellerStoreNo, String storeReplyContent, int storeQnANo);
 	
 	//first 카테고리(업종) 조회
-	List<Category> selectFirstCategory();
+	HashMap<String, Object> selectFirstCategory();
 	
 	//second 카테고리조회.
 	List<Category> selectSecondCategory(String categoryIdRef);

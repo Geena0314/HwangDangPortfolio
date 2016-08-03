@@ -171,6 +171,18 @@
 			}
 		});
 		
+		$("#sellerBank").on("change", function()
+		{
+			//은행정보 선택
+			var idx = this.selectedIndex;
+			if(idx == 0)
+			{
+				$("#sellerAccount").val("").hide();
+				return false;
+			}
+			$("#sellerAccount").val("").show();
+		});
+		
 		$("#submits").on("click", function()
 		{
 			$("#sellerMainImageError").empty().hide();
@@ -259,6 +271,22 @@
 				return false;
 			}
 			
+			//은행명 미선택시
+			if($("#sellerBank").val() == "은행명")
+			{
+				alert("은행을 선택해 주세요.");
+				$("#sellerBank").focus();
+				return false;
+			}
+			
+			//계좌번호 미입력시
+			if($("#sellerAccount").val() == "" || $("#sellerAccount").val().trim().length < 12 || $("#sellerAccount").val().trim().length > 20)
+			{
+				alert("계좌번호를 입력해 주세요.");
+				$("#sellerAccount").val("").focus();
+				return false;
+			}
+			
 			//소개 미입력.
 			$("#sellerIntroductionError").empty().hide();
 			if(!$("#sellerIntroduction").val())
@@ -274,6 +302,18 @@
 			alert(status+", "+xhr.readyState+" "+err);
 		};
 	});
+	//정규식(숫자만 입력)
+	function sellerAccountCheck(obj)
+	{
+		 //좌우 방향키, 백스페이스, 딜리트, 탭키에 대한 예외
+        if(event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39
+        || event.keyCode == 46 ) return;
+        if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
+	        return true;
+	    } else {
+	        event.returnValue = false;
+	    }
+	}
 </script>
 <style type="text/css">
 	.registerError
@@ -378,6 +418,19 @@
 			</tr>
 			<tr>
 				<td colspan="2" id="addressError" class="error-message"></td>
+			</tr>
+			<tr class="trInput">
+				<th class='tdName'>계좌 정보</th>
+				<td colspan="2">
+					<select name="sellerBank" id="sellerBank">
+						<option>은행명</option>
+						<lee:forEach items="${ requestScope.bank }" var="first">
+							<option>${ first.codeName }</option>
+						</lee:forEach>
+					</select>
+					<input type="text" id="sellerAccount" name="sellerAccount" onkeydown="sellerAccountCheck(this);" 
+							maxlength="20" placeholder="계좌번호입력" style="display:none;">
+				</td>
 			</tr>
 			<tr class="trInput">
 				<th rowspan="2" class='tdName'>사진 등록</th>

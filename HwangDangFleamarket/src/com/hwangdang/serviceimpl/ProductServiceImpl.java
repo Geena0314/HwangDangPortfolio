@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.PagingBean;
+import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.ProductDao;
 import com.hwangdang.dao.ProductDetailImageDao;
 import com.hwangdang.dao.ProductOptionDao;
@@ -31,6 +32,9 @@ public class ProductServiceImpl implements ProductService
 	
 	@Autowired
 	private ProductDetailImageDao detailImageDao;
+	
+	@Autowired
+	private MemberDao memberDao;
 	
 	public ProductServiceImpl()
 	{
@@ -212,10 +216,13 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
-	public List<Category> selectFirstCategory()
+	public HashMap<String, Object> selectFirstCategory()
 	{
 		// TODO Auto-generated method stub
-		return dao.selectFirstCategory();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("bank", memberDao.selectBankCode());
+		map.put("firstCategory", dao.selectFirstCategory());
+		return map;
 	}
 
 	@Override
