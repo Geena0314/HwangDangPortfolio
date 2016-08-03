@@ -162,7 +162,7 @@ CREATE TABLE cart (
 
 /* 주문 */
 CREATE TABLE orders (
-	orders_no VARCHAR2(10) PRIMARY KEY, /* 주문번호 */
+	orders_no NUMBER(17) PRIMARY KEY, /* 주문번호 */
 	orders_receiver VARCHAR2(18) NOT NULL, /* 받는사람 */
 	orders_phone CHAR(13) NOT NULL, /* 전화번호 */
 	orders_zipcode VARCHAR2(7) NOT NULL, /* 우편번호 */
@@ -255,7 +255,7 @@ CREATE TABLE store_QnA_reply (
 CREATE TABLE order_product (
 	order_seq_no NUMBER PRIMARY KEY, /* 주문상품번호 */
 	order_amount NUMBER(4) NOT NULL, /* 주문상품수량 */
-	orders_no VARCHAR2(10) NOT NULL, /* 주문번호 */
+	orders_no NUMBER(17) NOT NULL, /* 주문번호 */
 	product_id VARCHAR2(30) NOT NULL, /* 상품ID */
 	option_id NUMBER NOT NULL, /* 상품옵션ID */
 	seller_store_no NUMBER NOT NULL, /* 스토어넘버 */
@@ -324,6 +324,10 @@ ALTER TABLE notice MODIFY (notice_title VARCHAR2(300));
 ALTER TABLE admin_QnA MODIFY (admin_qna_title VARCHAR2(300));
 ALTER TABLE product MODIFY (product_name VARCHAR2(300));
 
+/*판매자 테이블 계좌정보 추가*/
+ALTER TABLE seller ADD seller_bank VARCHAR2(27);
+ALTER TABLE seller ADD seller_account VARCHAR2(20);
+
 /*시퀀스*/
 drop sequence seller_store_no_seq
 create sequence seller_store_no_seq nocache;
@@ -359,3 +363,19 @@ drop sequence seller_notice_no_seq
 create sequence seller_notice_no_seq nocache;
 
 select order_seq_no_seq.nextval from dual
+
+/*코드 테이블에 은행명 등록*/
+insert into code values ('bank', 'KB국민은행');
+insert into code values ('bank', '우리은행');
+insert into code values ('bank', '신한은행');
+insert into code values ('bank', 'KEB하나은행');
+insert into code values ('bank', '스탠다드차타드은행');
+insert into code values ('bank', '한국씨티은행');
+insert into code values ('bank', '대구은행');
+insert into code values ('bank', '부산은행');
+insert into code values ('bank', '전북은행');
+insert into code values ('bank', '농협');
+insert into code values ('bank', '우체국');
+insert into code values ('bank', '기업은행');
+insert into code values ('bank', '신협');
+insert into code values ('bank', '새마을금고');

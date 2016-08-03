@@ -80,7 +80,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/loginResult.go") //로그인 후 화면
-	public ModelAndView loginResult(String memberId, String domain, String memberPassword, HttpSession session, HttpServletRequest request)
+	public ModelAndView loginResult(String memberId, String domain, String memberPassword, String location, HttpSession session, HttpServletRequest request)
 	{
 		String memberIds = memberId + "@" + domain;
 		Member member = service.findById(memberIds);
@@ -102,9 +102,13 @@ public class MemberController {
 					}
 				}
 				session.setAttribute("login_info", member);
+				/*if(location.equals("mypage"))
+					request.setAttribute("location", "../member/passwordConfirm.go");
+				else if(location.equals("order"))
+					request.setAttribute("location", "../order/diliveryStatus.go?page=1");
+				else if(location.equals("cart"))
+					request.setAttribute("location", "../cart/cartList.go?memberId="+memberId);*/
 				return new ModelAndView("member/login_success.tiles");
-				
-				
 			}else{//패스워드가 틀린 경우
 				request.setAttribute("loginId", memberId);
 				request.setAttribute("domain", domain);
@@ -180,6 +184,7 @@ public class MemberController {
 	public String memberInfoUpdatePageMove(String memberPassword, HttpSession session , Model model)
 	{	
 		model.addAttribute("emailList", service.selectEmailList());
+		model.addAttribute("bank", service.selectBankCode());
 		return "member/member_info_update.tiles";
 	}
 	//비밀번호  수정 : 예전 비밀번호 검증
@@ -201,8 +206,8 @@ public class MemberController {
 	@RequestMapping("/sellerRegister")
 	public ModelAndView sellerRegister()
 	{
-		//여기서 업종카테고리 가지고가기.
-		return new ModelAndView("member/seller_register.tiles", "firstCategory", productService.selectFirstCategory());
+		//여기서 업종카테고리 가지고가기. + 은행코드
+		return new ModelAndView("member/seller_register.tiles", productService.selectFirstCategory());
 	}
 	
 	@RequestMapping("/sellerStoreNameCheck")
@@ -312,7 +317,8 @@ public class MemberController {
 			@RequestParam(value="memberAddress",required=false) String memberAddress ,  Model model ,
 			@RequestParam(value="memberSubAddress",required=false) String memberSubAddress ,HttpSession session, HttpServletRequest request,
 			@RequestParam(value="sellerStoreImage",required=false) MultipartFile storeMainImage,
-			String sellerStoreName, String sellerTaxId, String sellerZipcode, String sellerAddress, String sellerSubAddress, String sellerProduct1, String sellerProduct2, String sellerProduct3, String sellerIntroduction
+			String sellerStoreName, String sellerTaxId, String sellerZipcode, String sellerAddress, String sellerSubAddress, 
+			String sellerProduct1, String sellerProduct2, String sellerProduct3, String sellerIntroduction, String sellerBank, String sellerAccount
 			){
 		String url = "/";
 		String memberPhone = hp1+"-"+hp2+"-"+hp3;
@@ -368,7 +374,7 @@ public class MemberController {
 		{
 			sellerIntroduction = seller.getSellerIntroduction();
 		}
-		newSeller = new Seller(seller.getSellerStoreNo(), sellerStoreName, sellerTaxId, seller.getSellerIndustry(), seller.getSellerSubIndustry(), sellerZipcode, sellerAddress, sellerSubAddress, "", sellerProduct1, sellerProduct2, sellerProduct3, sellerIntroduction, seller.getSellerAssign(), seller.getMemberId());
+		newSeller = new Seller(seller.getSellerStoreNo(), sellerStoreName, sellerTaxId, seller.getSellerIndustry(), seller.getSellerSubIndustry(), sellerZipcode, sellerAddress, sellerSubAddress, "", sellerProduct1, sellerProduct2, sellerProduct3, sellerIntroduction, seller.getSellerAssign(), seller.getMemberId(), sellerBank, sellerAccount);
 		if(storeMainImage.getOriginalFilename().equals(""))
 		{
 			sellerStoreImage = seller.getSellerStoreImage();

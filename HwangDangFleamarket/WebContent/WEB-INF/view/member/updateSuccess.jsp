@@ -87,9 +87,16 @@
 			
 			<!-- 주소  -->
 			<tr class="trInput">
-				<td width='150' class='tdName'>주&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소</td>
+				<td width='150' class='tdName'>스토어 주소</td>
 				<td>
 					 ${sessionScope.seller.sellerZipcode} ${sessionScope.seller.sellerAddress  } ${sessionScope.seller.sellerSubAddress }
+				</td>
+			</tr>
+			
+			<tr class="trInput">
+				<td width='150' class='tdName'>계좌 정보</td>
+				<td>
+					 ${sessionScope.seller.sellerBank}&nbsp;&nbsp;&nbsp;${sessionScope.seller.sellerAccount }
 				</td>
 			</tr>
 			

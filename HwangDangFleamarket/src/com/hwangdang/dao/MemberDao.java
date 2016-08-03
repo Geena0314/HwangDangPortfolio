@@ -70,4 +70,7 @@ public interface MemberDao {
 	
 	//멤버마일리지 변경
 	int updateMileage(HashMap<String, Object> map);
+	
+	//은행명 조회
+	List<Code> selectBankCode();
 }

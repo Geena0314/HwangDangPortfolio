@@ -8,7 +8,7 @@
 		<li id="list_block">
 			<div class="thmb">
 				<div class="store_imgs">
-					<a href="#" onClick="window.open('/HwangDangFleamarket/admin/sellerRegisterInfo.go?sellerStoreNo=${list.sellerStoreNo}&page=${ requestScope.bean.page }', '판매자 등록 신청 내용', 'scrollbars=yes width=545 height=744 left=450 top=100');"><img src="../image_storage/${list.sellerStoreImage}"></a>
+					<a href="#" onClick="window.open('/HwangDangFleamarket/admin/sellerRegisterInfo.go?sellerStoreNo=${list.sellerStoreNo}&page=${ requestScope.bean.page }', '판매자 등록 신청 내용', 'scrollbars=yes width=545 height=800 left=450 top=100');"><img src="../image_storage/${list.sellerStoreImage}"></a>
 				</div>
 			</div>
 			<ul class="store_info">

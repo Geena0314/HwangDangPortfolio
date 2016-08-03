@@ -76,6 +76,8 @@
 		<result column="seller_introduction" property="sellerIntroduction"/>
 		<result column="seller_assign" property="sellerAssign"/>
 		<result column="member_id" property="memberId"/>
+		<result column="seller_bank" property="sellerBank"/>
+		<result column="seller_account" property="sellerAccount"/>
 	</resultMap>
 
 	<!-- 재고량 조회 -->

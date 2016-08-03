@@ -135,4 +135,11 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return session.update("memberMapper.updateMileage", map);
 	}
+
+	@Override
+	public List<Code> selectBankCode()
+	{
+		// TODO Auto-generated method stub
+		return session.selectList("memberMapper.selectBankCode");
+	}
 }
