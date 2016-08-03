@@ -33,4 +33,10 @@ public interface OrderService
 	
 	//배송 현황 조회
 	HashMap<String, Object> selectDiliveryStatus(String memberId, int page);
+	
+	//주문 취소
+	int deleteOrderProduct(int orderSeqNo);
+	
+	//교환,환불,취소 현황 조회
+	HashMap<String, Object> selectRequestStatus(String memberId, int page);
 }

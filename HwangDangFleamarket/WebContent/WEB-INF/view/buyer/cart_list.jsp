@@ -226,7 +226,7 @@ $( document ).ready( function(){
     	$.ajax({
     		"url":"/HwangDangFleamarket/cart/removeCart.go",
     		"type":"POST",
-    		"data":{"memberId=":"${sessionScope.login_info.memberId}",
+    		"data":{"memberId":"${sessionScope.login_info.memberId}",
     				"checkBasket":getRemoveCartList},
     		"dataType":"json",
     		"beforeSend":function(){

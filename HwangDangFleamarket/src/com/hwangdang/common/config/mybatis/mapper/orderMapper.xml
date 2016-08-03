@@ -27,7 +27,7 @@
 		orders_no, payment_status, orders_date,
 		order_seq_no, order_amount, order_product_status, 
 		product_id, product_name, product_price, product_main_image,
-		seller_store_no, seller_store_image,
+		seller_store_no, seller_store_name, seller_store_image,
 		option_sub_name, option_add_price
 	</sql>
 	
@@ -149,7 +149,7 @@
 		where		order_seq_no = #{orderSeqNo}
 	</select>
 	
-	<!-- 반품된 수량만큼 옵션의 재고량 증가. -->
+	<!-- 취소/반품된 수량만큼 옵션의 재고량 증가. -->
 	<update id="updateOptionStock" parameterType="map">
 		update 	product_option
 		set			option_stock = option_stock+#{ORDER_AMOUNT}
@@ -263,11 +263,11 @@
 		select		<include refid="orders-join-column"/> from(
 			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
 				select 		o.orders_no, o.payment_status, o.orders_date,
-								op.order_seq_no, op.order_amount, op.order_product_status, 
-								p.product_Id, p.product_name, p.product_price, p.product_main_image,
-								s.seller_store_no, s.seller_store_image,
-								po.option_sub_name, po.option_add_price
-				from 			orders o, order_product op, product p, seller s, product_option po
+							op.order_seq_no, op.order_amount, op.order_product_status, 
+							p.product_Id, p.product_name, p.product_price, p.product_main_image,
+							s.seller_store_no, s.seller_store_name, s.seller_store_image,
+							po.option_sub_name, po.option_add_price
+				from 		orders o, order_product op, product p, seller s, product_option po
 				where 		o.orders_no = op.orders_no
 				and	 		op.product_id = p.product_id
 				and			op.option_id = po.option_id
@@ -281,8 +281,43 @@
 	<!-- 주문 총 갯수 조회 -->
 	<select id="selectCountOrderProduct" resultType="_int" parameterType="string">
 		select  count(op.order_seq_no) from orders o, order_product op 
-		where  o.orders_no = op.orders_no
-		and 	  o.member_id = #{value}
+		where  	o.orders_no = op.orders_no
+		and 	o.member_id = #{value}
 	</select>
+	
+	<!-- 구매 취소(주문 상품 삭제) -->
+	<delete id="deleteOrderProduct" parameterType="_int">
+		delete from order_product where order_seq_no = #{value}
+	</delete>
+
+	<!-- 교환/환불/취소 현황 조회 -->
+	<select id="selectRequestStatus" resultMap="dilivery-resultMap" parameterType="map">
+		select		<include refid="orders-join-column"/> from(
+			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
+				select 		o.orders_no, o.payment_status, o.orders_date,
+							op.order_seq_no, op.order_amount, op.order_product_status, 
+							p.product_Id, p.product_name, p.product_price, p.product_main_image,
+							s.seller_store_no, s.seller_store_name, s.seller_store_image,
+							po.option_sub_name, po.option_add_price
+				from 		orders o, order_product op, product p, seller s, product_option po
+				where 		o.orders_no = op.orders_no
+				and	 		op.product_id = p.product_id
+				and			op.option_id = po.option_id
+				and			op.seller_store_no = s.seller_store_no 
+				and			op.order_product_status IN (5,6,7,8,9,11) 
+				and			o.member_id = #{memberId}
+				order by	o.orders_date desc))
+		where page = #{page}
+	</select>
+	
+	<!-- 교환/환불/취소 상품 총 갯수 조회 -->
+	<select id="selectCountRequestOrderProduct" resultType="_int" parameterType="string">
+		select  count(op.order_seq_no) from orders o, order_product op 
+		where  	o.orders_no = op.orders_no
+		and		op.order_product_status IN (5,6,7,8,9,11)
+		and 	o.member_id = #{value}
+	</select>
+	
+	
 	
 </mapper>
