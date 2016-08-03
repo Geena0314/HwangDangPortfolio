@@ -102,12 +102,12 @@ public class MemberController {
 					}
 				}
 				session.setAttribute("login_info", member);
-				/*if(location.equals("mypage"))
-					request.setAttribute("location", "../member/passwordConfirm.go");
+				if(location.equals("mypage"))
+					request.setAttribute("location", "/HwangDangFleamarket/member/passwordConfirm.go");
 				else if(location.equals("order"))
-					request.setAttribute("location", "../order/diliveryStatus.go?page=1");
+					request.setAttribute("location", "/HwangDangFleamarket/order/diliveryStatus.go?page=1");
 				else if(location.equals("cart"))
-					request.setAttribute("location", "../cart/cartList.go?memberId="+memberId);*/
+					request.setAttribute("location", "/HwangDangFleamarket/cart/cartList.go?memberId="+memberId);
 				return new ModelAndView("member/login_success.tiles");
 			}else{//패스워드가 틀린 경우
 				request.setAttribute("loginId", memberId);
