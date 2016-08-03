@@ -1,17 +1,6 @@
 <%@page contentType="text/html;charset=utf-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt"  %>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".cancelBtn").onclick(function(){
-		if(!confirm("해당 상품의 주문을 취소하시겠습니까?")){
-			return false;
-		}else{
-			location.href='/HwangDangFleamarket/order/requestStatus.go?page=1'
-		}
-	});
-});
-</script>
 <style type="text/css">
 div.myorder-tabs{
    float: left;
@@ -77,31 +66,60 @@ ul.btns{
 	margin: 0px;
 }
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".requestStatusTab").onclick(function(){
+		$.ajax({
+			"url":"/HwangDangFleamarket/order/requestStatus.go",
+			"type":"POST",
+			"data":"page=1",
+			"dataType":"json",
+			"beforeSend":function(){
+				
+			},
+			"success":function(){
+				
+			},
+			"error":error
+		});
+	});
+	$(".cancelBtn").onclick(function(){
+		if(!confirm("해당 상품의 주문을 취소하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/HwangDangFleamarket/order/requestStatus.go?page=1'
+		}
+	});
+});
+function error(xhr, status, err)
+{
+	alert(status+", "+xhr.readyState+" "+err);
+}
+</script>
 <div class="myorder-container">
 	<h2 class="page-header store_look_around">나의주문 - 배송현황</h2>
-	
 	<div class="myorder-tabs">
 		<!-- 네비게이션 바Area -->
 		<ul class="nav nav-tabs">       
 		 	<li role="presentation" class="active"><a href="/HwangDangFleamarket/order/diliveryStatus.go?page=1">배송 현황</a></li>
-		  	<li role="presentation"><a href="/HwangDangFleamarket/myorder/success.go">구매 확정</a></li>
-		  	<li role="presentation"><a href="/HwangDangFleamarket/order/requestStatus.go?page=1">교환/환불/취소</a></li>
+		  	<li role="presentation"><a href="/HwangDangFleamarket/order/purchaseConfirm.go?page=1">구매 확정</a></li>
+		  	<li role="presentation"><a class="requestStatusTab">교환/환불/취소</a></li>
 		 </ul>
 		 
 		 <ul>
       		<c:forEach items="${requestScope.diliveryStatus}" var="myorderList" varStatus="no">
-      				<c:choose>
-      					<c:when test="${no.index == 0}">
-      						<p>
-	      						<b>주문일자  <fmt:formatDate value="${myorderList.orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.orders.ordersNo}</b>
-      						</p>
-      					</c:when>
-      					<c:when test="${myorderList.ordersNo != requestScope.diliveryStatus[no.index-1].ordersNo}">
-      						<p>
-	      						<b>주문일자  <fmt:formatDate value="${myorderList.orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.orders.ordersNo}</b>
-      						</p>
-      					</c:when>
-      				</c:choose>
+				<c:choose>
+					<c:when test="${no.index == 0}">
+						<p>
+							<b>주문일자  <fmt:formatDate value="${myorderList.orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.orders.ordersNo}</b>
+  						</p>
+  					</c:when>
+  					<c:when test="${myorderList.ordersNo != requestScope.diliveryStatus[no.index-1].ordersNo}">
+  						<p>
+   							<b>주문일자  <fmt:formatDate value="${myorderList.orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${myorderList.orders.ordersNo}</b>
+  						</p>
+  					</c:when>
+  				</c:choose>
 	      		<li id="list_block">
 	      			<div class="thmb">
 		               <div class="product_img">
@@ -120,7 +138,7 @@ ul.btns{
 		                  ${myorderList.productOption.optionSubName} ${myorderList.orderAmount}개
 		               </li>
 		               <li>
-		               	  ${myorderList.product.productPrice + myorderList.productOption.optionAddPrice}	원
+		               	  ${myorderList.product.productPrice + myorderList.productOption.optionAddPrice}원
 		               </li>
 		            </ul>
 <!-- 배송현황 조회
