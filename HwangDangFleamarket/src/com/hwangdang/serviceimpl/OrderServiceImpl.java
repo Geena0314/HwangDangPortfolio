@@ -190,4 +190,19 @@ public class OrderServiceImpl implements OrderService
 		map.put("requestStatus", list);
 		return map;
 	}
+
+	@Override
+	public HashMap<String, Object> selectPurchaseConfirm(String memberId, int page) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+		map.put("page", page);
+		map.put("memberId", memberId);
+		PagingBean pageBean = new PagingBean(dao.selectCountPurchaseConfirm(memberId), page);
+		map.put("pagingBean", pageBean);
+		
+		ArrayList<OrderProduct> list = (ArrayList<OrderProduct>) dao.selectPurchaseConfirm(map);
+		map.put("purchaseConfirm", list);
+		return map;
+	}
 }

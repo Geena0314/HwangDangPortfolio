@@ -150,12 +150,6 @@ public class OrderDaoImpl implements OrderDao
 	}
 
 	@Override
-	public int deleteOrderProduct(int orderSeqNo) {
-		// TODO Auto-generated method stub
-		return session.delete("orderMapper.deleteOrderProduct", orderSeqNo);
-	}
-
-	@Override
 	public List<OrderProduct> selectRequestStatus(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return session.selectList("orderMapper.selectRequestStatus", map);
@@ -165,5 +159,23 @@ public class OrderDaoImpl implements OrderDao
 	public int selectCountRequestOrderProduct(String memberId) {
 		// TODO Auto-generated method stub
 		return session.selectOne("orderMapper.selectCountRequestOrderProduct", memberId);
+	}
+
+	@Override
+	public List<OrderProduct> selectPurchaseConfirm(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("orderMapper.selectPurchaseConfirm", map);
+	}
+
+	@Override
+	public int selectCountPurchaseConfirm(String memberId) {
+		// TODO Auto-generated method stub
+		return session.selectOne("orderMapper.selectCountPurchaseConfirm", memberId);
+	}
+
+	@Override
+	public int deleteOrderProduct(int orderSeqNo) {
+		// TODO Auto-generated method stub
+		return session.delete("orderMapper.deleteOrderProduct", orderSeqNo);
 	}
 }
