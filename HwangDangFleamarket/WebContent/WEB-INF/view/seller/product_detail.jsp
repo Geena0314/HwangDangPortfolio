@@ -865,10 +865,8 @@ $(document).ready(function(){
 		var optionAddPrice = optionAddPriceText.substring(0, optionAddPriceText.indexOf("원"));
 		var totalPrice = (parseInt(productPrice) + parseInt(optionAddPrice)) * orderAmount;
 		
-		$("form").prop("action", 
-				"/HwangDangFleamarket/buy/buyForm.go?productId=${param.productId }&sellerStoreNo=${param.sellerStoreNo}" 
-				+ "&sellerStoreImage=${param.sellerStoreImage}&amount="+amount
-				+"&memberId=${sessionScope.login_info.memberId}&option="+option );
+		$("form").prop("action", "/HwangDangFleamarket/buy/buyForm.go?product="+productId+"&optionId="+optionId
+				+"&orderAmount="+orderAmount+"&productPrice="+productPrice+"&optionAddPrice="+optionAddPrice+"&totalPrice="+totalPrice);
 	 	$("form").submit();
 	});
 	
