@@ -74,8 +74,13 @@
 						<td colspan="2">${ requestScope.seller.sellerSubAddress }</td>
 					</tr>
 					<tr class="trInput">
+						<th class='tdName'>계좌 정보</th>
+						<td>${ requestScope.seller.sellerBank }</td>
+						<td>${ requestScope.seller.sellerAccount }</td>
+					</tr>
+					<tr class="trInput">
 						<th class='tdName'>판매 물품</th>
-						<td colspan="2">${ requestScope.seller.sellerProduct1 }${ requestScope.seller.sellerProduct2 }${ requestScope.seller.sellerProduct3 }</td>
+						<td colspan="2">${ requestScope.seller.sellerProduct1 }&nbsp;&nbsp;${ requestScope.seller.sellerProduct2 }&nbsp;&nbsp;${ requestScope.seller.sellerProduct3 }</td>
 					</tr>
 					<tr class="trInput">
 						<th class='tdName'>스토어 소개글</th>

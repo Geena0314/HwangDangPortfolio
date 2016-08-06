@@ -32,5 +32,14 @@ public interface OrderService
 	int updateMileage(int orderSeqNo, int mileage);
 	
 	//배송 현황 조회
-	HashMap<String, Object> selectDiliveryStatus(String memberId);
+	HashMap<String, Object> selectDiliveryStatus(String memberId, int page);
+	
+	//교환,환불,취소 현황 조회
+	HashMap<String, Object> selectRequestStatus(String memberId, int page);
+	
+	//구매확정 상품 조회
+	HashMap<String, Object> selectPurchaseConfirm(String memberId, int page);
+	
+	//주문 취소
+	int deleteOrderProduct(int orderSeqNo);
 }

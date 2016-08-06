@@ -5,7 +5,7 @@
 		seller_store_no, seller_store_name, seller_tax_id, seller_industry, 
 		seller_sub_industry, seller_zipcode, seller_address, seller_sub_address, 
 		seller_store_image, seller_product1, seller_product2, seller_product3, 
-		seller_introduction, seller_assign, member_id
+		seller_introduction, seller_assign, member_id, seller_bank, seller_account
 	</sql>
 	
 	<sql id="select-basic">
@@ -28,6 +28,8 @@
 		<result column="seller_introduction" property="sellerIntroduction"/>
 		<result column="seller_assign" property="sellerAssign"/>
 		<result column="member_id" property="memberId"/>
+		<result column="seller_bank" property="sellerBank"/>
+		<result column="seller_account" property="sellerAccount"/>
 	</resultMap>
 	
 	<!-- seller member 조인. -->
@@ -57,6 +59,16 @@
 				) where page = #{page}
 	</select>
 	
+	<!-- 판매물품으로 판매자 수 조회 -->
+	<select id="selectCountSellerByProduct" resultType="_int">
+		select 	count(seller_store_no) 
+		from 		seller 
+		where 	seller_assign = 1 
+		and 		seller_product1 like '%'||#{keyword}||'%'
+		or			seller_product2 like '%'||#{keyword}||'%'
+		or			seller_product3 like '%'||#{keyword}||'%'
+	</select>
+	
 	<!-- 판매자 스토어 번호로 판매자 조회 -->
 	<select id="selectCountSeller" resultType="_int">
 		select count(seller_store_no) from seller where seller_assign = 1
@@ -78,7 +90,7 @@
 		</selectKey>
 		insert into seller values(#{sellerStoreNo}, #{sellerStoreName}, #{sellerTaxId}, #{sellerIndustry}, #{sellerSubIndustry}, #{sellerZipcode}
 		, #{sellerAddress}, #{sellerSubAddress}, #{sellerStoreImage}, #{sellerProduct1}, #{sellerProduct2}, #{sellerProduct3}
-		, #{sellerIntroduction}, 0, #{memberId})
+		, #{sellerIntroduction}, 0, #{memberId}, #{sellerBank}, #{sellerAccount})
 	</insert>
 	
 	<!-- 셀러 신청 현황 조회(seller_assign이 0인경우.)(+페이징) -->
@@ -99,7 +111,7 @@
 		select 	s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, 
 					s.seller_sub_industry, s.seller_zipcode, s.seller_address, s.seller_sub_address, 
 					s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, 
-					s.seller_introduction, s.seller_assign, s.member_id, 
+					s.seller_introduction, s.seller_assign, s.member_id, s.seller_bank, s.seller_account,
 					m.member_id, m.member_password, m.member_name, 
 					m.member_phone, m.member_zipcode, m.member_address, 
 					m.member_sub_address, m.member_assign
@@ -121,10 +133,10 @@
 	<!-- 셀러정보 수정 -->
 	<update id="updateSellerInfo" parameterType="Seller">
 		update 	seller
-		set			seller_store_name = #{sellerStoreName}, seller_tax_id = #{sellerTaxId}, seller_zipcode = #{sellerZipcode},
-				 	seller_address = #{sellerAddress}, seller_sub_address = #{sellerSubAddress},	seller_store_image = #{sellerStoreImage}, 
-				 	seller_product1 = #{sellerProduct1}, seller_product2 = #{sellerProduct2}, seller_product3 = #{sellerProduct3}, 
-					seller_introduction = #{sellerIntroduction}
-		where		seller_store_no = #{sellerStoreNo}
+		set		seller_store_name = #{sellerStoreName}, seller_tax_id = #{sellerTaxId}, seller_zipcode = #{sellerZipcode},
+			 	seller_address = #{sellerAddress}, seller_sub_address = #{sellerSubAddress},	seller_store_image = #{sellerStoreImage}, 
+			 	seller_product1 = #{sellerProduct1}, seller_product2 = #{sellerProduct2}, seller_product3 = #{sellerProduct3}, 
+				seller_introduction = #{sellerIntroduction}, seller_Bank = #{sellerBank}, seller_Account = #{sellerAccount}
+		where	seller_store_no = #{sellerStoreNo}
 	</update>
 </mapper>

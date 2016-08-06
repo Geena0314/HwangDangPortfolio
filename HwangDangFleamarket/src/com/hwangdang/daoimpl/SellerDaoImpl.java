@@ -137,4 +137,11 @@ public class SellerDaoImpl implements SellerDao{
 		// TODO Auto-generated method stub
 		return session.selectList("sellerMapper.selectSearchSeller", map);
 	}
+
+	@Override
+	public int selectCountSellerByProduct(String keyword)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("sellerMapper.selectCountSellerByProduct", keyword);
+	}
 }

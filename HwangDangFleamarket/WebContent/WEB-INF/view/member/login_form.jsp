@@ -68,7 +68,7 @@
 				$("form").submit();
 			} else {
 				//일반로그인페이지로이동
-				$("form").prop("action","/HwangDangFleamarket/member/loginResult.go");
+				$("form").prop("action","/HwangDangFleamarket/member/loginResult.go?location="+'${param.location}');
 				$("form").submit(); 
 			}
 		}); //btn

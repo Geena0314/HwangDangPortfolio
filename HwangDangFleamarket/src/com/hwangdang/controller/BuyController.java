@@ -53,7 +53,7 @@ public class BuyController {
 	@Autowired
 	private ProductService productService;
 	
-	//구매전 재고수량 확인 로직 - ajax 
+	/*//구매전 재고수량 확인 로직 - ajax 
 	@ResponseBody
 	@RequestMapping("/checkStock.go")
 	public String checkStock( String productId , int amount , String optionSubName){
@@ -76,12 +76,12 @@ public class BuyController {
 			msg="재고수량가능";
 		}
 		return msg;
-	}  
+	}  */
 	
 	/**
 	 * 바로구매 :1개  상품결제 페이지 이동 
 	 *   (비로그인상태이면 로그인페이지로 거쳐서 로그인후 구매페이지로 이동  )
-	 */
+	 *//*
 	@RequestMapping("/moveBuyPage.go") 
 	public String moveBuyPage(@RequestParam(value="page" ,defaultValue="1") int page  , 
 			@RequestParam(value="productId" ,required=false) String productId   ,
@@ -118,11 +118,11 @@ public class BuyController {
 		
 		}
 		return url;
-	}  
+	}  */
 	
 	/**
 	 * 장바구니 구매  N개 : 상품결제 페이지로 이동 
-	 */
+	 *//*
 	@RequestMapping("/buyCarts.go")
 	public String buyCarts(String cartNoList , Model model , HttpSession session ){
 		
@@ -142,8 +142,7 @@ public class BuyController {
 				Product product = service.getProductInfo(cart.getProductId());
 				ProductOption productOption = service.getProductOptionInfoByoptionNo(cart.getOptionId());
 				Seller seller = service.getSellerByNo(product.getSellerStoreNo());
-				int orderSeqNo = service.getOrderProductSeq();
-				OrderProduct orderProduct = new OrderProduct(orderSeqNo ,cart.getCartProductAmount(), ordersNo, cart.getProductId(), cart.getOptionId(),product.getSellerStoreNo() , 0 , product, productOption, seller);
+				OrderProduct orderProduct = new OrderProduct(0 ,cart.getCartProductAmount(), ordersNo, cart.getProductId(), cart.getOptionId(),product.getSellerStoreNo() , 0 , product, productOption, seller);
 				orderProductList.add(orderProduct);
 			}else{
 				System.out.println("127라인 널! : cart 객체");
@@ -158,11 +157,11 @@ public class BuyController {
 		
 		String url ="buyer/buyForm.tiles";	
 		return url;
-	}  
+	}  */
 	
 	/**
 	 * 	상품구매 로직  1개 : 실제구매로직
-	 */
+	 *//*
 	@RequestMapping("/buyProductOne.go")
 	public String buyProductOne(@RequestParam(value="ordersNo" ,required=false) String ordersNo ,    
 			String ordersReceiver , String ordersPhone, String ordersZipcode , Model model ,
@@ -202,12 +201,12 @@ public class BuyController {
 			session.setAttribute("quota" ,quota);
 		}
 		
-		/*
+		
 		if(ordersNo == null){
 			//1.주문번호 생성
 			long randomNumber = (int) (Math.random() * 999999999) + 1;
 			ordersNo = "" + randomNumber;
-		}*/
+		}
 		
 		//System.out.println("사용한 마일리지 : int :" + usedMileage);
 		//2.마일리지 사용했다면 변경하는 로직 
@@ -227,19 +226,17 @@ public class BuyController {
 		
 		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
 		OrderProduct op = new OrderProduct(orderAmount, ordersNo, productId, optionId, sellerStoreNo, orderProductStatus );
-		System.out.println(op);
 		Product product = service.getProductInfo(productId);
-		System.out.println(op);
 		Seller seller = service.getSellerByNo(sellerStoreNo);
 		ProductOption po = service.getProductOptionInfoByoptionNo(optionId);
-		op.setProduct(product);
-		op.setSeller(seller);
-		op.setProductOption(po);
+		//op.setProduct(product);
+		//op.setSeller(seller);
+		//op.setProductOption(po);
 		ArrayList<OrderProduct> orderProductList = new ArrayList<>();
 		orderProductList.add(op);
 		orders.setOrderProductList(orderProductList);
 		
-		/* 뒤로가기이슈 해결 
+		 뒤로가기이슈 해결 
 		//response.setHeader("Cache-Control", "no-store");
 		response.setHeader("Cache-Control","no-store");   
 		response.setHeader("Pragma","no-cache");   
@@ -247,7 +244,7 @@ public class BuyController {
 		if (request.getProtocol().equals("HTTP/1.1")) {
 			   response.setHeader("Cache-Control", "no-cache"); 
 		}
-		*/
+		
 		
 		//****************************************
 		//orders TB , orders product TB INSERT 
@@ -274,241 +271,253 @@ public class BuyController {
 			url = "redirect:/error.tiles"; 
 		}
 	return url; 
-	}  
+	}  */
+	
+	
+//	/**
+//	 * 	상품구매 로직   N개 : 
+//	 */
+//	@RequestMapping("/buyProducts.go")
+//	public String buyProducts(String ordersNo , String ordersReceiver , String ordersPhone, String ordersZipcode ,
+//			String ordersAddress , String ordersSubAddress , int ordersTotalPrice ,
+//			String ordersPayment , @RequestParam(value="ordersRequest" ,required=false) String ordersRequest , int paymentStatus , String memberId ,
+//			String amountList , String productIdList , String optionIdList , String sellerStoreNoList , int orderProductStatus ,
+//			@RequestParam(value="usedMileage" ,defaultValue= "0") int usedMileage  ,  HttpSession session , 
+//			HttpServletResponse response , HttpServletRequest request ,String cartNoList, 
+//			@RequestParam(value="bank" ,required=false) String bank , 
+//			@RequestParam(value="card" ,required=false) String card , @RequestParam(value="quota" ,required=false) String quota) throws Exception{ // 0 결재대기 , 1 결재완료  
+//		
+//		String url = "";
+//		//검증 결제예정금액이 마이너스인경우  : 즉 사용한마일리지 > 결제예정금액 인경우!
+//		if(ordersTotalPrice < 0) {
+//			request.setAttribute("errorMsg", "마일리지 사용금액이 실제 결제금액을 초과합니다. 마일리지 사용값을 확인해주세요");
+//			return "error.tiles";
+//		}
+//		
+//		String vitualBankNo ="";
+//		//System.out.println("bank:" + bank);
+//		//가상번호 생성 로직 
+//		if(bank != null  && !bank.isEmpty()){
+//			//System.out.println("계좌번호생성!");
+//			long randomNumber1 = (int) (Math.random() * 998) + 1;
+//			vitualBankNo  = "" + randomNumber1 + "-";
+//			long randomNumber2 = (int) (Math.random() * 99998) + 1;
+//			vitualBankNo  = vitualBankNo + "" + randomNumber2 + "-";
+//			long randomNumber3 = (int) (Math.random() * 998) + 1;
+//			vitualBankNo  = vitualBankNo + "" + randomNumber3 + "-";
+//			long randomNumber4 = (int) (Math.random() * 98) + 1;
+//			vitualBankNo  = vitualBankNo + "" + randomNumber4 ;
+//			session.setAttribute("vitualBankNo" ,vitualBankNo);
+//			session.setAttribute("bank",bank);
+//			//System.out.println(vitualBankNo);
+//			
+//		}else if(card != null && quota != null){
+//			session.setAttribute("card" ,card);
+//			session.setAttribute("quota" ,quota);
+//		}
+//		//2.마일리지 사용했다면 변경하는 로직 
+//		if(usedMileage != 0){
+//			Map<String,Object> param = new HashMap<>();
+//			param.put("memberId", memberId);
+//			param.put("mileage", usedMileage);
+//			service.setMemberMileage(param);
+//			
+//			//마일리지사용 했을경우 세션의 login_info 정보 수정 
+//			Member newMember = memberService.selectById(memberId);
+//			session.setAttribute("login_info", newMember);
+//			              
+//			// 사용한 마일리지가 있다면 결제성공 페이지에 정보 출력
+//			session.setAttribute("usedMileage", usedMileage);
+//		}
+//		
+//		//마일리지는 사용않했지만 주소만 변경했다면!! session의 login_info 수정
+//		//결제페이지에서 회원정보 수정 구현X
+//		
+//		  
+//		//3. 매개변수 split
+//		ArrayList<String> amountSplitList =  listSplit(amountList);
+//		ArrayList<String> productIdSplitList =  listSplit(productIdList);
+//		ArrayList<String> optoinIdSplitList =  listSplit(optionIdList);
+//		ArrayList<String> sellerStoreNoSplitList =  listSplit(sellerStoreNoList);
+//		
+//		// 4. 객체생성
+//		ArrayList<OrderProduct> orderProductList = new ArrayList<>();
+//		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
+//		
+//		
+//		for(int i=0; i < amountSplitList.size(); i++){
+//			//System.out.println("판매자가 결제한 수량 : "+amountSplitList.get(i));
+//			Product product = service.getProductInfo(productIdSplitList.get(i));
+//			Seller seller = service.getSellerByNo(Integer.parseInt(sellerStoreNoSplitList.get(i)));
+//			ProductOption productOption = service.getProductOptionInfoByoptionNo(Integer.parseInt(optoinIdSplitList.get(i)));
+//			
+//			OrderProduct op = new OrderProduct(Integer.parseInt(amountSplitList.get(i)), 
+//					ordersNo, productIdSplitList.get(i) , Integer.parseInt(optoinIdSplitList.get(i)), Integer.parseInt(sellerStoreNoSplitList.get(i)), orderProductStatus ,product ,productOption , seller );
+//			
+//			//List에 add()
+//			orderProductList.add(op);
+//		}
+//		orders.setOrderProductList(orderProductList);
+//		
+//		
+//		//****************************************
+//		 // 5.orders TB , orders product TB INSERT 
+//		int cnt = service.addProductN(orders);
+//		
+//		for(OrderProduct op : orderProductList ){
+//			//DB에 INSERT
+//			cnt = service.addProductN(op);
+//			if(cnt == 0){
+//				throw new Exception("addProductN(OrderProduct) 메소드에서 예외발생");
+//			}
+//		}
+//		
+//		//6-1. DB에 INSERT  : 결재완료라면 Cart에서 삭제
+//		if(cnt == 1){
+//				ArrayList<String> cartList = null;
+//				cartList = listSplit(cartNoList);
+//				for(String temp : cartList){
+//					int cartNo = Integer.parseInt(temp);
+//					cartService.removeCart(cartNo);
+//				}
+//		} //if
+//	
+//		// 6-2결재완료라면  구매한 상품 수량 마이너스 
+//		if(cnt == 1){
+//			//1.개별optionStock Minus
+//			Map<String,Object> param = new HashMap<String,Object>();
+//			for(int i=0; i < amountSplitList.size(); i++){
+//				int optionStock = Integer.parseInt(amountSplitList.get(i));
+//				param.put("buyStock", optionStock);
+//				param.put("optionId",orders.getOrderProductList().get(i).getProductOption().getOptionId() );
+//				param.put("productId", productIdSplitList.get(i));
+//				service.setOptionStockByOptionId(param);
+//				service.setProductStockByProductId(param);
+//			}
+//		}
+//		
+//		
+//		
+//		
+//		if(cnt == 1){
+//			//System.out.println("성공"); //   "*/*.tiles"
+//			/*//뒤로가기이슈 해결 
+//			//response.setHeader("Cache-Control", "no-store");
+//			response.setHeader("Cache-Control","no-store");   
+//			response.setHeader("Pragma","no-cache");   
+//			response.setDateHeader("Expires",0);   
+//			if (request.getProtocol().equals("HTTP/1.1")) {
+//			        response.setHeader("Cache-Control", "no-cache"); 
+//			}*/
+//			
+//			session.setAttribute("orders", orders);
+//			
+//			url = "redirect:/buy/addProductSuccessPage.go?cnt="+cnt+"&ordersNo="+ordersNo+"&orderProductList="+orderProductList;
+//			
+//		}else{
+//			url = "redirect:/error.tiles"; 
+//		}
+//	return url; 
+//	}  
+	
+	
+	
+//	/**
+//	 * 	구매성공 : 결제성공 페이지 이동 
+//	 */
+//	@RequestMapping("/addProductSuccessPage.go")
+//	public String addProductPage(String ordersNo ,@RequestParam(value="productId" ,required=false ) String productId 
+//			,@RequestParam(value="orderProductList" ,required=false ) List orderProductList ,Model model ){
+//		String url = "/";
+//		//System.out.println(ordersNo +", "+ productId);
+//		
+//			url = "buyer/buy_success.tiles";
+//			Orders orders = service.getOrdersByOrdersNo(ordersNo);
+//			model.addAttribute("orders" ,orders);
+//			model.addAttribute("product",productId);
+//			model.addAttribute("orderProductList",orderProductList);
+//			/*url = "error.tiles"; 
+//			model.addAttribute("errorMsg","결제가실패하였습니다. 관리자에게 문의하세요.");*/
+//		
+//		return url;
+//	}
+//	/**
+//	 * 	최근배송지 조회   - 
+//	 */
+//	@RequestMapping("/currentDeliveryAddress.go")
+//	@ResponseBody
+//	public Orders currentDeliveryAddress(String memberId){
+//		//System.out.println("아이디:"+memberId);
+//		Orders orders = service.getcurrentDeliveryAddress(memberId);
+//		//System.out.println(orders);
+//		return orders;  //세부주소가진 orders 객체 리턴 
+//	}
+//	
+//	/**
+//	 * 	체크박스 list  콤마 split 메소드 
+//	 */
+//	public ArrayList<String> listSplit(String str){
+//		String array[] = str.split(",");
+//		ArrayList<String> param = new ArrayList<>();
+//		for (int i = 0; i < array.length; i++) {
+//			param.add(array[i]);
+//		}
+//		return param;
+//	}
+//	/**
+//	 * 세션의 회원의  마일리지 실시간 조회를 위한 메소드 
+//	 */
+//	@RequestMapping("/getMemberMileageAjax.go")
+//	@ResponseBody
+//	public int getMemberMileageAjax(String memberId){
+//		Member member = memberService.findById(memberId);
+//		return member.getMemberMileage();
+//	}
 	
 	
 	/**
-	 * 	상품구매 로직   N개 : 
-	 */
-	@RequestMapping("/buyProducts.go")
-	public String buyProducts(String ordersNo , String ordersReceiver , String ordersPhone, String ordersZipcode ,
-			String ordersAddress , String ordersSubAddress , int ordersTotalPrice ,
-			String ordersPayment , @RequestParam(value="ordersRequest" ,required=false) String ordersRequest , int paymentStatus , String memberId ,
-			String amountList , String productIdList , String optionIdList , String sellerStoreNoList , int orderProductStatus ,
-			@RequestParam(value="usedMileage" ,defaultValue= "0") int usedMileage  ,  HttpSession session , 
-			HttpServletResponse response , HttpServletRequest request ,String cartNoList, 
-			@RequestParam(value="bank" ,required=false) String bank , 
-			@RequestParam(value="card" ,required=false) String card , @RequestParam(value="quota" ,required=false) String quota) throws Exception{ // 0 결재대기 , 1 결재완료  
-		
-		String url = "";
-		//검증 결제예정금액이 마이너스인경우  : 즉 사용한마일리지 > 결제예정금액 인경우!
-		if(ordersTotalPrice < 0) {
-			request.setAttribute("errorMsg", "마일리지 사용금액이 실제 결제금액을 초과합니다. 마일리지 사용값을 확인해주세요");
-			return "error.tiles";
-		}
-		
-		String vitualBankNo ="";
-		//System.out.println("bank:" + bank);
-		//가상번호 생성 로직 
-		if(bank != null  && !bank.isEmpty()){
-			//System.out.println("계좌번호생성!");
-			long randomNumber1 = (int) (Math.random() * 998) + 1;
-			vitualBankNo  = "" + randomNumber1 + "-";
-			long randomNumber2 = (int) (Math.random() * 99998) + 1;
-			vitualBankNo  = vitualBankNo + "" + randomNumber2 + "-";
-			long randomNumber3 = (int) (Math.random() * 998) + 1;
-			vitualBankNo  = vitualBankNo + "" + randomNumber3 + "-";
-			long randomNumber4 = (int) (Math.random() * 98) + 1;
-			vitualBankNo  = vitualBankNo + "" + randomNumber4 ;
-			session.setAttribute("vitualBankNo" ,vitualBankNo);
-			session.setAttribute("bank",bank);
-			//System.out.println(vitualBankNo);
-			
-		}else if(card != null && quota != null){
-			session.setAttribute("card" ,card);
-			session.setAttribute("quota" ,quota);
-		}
-		//2.마일리지 사용했다면 변경하는 로직 
-		if(usedMileage != 0){
-			Map<String,Object> param = new HashMap<>();
-			param.put("memberId", memberId);
-			param.put("mileage", usedMileage);
-			service.setMemberMileage(param);
-			
-			//마일리지사용 했을경우 세션의 login_info 정보 수정 
-			Member newMember = memberService.selectById(memberId);
-			session.setAttribute("login_info", newMember);
-			              
-			// 사용한 마일리지가 있다면 결제성공 페이지에 정보 출력
-			session.setAttribute("usedMileage", usedMileage);
-		}
-		
-		//마일리지는 사용않했지만 주소만 변경했다면!! session의 login_info 수정
-		//결제페이지에서 회원정보 수정 구현X
-		
-		  
-		//3. 매개변수 split
-		ArrayList<String> amountSplitList =  listSplit(amountList);
-		ArrayList<String> productIdSplitList =  listSplit(productIdList);
-		ArrayList<String> optoinIdSplitList =  listSplit(optionIdList);
-		ArrayList<String> sellerStoreNoSplitList =  listSplit(sellerStoreNoList);
-		
-		// 4. 객체생성
-		ArrayList<OrderProduct> orderProductList = new ArrayList<>();
-		Orders orders = new Orders(ordersNo, ordersReceiver, ordersPhone, ordersZipcode, ordersAddress, ordersSubAddress, ordersTotalPrice, ordersPayment, ordersRequest, paymentStatus, new Date(), memberId);
-		
-		
-		for(int i=0; i < amountSplitList.size(); i++){
-			//System.out.println("판매자가 결제한 수량 : "+amountSplitList.get(i));
-			Product product = service.getProductInfo(productIdSplitList.get(i));
-			Seller seller = service.getSellerByNo(Integer.parseInt(sellerStoreNoSplitList.get(i)));
-			ProductOption productOption = service.getProductOptionInfoByoptionNo(Integer.parseInt(optoinIdSplitList.get(i)));
-			
-			OrderProduct op = new OrderProduct(Integer.parseInt(amountSplitList.get(i)), 
-					ordersNo, productIdSplitList.get(i) , Integer.parseInt(optoinIdSplitList.get(i)), Integer.parseInt(sellerStoreNoSplitList.get(i)), orderProductStatus ,product ,productOption , seller );
-			
-			//List에 add()
-			orderProductList.add(op);
-		}
-		orders.setOrderProductList(orderProductList);
-		
-		
-		//****************************************
-		 // 5.orders TB , orders product TB INSERT 
-		int cnt = service.addProductN(orders);
-		
-		for(OrderProduct op : orderProductList ){
-			//DB에 INSERT
-			cnt = service.addProductN(op);
-			if(cnt == 0){
-				throw new Exception("addProductN(OrderProduct) 메소드에서 예외발생");
-			}
-		}
-		
-		//6-1. DB에 INSERT  : 결재완료라면 Cart에서 삭제
-		if(cnt == 1){
-				ArrayList<String> cartList = null;
-				cartList = listSplit(cartNoList);
-				for(String temp : cartList){
-					int cartNo = Integer.parseInt(temp);
-					cartService.removeCart(cartNo);
-				}
-		} //if
-	
-		// 6-2결재완료라면  구매한 상품 수량 마이너스 
-		if(cnt == 1){
-			//1.개별optionStock Minus
-			Map<String,Object> param = new HashMap<String,Object>();
-			for(int i=0; i < amountSplitList.size(); i++){
-				int optionStock = Integer.parseInt(amountSplitList.get(i));
-				param.put("buyStock", optionStock);
-				param.put("optionId",orders.getOrderProductList().get(i).getProductOption().getOptionId() );
-				param.put("productId", productIdSplitList.get(i));
-				service.setOptionStockByOptionId(param);
-				service.setProductStockByProductId(param);
-			}
-		}
-		
-		
-		
-		
-		if(cnt == 1){
-			//System.out.println("성공"); //   "*/*.tiles"
-			/*//뒤로가기이슈 해결 
-			//response.setHeader("Cache-Control", "no-store");
-			response.setHeader("Cache-Control","no-store");   
-			response.setHeader("Pragma","no-cache");   
-			response.setDateHeader("Expires",0);   
-			if (request.getProtocol().equals("HTTP/1.1")) {
-			        response.setHeader("Cache-Control", "no-cache"); 
-			}*/
-			
-			session.setAttribute("orders", orders);
-			
-			url = "redirect:/buy/addProductSuccessPage.go?cnt="+cnt+"&ordersNo="+ordersNo+"&orderProductList="+orderProductList;
-			
-		}else{
-			url = "redirect:/error.tiles"; 
-		}
-	return url; 
-	}  
-	
-	
-	
-	/**
-	 * 	구매성공 : 결제성공 페이지 이동 
-	 */
-	@RequestMapping("/addProductSuccessPage.go")
-	public String addProductPage(String ordersNo ,@RequestParam(value="productId" ,required=false ) String productId 
-			,@RequestParam(value="orderProductList" ,required=false ) List orderProductList ,Model model ){
-		String url = "/";
-		//System.out.println(ordersNo +", "+ productId);
-		
-			url = "buyer/buy_success.tiles";
-			Orders orders = service.getOrdersByOrdersNo(ordersNo);
-			model.addAttribute("orders" ,orders);
-			model.addAttribute("product",productId);
-			model.addAttribute("orderProductList",orderProductList);
-			/*url = "error.tiles"; 
-			model.addAttribute("errorMsg","결제가실패하였습니다. 관리자에게 문의하세요.");*/
-		
-		return url;
-	}
-	/**
-	 * 	최근배송지 조회   - 
-	 */
-	@RequestMapping("/currentDeliveryAddress.go")
-	@ResponseBody
-	public Orders currentDeliveryAddress(String memberId){
-		//System.out.println("아이디:"+memberId);
-		Orders orders = service.getcurrentDeliveryAddress(memberId);
-		//System.out.println(orders);
-		return orders;  //세부주소가진 orders 객체 리턴 
-	}
-	
-	/**
-	 * 	체크박스 list  콤마 split 메소드 
-	 */
-	public ArrayList<String> listSplit(String str){
-		String array[] = str.split(",");
-		ArrayList<String> param = new ArrayList<>();
-		for (int i = 0; i < array.length; i++) {
-			param.add(array[i]);
-		}
-		return param;
-	}
-	/**
-	 * 세션의 회원의  마일리지 실시간 조회를 위한 메소드 
-	 */
-	@RequestMapping("/getMemberMileageAjax.go")
-	@ResponseBody
-	public int getMemberMileageAjax(String memberId){
-		Member member = memberService.findById(memberId);
-		return member.getMemberMileage();
-	}
-	
-	
-	/**
-	 메인페이지 상품검색 기능 : 키워드로 상품이나 스토어 검색!
-	 * */
+	 	메인페이지 상품검색 기능 : 키워드로 상품이나 스토어 검색!
+	 **/
 	@RequestMapping("/search")
-	public ModelAndView findProductByKeyword(String searchCode, String keyword)
+	public ModelAndView findProductByKeyword(String searchCode, String keyword, int page)
 	{
-		System.out.println(searchCode);
 		HashMap<String, Object> map = new HashMap<>();
-		if(searchCode.equals("해쉬태그"))
+		if(keyword.equals(""))
+		{
+			return new ModelAndView("seller/seller/search_empty.tiles");
+		}
+		if(searchCode.equals("태그"))
 		{
 			//판매물품으로 판매자 조회해서 seller_list로
-			map = sellerService.selectSearchSeller(keyword);
+			map = sellerService.selectSearchSeller(keyword, page);
 			return new ModelAndView("seller/seller_list.tiles", map);
 		}
-		else if(searchCode.equals("상품 명"))
+		else if(searchCode.equals("상품명"))
 		{
-			//상품 명으로 상품 조회해서 product_list로
-			return new ModelAndView("seller/seller/product_list.tiles", productService.selectSearchProductByName(keyword));
+			//상품 명으로 상품 조회해서 search_product_list로
+			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductByName(keyword, page));
 		}
 		else
 		{
-			//상품 id로 상품 조회해서 product_list로
-			return new ModelAndView("seller/seller/product_list.tiles", productService.selectSearchProductById(keyword));
+			//상품 id로 상품 조회해서 search_product_list로
+			return new ModelAndView("seller/seller/search_product_list.tiles", productService.selectSearchProductById(keyword, page));
 		}
 	}
 	
-	/**
-	결제버튼 클릭시 결제정보입력
-	 * */
-	@RequestMapping("/inputPayInfo.go")
-	public String findProductByKeyword(){
-		return "/WEB-INF/view/buyer/pay_info_form.jsp";
+//	/**
+//	결제버튼 클릭시 결제정보입력
+//	 **/
+//	@RequestMapping("/inputPayInfo.go")
+//	public String findProductByKeyword(){
+//		return "/WEB-INF/view/buyer/pay_info_form.jsp";
+//	}
+	
+	//바로구매 버튼 클릭시 결제 폼으로 이동.
+	@RequestMapping("/buyForm")
+	public String buyForm(OrderProduct orderProduct, int totalPrice, Model model)
+	{
+		model.addAttribute("orderProduct", orderProduct);
+		model.addAttribute("totalPrice", totalPrice);
+		return "buyer/buyForm.tiles";
 	}
 }

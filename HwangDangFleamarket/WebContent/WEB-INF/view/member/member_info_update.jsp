@@ -16,6 +16,7 @@
 		var sellerProduct1 = false;
 		var sellerProduct2 = false;
 		var sellerProduct3 = false;
+		var sellerBank = false;
 		//기존비밀번호 맞는지 검증
 		$("#oldPassword").on("blur", function(){
 			var oldPassword = $("#oldPassword").val().trim();
@@ -50,179 +51,199 @@
 		}); // 패스워드 ajax func
 		
 		$("#selectEmail").on("change", function(){
-					var index = this.selectedIndex;
-					if(index == 0){
-						$("#domain").empty().hide();
-						return false;
+			var index = this.selectedIndex;
+			if(index == 0){
+				$("#domain").empty().hide();
+				return false;
+			}
+			else if(index == 16){
+				$("#domain").val("").removeAttr("readonly").show();
+				return false;
+			}
+			else{
+				$("#domain").empty().val($("#selectEmail option:selected").val()).hide();
+				return true;
+			}
+		});
+		
+		//상호명 중복 체크...
+		$("#sellerStoreName").on("blur", function()
+		{
+			if(this.value == null || this.value.trim().length < 3 || this.value.length > 20)
+			{
+				//널이거나 3글자보다 작거나 20글자보다 큰경우.
+				$("#sellerStoreName").val("");
+				alert("상호명은 3글자 이상 20자 이하로 입력해주세요.")
+				return false;
+			}
+			else
+			{
+				//상호명 중복 체크.
+				$.ajax(
+				{
+					"url" : "/HwangDangFleamarket/member/sellerStoreNameCheck.go",
+					"type" : "POST",
+					"data" : "sellerStoreName=" + $("#sellerStoreName").val(),
+					"dataType" : "text",
+					"beforeSend" : function()
+					{
+						
+					},
+					"success" : function(text)
+					{
+						if(text == 0)
+						{
+							return true;
+						}
+						else
+						{
+							alert("중복된 이름입니다.");
+							$("#sellerStoreName").val("");
+							return false;
+						}
+					},
+					"error" : function()
+					{
 					}
-					else if(index == 16){
-						$("#domain").val("").removeAttr("readonly").show();
+				});
+			}
+		});
+		
+		$("#sellerBank").on("change", function()
+		{
+			//은행정보 선택
+			var idx = this.selectedIndex;
+			if(idx == 0)
+			{
+				$("#sellerAccount").val("").hide();
+				return false;
+			}
+			$("#sellerAccount").val("").show();
+		});
+		
+		//submit 클릭시.
+		$("#submit").on("click", function(){
+			var result;
+			if(!oldPsswordFlag && passwordFlag) {
+				//기존비밀번호불일치
+				alert("기존비밀번호가 틀립니다. 확인바랍니다.");
+				return false;
+			}
+			
+			if( passwordFlag  && $("#newPassword1").val().trim().length < 8 || $("#newPassword1").val().trim().length > 20){
+				alert("패스워드는 8자 이상 20자 이하로 입력해 주세요.");
+				$("#newPassword1").val("").focus();
+				$("#newPassword2").val("");
+				return false;
+			}
+			if( passwordFlag  && $("#newPassword1").val().trim() != $("#newPassword2").val().trim()){
+				alert("패스워드1과 패스워드2가 틀립니다.");
+				$("#newPassword1").val("").focus();
+				$("#newPassword2").val("");
+				return false;
+			}
+			
+			if(nameFlag && $("#memberName").val().trim().length < 2 || $("#memberName").val().trim().length > 6)
+			{
+				alert("이름은 2자이상 6자 이하로 입력해 주세요.");
+				$("#memberName").val("").focus();
+				return false;
+			}
+			    
+			if(phoneFlag && ($("#hp2").val().trim().length < 3 || $("#hp2").val().trim().length > 4 || $("#hp3").val().trim().length != 4) ){	
+				alert("전화번호를 올바르게 입력해 주세요.")
+				$("#hp2").val("").focus();
+				$("#hp3").val("");
+				return false;
+			}
+			
+			if(addressFlag && addressFlag && !$("#memberZipcode").val())
+			{
+				alert("주소를 검색해 주세요.");
+				return false;
+			}
+			if(addressFlag && $("#memberSubAddress").val().trim().length < 4 || $("#memberSubAddress").val().trim().length > 30)
+			{
+				alert("세부 주소는 4자 이상 30자 이하로 입력해 주세요.");
+				$("#memberSubAddress").val("").focus();
+				return false;
+			}
+			
+			if(storeName && $("#sellerStoreName").val().trim().length < 3 || $("#sellerStoreName").val().trim().lengrh > 20)
+			{
+				alert("스토어 이름은 3자 이상 20자 이하로 입력해 주세요.");
+				$("#sellerStoreName").val("").focus();
+				return false;
+			}
+			
+			if(sellerTaxId && $("#sellerTaxId").val().trim().length != 11)
+			{
+				alert("사업자 번호는 11자리 숫자로 입력해주세요.");
+				$("#sellerTaxId").val("").focus();
+				return false;
+			}
+			
+			if(sellerAddress && !$("#sellerZipcode").val() || !$("#sellerAddress").val() || !$("#sellerSubAddress").val())
+			{
+				alert("주소를 다시 입력해 주세요.");
+				$("#sellerZipcode").val("");
+				$("#sellerAddress").val("");
+				$("#sellerSubAddress").val("").focus();
+				return false;
+			}
+
+			//계좌 정보 등록여부 확인
+			if(sellerBank && $("#sellerBank").val() == "은행명" || $("#sellerAccount").val() == "" 
+					|| $("#sellerAccount").val().trim().length < 12 || $("#sellerAccount").val().trim().length > 20)
+			{
+				alert("계좌 정보를 입력해 주세요.");
+				$("#sellerAccount").val("").focus();
+				return false;
+			}
+			
+			//사진 등록여부 확인.
+			if(storeImage)
+			{
+				var fileName = document.getElementById("sellerStoreImage").value;
+				if(!fileName)
+				{
+					alert("스토어 대표 사진을 등록해 주세요.");
+					return false;
+				}
+			}
+
+			var id = $("#memberId").val()+"@"+$("#domain").val();
+			$.ajax({
+				"url" : "/HwangDangFleamarket/member/registerIdCheck.go",
+				"type" : "POST",
+				"data" : "memberId=" + id,
+				"dataType" : "text",
+				"async" : false,
+				"beforeSend" : function(){
+					
+				},
+				"success" : function(text){
+					if(text == "fail"){
+						alert("중복된 ID입니다.");
+						$("#memberId").val("").focus();
+						r = false;
 						return false;
 					}
 					else{
-						$("#domain").empty().val($("#selectEmail option:selected").val()).hide();
-						return true;
+						r = true;
+						//alert("비밀번호 중복아님다.!");
+						$("form").prop("action" , "/HwangDangFleamarket/member/setMember.go");
+						$("form").submit();
+						
 					}
-				});
-				
-				//상호명 중복 체크...
-				$("#sellerStoreName").on("blur", function()
-				{
-					if(this.value == null || this.value.trim().length < 3 || this.value.length > 20)
-					{
-						//널이거나 3글자보다 작거나 20글자보다 큰경우.
-						$("#sellerStoreName").val("");
-						alert("상호명은 3글자 이상 20자 이하로 입력해주세요.")
-						return false;
-					}
-					else
-					{
-						//상호명 중복 체크.
-						$.ajax(
-						{
-							"url" : "/HwangDangFleamarket/member/sellerStoreNameCheck.go",
-							"type" : "POST",
-							"data" : "sellerStoreName=" + $("#sellerStoreName").val(),
-							"dataType" : "text",
-							"beforeSend" : function()
-							{
-								
-							},
-							"success" : function(text)
-							{
-								if(text == 0)
-								{
-									return true;
-								}
-								else
-								{
-									alert("중복된 이름입니다.");
-									$("#sellerStoreName").val("");
-									return false;
-								}
-							},
-							"error" : function()
-							{
-							}
-						});
-					}
-				});
-				
-				//submit 클릭시.
-				$("#submit").on("click", function(){
-					var result;
-					if(!oldPsswordFlag && passwordFlag) {
-						//기존비밀번호불일치
-						alert("기존비밀번호가 틀립니다. 확인바랍니다.");
-						return false;
-					}
-					
-					if( passwordFlag  && $("#newPassword1").val().trim().length < 8 || $("#newPassword1").val().trim().length > 20){
-						alert("패스워드는 8자 이상 20자 이하로 입력해 주세요.");
-						$("#newPassword1").val("").focus();
-						$("#newPassword2").val("");
-						return false;
-					}
-					if( passwordFlag  && $("#newPassword1").val().trim() != $("#newPassword2").val().trim()){
-						alert("패스워드1과 패스워드2가 틀립니다.");
-						$("#newPassword1").val("").focus();
-						$("#newPassword2").val("");
-						return false;
-					}
-					
-					if(nameFlag && $("#memberName").val().trim().length < 2 || $("#memberName").val().trim().length > 6)
-					{
-						alert("이름은 2자이상 6자 이하로 입력해 주세요.");
-						$("#memberName").val("").focus();
-						return false;
-					}
-					    
-					if(phoneFlag && ($("#hp2").val().trim().length < 3 || $("#hp2").val().trim().length > 4 || $("#hp3").val().trim().length != 4) ){	
-						alert("전화번호를 올바르게 입력해 주세요.")
-						$("#hp2").val("").focus();
-						$("#hp3").val("");
-						return false;
-					}
-					
-					if(addressFlag && addressFlag && !$("#memberZipcode").val())
-					{
-						alert("주소를 검색해 주세요.");
-						return false;
-					}
-					if(addressFlag && $("#memberSubAddress").val().trim().length < 4 || $("#memberSubAddress").val().trim().length > 30)
-					{
-						alert("세부 주소는 4자 이상 30자 이하로 입력해 주세요.");
-						$("#memberSubAddress").val("").focus();
-						return false;
-					}
-					
-					if(storeName && $("#sellerStoreName").val().trim().length < 3 || $("#sellerStoreName").val().trim().lengrh > 20)
-					{
-						alert("스토어 이름은 3자 이상 20자 이하로 입력해 주세요.");
-						$("#sellerStoreName").val("").focus();
-						return false;
-					}
-					
-					if(sellerTaxId && $("#sellerTaxId").val().trim().length != 11)
-					{
-						alert("사업자 번호는 11자리 숫자로 입력해주세요.");
-						$("#sellerTaxId").val("").focus();
-						return false;
-					}
-					
-					if(sellerAddress && !$("#sellerZipcode").val() || !$("#sellerAddress").val() || !$("#sellerSubAddress").val())
-					{
-						alert("여기왜와")
-						alert("주소를 다시 입력해 주세요.");
-						$("#sellerZipcode").val("");
-						$("#sellerAddress").val("");
-						$("#sellerSubAddress").val("").focus();
-						return false;
-					}
-					
-					//사진 등록여부 확인.
-					if(storeImage)
-					{
-						var fileName = document.getElementById("sellerStoreImage").value;
-						if(!fileName)
-						{
-							alert("스토어 대표 사진을 등록해 주세요.");
-							return false;
-						}
-					}
-
-					var id = $("#memberId").val()+"@"+$("#domain").val();
-					$.ajax({
-						"url" : "/HwangDangFleamarket/member/registerIdCheck.go",
-						"type" : "POST",
-						"data" : "memberId=" + id,
-						"dataType" : "text",
-						"async" : false,
-						"beforeSend" : function(){
-							
-						},
-						"success" : function(text){
-							if(text == "fail"){
-								alert("중복된 ID입니다.");
-								$("#memberId").val("").focus();
-								r = false;
-								return false;
-							}
-							else{
-								r = true;
-								//alert("비밀번호 중복아님다.!");
-								$("form").prop("action" , "/HwangDangFleamarket/member/setMember.go");
-								$("form").submit();
-								
-							}
-						},
-						"error" : function(a  , status , httpMsg){
-							alert("ajax실패:"+httpMsg);
-						}
-					});
-					
-					return r;
-				});
+				},
+				"error" : function(a  , status , httpMsg){
+					alert("ajax실패:"+httpMsg);
+				}
+			});
+			
+			return r;
+		});
 		
 		//패스워드 변경 폼 view
 		$("#updatePasswordBtn").on("click",function(){
@@ -291,6 +312,22 @@
 			$("#sellerAddress").val("");
 			$("#sellerSubAddress").val("");
 			sellerAddress = false;
+		});
+		
+		//계좌정보수정, 취소
+		$("#updateSellerBank").on("click", function()
+		{
+			$("#hiddenSellerBank").show();
+			sellerBank = true;
+		});
+		
+		$("#deleteSellerBank").on("click", function()
+		{
+			$("#hiddenSellerBank").hide();
+			$("#sellerBank option").removeAttr('selected');
+			$("#sellerBank option:eq(0)").attr('selected', 'true');
+			$("#sellerAccount").val("").hide();
+			sellerBank = false;
 		});
 		
 		//사진수정, 취소
@@ -381,6 +418,18 @@
 			sellerProduct3 = false;
 		});
 	}); //ready
+	
+	function sellerAccountCheck(obj)
+	{
+		 //좌우 방향키, 백스페이스, 딜리트, 탭키에 대한 예외
+        if(event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39
+        || event.keyCode == 46 ) return;
+        if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
+	        return true;
+	    } else {
+	        event.returnValue = false;
+	    }
+	}
 </script>
 <style type="text/css">
 	form
@@ -484,7 +533,7 @@
 				</td>
 			</tr>
 			<tr class="trInput">
-				<td class='tdName'>주&nbsp;&nbsp;&nbsp;&nbsp;소</td>
+				<td class='tdName'>스토어 주소</td>
 				<td>
 				[ ${sessionScope.seller.sellerZipcode } ] ${sessionScope.seller.sellerAddress } ${sessionScope.seller.sellerSubAddress }<input type="button" value="수정" id="updateSellerAddress"/><br/>
 			
@@ -494,6 +543,23 @@
 						<input type="button" value="주소검색" id="findAddress" onclick="window.open('/HwangDangFleamarket/member/findSellerAddress.go', '주소검색', 'resizable=no scrollbars=yes width=700 height=500 left=500 top=200');"><br>
 						<input type="text" name="sellerSubAddress" size="60" id="sellerSubAddress" value="${sessionScope.seller.sellerSubAddress }">
 						<input type="button"  id="deleteSellerAddress" value="수정취소"/>
+					</span>
+				</td>
+			</tr>
+			<tr class="trInput">
+				<td class="tdName">계좌 정보</td>
+				<td>
+					${ sessionScope.seller.sellerBank }   ${ sessionScope.seller.sellerAccount } <input type="button" value="수정" id="updateSellerBank"/>
+					<span id="hiddenSellerBank" hidden="true">
+						<select name="sellerBank" id="sellerBank">
+							<option>은행명</option>
+							<c:forEach items="${ requestScope.bank }" var="bank">
+								<option>${ bank.codeName }</option>
+							</c:forEach>
+						</select>
+						<input type="text" id="sellerAccount" name="sellerAccount" onkeydown="sellerAccountCheck(this);" 
+							maxlength="20" placeholder="계좌번호입력" style="display:none;">
+						<input type="button"  id="deleteSellerBank" value="수정취소"/>
 					</span>
 				</td>
 			</tr>

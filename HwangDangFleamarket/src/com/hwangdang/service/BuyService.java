@@ -50,9 +50,6 @@ public interface BuyService {
 	// 카드정보조회   
 	Cart getCartByCartNo(int cartNo);
 
-	// order_product TB 시퀀스 조회    
-	int getOrderProductSeq();
-
 	// product TB 전체상품 수량 변경 (마이너스) 
 	int setProductStockByProductId(Map param);
 

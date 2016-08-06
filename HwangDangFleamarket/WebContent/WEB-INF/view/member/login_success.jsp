@@ -5,8 +5,16 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script type="text/javascript">
-			opener.parent.location.reload();
-			window.close();
+			if('${requestScope.location}')
+			{
+				opener.parent.location.href = "${requestScope.location}";
+				window.close();
+			}
+			else
+			{
+				opener.parent.location.reload();
+				window.close();
+			}
 		</script>
 	</head>
 

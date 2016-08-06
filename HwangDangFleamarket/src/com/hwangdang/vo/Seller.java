@@ -19,6 +19,8 @@ public class Seller implements Serializable
 	private String sellerIntroduction;
 	private int sellerAssign;
 	private String memberId;
+	private String sellerBank;
+	private String sellerAccount;
 	
 	private Member member;
 	
@@ -30,29 +32,7 @@ public class Seller implements Serializable
 	public Seller(int sellerStoreNo, String sellerStoreName, String sellerTaxId, String sellerIndustry,
 			String sellerSubIndustry, String sellerZipcode, String sellerAddress, String sellerSubAddress,
 			String sellerStoreImage, String sellerProduct1, String sellerProduct2, String sellerProduct3,
-			String sellerIntroduction, int sellerAssign, String memberId) {
-		super();
-		this.sellerStoreNo = sellerStoreNo;
-		this.sellerStoreName = sellerStoreName;
-		this.sellerTaxId = sellerTaxId;
-		this.sellerIndustry = sellerIndustry;
-		this.sellerSubIndustry = sellerSubIndustry;
-		this.sellerZipcode = sellerZipcode;
-		this.sellerAddress = sellerAddress;
-		this.sellerSubAddress = sellerSubAddress;
-		this.sellerStoreImage = sellerStoreImage;
-		this.sellerProduct1 = sellerProduct1;
-		this.sellerProduct2 = sellerProduct2;
-		this.sellerProduct3 = sellerProduct3;
-		this.sellerIntroduction = sellerIntroduction;
-		this.sellerAssign = sellerAssign;
-		this.memberId = memberId;
-	}
-
-	public Seller(int sellerStoreNo, String sellerStoreName, String sellerTaxId, String sellerIndustry,
-			String sellerSubIndustry, String sellerZipcode, String sellerAddress, String sellerSubAddress,
-			String sellerStoreImage, String sellerProduct1, String sellerProduct2, String sellerProduct3,
-			String sellerIntroduction, int sellerAssign, String memberId, Member member)
+			String sellerIntroduction, int sellerAssign, String memberId, String sellerBank, String sellerAccount)
 	{
 		super();
 		this.sellerStoreNo = sellerStoreNo;
@@ -70,127 +50,205 @@ public class Seller implements Serializable
 		this.sellerIntroduction = sellerIntroduction;
 		this.sellerAssign = sellerAssign;
 		this.memberId = memberId;
+		this.sellerBank = sellerBank;
+		this.sellerAccount = sellerAccount;
+	}
+
+	public Seller(int sellerStoreNo, String sellerStoreName, String sellerTaxId, String sellerIndustry,
+			String sellerSubIndustry, String sellerZipcode, String sellerAddress, String sellerSubAddress,
+			String sellerStoreImage, String sellerProduct1, String sellerProduct2, String sellerProduct3,
+			String sellerIntroduction, int sellerAssign, String memberId, String sellerBank, String sellerAccount,
+			Member member)
+	{
+		super();
+		this.sellerStoreNo = sellerStoreNo;
+		this.sellerStoreName = sellerStoreName;
+		this.sellerTaxId = sellerTaxId;
+		this.sellerIndustry = sellerIndustry;
+		this.sellerSubIndustry = sellerSubIndustry;
+		this.sellerZipcode = sellerZipcode;
+		this.sellerAddress = sellerAddress;
+		this.sellerSubAddress = sellerSubAddress;
+		this.sellerStoreImage = sellerStoreImage;
+		this.sellerProduct1 = sellerProduct1;
+		this.sellerProduct2 = sellerProduct2;
+		this.sellerProduct3 = sellerProduct3;
+		this.sellerIntroduction = sellerIntroduction;
+		this.sellerAssign = sellerAssign;
+		this.memberId = memberId;
+		this.sellerBank = sellerBank;
+		this.sellerAccount = sellerAccount;
 		this.member = member;
 	}
 
-	public int getSellerStoreNo() {
+	public int getSellerStoreNo()
+	{
 		return sellerStoreNo;
 	}
 
-	public void setSellerStoreNo(int sellerStoreNo) {
+	public void setSellerStoreNo(int sellerStoreNo)
+	{
 		this.sellerStoreNo = sellerStoreNo;
 	}
 
-	public String getSellerStoreName() {
+	public String getSellerStoreName()
+	{
 		return sellerStoreName;
 	}
 
-	public void setSellerStoreName(String sellerStoreName) {
+	public void setSellerStoreName(String sellerStoreName)
+	{
 		this.sellerStoreName = sellerStoreName;
 	}
 
-	public String getSellerTaxId() {
+	public String getSellerTaxId()
+	{
 		return sellerTaxId;
 	}
 
-	public void setSellerTaxId(String sellerTaxId) {
+	public void setSellerTaxId(String sellerTaxId)
+	{
 		this.sellerTaxId = sellerTaxId;
 	}
 
-	public String getSellerIndustry() {
+	public String getSellerIndustry()
+	{
 		return sellerIndustry;
 	}
 
-	public void setSellerIndustry(String sellerIndustry) {
+	public void setSellerIndustry(String sellerIndustry)
+	{
 		this.sellerIndustry = sellerIndustry;
 	}
 
-	public String getSellerSubIndustry() {
+	public String getSellerSubIndustry()
+	{
 		return sellerSubIndustry;
 	}
 
-	public void setSellerSubIndustry(String sellerSubIndustry) {
+	public void setSellerSubIndustry(String sellerSubIndustry)
+	{
 		this.sellerSubIndustry = sellerSubIndustry;
 	}
 
-	public String getSellerZipcode() {
+	public String getSellerZipcode()
+	{
 		return sellerZipcode;
 	}
 
-	public void setSellerZipcode(String sellerZipcode) {
+	public void setSellerZipcode(String sellerZipcode)
+	{
 		this.sellerZipcode = sellerZipcode;
 	}
 
-	public String getSellerAddress() {
+	public String getSellerAddress()
+	{
 		return sellerAddress;
 	}
 
-	public void setSellerAddress(String sellerAddress) {
+	public void setSellerAddress(String sellerAddress)
+	{
 		this.sellerAddress = sellerAddress;
 	}
 
-	public String getSellerSubAddress() {
+	public String getSellerSubAddress()
+	{
 		return sellerSubAddress;
 	}
 
-	public void setSellerSubAddress(String sellerSubAddress) {
+	public void setSellerSubAddress(String sellerSubAddress)
+	{
 		this.sellerSubAddress = sellerSubAddress;
 	}
 
-	public String getSellerStoreImage() {
+	public String getSellerStoreImage()
+	{
 		return sellerStoreImage;
 	}
 
-	public void setSellerStoreImage(String sellerStoreImage) {
+	public void setSellerStoreImage(String sellerStoreImage)
+	{
 		this.sellerStoreImage = sellerStoreImage;
 	}
 
-	public String getSellerProduct1() {
+	public String getSellerProduct1()
+	{
 		return sellerProduct1;
 	}
 
-	public void setSellerProduct1(String sellerProduct1) {
+	public void setSellerProduct1(String sellerProduct1)
+	{
 		this.sellerProduct1 = sellerProduct1;
 	}
 
-	public String getSellerProduct2() {
+	public String getSellerProduct2()
+	{
 		return sellerProduct2;
 	}
 
-	public void setSellerProduct2(String sellerProduct2) {
+	public void setSellerProduct2(String sellerProduct2)
+	{
 		this.sellerProduct2 = sellerProduct2;
 	}
 
-	public String getSellerProduct3() {
+	public String getSellerProduct3()
+	{
 		return sellerProduct3;
 	}
 
-	public void setSellerProduct3(String sellerProduct3) {
+	public void setSellerProduct3(String sellerProduct3)
+	{
 		this.sellerProduct3 = sellerProduct3;
 	}
 
-	public String getSellerIntroduction() {
+	public String getSellerIntroduction()
+	{
 		return sellerIntroduction;
 	}
 
-	public void setSellerIntroduction(String sellerIntroduction) {
+	public void setSellerIntroduction(String sellerIntroduction)
+	{
 		this.sellerIntroduction = sellerIntroduction;
 	}
 
-	public int getSellerAssign() {
+	public int getSellerAssign()
+	{
 		return sellerAssign;
 	}
 
-	public void setSellerAssign(int sellerAssign) {
+	public void setSellerAssign(int sellerAssign)
+	{
 		this.sellerAssign = sellerAssign;
 	}
 
-	public String getMemberId() {
+	public String getMemberId()
+	{
 		return memberId;
 	}
 
-	public void setMemberId(String memberId) {
+	public void setMemberId(String memberId)
+	{
 		this.memberId = memberId;
+	}
+
+	public String getSellerBank()
+	{
+		return sellerBank;
+	}
+
+	public void setSellerBank(String sellerBank)
+	{
+		this.sellerBank = sellerBank;
+	}
+
+	public String getSellerAccount()
+	{
+		return sellerAccount;
+	}
+
+	public void setSellerAccount(String sellerAccount)
+	{
+		this.sellerAccount = sellerAccount;
 	}
 
 	public Member getMember()
@@ -210,8 +268,10 @@ public class Seller implements Serializable
 		int result = 1;
 		result = prime * result + ((member == null) ? 0 : member.hashCode());
 		result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
+		result = prime * result + ((sellerAccount == null) ? 0 : sellerAccount.hashCode());
 		result = prime * result + ((sellerAddress == null) ? 0 : sellerAddress.hashCode());
 		result = prime * result + sellerAssign;
+		result = prime * result + ((sellerBank == null) ? 0 : sellerBank.hashCode());
 		result = prime * result + ((sellerIndustry == null) ? 0 : sellerIndustry.hashCode());
 		result = prime * result + ((sellerIntroduction == null) ? 0 : sellerIntroduction.hashCode());
 		result = prime * result + ((sellerProduct1 == null) ? 0 : sellerProduct1.hashCode());
@@ -249,6 +309,12 @@ public class Seller implements Serializable
 				return false;
 		} else if (!memberId.equals(other.memberId))
 			return false;
+		if (sellerAccount == null)
+		{
+			if (other.sellerAccount != null)
+				return false;
+		} else if (!sellerAccount.equals(other.sellerAccount))
+			return false;
 		if (sellerAddress == null)
 		{
 			if (other.sellerAddress != null)
@@ -256,6 +322,12 @@ public class Seller implements Serializable
 		} else if (!sellerAddress.equals(other.sellerAddress))
 			return false;
 		if (sellerAssign != other.sellerAssign)
+			return false;
+		if (sellerBank == null)
+		{
+			if (other.sellerBank != null)
+				return false;
+		} else if (!sellerBank.equals(other.sellerBank))
 			return false;
 		if (sellerIndustry == null)
 		{
@@ -336,7 +408,7 @@ public class Seller implements Serializable
 				+ ", sellerZipcode=" + sellerZipcode + ", sellerAddress=" + sellerAddress + ", sellerSubAddress="
 				+ sellerSubAddress + ", sellerStoreImage=" + sellerStoreImage + ", sellerProduct1=" + sellerProduct1
 				+ ", sellerProduct2=" + sellerProduct2 + ", sellerProduct3=" + sellerProduct3 + ", sellerIntroduction="
-				+ sellerIntroduction + ", sellerAssign=" + sellerAssign + ", memberId=" + memberId + ", member="
-				+ member + "]";
+				+ sellerIntroduction + ", sellerAssign=" + sellerAssign + ", memberId=" + memberId + ", sellerBank="
+				+ sellerBank + ", sellerAccount=" + sellerAccount + ", member=" + member + "]";
 	}
 }

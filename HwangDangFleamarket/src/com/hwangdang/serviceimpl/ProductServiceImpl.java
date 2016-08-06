@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.PagingBean;
+import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.ProductDao;
 import com.hwangdang.dao.ProductDetailImageDao;
 import com.hwangdang.dao.ProductOptionDao;
@@ -31,6 +32,9 @@ public class ProductServiceImpl implements ProductService
 	
 	@Autowired
 	private ProductDetailImageDao detailImageDao;
+	
+	@Autowired
+	private MemberDao memberDao;
 	
 	public ProductServiceImpl()
 	{
@@ -212,10 +216,13 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
-	public List<Category> selectFirstCategory()
+	public HashMap<String, Object> selectFirstCategory()
 	{
 		// TODO Auto-generated method stub
-		return dao.selectFirstCategory();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("bank", memberDao.selectBankCode());
+		map.put("firstCategory", dao.selectFirstCategory());
+		return map;
 	}
 
 	@Override
@@ -287,14 +294,14 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
-	public HashMap<String, Object> selectSearchProductByName(String searchCode)
+	public HashMap<String, Object> selectSearchProductByName(String keyword, int page)
 	{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
-		PagingBean bean = new PagingBean(dao.selectCountProduct(), 1);
+		PagingBean bean = new PagingBean(dao.selectCountByKeyword(keyword), page);
 		map.put("itemPerPage", 6);//한 페이지에 표시할 갯수.
-		map.put("page", 1);//현재 페이지.
-		map.put("searchCode", searchCode);
+		map.put("page", page);//현재 페이지.
+		map.put("keyword", keyword);
 		map.put("productList", dao.selectSearchProductByName(map));
 		map.put("bean", bean);
 		
@@ -302,15 +309,15 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
-	public HashMap<String, Object> selectSearchProductById(String keyword)
+	public HashMap<String, Object> selectSearchProductById(String keyword, int page)
 	{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
-		PagingBean bean = new PagingBean(dao.selectCountProduct(), 1);
+		PagingBean bean = new PagingBean(dao.selectCountByKeyword(keyword), page);
 		map.put("itemPerPage", 6);//한 페이지에 표시할 갯수.
-		map.put("page", 1);//현재 페이지.
+		map.put("page", page);//현재 페이지.
 		map.put("keyword", keyword);
-		map.put("productList", dao.selectSearchProductByName(map));
+		map.put("productList", dao.selectSearchProductById(map));
 		map.put("bean", bean);
 		
 		return map;

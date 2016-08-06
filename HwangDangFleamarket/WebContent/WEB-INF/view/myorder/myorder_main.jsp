@@ -149,7 +149,7 @@ img {
 	
 	 <!-- 본문 Area -->
 	 <div class="col-md-12 ">
-	 	<form action=""  method="post"  id="f2">
+	 	<form action="" method="post"  id="f2">
 		<input type="hidden" id="loginId" value="${sessionScope.login_info.memberId }" />
 		
 		<c:forEach items="${requestScope.orderList }"  var="order" > 

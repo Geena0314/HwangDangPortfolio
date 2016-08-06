@@ -18,7 +18,7 @@ public interface OrderDao
 	//주문상품 번호로 옵션 id, 구매상품수량 조회.
 	HashMap<String, Object> selectOptionAmount(int orderSeqNo);
 	
-	//반품된 수량만큼 옵션의 재고량 증가.
+	//취소/반품된 수량만큼 옵션의 재고량 증가.
 	int updateOptionStock(HashMap<String, Object> map);
 	
 	//환불정보저장.
@@ -61,8 +61,23 @@ public interface OrderDao
 	Orders selectOrdersOrderProduct(int orderSeqNo);
 	
 	//배송 현황 조회
-	List<Orders> selectDiliveryStatus(HashMap<String, Object> map);
+	List<OrderProduct> selectDiliveryStatus(HashMap<String, Object> map);
 	
 	//주문 총 갯수 조회
-	int selectCountOrders(String memberId);
+	int selectCountOrderProduct(String memberId);
+	
+	//교환,환불,취소 현황 조회
+	List<OrderProduct> selectRequestStatus(HashMap<String, Object> map);
+	
+	//교환,환불,취소 상품 총 갯수 조회
+	int selectCountRequestOrderProduct(String memberId);
+	
+	//구매확정 상품 조회
+	List<OrderProduct> selectPurchaseConfirm(HashMap<String, Object> map);
+	
+	//구매확정 상품 총 갯수 조회
+	int selectCountPurchaseConfirm(String memberId);
+	
+	//주문 취소
+	int deleteOrderProduct(int orderSeqNo);
 }

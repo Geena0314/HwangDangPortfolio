@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.OrderService;
 import com.hwangdang.service.SellerService;
+import com.hwangdang.vo.Member;
 import com.hwangdang.vo.OrderProduct;
 import com.hwangdang.vo.Orders;
 import com.hwangdang.vo.ProductOption;
@@ -155,6 +156,10 @@ public class SellerController {
 		Seller seller =  ((Seller)session.getAttribute("seller"));
 		session.removeAttribute("seller"); //session에 seller란 이름으로 등록된 정보를 지움
 		session.removeAttribute("sellerRegister");
+		Member member = ((Member)session.getAttribute("login_info"));
+		session.removeAttribute("login_info");
+		member.setMemberAssign(0);
+		session.setAttribute("login_info", member);
 		service.deleteSeller(seller.getSellerStoreNo(), seller.getMemberId());
 		return "redirect:/seller/sellerWithdrawalSuccess.go";
 	}

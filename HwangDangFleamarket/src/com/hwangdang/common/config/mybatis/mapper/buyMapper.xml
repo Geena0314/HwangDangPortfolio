@@ -31,7 +31,7 @@
 	
 	 <!-- product : seller 조인  -->
 	<resultMap type="Product" id="product-seller-join"  extends="basic-productmap">
-		<association property="seller" javaType="seller" resultMap="seller-basic-resultmap" />
+		<association property="seller" javaType="Seller" resultMap="seller-basic-resultmap" />
 	</resultMap> 
 		
 	<resultMap type="ProductOption" id="basic-productOption-resultmap">
@@ -56,7 +56,7 @@
 		<result column="orders_request" property="ordersRequest"/>
 		<result column="payment_status" property="paymentStatus"/>
 		<result column="member_id" property="memberId"/>
-		<result column="orders_date"  property="orders_date"/>
+		<result column="orders_date"  property="ordersDate"/>
 	</resultMap>
 	
 	<!-- seller 기본 리절트맵 -->
@@ -76,6 +76,8 @@
 		<result column="seller_introduction" property="sellerIntroduction"/>
 		<result column="seller_assign" property="sellerAssign"/>
 		<result column="member_id" property="memberId"/>
+		<result column="seller_bank" property="sellerBank"/>
+		<result column="seller_account" property="sellerAccount"/>
 	</resultMap>
 
 	<!-- 재고량 조회 -->
@@ -92,7 +94,7 @@
 		VALUES ( 
 		 #{ordersNo },#{ordersReceiver },#{ordersPhone },#{ordersZipcode },
 		 #{ordersAddress },#{ordersSubAddress },#{ordersTotalPrice },#{ordersPayment },
-		 #{ordersRequest },#{paymentStatus },#{orders_date },#{memberId }
+		 #{ordersRequest },#{paymentStatus },#{ordersDate },#{memberId }
 		)
 	</insert>
 	

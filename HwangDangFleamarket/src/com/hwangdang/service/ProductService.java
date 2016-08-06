@@ -46,7 +46,7 @@ public interface ProductService
 	int insertQnAReply(int sellerStoreNo, String storeReplyContent, int storeQnANo);
 	
 	//first 카테고리(업종) 조회
-	List<Category> selectFirstCategory();
+	HashMap<String, Object> selectFirstCategory();
 	
 	//second 카테고리조회.
 	List<Category> selectSecondCategory(String categoryIdRef);
@@ -70,8 +70,8 @@ public interface ProductService
 	int deleteProductById(String productId);
 	
 	//상품 (상품명으로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
-	HashMap<String, Object> selectSearchProductByName(String keyword);
+	HashMap<String, Object> selectSearchProductByName(String keyword, int page);
 	
 	//상품 (상품id로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
-	HashMap<String, Object> selectSearchProductById(String keyword);
+	HashMap<String, Object> selectSearchProductById(String keyword, int page);
 }

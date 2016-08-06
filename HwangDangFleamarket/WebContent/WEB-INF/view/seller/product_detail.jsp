@@ -75,6 +75,8 @@ $(document).ready(function(){
 				if(json.optionAddPrice == 0)
 				{
 					$("#optionStockError").empty().append(json.optionStock).hide();
+					$("#optionAddPriceTr").html("<td>추가 가격</td><td id='optionAddPrice' name='optionAddPrice'>" 
+							+ json.optionAddPrice + "원</td>").hide();
 					return false;
 				}
 				else
@@ -819,14 +821,64 @@ $(document).ready(function(){
 		});
 	});
 			
-	//바로구매 
+	/* //바로구매 
 	$("#buyBtn").on("click",function(){
 		var amount = $("#optionStock").val();
 		//alert("재고량:"+amount);
 		 var option = $("#optionName option:selected").val();
 		 $("form").prop("action","/HwangDangFleamarket/buy/moveBuyPage.go?page=${param.page}&productId=${param.productId }&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}&amount="+amount+"&memberId=${sessionScope.login_info.memberId}&option="+option );
 		 $("form").submit();
-	}); //btn 
+	}); //btn  */
+	
+	$("#buyBtn").on("click", function()
+	{
+		//1개상품 구매 로직
+		if(!'${sessionScope.login_info.memberId}')
+		{
+			var result = confirm("로그인이 필요한 서비스입니다.\n로그인하시겠습니까?");
+			if(result){
+				return window.open('/HwangDangFleamarket/member/login.go', '로그인창', 'resizable=no scrollbars=yes width=700 height=450 left=500 top=200');
+			}else{
+				return false;
+			}
+		}
+		
+		if($("#optionName option:selected").val() == "${requestScope.optionList[0].optionName}")
+		{
+			//옵션 미선택시
+			alert("옵션을 선택해주세요.");
+			return false;
+		}
+		if($("#optionStock").val() == 0)
+		{
+			//수량 미입력시
+			alert("수량을 선택해주세요.");
+			return false;
+		}
+		
+		//상품id, 옵션id, 가격과 수량, 셀러스토어no 값 보내주기.
+		var productId = $("#productId").text();
+		var optionId = $('#optionId').text();
+		var orderAmount = $("#optionStock").val();
+		var productPrice = '${ requestScope.product.productPrice }';
+		var optionAddPriceText = $("#optionAddPrice").text();
+		var optionAddPrice = optionAddPriceText.substring(0, optionAddPriceText.indexOf("원"));
+		var totalPrice = (parseInt(productPrice) + parseInt(optionAddPrice)) * orderAmount;
+		
+		$("form").prop("action", "/HwangDangFleamarket/buy/buyForm.go?productId="+productId+"&optionId="+optionId
+				+"&orderAmount="+orderAmount+"&productPrice="+productPrice+"&optionAddPrice="+optionAddPrice+"&totalPrice="+totalPrice);
+	 	$("form").submit();
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	$("#cartLayer").hide(); // modal 창 처음에 숨겨주기
 	$("#cartBtn").on("click", function(){
 		var productId = $("#productId").text();
@@ -834,7 +886,7 @@ $(document).ready(function(){
 		{
 			var result = confirm("로그인이 필요한 서비스입니다.\n로그인하시겠습니까?");
 			if(result){
-				return window.open('/HwangDangFleamarket/member/login.go', '로그인창');
+				return window.open('/HwangDangFleamarket/member/login.go', '로그인창', 'resizable=no scrollbars=yes width=700 height=450 left=500 top=200');
 			}else{
 				return false;
 			}

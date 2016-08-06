@@ -33,6 +33,7 @@ public class BuyServiceImpl implements BuyService {
 	@Override
 	public int addProductOne(Orders orders , OrderProduct orderProduct){
 		int flag = dao.insertOrdersOne(orders);
+		System.out.println(orderProduct);
 		flag = dao.insertOrderProductOne(orderProduct);
 		return flag;
 	}
@@ -98,11 +99,6 @@ public class BuyServiceImpl implements BuyService {
 	@Override
 	public Cart getCartByCartNo(int cartNo){
 		return dao.selectCartByCartNo(cartNo);
-	}
-	// order_product TB 시퀀스 조회    
-	@Override
-	public int getOrderProductSeq(){
-		return dao.selectOrderProductSeq();
 	}
 	
 	// product TB 전체상품 수량 변경 (마이너스) 
