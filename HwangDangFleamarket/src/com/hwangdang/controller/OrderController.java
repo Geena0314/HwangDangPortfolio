@@ -35,6 +35,16 @@ public class OrderController {
 				service.selectRequestStatus(((Member)session.getAttribute("login_info")).getMemberId(), page));
 	}
 	
-	//구매 취소
+	//구매 확정
+	@RequestMapping("/purchaseConfirm")
+	public ModelAndView purchaseConfirm(HttpSession session, int page){
+		return new ModelAndView("buyer/purchase_confirm.tiles",
+				service.selectPurchaseConfirm(((Member)session.getAttribute("login_info")).getMemberId(), page));
+	}
 	
+	//구매 취소
+	@RequestMapping("/orderCancel")
+	public String orderCancel(int orderSeqNo){
+		return "buyer/request_status.tiles";
+	}
 }

@@ -24,11 +24,10 @@ div.myorder-tabs li#list_block{
    min-width: 800px;
    padding: 15px 15px 15px 15px;
 }
-li{
+.contentList li{
    display: list-item;
    margin: 10px;
 }
-
 div{
    display: block;
 }
@@ -66,36 +65,6 @@ ul.btns{
 	margin: 0px;
 }
 </style>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(".requestStatusTab").onclick(function(){
-		$.ajax({
-			"url":"/HwangDangFleamarket/order/requestStatus.go",
-			"type":"POST",
-			"data":"page=1",
-			"dataType":"json",
-			"beforeSend":function(){
-				
-			},
-			"success":function(){
-				
-			},
-			"error":error
-		});
-	});
-	$(".cancelBtn").onclick(function(){
-		if(!confirm("해당 상품의 주문을 취소하시겠습니까?")){
-			return false;
-		}else{
-			location.href='/HwangDangFleamarket/order/requestStatus.go?page=1'
-		}
-	});
-});
-function error(xhr, status, err)
-{
-	alert(status+", "+xhr.readyState+" "+err);
-}
-</script>
 <div class="myorder-container">
 	<h2 class="page-header store_look_around">나의주문 - 배송현황</h2>
 	<div class="myorder-tabs">
@@ -103,10 +72,10 @@ function error(xhr, status, err)
 		<ul class="nav nav-tabs">       
 		 	<li role="presentation" class="active"><a href="/HwangDangFleamarket/order/diliveryStatus.go?page=1">배송 현황</a></li>
 		  	<li role="presentation"><a href="/HwangDangFleamarket/order/purchaseConfirm.go?page=1">구매 확정</a></li>
-		  	<li role="presentation"><a class="requestStatusTab">교환/환불/취소</a></li>
+		  	<li role="presentation"><a href="/HwangDangFleamarket/order/requestStatus.go?page=1">교환/환불/취소</a></li>
 		 </ul>
 		 
-		 <ul>
+		 <ul class="contentList">
       		<c:forEach items="${requestScope.diliveryStatus}" var="myorderList" varStatus="no">
 				<c:choose>
 					<c:when test="${no.index == 0}">
@@ -141,13 +110,6 @@ function error(xhr, status, err)
 		               	  ${myorderList.product.productPrice + myorderList.productOption.optionAddPrice}원
 		               </li>
 		            </ul>
-<!-- 배송현황 조회
-	배송현황 - 입금대기중 : 0 
-	배송현황 - 결제완료    : 1
-	배송현황 - 배송준비중 : 2
-	배송현황 - 배송중       : 3
-	배송현황 - 배송완료    : 4
- -->
 		            <div class="status">
 		               <ul class="btns">
 		               		<c:choose>
@@ -155,7 +117,7 @@ function error(xhr, status, err)
 		               				<c:if test="${myorderList.orderProductStatus == 0}">입금 대기</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 1}">결제 완료</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 2}">배송 준비</c:if>
-		               				<li><input type="button" value="주문취소" class="cancelBtn"></li>
+		               				<li><input type="button" value="구매취소" class="cancelBtn"></li>
 		               			</c:when>
 		               			<c:when test="${myorderList.orderProductStatus == 3}">
 		               				배송 중

@@ -257,10 +257,10 @@
 		and		op.order_seq_no = #{orderSeqNo}
 	</select>
 	
-	<!-- 나의 주문 관련 -->
+	<!-- ************나의 주문 관련************ -->
 	<!-- 배송 현황 조회 -->
 	<select id="selectDiliveryStatus" resultMap="dilivery-resultMap" parameterType="map">
-		select		<include refid="orders-join-column"/> from(
+		select	<include refid="orders-join-column"/> from(
 			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
 				select 		o.orders_no, o.payment_status, o.orders_date,
 							op.order_seq_no, op.order_amount, op.order_product_status, 
@@ -285,14 +285,9 @@
 		and 	o.member_id = #{value}
 	</select>
 	
-	<!-- 구매 취소(주문 상품 삭제) -->
-	<delete id="deleteOrderProduct" parameterType="_int">
-		delete from order_product where order_seq_no = #{value}
-	</delete>
-
 	<!-- 교환/환불/취소 현황 조회 -->
 	<select id="selectRequestStatus" resultMap="dilivery-resultMap" parameterType="map">
-		select		<include refid="orders-join-column"/> from(
+		select	<include refid="orders-join-column"/> from(
 			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
 				select 		o.orders_no, o.payment_status, o.orders_date,
 							op.order_seq_no, op.order_amount, op.order_product_status, 
@@ -318,6 +313,37 @@
 		and 	o.member_id = #{value}
 	</select>
 	
+	<!-- 구매확정 상품 조회 -->
+	<select id="selectPurchaseConfirm" resultMap="dilivery-resultMap" parameterType="map">
+		select	<include refid="orders-join-column"/> from(
+			select ceil(rownum/#{itemsPerPage}) page, <include refid="orders-join-column"/> from(
+				select 		o.orders_no, o.payment_status, o.orders_date,
+							op.order_seq_no, op.order_amount, op.order_product_status, 
+							p.product_Id, p.product_name, p.product_price, p.product_main_image,
+							s.seller_store_no, s.seller_store_name, s.seller_store_image,
+							po.option_sub_name, po.option_add_price
+				from 		orders o, order_product op, product p, seller s, product_option po
+				where 		o.orders_no = op.orders_no
+				and	 		op.product_id = p.product_id
+				and			op.option_id = po.option_id
+				and			op.seller_store_no = s.seller_store_no 
+				and			op.order_product_status = 10
+				and			o.member_id = #{memberId}
+				order by	o.orders_date desc))
+		where page = #{page}
+	</select>
 	
+	<!-- 구매확정 상품 총 갯수 조회 -->
+	<select id="selectCountPurchaseConfirm" resultType="_int" parameterType="string">
+		select  count(op.order_seq_no) from orders o, order_product op 
+		where  	o.orders_no = op.orders_no
+		and		op.order_product_status = 10
+		and 	o.member_id = #{value}
+	</select>
+	
+	<!-- 구매 취소(주문 상품 삭제) -->
+	<delete id="deleteOrderProduct" parameterType="_int">
+		delete from order_product where order_seq_no = #{value}
+	</delete>
 	
 </mapper>
