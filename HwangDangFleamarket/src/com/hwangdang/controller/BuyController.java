@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -514,10 +515,20 @@ public class BuyController {
 	
 	//바로구매 버튼 클릭시 결제 폼으로 이동.
 	@RequestMapping("/buyForm")
-	public String buyForm(OrderProduct orderProduct, int totalPrice, Model model)
+	public String buyForm(OrderProduct orderProduct, int totalPrice, Model model, HttpSession session)
 	{
+		//전화번호 split
+		Member member = (Member)session.getAttribute("login_info");
+		String[] phone = member.getMemberPhone().split("-");
+		model.addAttribute("hp1", phone[1]);
+		model.addAttribute("hp2", phone[2]);
+		
+		//product, productOption 각각의 id로 조회.
+		model.addAttribute("detail", service.selectProductProductOption(orderProduct.getProductId(), orderProduct.getOptionId()));
 		model.addAttribute("orderProduct", orderProduct);
 		model.addAttribute("totalPrice", totalPrice);
-		return "buyer/buyForm.tiles";
+		return "buyer/buy_form.tiles";
 	}
+	
+	//구매하기 버튼 클릭.
 }

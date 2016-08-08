@@ -820,16 +820,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-			
-	/* //바로구매 
-	$("#buyBtn").on("click",function(){
-		var amount = $("#optionStock").val();
-		//alert("재고량:"+amount);
-		 var option = $("#optionName option:selected").val();
-		 $("form").prop("action","/HwangDangFleamarket/buy/moveBuyPage.go?page=${param.page}&productId=${param.productId }&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}&amount="+amount+"&memberId=${sessionScope.login_info.memberId}&option="+option );
-		 $("form").submit();
-	}); //btn  */
-	
+
 	$("#buyBtn").on("click", function()
 	{
 		//1개상품 구매 로직
@@ -866,18 +857,9 @@ $(document).ready(function(){
 		var totalPrice = (parseInt(productPrice) + parseInt(optionAddPrice)) * orderAmount;
 		
 		$("form").prop("action", "/HwangDangFleamarket/buy/buyForm.go?productId="+productId+"&optionId="+optionId
-				+"&orderAmount="+orderAmount+"&productPrice="+productPrice+"&optionAddPrice="+optionAddPrice+"&totalPrice="+totalPrice);
+				+"&orderAmount="+orderAmount+"&totalPrice="+totalPrice);
 	 	$("form").submit();
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	$("#cartLayer").hide(); // modal 창 처음에 숨겨주기
 	$("#cartBtn").on("click", function(){

@@ -1,5 +1,6 @@
 package com.hwangdang.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,5 +62,10 @@ public interface BuyService {
 
 	// 키워드로 조회한 아이템의 토탈갯수 
 	int getProductTotalByLikeKeyword(String keyword);
+	
+	
+	
+	//상품, 옵션 각각의 id로 조회.
+	HashMap<String, Object> selectProductProductOption(String productId, int optionId);
 
 }
