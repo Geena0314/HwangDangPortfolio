@@ -63,9 +63,9 @@ public interface BuyService {
 	// 키워드로 조회한 아이템의 토탈갯수 
 	int getProductTotalByLikeKeyword(String keyword);
 	
+//	//상품, 판매자, Option 1:1:1조인
+//	Product selectProductProductOption(String productId, int optionId);
 	
-	
-	//상품, 옵션 각각의 id로 조회.
-	HashMap<String, Object> selectProductProductOption(String productId, int optionId);
-
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	HashMap<String,Object> selectProductProductOption(String productId, int optionId, int sellerStoreNo);
 }

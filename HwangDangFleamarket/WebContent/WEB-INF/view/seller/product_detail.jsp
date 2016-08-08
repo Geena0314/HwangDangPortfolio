@@ -827,9 +827,11 @@ $(document).ready(function(){
 		if(!'${sessionScope.login_info.memberId}')
 		{
 			var result = confirm("로그인이 필요한 서비스입니다.\n로그인하시겠습니까?");
-			if(result){
+			if(result)
+			{
 				return window.open('/HwangDangFleamarket/member/login.go', '로그인창', 'resizable=no scrollbars=yes width=700 height=450 left=500 top=200');
-			}else{
+			}else
+			{
 				return false;
 			}
 		}
@@ -857,7 +859,7 @@ $(document).ready(function(){
 		var totalPrice = (parseInt(productPrice) + parseInt(optionAddPrice)) * orderAmount;
 		
 		$("form").prop("action", "/HwangDangFleamarket/buy/buyForm.go?productId="+productId+"&optionId="+optionId
-				+"&orderAmount="+orderAmount+"&totalPrice="+totalPrice);
+				+"&orderAmount="+orderAmount+"&sellerStoreNo=${param.sellerStoreNo}"+"&totalPrice="+totalPrice);
 	 	$("form").submit();
 	});
 	

@@ -53,3 +53,14 @@ where  	p.seller_store_no = 4
 and	  	p.product_id = '상품id5555'
 and    	p.seller_store_no = s.seller_store_no
 and    	p.product_id = i.product_id
+
+
+select 	p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, p.product_info, p.product_like, p.seller_store_no, 
+	  		s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, s.seller_sub_industry, s.seller_zipcode, s.seller_address, 
+	   		s.seller_sub_address, s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, s.seller_introduction, s.seller_assign, s.member_id,
+	   		po.option_id, po.option_name, po.option_sub_name, po.option_stock, po.option_add_price, po.product_id
+from   	product p, seller s, product_option po 
+where  	p.seller_store_no = s.seller_store_no
+and	   	p.product_id = 'ironMan07'
+and    	p.product_id = po.product_id
+and		po.option_id = 23

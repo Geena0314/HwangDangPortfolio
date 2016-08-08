@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hwangdang.dao.BuyDao;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.dao.ProductDao;
+import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.BuyService;
 import com.hwangdang.vo.Cart;
 import com.hwangdang.vo.OrderProduct;
@@ -29,6 +30,9 @@ public class BuyServiceImpl implements BuyService {
 	
 	@Autowired
 	private OrderDao orderDao;
+	
+	@Autowired
+	private SellerDao sellerDao;
 	
 	public BuyServiceImpl () { }
 	
@@ -134,12 +138,17 @@ public class BuyServiceImpl implements BuyService {
 	}
 
 	@Override
-	public HashMap<String, Object> selectProductProductOption(String productId, int optionId)
+	public HashMap<String,Object> selectProductProductOption(String productId, int optionId, int sellerStoreNo)
 	{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
+		/*map.put("productId", productId);
+		map.put("optionId", optionId);
+		
+		return dao.selectProductSellerOptionJoin(map);*/
 		map.put("product", productDao.selectProductById(productId));
 		map.put("productOption", orderDao.selectOptionByOptionId(optionId));
+		map.put("seller", sellerDao.selectSellerRegisterOne(sellerStoreNo));
 		return map;
 	}
 }

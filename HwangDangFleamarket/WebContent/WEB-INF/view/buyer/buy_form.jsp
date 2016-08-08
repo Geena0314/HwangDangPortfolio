@@ -112,6 +112,12 @@
 			<legend>상품/결제 정보</legend>
 			<table>
 				<tr>
+					<th>스토어명</th>
+					<td colspan="2">
+						${ requestScope.detail.seller.sellerStoreName }
+					</td>
+				</tr>
+				<tr>
 					<th>상품명</th>
 					<td colspan="2">
 						${ requestScope.detail.product.productName }
