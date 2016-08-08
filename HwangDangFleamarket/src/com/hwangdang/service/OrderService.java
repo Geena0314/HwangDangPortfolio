@@ -40,6 +40,9 @@ public interface OrderService
 	//구매확정 상품 조회
 	HashMap<String, Object> selectPurchaseConfirm(String memberId, int page);
 	
-	//주문 취소
-	int deleteOrderProduct(int orderSeqNo);
+	//구매 취소 시 현황 변경
+	int updateCancelOrderProductStatus(int orderSeqNo);
+	
+	//구매 확정 시 현황 변경
+	int updateConfirmOrderProductStatus(int orderSeqNo);
 }

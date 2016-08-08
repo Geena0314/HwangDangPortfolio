@@ -45,6 +45,14 @@ public class OrderController {
 	//구매 취소
 	@RequestMapping("/orderCancel")
 	public String orderCancel(int orderSeqNo){
-		return "buyer/request_status.tiles";
+		service.updateCancelOrderProductStatus(orderSeqNo);
+		return "/order/requestStatus.go?page=1";
+	}
+	
+	//구매 확정
+	@RequestMapping("/goPurchaseConfirm")
+	public String purchaseConfirm(int orderSeqNo){
+		service.updateConfirmOrderProductStatus(orderSeqNo);
+		return "/order/purchaseConfirm.go?page=1";
 	}
 }

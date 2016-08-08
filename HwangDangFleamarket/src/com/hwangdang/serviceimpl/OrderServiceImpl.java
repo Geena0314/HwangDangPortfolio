@@ -161,22 +161,6 @@ public class OrderServiceImpl implements OrderService
 	}
 
 	@Override
-	public int deleteOrderProduct(int orderSeqNo) {
-		// TODO Auto-generated method stub
-		HashMap<String, Object> map = new HashMap<>();
-		
-		//주문 취소한 상품의 재고량 ↑
-		OrderProduct orderProduct = dao.orderProductProductOption(orderSeqNo);
-		int originalStock = orderProduct.getOrderAmount();
-		int originalOptionId = orderProduct.getOptionId();
-		
-		map.put("originalStock", originalStock);
-		map.put("originalOptionId", originalOptionId);
-		dao.updatePlusOptionStock(map);
-		return dao.deleteOrderProduct(orderSeqNo);
-	}
-
-	@Override
 	public HashMap<String, Object> selectRequestStatus(String memberId, int page) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
@@ -204,5 +188,27 @@ public class OrderServiceImpl implements OrderService
 		ArrayList<OrderProduct> list = (ArrayList<OrderProduct>) dao.selectPurchaseConfirm(map);
 		map.put("purchaseConfirm", list);
 		return map;
+	}
+
+	@Override
+	public int updateCancelOrderProductStatus(int orderSeqNo) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		
+		//주문 취소한 상품의 재고량 ↑
+		OrderProduct orderProduct = dao.orderProductProductOption(orderSeqNo);
+		int originalStock = orderProduct.getOrderAmount();
+		int originalOptionId = orderProduct.getOptionId();
+		
+		map.put("originalStock", originalStock);
+		map.put("originalOptionId", originalOptionId);
+		dao.updatePlusOptionStock(map);
+		return dao.updateCancelOrderProductStatus(orderSeqNo);
+	}
+
+	@Override
+	public int updateConfirmOrderProductStatus(int orderSeqNo) {
+		// TODO Auto-generated method stub
+		return dao.updateConfirmOrderProductStatus(orderSeqNo);
 	}
 }
