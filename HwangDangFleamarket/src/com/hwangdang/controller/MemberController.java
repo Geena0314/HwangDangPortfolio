@@ -296,6 +296,12 @@ public class MemberController {
 		return "/WEB-INF/view/member/seller_address.jsp";
 	}
 	
+	@RequestMapping("findBuyAddress")
+	public String findBuyAddress()
+	{
+		return "/WEB-INF/view/buyer/buy_address.jsp";
+	}
+	
 	//회원 탈퇴
 	@RequestMapping("memberWithdrawal")
 	public String memberWithdrawal(String memberId, HttpSession session){	

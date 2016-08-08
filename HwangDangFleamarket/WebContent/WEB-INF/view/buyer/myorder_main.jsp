@@ -64,7 +64,30 @@ img{
 ul.btns{
 	margin: 0px;
 }
+.orderSeqNo{
+	display: none;
+}
 </style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.cancelBtn').on("click", function(){
+		var orderSeqNo = $(this).next().val();
+		if(!confirm("해당 상품의 주문을 취소하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/HwangDangFleamarket/order/orderCancel.go?orderSeqNo='+orderSeqNo
+		}
+	});
+	$(".confirmBtn").on("click", function(){
+		var orderSeqNo = $(this).next().val();
+		if(!confirm("해당 상품의 구매를 확정하시겠습니까?")){
+			return false;
+		}else{
+			location.href='/HwangDangFleamarket/order/goPurchaseConfirm.go?orderSeqNo='+orderSeqNo
+		}
+	});
+});
+</script>
 <div class="myorder-container">
 	<h2 class="page-header store_look_around">나의주문 - 배송현황</h2>
 	<div class="myorder-tabs">
@@ -117,13 +140,15 @@ ul.btns{
 		               				<c:if test="${myorderList.orderProductStatus == 0}">입금 대기</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 1}">결제 완료</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 2}">배송 준비</c:if>
-		               				<li><input type="button" value="구매취소" class="cancelBtn"></li>
+		               				<li><input type="button" value="구매취소" class="cancelBtn">
+		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo"></li>
 		               			</c:when>
 		               			<c:when test="${myorderList.orderProductStatus == 3}">
 		               				배송 중
 		               			</c:when>
 		               			<c:when test="${myorderList.orderProductStatus == 4}">
-		               				<li><input type="button" value="구매확정" class="confirmBtn"></li>
+		               				<li><input type="button" value="구매확정" class="confirmBtn">
+		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo"></li>
 		               				<li><input type="button" value="교환신청" class="exchangeBtn"></li>
 		               				<li><input type="button" value="반품신청" class="refundBtn"></li>
 		               			</c:when>

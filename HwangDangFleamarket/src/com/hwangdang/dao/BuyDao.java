@@ -1,9 +1,8 @@
 package com.hwangdang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.vo.Cart;
 import com.hwangdang.vo.OrderProduct;
@@ -50,5 +49,7 @@ public interface BuyDao {
 	List<Product> selectProductByLikeKeyword(Map param);
 
 	int selectProductCountByLike(String keyword);
-
+	
+	//상품, 판매자, Option 1:1:1조인
+	Product selectProductSellerOptionJoin(HashMap<String,Object> map);
 }

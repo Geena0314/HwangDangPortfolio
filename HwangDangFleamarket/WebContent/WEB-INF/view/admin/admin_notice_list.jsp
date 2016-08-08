@@ -5,7 +5,13 @@
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_notice_list.css">
 <h2 class="page-header store_look_around">황당 플리마켓 소식통</h2>
 <div class="table-responsive notice">
-	<table class="table table-striped" id="adminTable">
+	<table class="table table-striped" id="adminTable" style="max-width: 700px;">
+		<colgroup>
+			<col style="width: 10%">
+			<col style="width: 55%">
+			<col style="width: 15%">
+			<col style="width: 10%">
+		</colgroup>
 		<thead>
 			<tr>
 				<td colspan="4">
@@ -15,19 +21,19 @@
 				</td>
 			</tr>
 			<tr class="trInput">
-				<td width="100px" class="tdName">번호</td>
-				<td width="325px" class="tdName">제목</td>
-				<td width="175px" class="tdName">등록일</td>
-				<td width="100px" class="tdName">조회수</td>
+				<td class="tdName">번호</td>
+				<td class="tdName">제목</td>
+				<td class="tdName">등록일</td>
+				<td class="tdName">조회수</td>
 			</tr>
 		</thead>
-		<tbody style="border-bottom: 1px solid lightgray;">
+		<tbody style="border-bottom: 1px solid lightgray;" class="tbody">
 			<c:forEach var="list" items="${requestScope.list}">
 				<tr class="trInput">
 					<td class="tdName">${list.noticeNo}</td>
-					<td class="tdName">
+					<td class="tdName title">
 						<a href="/HwangDangFleamarket/admin/adminNoticeDetail.go?page=${requestScope.pagingBean.page}&noticeNo=${list.noticeNo}">
-							${list.noticeTitle}
+							<nobr>${list.noticeTitle}</nobr>
 						</a>
 					</td>
 					<td class="tdName"><fmt:formatDate value="${list.noticeDate}" pattern="yyyy-MM-dd" /></td>

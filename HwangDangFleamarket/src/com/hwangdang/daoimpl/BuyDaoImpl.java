@@ -1,5 +1,6 @@
 package com.hwangdang.daoimpl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -116,5 +117,11 @@ public class BuyDaoImpl implements BuyDao {
 	public int selectProductCountByLike(String keyword){
 		return session.selectOne("buy.select-product-by-totalItemsCount" , keyword);
 	}
-	
+
+	@Override
+	public Product selectProductSellerOptionJoin(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.selectOne("buy.selectProductSellerOptionJoin", map);
+	}
 }

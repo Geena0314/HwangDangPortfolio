@@ -36,20 +36,6 @@ public class OrderProduct implements Serializable
 	}
 	
 	public OrderProduct(int orderSeqNo, int orderAmount, String ordersNo, String productId, int optionId,
-			int sellerStoreNo, int orderProductStatus)
-	{
-		//주문상품 정보만
-		super();
-		this.orderSeqNo = orderSeqNo;
-		this.orderAmount = orderAmount;
-		this.ordersNo = ordersNo;
-		this.productId = productId;
-		this.optionId = optionId;
-		this.sellerStoreNo = sellerStoreNo;
-		this.orderProductStatus = orderProductStatus;
-	}
-
-	public OrderProduct(int orderSeqNo, int orderAmount, String ordersNo, String productId, int optionId,
 			int sellerStoreNo, int orderProductStatus, Product product, ProductOption productOption)
 	{
 		//모든정보 - seller.

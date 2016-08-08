@@ -174,8 +174,14 @@ public class OrderDaoImpl implements OrderDao
 	}
 
 	@Override
-	public int deleteOrderProduct(int orderSeqNo) {
+	public int updateCancelOrderProductStatus(int orderSeqNo) {
 		// TODO Auto-generated method stub
-		return session.delete("orderMapper.deleteOrderProduct", orderSeqNo);
+		return session.update("orderMapper.updateCancelOrderProductStatus", orderSeqNo);
+	}
+
+	@Override
+	public int updateConfirmOrderProductStatus(int orderSeqNo) {
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updateConfirmOrderProductStatus", orderSeqNo);
 	}
 }

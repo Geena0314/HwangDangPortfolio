@@ -247,28 +247,36 @@ $( document ).ready( function(){
 			"error":error
     	}); 
     });
-    //구입하기 버튼 : 체그된 productId , productOptionId , sellerStoreNO 
-    //stock  , 
-    $("#buyBtn").on("click",function(){
-    	console.log(getRemoveCartList());
+    
+    
+    /*********************************************************/
+    $("#buyBtn").on("click",function()
+    {
+    	var checkBox = $(".checkBox");
+    	for()
+    	
+    	
+    	/* alert("orderTotalPrice" + )
+    	alert("orderAmount" + )
+    	alert("productId" + )
+    	alert("optionId" + )
+    	alert("sellerStoreNo" + ) */
+    	
+    	
+    	
+    	/* console.log(getRemoveCartList());
     	var url = "/HwangDangFleamarket/buy/buyCarts.go?cartNoList="+getRemoveCartList();
 		$("form").prop("action" , url);    	
-		$("form").submit();
+		$("form").submit(); */
+		
     });
-   /*  $(".amount").on("change",function(){
-    	var amount = $(this).val();
-    	var price = $(this).parent().next().text().split("+");
-    	var priceOne = price[0]/amount; 
-    	if(price[1] == 0)
-    	{
-    		$(this).parent().next().text((priceOne*amount));
-    		$(this).parent().next().children("p").text("+0");
-    	}
-    	else
-   		{
-    		$(this).parent().next().text((price[0]*amount) + "\n + " + (price[1]*amount));
-   		}
-    }); */
+    
+    
+    
+    
+    /*********************************************************/
+    
+    
     $(".minus").on("click", function()
 	{
     	var checkedFlag = $(this).parent().prev().prev().children("input:checkbox[name=checkBasket]");
@@ -350,18 +358,6 @@ $( document ).ready( function(){
     	$(this).parent().next().children(".realPrice").val(realPrice);
 	});
 });
-function getRemoveCartList(){
-	var queryString = "";
-	$("input:checkbox[name=checkBasket]:checked").each(function(idx){
-		if(idx==$("input:checkbox[name=checkBasket]:checked").length-1){
-			queryString = queryString+this.value;
-			
-		}else{
-			queryString = queryString+this.value+",";
-		}
-	});
-	return queryString;
-}
 function error(xhr, status, err)
 {
 	alert(status+", "+xhr.readyState+" "+err);
@@ -400,7 +396,7 @@ function error(xhr, status, err)
 						<c:forEach items="${list.productList}" var="product">
 							<tr class="cartList">
 								<td class="first">
-									<input type="checkbox" name="checkBasket" checked="checked" title="장바구니 상품 선택" value="${list.cartNo}">
+									<input type="checkbox" name="checkBasket" class="checkBox" checked="checked" title="장바구니 상품 선택" value="${list.cartNo}">
 								</td>
 								<td>
 									<%-- 스토어 이름, 상품명, 선택한 옵션 --%>

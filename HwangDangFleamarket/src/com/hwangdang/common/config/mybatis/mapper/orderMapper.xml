@@ -138,7 +138,7 @@
 	<!-- 주문상품 주문현황 변경.(환불승인처리 9번) -->
 	<update id="updateOrderProductStatus" parameterType="_int">
 		update 	order_product
-		set			order_product_status = 9
+		set		order_product_status = 9
 		where 	order_seq_no = #{orderSeqNo}
 	</update>
 	
@@ -341,9 +341,18 @@
 		and 	o.member_id = #{value}
 	</select>
 	
-	<!-- 구매 취소(주문 상품 삭제) -->
-	<delete id="deleteOrderProduct" parameterType="_int">
-		delete from order_product where order_seq_no = #{value}
-	</delete>
+	<!-- 구매 취소 시 현황 변경 -->
+	<update id="updateCancelOrderProductStatus" parameterType="_int">
+		update 	order_product
+		set		order_product_status = 7
+		where	order_seq_no = #{value}
+	</update>
+	
+	<!-- 구매 확정 시 현황 변경 -->
+	<update id="updateConfirmOrderProductStatus" parameterType="_int">
+		update 	order_product
+		set		order_product_status = 10
+		where	order_seq_no = #{value}
+	</update>
 	
 </mapper>
