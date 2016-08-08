@@ -3,19 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
 <style type="text/css">
-/* table, td {
-	border: 1px solid gray;
-	text-align: center;
-}
-
-table {
-	border-collapse: collapse;
-	width: 650px;
-}
-
-td {
-	padding: 5px;
-} */
 a {
 	text-decoration: none;
 	color: gray;

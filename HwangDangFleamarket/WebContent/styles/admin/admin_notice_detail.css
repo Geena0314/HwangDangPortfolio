@@ -6,6 +6,7 @@
 	border-top: 1px solid lightgray;
 	border-collapse: separate;
 	position: relative;
+	table-layout: fixed;
 }
 td{
 	text-align: left;
