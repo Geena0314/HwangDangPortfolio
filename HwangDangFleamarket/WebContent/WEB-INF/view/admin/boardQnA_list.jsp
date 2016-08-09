@@ -1,52 +1,19 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style type="text/css">
-a {
-	text-decoration: none !important;
-}
-
-b {
-	font-size: 15pt;
-}
-.main{
-	min-height: 600px;
-}
-#adminTable{
-	width: 800px;
-	font-size: 13pt;
-	margin:  auto;
-	text-align: center;
-}
-.table-responsive{
-	overflow-x: hidden; 
-}
-</style>
-
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-	$(document).ready(function(){
-		$("#addBtn").on("click",function(){
-			//글등록 페이지로 이동 
-			location.href="/HwangDangFleamarket/boardQnA_register_form.go";		
-		});	
-		
-	/* 	$("#moveDetail").on("click",function(){
-			alert("gg");
-			return false;
-		});	 */
-		
-	});//ready
-</script>
-
-<br/><br/>  
-   
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_notice_list.css">
 <h2 class="page-header store_look_around">황당 플리마켓 Q&A</h2>
-	<div class="table-responsive adminNotice">
-	<table class="table table-hover" id="adminTable">
+<div class="table-responsive notice">
+	<table class="table table-striped" id="adminTable" style="max-width: 700px;">
 		<thead>
+			<tr>
+				<td colspan="7">
+					<c:if test="${sessionScope.login_info.memberId != null}">
+						<input class="addBtns" type="button" value="문의하기" onclick="window.location='/HwangDangFleamarket/boardQnA_register_form.go'">
+					</c:if>
+				</td>
+			</tr>
 			<tr class="trInput">
 				<td class="tdName" width="50px">no</td>
 				<td class="tdName" width="80px">답변여부</td>
@@ -58,9 +25,7 @@ b {
 			</tr>
 		</thead>
 		<tbody>		
-				
-				<c:forEach var="list" items="${requestScope.list }" >
-				
+			<c:forEach var="list" items="${requestScope.list }" >
 				<tr class="trInput">
 					<td>${list.adminQnaNo }</td>
 					<td class="tdName">
@@ -68,7 +33,6 @@ b {
 							<c:when test="${list.adminQnaReplyExist eq 't' }"><font color="blue">완료</font> </c:when>
 							<c:otherwise><font color="red">미완료</font></c:otherwise>
 						</c:choose>
-						
 					</td>  
 					<td><a  id="moveDetail" href="/HwangDangFleamarket/admin/boardQnADetailBefore.go?page=${requestScope.pasingBean.page }&no=${list.adminQnaNo }">${list.adminQnaTitle }</a></td>
 					<td>${list.adminQnaWriter }</td>
@@ -86,50 +50,42 @@ b {
 				</c:forEach>
 		</tbody>
 	</table>
-	<p class="text-center">
-		<c:if test="${sessionScope.login_info.memberId != null }">
-		<input type="button" id="addBtn" value="문의하기" class="btn btn-default" />
-	</c:if>
-	</p>
-	
-	
-	<!-- *************************************************************** -->
-	<p class="text-center">
-	<!-- ◀버튼처리 -->  
-	<c:choose>
-		<c:when test="${requestScope.pasingBean.previousPageGroup }">
-			<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${requestScope.pasingBean.beginPage-1}">
-			◀
-			</a>
-		</c:when>
-		<c:otherwise>
-		 	◁	  
-		</c:otherwise>
-	</c:choose>
-	
-		<!-- 페이징처리 -->
-		<c:forEach begin="${requestScope.pasingBean.beginPage }" end="${requestScope.pasingBean.endPage }" var="page">
+
+	<%-- 페이징 처리 --%>
+	<div class="pageGroup adminNoticePaging" align="center">
+		<%-- ◀이전 페이지 그룹 처리 --%>
+		<c:choose>
+			<c:when test="${requestScope.pagingBean.previousPageGroup}">
+				<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${requestScope.pagingBean.beginPage-1}">
+					◀ 
+				</a>
+			</c:when>
+			<c:otherwise>◀</c:otherwise>
+		</c:choose>
+		&nbsp;&nbsp;
+		<%--페이지 처리 --%>
+		<c:forEach begin="${requestScope.pagingBean.beginPage}"
+			end="${requestScope.pagingBean.endPage}" var="page">
 			<c:choose>
-				<c:when test="${requestScope.pasingBean.page == page }">
-					<strong>${page}</strong>
-				</c:when>
+				<c:when test="${page == requestScope.pagingBean.page}">
+		  				<b>${page}</b>
+		 			</c:when>
 				<c:otherwise>
-					<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${page }">${page}</a>
+					<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${page}">
+						${page} 
+					</a>
 				</c:otherwise>
 			</c:choose>
+		&nbsp;&nbsp;
 		</c:forEach>
-	
-		<!-- ▶버튼 처리  -->
-	<c:choose>
-		<c:when test="${requestScope.pasingBean.nextPageGroup}">
-				<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${requestScope.pasingBean.endPage +1 }">▶ </a>
-		</c:when>
-		<c:otherwise>
-			▷	  
-		</c:otherwise>
-	</c:choose>
-	<br/> 
-	 
-	</p>
-	
+		<%--다음 페이지 그룹 처리 ▶--%>
+		<c:choose>
+			<c:when test="${requestScope.pagingBean.nextPageGroup}">
+				<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${requestScope.pagingBean.endPage+1}">
+					▶
+				</a>
+			</c:when>
+			<c:otherwise>▶</c:otherwise>
+		</c:choose>
+	</div>
 </div>	
