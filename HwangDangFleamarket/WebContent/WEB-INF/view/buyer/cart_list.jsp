@@ -253,7 +253,16 @@ $( document ).ready( function(){
     $("#buyBtn").on("click",function()
     {
     	var checkBox = $(".checkBox");
-    	for()
+    	var orderAmount = $(".amountTxt"); //주문수량
+    	for(var i = 0; i < checkBox.length; i++)
+    	{
+    		if(checkBox[i].checked)
+    		{
+    			//alert(orderAmount[i].value)
+    			//alert('${requestScope.cartList[0].productList[0].productId}')
+    			
+    		}
+    	}
     	
     	
     	/* alert("orderTotalPrice" + )
@@ -425,7 +434,6 @@ function error(xhr, status, err)
 										<input size="3" readonly="readonly" type="text" class="amountTxt" value="${list.cartProductAmount}">
 										<input type="text" value="${product.productOption.optionStock}" class="stock" style="display: none;">
 									<img src="../image_storage/plus.png" style="width:15px; height:15px; cursor: pointer; float: right;" class="plus" id="plus">
-								
 								</td>
 								<td id="price">
 									<input class="delivery" type="text" value="${product.sellerStoreNo}" style="display: none;">
