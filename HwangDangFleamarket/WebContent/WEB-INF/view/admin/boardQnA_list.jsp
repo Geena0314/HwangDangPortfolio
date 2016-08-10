@@ -5,7 +5,16 @@
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_notice_list.css">
 <h2 class="page-header store_look_around">황당 플리마켓 Q&A</h2>
 <div class="table-responsive notice">
-	<table class="table table-striped" id="adminTable" style="max-width: 700px;">
+	<table class="table table-striped" id="adminTable" style="max-width: 950px;">
+		<colgroup>
+			<col style="width: 10%">
+			<col style="width: 10%">
+			<col style="width: 30%">
+			<col style="width: 20%">
+			<col style="width: 10%">
+			<col style="width: 10%">
+			<col style="width: 10%">
+		</colgroup>
 		<thead>
 			<tr>
 				<td colspan="7">
@@ -15,7 +24,7 @@
 				</td>
 			</tr>
 			<tr class="trInput">
-				<td class="tdName" width="50px">no</td>
+				<td class="tdName" width="50px">번호</td>
 				<td class="tdName" width="80px">답변여부</td>
 				<td class="tdName"  width="150px">글제목</td>
 				<td class="tdName" width="70px">작성자</td>
