@@ -3,30 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
 <style type="text/css">
-/* table, td {
-	border: 1px solid gray;
-	text-align: center;
-}
-
-table {
-	border-collapse: collapse;
-	width: 650px;
-}
-
-td {
-	padding: 5px;
-	height: auto;
-}
-#tbodyTR{
-	min-height: 400px;
-	height: auto;
-} */
 #adminTable{
 	width: 800px;
 	min-height: 500px;
 	font-size: 13pt;
 	border-top: 1px solid lightgray;
 	border-collapse: separate;
+	table-layout: fixed;
 }
 td{
 	text-align: left;
@@ -39,7 +22,7 @@ td{
 	<table class="table" id="adminTable">
 		<thead>
 			<tr style="background-color: whitesmoke;">
-				<td width="550px"><b> ${requestScope.sellerNotice.sellerNoticeTitle}</b></td>
+				<td width="550px" style="word-break: break-word;"><b> ${requestScope.sellerNotice.sellerNoticeTitle}</b></td>
 				<td width="150px" style="font-size: 10pt; vertical-align: middle;">등록일 │ <fmt:formatDate value="${requestScope.sellerNotice.sellerNoticeDate}" pattern="yyyy-MM-dd" /></td>
 				<td width="100px" style="font-size: 10pt; vertical-align: middle;">조회수 │ ${requestScope.sellerNotice.sellerNoticeHit}</td>
 			</tr>

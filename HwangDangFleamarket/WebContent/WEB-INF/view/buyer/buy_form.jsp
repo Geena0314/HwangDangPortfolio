@@ -9,7 +9,7 @@
 	});
 </script>
 <style>
-	#memberId, #noBankBook, #accountTranfer
+	#memberId, #noBankBook, #accountTransfer
 	{
 		display: none;
 	}
