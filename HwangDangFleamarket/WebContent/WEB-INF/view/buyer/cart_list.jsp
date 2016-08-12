@@ -252,31 +252,35 @@ $( document ).ready( function(){
     /*********************************************************/
     $("#buyBtn").on("click",function()
     {
+    	var cartNoList = new Array(); //카트 번호(구매시 삭제)
+    	/* var productIdList = new Array(); //상품Id
+    	var optionIdList = new Array(); //옵션Id
+    	var sellerStoreNoList = new Array(); //판매자 스토어 번호
+    	var orderTotalPrice = 0; //총 주문 가격
+    	
+    	<c:forEach items="${requestScope.cartList}" var="list">
+			<c:forEach items="${list.productList}" var="product">
+				cartNoList.push("${list.cartNo}");
+				productIdList.push("${product.productId}");
+				optionIdList.push("${product.productOption.optionId}");
+				sellerStoreNoList.push("${product.sellerStoreNo}");
+				orderTotalPrice = orderTotalPrice + parseInt('${(product.productPrice + product.productOption.optionAddPrice) * list.cartProductAmount}')
+			</c:forEach>
+		</c:forEach> */
+    	
     	var checkBox = $(".checkBox");
-    	var orderAmount = $(".amountTxt"); //주문수량
+    	/* var orderAmount = $(".amountTxt"); //주문수량 */
     	for(var i = 0; i < checkBox.length; i++)
     	{
     		if(checkBox[i].checked)
     		{
-    			//alert(orderAmount[i].value)
-    			//alert('${requestScope.cartList[0].productList[0].productId}')
-    			
+    			cartNoList.push(checkBox[i].value);
     		}
     	}
     	
-    	
-    	/* alert("orderTotalPrice" + )
-    	alert("orderAmount" + )
-    	alert("productId" + )
-    	alert("optionId" + )
-    	alert("sellerStoreNo" + ) */
-    	
-    	
-    	
-    	/* console.log(getRemoveCartList());
-    	var url = "/HwangDangFleamarket/buy/buyCarts.go?cartNoList="+getRemoveCartList();
+    	var url = "/HwangDangFleamarket/buy/buyFormByCart.go?cartNoList="+cartNoList;
 		$("form").prop("action" , url);    	
-		$("form").submit(); */
+		$("form").submit();
 		
     });
     

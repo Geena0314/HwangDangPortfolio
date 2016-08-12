@@ -5,7 +5,19 @@
 <script type="text/javascript">
 	$(document).ready(function()
 	{
-		
+		$("#memberMileage").on("blur", function()
+		{
+			if(parseInt($("#memberMileage").val()) > '${sessionScope.login_info.memberMileage}')
+			{
+				alert("보유하신 마일리지를 초과했습니다.");
+				$("#memberMileage").val("");
+			}
+			else if($("#memberMileage").val() < 1000)
+			{
+				alert("마일리지는 1000원부터 사용 가능합니다.");
+				$("#memberMileage").val("");
+			}
+		});
 	});
 </script>
 <style>
@@ -111,62 +123,96 @@
 		<fieldset>
 			<legend>상품/결제 정보</legend>
 			<table>
-				<tr>
-					<th>스토어명</th>
-					<td colspan="2">
-						${ requestScope.detail.seller.sellerStoreName }
-					</td>
-				</tr>
-				<tr>
-					<th>상품명</th>
-					<td colspan="2">
-						${ requestScope.detail.product.productName }
-					</td>
-				</tr>
-				<tr>
-					<th>옵션정보</th>
-					<td colspan="2">
-						${ requestScope.detail.productOption.optionName } - ${ requestScope.detail.productOption.optionSubName }
-					</td>
-				</tr>
-				<tr>
-					<th>선택수량</th>
-					<td colspan="2">
-						${ requestScope.orderProduct.orderAmount }개
-					</td>
-				</tr>
-				<tr>
-					<th>총 상품 가격</th>
-					<td colspan="2">
-						${ requestScope.totalPrice }원
-					</td>
-				</tr>
 				<lee:choose>
-					<lee:when test="${ requestScope.totalPrice >= 30000 }">
+					<lee:when test="${ not empty requestScope.cartList }">
+						<!-- 상품 1~N개구매 -->
+						<lee:forEach items="${ requestScope.cartList }" var="list">
+							<tr>
+								<th>스토어명</th>
+								<td colspan="2">
+									${ list.productList[0].seller.sellerStoreName }
+								</td>
+							</tr>
+							<tr>
+								<th>상품명</th>
+								<td colspan="2">
+									${ list.productList[0].productName }
+								</td>
+							</tr>
+							<tr>
+								<th>옵션정보</th>
+								<td colspan="2">
+									${ list.productList[0].productOption.optionName } - ${ list.productList[0].productOption.optionSubName }
+								</td>
+							</tr>
+							<tr>
+								<th>선택수량</th>
+								<td colspan="2">
+									${ list.cartProductAmount }개
+								</td>
+							</tr>
+						</lee:forEach>
 						<tr>
-							<th>배송비</th>
-							<td colspan="2">
-								0원
-							</td>
-						</tr>
-						<tr>
-							<th>총 결제 금액</th>
+							<th>총 상품 가격</th>
 							<td colspan="2">
 								${ requestScope.totalPrice }원
 							</td>
 						</tr>
-					</lee:when>
-					<lee:otherwise>
 						<tr>
-							<th>배송비</th>
+							<th>총 배송비</th>
 							<td colspan="2">
-								2500원
+								${ requestScope.deliveryPrice }원
 							</td>
 						</tr>
 						<tr>
 							<th>총 결제 금액</th>
 							<td colspan="2">
-								${ requestScope.totalPrice + 2500 }원
+								${ requestScope.totalPrice +  requestScope.deliveryPrice }원
+							</td>
+						</tr>
+					</lee:when>
+					<lee:otherwise>
+						<!-- 상품1개구매 -->
+						<tr>
+							<th>스토어명</th>
+							<td colspan="2">
+								${ requestScope.detail.seller.sellerStoreName }
+							</td>
+						</tr>
+						<tr>
+							<th>상품명</th>
+							<td colspan="2">
+								${ requestScope.detail.product.productName }
+							</td>
+						</tr>
+						<tr>
+							<th>옵션정보</th>
+							<td colspan="2">
+								${ requestScope.detail.productOption.optionName } - ${ requestScope.detail.productOption.optionSubName }
+							</td>
+						</tr>
+						<tr>
+							<th>선택수량</th>
+							<td colspan="2">
+								${ requestScope.orderProduct.orderAmount }개
+							</td>
+						</tr>
+						<tr>
+							<th>총 상품 가격</th>
+							<td colspan="2">
+								${ requestScope.totalPrice }원
+							</td>
+						</tr>
+						<tr>
+							<th>배송비</th>
+							<td colspan="2">
+								${ requestScope.deliveryPrice }원
+							</td>
+						</tr>
+						<tr>
+							<th>총 결제 금액</th>
+							<td colspan="2">
+								${ requestScope.totalPrice +  requestScope.deliveryPrice }원
 							</td>
 						</tr>
 					</lee:otherwise>
