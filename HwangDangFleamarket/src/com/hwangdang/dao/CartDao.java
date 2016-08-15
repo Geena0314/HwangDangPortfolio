@@ -1,6 +1,5 @@
 package com.hwangdang.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.hwangdang.vo.Cart;
@@ -24,4 +23,7 @@ public interface CartDao {
 	
 	//회원 아이디로 장바구니 상품 조회
 	List<Cart> selectCartById(String memberId);
+	
+	//상품구매시 카트번호로 카트조회
+	Cart selectOneCartProductJoin(int cartNo);
 }

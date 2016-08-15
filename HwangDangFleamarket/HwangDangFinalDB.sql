@@ -70,8 +70,8 @@ DROP TABLE code
 DROP TABLE category 
 	CASCADE CONSTRAINTS;
 
-/* seller_notice */
-DROP TABLE 판매자 공지사항 
+/* 판매자 공지사항 */
+DROP TABLE seller_notice 
 	CASCADE CONSTRAINTS;
 
 /* 우편번호 */

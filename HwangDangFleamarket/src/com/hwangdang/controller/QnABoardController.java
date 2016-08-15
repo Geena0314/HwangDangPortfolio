@@ -56,10 +56,10 @@ public class QnABoardController {
 	@RequestMapping("/boardQnAList.go")
 	public String noticeQnAList(Model model, int page){
 		//System.out.println("page: " + page);
-		PagingBean pasingBean = new PagingBean(service.getTotalItems() ,page);
+		PagingBean pagingBean = new PagingBean(service.getTotalItems() ,page);
 		ArrayList<AdminQnA> list = (ArrayList<AdminQnA>) service.getBoardList(page);
 		model.addAttribute("list", list);
-		model.addAttribute("pasingBean",pasingBean);
+		model.addAttribute("pagingBean",pagingBean);
 	return "admin/boardQnA_list.tiles";
 	}
 	

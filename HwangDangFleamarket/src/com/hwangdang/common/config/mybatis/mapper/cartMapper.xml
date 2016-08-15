@@ -48,16 +48,30 @@
 	</select>
 	
 	<select id="selectCartProductJoin" parameterType="string" resultMap="cart-product-join">
-		select c.cart_no, c.cart_product_amount, c.cart_product_option, c.product_id, c.member_id, c.option_id,
-			   p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, p.product_info, p.product_like, p.seller_store_no, 
-			   s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, s.seller_sub_industry, s.seller_zipcode, s.seller_address, 
-			   s.seller_sub_address, s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, s.seller_introduction, s.seller_assign, s.member_id,
-			   o.option_id, o.option_name, o.option_sub_name, o.option_stock, o.option_add_price, o.product_id
-		from   cart c, product p, seller s, product_option o
-		where  c.product_id = p.product_id
-		and    p.seller_store_no = s.seller_store_no
-		and    c.member_id = #{memberId}
-		and    c.option_id = o.option_id
+		select		c.cart_no, c.cart_product_amount, c.cart_product_option, c.product_id, c.member_id, c.option_id,
+				   	p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, p.product_info, p.product_like, p.seller_store_no, 
+				   	s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, s.seller_sub_industry, s.seller_zipcode, s.seller_address, 
+				   	s.seller_sub_address, s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, s.seller_introduction, s.seller_assign, s.member_id,
+				   	o.option_id, o.option_name, o.option_sub_name, o.option_stock, o.option_add_price, o.product_id
+		from   	cart c, product p, seller s, product_option o
+		where  	c.product_id = p.product_id
+		and    	p.seller_store_no = s.seller_store_no
+		and    	c.member_id = #{memberId}
+		and    	c.option_id = o.option_id
+	</select>
+	
+	<!-- 상품구매시 카트번호로 카트조회 -->
+	<select id="selectOneCartProductJoin" parameterType="_int" resultMap="cart-product-join">
+		select		c.cart_no, c.cart_product_amount, c.cart_product_option, c.product_id, c.member_id, c.option_id,
+				   	p.product_Id, p.product_name, p.product_price, p.product_stock, p.product_main_image, p.product_info, p.product_like, p.seller_store_no, 
+				   	s.seller_store_no, s.seller_store_name, s.seller_tax_id, s.seller_industry, s.seller_sub_industry, s.seller_zipcode, s.seller_address, 
+				   	s.seller_sub_address, s.seller_store_image, s.seller_product1, s.seller_product2, s.seller_product3, s.seller_introduction, s.seller_assign, s.member_id,
+				   	o.option_id, o.option_name, o.option_sub_name, o.option_stock, o.option_add_price, o.product_id
+		from   	cart c, product p, seller s, product_option o
+		where  	c.product_id = p.product_id
+		and    	p.seller_store_no = s.seller_store_no
+		and    	c.cart_no = #{cartNo}
+		and    	c.option_id = o.option_id
 	</select>
 	
 	<!-- 회원 아이디로 카트 상품 조회하기 -->

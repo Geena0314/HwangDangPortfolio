@@ -19,14 +19,25 @@ b {
 #adminTable{
 	width: 700px;
 	font-size: 13pt;
+	table-layout: fixed;
 }
 .table-responsive{
 	overflow-x: hidden; 
+}
+.tdName.title{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow : ellipsis;
 }
 </style>
 <h2 class="page-header store_look_around">스토어 소식통</h2>
 <div class="table-responsive notice">
 	<table class="table table-striped" id="adminTable">
+		<colgroup>
+			<col style="width: 55%">
+			<col style="width: 15%">
+			<col style="width: 10%">
+		</colgroup>
 		<thead>
 			<tr>
 				<td>
@@ -44,7 +55,7 @@ b {
 		<tbody style="border-bottom: 1px solid lightgray;">
 			<c:forEach var="list" items="${requestScope.list}">
 				<tr class="trInput">
-					<td class="tdName">
+					<td class="tdName title">
 						<a href="/HwangDangFleamarket/sellerNotice/sellerNoticeDetail.go?page=${requestScope.pagingBean.page}&sellerNoticeNo=${list.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}">
 							${list.sellerNoticeTitle}
 						</a>
