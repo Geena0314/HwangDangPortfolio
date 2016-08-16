@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	if('${requestScope.result}' == 1){
 		alert("교환신청이 완료되었습니다.");
-		opener.parent.location = "/HwangDangFleamarket/myorder/cancel.go?loginId=${sessionScope.login_info.memberId}";
+		opener.parent.location = "/HwangDangFleamarket/order/requestStatus.go?page=1";
 		window.close();
 	}else{
 		alert("교환신청에 실패했습니다.");

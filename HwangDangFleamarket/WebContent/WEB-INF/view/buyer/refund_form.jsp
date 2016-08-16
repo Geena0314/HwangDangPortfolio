@@ -52,7 +52,7 @@
 	</head>
 
 	<body>
-		<form method="POST" action="/HwangDangFleamarket/myorder/refundSuccess.go?orderSeqNo=${ param.orderSeqNo }">
+		<form method="POST" action="/HwangDangFleamarket/order/refundSuccess.go?orderSeqNo=${ param.orderSeqNo }">
 			<div align="center" class="refund-div">
 				<h2 class="page-header store_look_around" style="position: relative; left: -20px;">환 불 신 청</h2>
 				<table class="table table-striped refundTB">
@@ -76,7 +76,7 @@
 					</tr>
 					<tr class="trInput">
 						<td colspan="2" align="right">
-							<input type="submit" value="등록하기" id="submit">
+							<input type="submit" value="신청하기" id="submit">
 							<input type="button" value="취소하기" onclick="window.close();">
 						</td>
 					</tr>

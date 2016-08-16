@@ -218,7 +218,7 @@
 		</script>	
 	</head>
 	<body>
-		<form method="POST" action="/HwangDangFleamarket/myorder/exchangeSuccess.go?orderSeqNo=${ param.orderSeqNo }">
+		<form method="POST" action="/HwangDangFleamarket/order/exchangeSuccess.go?orderSeqNo=${ param.orderSeqNo }">
 			<div align="center" class="refund-div">
 				<h2 class="page-header store_look_around" style="position: relative; left: -20px;">교 환 신 청</h2>
 				<table class="table table-striped refundTB">
