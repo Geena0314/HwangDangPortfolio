@@ -162,7 +162,7 @@ CREATE TABLE cart (
 
 /* 주문 */
 CREATE TABLE orders (
-	orders_no NUMBER(17) PRIMARY KEY, /* 주문번호 */
+	orders_no VARCHAR2(15) PRIMARY KEY, /* 주문번호 */
 	orders_receiver VARCHAR2(18) NOT NULL, /* 받는사람 */
 	orders_phone CHAR(13) NOT NULL, /* 전화번호 */
 	orders_zipcode VARCHAR2(7) NOT NULL, /* 우편번호 */
@@ -255,7 +255,7 @@ CREATE TABLE store_QnA_reply (
 CREATE TABLE order_product (
 	order_seq_no NUMBER PRIMARY KEY, /* 주문상품번호 */
 	order_amount NUMBER(4) NOT NULL, /* 주문상품수량 */
-	orders_no NUMBER(17) NOT NULL, /* 주문번호 */
+	orders_no VARCHAR2(15) NOT NULL, /* 주문번호 */
 	product_id VARCHAR2(30) NOT NULL, /* 상품ID */
 	option_id NUMBER NOT NULL, /* 상품옵션ID */
 	seller_store_no NUMBER NOT NULL, /* 스토어넘버 */

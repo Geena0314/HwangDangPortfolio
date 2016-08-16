@@ -83,4 +83,13 @@ public interface OrderDao
 	
 	//구매 확정 시 현황 변경
 	int updateConfirmOrderProductStatus(int orderSeqNo);
+	
+	//주문상품 등록
+	int insertOrderProduct(OrderProduct orderProduct);
+	
+	//주문정보 등록
+	int insertOrders(Orders orders);
+	
+	//주문번호로 주문내역 검색
+	List<OrderProduct> selectDiliveryStatusByOrderNo(String ordersNo);
 }

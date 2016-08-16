@@ -142,4 +142,11 @@ public class MemberDaoImpl implements MemberDao{
 		// TODO Auto-generated method stub
 		return session.selectList("memberMapper.selectBankCode");
 	}
+
+	@Override
+	public int updateMileageMinus(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.update("memberMapper.updateMileageMinus", map);
+	}
 }

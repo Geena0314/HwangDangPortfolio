@@ -238,14 +238,14 @@
 	<!-- 기존 옵션 재고량 더해주기. -->
 	<update id="updatePlusOptionStock" parameterType="map">
 		update 	product_option
-		set			option_stock = option_stock+#{originalStock}
+		set		option_stock = option_stock+#{originalStock}
 		where		option_id = #{originalOptionId}
 	</update>
 	
 	<!-- 바꿀 옵션 재고량 빼주기. -->
 	<update id="updateMinusOptionStock" parameterType="map">
 		update 	product_option
-		set			option_stock = option_stock-#{exchangeStock}
+		set		option_stock = option_stock-#{exchangeStock}
 		where		option_id = #{exchangeOptionId}
 	</update>
 	
@@ -355,4 +355,37 @@
 		where	order_seq_no = #{value}
 	</update>
 	
+	<!-- 주문상품 등록 -->
+	<insert id="insertOrderProduct" parameterType="orderProduct">
+		<selectKey keyProperty="orderSeqNo" resultType="_int" order="BEFORE">
+			select order_seq_no_seq.nextval from dual
+		</selectKey>
+		INSERT INTO order_product
+		VALUES (#{orderSeqNo}, #{orderAmount}, #{ordersNo}, #{productId}, #{optionId}, #{sellerStoreNo}, #{orderProductStatus})
+	</insert>
+	
+	<!-- 주문정보 등록 -->
+	<insert id="insertOrders" parameterType="orders">
+		INSERT INTO orders 
+		VALUES ( 
+		 #{ordersNo },#{ordersReceiver },#{ordersPhone },#{ordersZipcode },
+		 #{ordersAddress },#{ordersSubAddress },#{ordersTotalPrice },#{ordersPayment },
+		 #{ordersRequest },#{paymentStatus },#{ordersDate },#{memberId }
+		)
+	</insert>
+	
+	<!-- 주문번호로 주문내역 검색 -->
+	<select id="selectDiliveryStatusByOrderNo" resultMap="dilivery-resultMap" parameterType="string">
+		select 		o.orders_no, o.payment_status, o.orders_date,
+						op.order_seq_no, op.order_amount, op.order_product_status, 
+						p.product_Id, p.product_name, p.product_price, p.product_main_image,
+						s.seller_store_no, s.seller_store_name, s.seller_store_image,
+						po.option_sub_name, po.option_add_price
+		from 			orders o, order_product op, product p, seller s, product_option po
+		where 		o.orders_no = op.orders_no
+		and	 		op.product_id = p.product_id
+		and			op.option_id = po.option_id
+		and			op.seller_store_no = s.seller_store_no 
+		and			o.orders_no = #{ordersNo}
+	</select>
 </mapper>

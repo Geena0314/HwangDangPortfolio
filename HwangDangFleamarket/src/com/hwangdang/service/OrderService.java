@@ -1,5 +1,6 @@
 package com.hwangdang.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -45,4 +46,10 @@ public interface OrderService
 	
 	//구매 확정 시 현황 변경
 	int updateConfirmOrderProductStatus(int orderSeqNo);
+	
+	//구매처리 로직
+	int buyProductsHandle(Orders orders, ArrayList<OrderProduct> list, int[] cartNo, int memberMileage);
+	
+	//주문번호로 주문내역 검색
+	List<OrderProduct> selectDiliveryStatusByOrderNo(String ordersNo);
 }

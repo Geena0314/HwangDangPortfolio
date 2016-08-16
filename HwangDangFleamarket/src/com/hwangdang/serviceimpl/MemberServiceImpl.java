@@ -114,4 +114,14 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return sellerDao.updateSellerInfo(seller);
 	}
+
+	@Override
+	public int updateMileageMinus(String memberId, int memberMileage)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("memberMileage", memberMileage);
+		return dao.updateMileageMinus(map);
+	}
 }

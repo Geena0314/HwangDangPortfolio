@@ -1,25 +1,31 @@
 package com.hwangdang.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.service.BuyService;
 import com.hwangdang.service.CartService;
 import com.hwangdang.service.MemberService;
+import com.hwangdang.service.OrderService;
 import com.hwangdang.service.ProductService;
 import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.Cart;
 import com.hwangdang.vo.Member;
 import com.hwangdang.vo.OrderProduct;
+import com.hwangdang.vo.Orders;
 
 @Controller
 @RequestMapping("/buy")
@@ -39,6 +45,9 @@ public class BuyController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	/*//구매전 재고수량 확인 로직 - ajax 
 	@ResponseBody
@@ -613,28 +622,50 @@ public class BuyController {
 		return "buyer/buy_form.tiles";
 	}
 	
-	/*@RequestMapping("/buyForm")
-	public String buyForm(OrderProduct[] orderProduct, int[] totalPrice, Model model, HttpSession session)
-	{
-		//전화번호 split
-		Member member = (Member)session.getAttribute("login_info");
-		String[] phone = member.getMemberPhone().split("-");
-		model.addAttribute("hp1", phone[1]);
-		model.addAttribute("hp2", phone[2]);
-		
-		ArrayList<OrderProduct> list = new ArrayList<>();
-		ArrayList<Integer> totalPriceList = new ArrayList<>();
-		
-		for(int i=0; i<orderProduct.length; i++)
-		{
-			orderProduct[i].setProduct(service.selectProductProductOption(orderProduct[i].getProductId(), orderProduct[i].getOptionId()));
-			list.add(orderProduct[i]);
-			totalPriceList.add(totalPrice[i]);
-		}
-		model.addAttribute("orderProductList", list);
-		model.addAttribute("totalPriceList", totalPriceList);
-		
-		return "buyer/buy_form.tiles";
-	}*/
 	//구매하기 버튼 클릭.
+	@RequestMapping("/buyProducts")
+	public String buyProducts(HttpSession session, HttpServletRequest request, Orders orders, 
+			String hp1, String hp2, String hp3, int[] orderAmount, String[] productId, int[] optionId, 
+			int[] sellerStoreNo, int[] cartNo, @RequestParam(value="memberMileage" ,defaultValue= "0")int memberMileage)
+	{
+		//주문번호 생성
+		String ordersNo = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
+		orders.setOrdersNo(ordersNo);
+		//주문자 전화번호
+		orders.setOrdersPhone(hp1+"-"+hp2+"-"+hp3);
+		//결제여부 변경
+		orders.setPaymentStatus(1);
+		orders.setOrdersDate(new Date());
+		
+		//주문상품 리스트 생성
+		ArrayList<OrderProduct> list = new ArrayList<>();
+		for(int i = 0; i < orderAmount.length; i++)
+		{
+			list.add(new OrderProduct(orderAmount[i], ordersNo, productId[i], optionId[i], sellerStoreNo[i], 2));
+		}
+		
+		int result = orderService.buyProductsHandle(orders, list, cartNo, memberMileage);
+		
+		if(memberMileage != 0)
+		{
+			Member member = (Member)session.getAttribute("login_info");
+			memberService.updateMileageMinus(member.getMemberId(), memberMileage);
+			member.setMemberMileage(member.getMemberMileage() - memberMileage);
+			session.setAttribute("login_info", member);
+		}
+		
+		return "redirect:/buy/buySuccess.go?result="+result+"&ordersNo="+ordersNo;
+	}
+	
+	//구매완료 페이지로 이동
+	@RequestMapping("/buySuccess")
+	public ModelAndView buySuccess(HttpSession session, HttpServletRequest request)
+	{
+		if(Integer.parseInt(request.getParameter("result")) == 1)
+		{
+			return new ModelAndView("buyer/buy_success.tiles", "diliveryStatus", orderService.selectDiliveryStatusByOrderNo(request.getParameter("ordersNo")));
+		}
+		return new ModelAndView("buyer/buy_success.tiles");
+	}
+	
 }

@@ -20,26 +20,31 @@
 			if(parseInt($("#memberMileage").val()) > '${sessionScope.login_info.memberMileage}')
 			{
 				alert("보유하신 마일리지를 초과했습니다.");
-				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#ordersTotalPrices").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }');
 				$("#memberMileage").val("");
 			}
 			else if($("#memberMileage").val() < 1000)
 			{
 				alert("마일리지는 1000원부터 사용 가능합니다.");
-				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#ordersTotalPrices").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }');
 				$("#memberMileage").val("");
 			}
-			else if('${ requestScope.totalPrice +  requestScope.deliveryPrice }' < $("#memberMileage").val())
+			else if(parseInt('${ requestScope.totalPrice + requestScope.deliveryPrice }') < parseInt($("#memberMileage").val()))
 			{
 				alert("마일리지 사용 금액은 총 결제 금액을 넘을 수 없습니다.");
-				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#ordersTotalPrices").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }');
 				$("#memberMileage").val("");
 			}
 			else
 			{
 				//마일리지 사용가능액수 입력시
-				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }'
+				$("#ordersTotalPrices").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }'
 												-$("#memberMileage").val() + "원");
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }'
+						-$("#memberMileage").val());
 			}
 		});
 		
@@ -140,10 +145,11 @@
 				return false;
 			}
 			
-			if(!$("#agreement").checked)
+			if(!$("input:checkbox[id='agreement']").is(":checked"))
 			{
 				alert("개인정보 제3자 제공에 동의 해야 합니다.");
 				$("#agreement").focus();
+				return false;
 			}
 		});
 	});
@@ -155,9 +161,22 @@
         || event.keyCode == 46 ) return;
         obj.value = obj.value.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi, '');
 	}
+	
+	//정규식(숫자만 입력)
+	function sellerAccountCheck(obj)
+	{
+		 //좌우 방향키, 백스페이스, 딜리트, 탭키에 대한 예외
+        if(event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39
+        || event.keyCode == 46 ) return;
+        if (event.keyCode >= 48 && event.keyCode <= 57) { //숫자키만 입력
+	        return true;
+	    } else {
+	        event.returnValue = false;
+	    }
+	}
 </script>
 <style>
-	#memberId, #noBankBook, #accountTransfer
+	#memberId, #noBankBook, #accountTransfer, .orderProducts
 	{
 		display: none;
 	}
@@ -166,7 +185,7 @@
 		margin-bottom: 50px;
 	}
 </style>
-<form action="/HwangDangFleamarket/buy/buyOne.go" method="POST" name="buyForm" id="buyForm">
+<form action="/HwangDangFleamarket/buy/buyProducts.go" method="POST" name="buyForm" id="buyForm">
 	<h2 class="page-header store_look_around" align="left">주문/결제</h2>
 	<div>
 		<fieldset>
@@ -268,24 +287,34 @@
 							<tr>
 								<th>스토어명</th>
 								<td colspan="2">
+									<input type="text" value="${ list.productList[0].seller.sellerStoreNo }"
+											name="sellerStoreNo" class="orderProducts">
+									<input type="text" value="${ list.cartNo }"
+											name="cartNo" class="orderProducts">
 									${ list.productList[0].seller.sellerStoreName }
 								</td>
 							</tr>
 							<tr>
 								<th>상품명</th>
 								<td colspan="2">
+									<input type="text" value="${ list.productList[0].productId }"
+											name="productId" class="orderProducts">
 									${ list.productList[0].productName }
 								</td>
 							</tr>
 							<tr>
 								<th>옵션정보</th>
 								<td colspan="2">
+									<input type="text" value="${ list.productList[0].productOption.optionId }"
+											name="optionId" class="orderProducts">
 									${ list.productList[0].productOption.optionName } - ${ list.productList[0].productOption.optionSubName }
 								</td>
 							</tr>
 							<tr>
 								<th>선택수량</th>
 								<td colspan="2">
+									<input type="text" value="${ list.cartProductAmount }"
+											name="orderAmount" class="orderProducts">
 									${ list.cartProductAmount }개
 								</td>
 							</tr>
@@ -305,7 +334,9 @@
 						<tr>
 							<th>총 결제 금액</th>
 							<td colspan="2">
-								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice"
+								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice" class="orderProducts"
+									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }">
+								<input type="text" name="ordersTotalPrices" id="ordersTotalPrices"
 									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }원">
 							</td>
 						</tr>
@@ -315,24 +346,34 @@
 						<tr>
 							<th>스토어명</th>
 							<td colspan="2">
+								<input type="text" value="${ requestScope.detail.seller.sellerStoreNo }"
+										name="sellerStoreNo" class="orderProducts">
+								<input type="text" value="99999"
+										name="cartNo" class="orderProducts">
 								${ requestScope.detail.seller.sellerStoreName }
 							</td>
 						</tr>
 						<tr>
 							<th>상품명</th>
 							<td colspan="2">
+								<input type="text" value="${ requestScope.detail.product.productId }"
+										name="productId" class="orderProducts">
 								${ requestScope.detail.product.productName }
 							</td>
 						</tr>
 						<tr>
 							<th>옵션정보</th>
 							<td colspan="2">
+								<input type="text" value="${  requestScope.detail.productOption.optionId }"
+										name="optionId" class="orderProducts">
 								${ requestScope.detail.productOption.optionName } - ${ requestScope.detail.productOption.optionSubName }
 							</td>
 						</tr>
 						<tr>
 							<th>선택수량</th>
 							<td colspan="2">
+								<input type="text" value="${ requestScope.orderProduct.orderAmount }"
+										name="orderAmount" class="orderProducts">
 								${ requestScope.orderProduct.orderAmount }개
 							</td>
 						</tr>
@@ -351,7 +392,9 @@
 						<tr>
 							<th>총 결제 금액</th>
 							<td colspan="2">
-								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice"
+								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice" class="orderProducts"
+									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }">
+								<input type="text" name="ordersTotalPrices" id="ordersTotalPrices"
 									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }원">
 							</td>
 						</tr>
@@ -360,7 +403,7 @@
 				<tr>
 					<th>마일리지 사용</th>
 					<td colspan="2">
-						<input type="text" id="memberMileage"> ※사용 가능 최대 마일리지 : ${ sessionScope.login_info.memberMileage }마일리지
+						<input type="text" id="memberMileage" name="memberMileage" onkeydown="sellerAccountCheck(this);"> ※사용 가능 최대 마일리지 : ${ sessionScope.login_info.memberMileage }마일리지
 					</td>
 				</tr>
 				<tr>

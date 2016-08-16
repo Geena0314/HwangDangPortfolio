@@ -73,4 +73,7 @@ public interface MemberDao {
 	
 	//은행명 조회
 	List<Code> selectBankCode();
+	
+	//멤버 마일리지 차감
+	int updateMileageMinus(HashMap<String, Object> map);
 }
