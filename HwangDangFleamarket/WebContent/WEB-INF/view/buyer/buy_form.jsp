@@ -5,20 +5,156 @@
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+		$("#ordersZipcode").on("click", function()
+		{
+			window.open('/HwangDangFleamarket/member/findBuyAddress.go', '주소검색', 'resizable=no scrollbars=yes width=700 height=500 left=500 top=200');
+		});
+		$("#ordersAddress").on("click", function()
+		{
+			window.open('/HwangDangFleamarket/member/findBuyAddress.go', '주소검색', 'resizable=no scrollbars=yes width=700 height=500 left=500 top=200');
+		});
+		
+		//마일리지 사용
 		$("#memberMileage").on("blur", function()
 		{
 			if(parseInt($("#memberMileage").val()) > '${sessionScope.login_info.memberMileage}')
 			{
 				alert("보유하신 마일리지를 초과했습니다.");
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
 				$("#memberMileage").val("");
 			}
 			else if($("#memberMileage").val() < 1000)
 			{
 				alert("마일리지는 1000원부터 사용 가능합니다.");
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
 				$("#memberMileage").val("");
+			}
+			else if('${ requestScope.totalPrice +  requestScope.deliveryPrice }' < $("#memberMileage").val())
+			{
+				alert("마일리지 사용 금액은 총 결제 금액을 넘을 수 없습니다.");
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }원');
+				$("#memberMileage").val("");
+			}
+			else
+			{
+				//마일리지 사용가능액수 입력시
+				$("#ordersTotalPrice").val('${ requestScope.totalPrice +  requestScope.deliveryPrice }'
+												-$("#memberMileage").val() + "원");
+			}
+		});
+		
+		//결제방법 선택
+		$(":radio").on("change", function()
+		{
+			//#card #noBankBook, #accountTransfer
+			var idx = $(this).index();
+			if(idx == 0)
+			{
+				//카드결제
+				$("#card").show();
+				$("#noBankBook").hide();
+				$("#accountTransfer").hide();
+				
+				//무통장입금 셀렉트박스 초기화
+				$("#bank option:eq(0)").removeAttr('selected');
+				$("#bank option:eq(0)").attr('selected', 'true');
+				
+				//실시간 계좌이체 셀렉트박스 초기화
+				$("#accountBank option:eq(0)").removeAttr('selected');
+				$("#accountBank option:eq(0)").attr('selected', 'true');
+				return false;
+			}
+			else if(idx == 1)
+			{
+				//무통장입금
+				$("#card").hide();
+				$("#noBankBook").show();
+				$("#accountTransfer").hide();
+				
+				//카드사 셀렉트박스 초기화
+				$("#cardCompany option:eq(0)").removeAttr('selected');
+				$("#cardCompany option:eq(0)").attr('selected', 'true');
+				$("#month option:eq(0)").removeAttr('selected');
+				$("#month option:eq(0)").attr('selected', 'true');
+				
+				//실시간 계좌이체 셀렉트박스 초기화
+				$("#accountBank option:eq(0)").removeAttr('selected');
+				$("#accountBank option:eq(0)").attr('selected', 'true');
+				return false;
+			}
+			else
+			{
+				//실시간계좌이체
+				$("#card").hide();
+				$("#noBankBook").hide();
+				$("#accountTransfer").show();
+				
+				//카드사 셀렉트박스 초기화
+				$("#cardCompany option:eq(0)").removeAttr('selected');
+				$("#cardCompany option:eq(0)").attr('selected', 'true');
+				$("#month option:eq(0)").removeAttr('selected');
+				$("#month option:eq(0)").attr('selected', 'true');
+				
+				//무통장입금 셀렉트박스 초기화
+				$("#bank option:eq(0)").removeAttr('selected');
+				$("#bank option:eq(0)").attr('selected', 'true');
+				return false;
+			}
+		});
+		
+		//카드결제 카드사 변경에 따른 할부기간 초기화
+		$("#cardCompany").on("change", function()
+		{
+			$("#month option:eq(0)").removeAttr('selected');
+			$("#month option:eq(0)").attr('selected', 'true');
+		});
+		
+		$("#submit").on("click", function()
+		{
+			if($("#ordersReceiver").val().trim().length < 2 || $("#ordersReceiver").val().trim().length > 6)
+			{
+				//받는 사람 체크
+				alert("이름은 2자이상 6자 이하로 입력해 주세요.");
+				$("#ordersReceiver").val("").focus();
+				return false;
+			}	
+			if($("#hp2").val().trim().length < 3 || $("#hp2").val().trim().length > 4 || $("#hp3").val().trim().length != 4)
+			{
+				//전화번호 체크
+				alert("전화번호를 올바르게 입력해 주세요.")
+				$("#hp2").val("").focus();
+				$("#hp3").val("");
+				return false;
+			}
+			
+			//주소 체크
+			if(!$("#ordersZipcode").val())
+			{
+				alert("주소를 검색해 주세요.");
+				return false;
+			}
+			if($("#ordersSubAddress").val().trim().length < 4 || $("#ordersSubAddress").val().trim().length > 30)
+			{
+				alert("세부 주소는 4자 이상 30자 이하로 입력해 주세요.");
+				$("#ordersSubAddress").val("").focus();
+				return false;
+			}
+			
+			if(!$("#agreement").checked)
+			{
+				alert("개인정보 제3자 제공에 동의 해야 합니다.");
+				$("#agreement").focus();
 			}
 		});
 	});
+	
+	function nameCheck(obj)
+	{
+		 //좌우 방향키, 백스페이스, 딜리트, 탭키에 대한 예외
+        if(event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39
+        || event.keyCode == 46 ) return;
+        obj.value = obj.value.replace(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(]/gi, '');
+	}
 </script>
 <style>
 	#memberId, #noBankBook, #accountTransfer
@@ -66,7 +202,9 @@
 				<tr>
 					<th>받는 사람</th>
 					<td colspan="2">
-						<input type="text" name="ordersReceiver" value="${ sessionScope.login_info.memberName }">
+						<input type="text" name="ordersReceiver" id="ordersReceiver" 
+								value="${ sessionScope.login_info.memberName }"
+							 	onkeydown="nameCheck(this);">
 					</td>
 				</tr>
 				<tr>
@@ -105,7 +243,7 @@
 					<th>배송시 요청사항</th>
 					<td colspan="2">
 						<select id="hp1" name="ordersRequest">
-			    	        <option>배송시 요청사항을 선택해 주세요.</option>
+			    	        <option value="없음">배송시 요청사항을 선택해 주세요.</option>
 			    	        <option>배송 전 연락 바랍니다.</option>
 			    	        <option>집 앞에 놔주세요.</option>
 			    	        <option>부재시 집 앞에 놔주세요.</option>
@@ -167,7 +305,8 @@
 						<tr>
 							<th>총 결제 금액</th>
 							<td colspan="2">
-								${ requestScope.totalPrice +  requestScope.deliveryPrice }원
+								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice"
+									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }원">
 							</td>
 						</tr>
 					</lee:when>
@@ -212,7 +351,8 @@
 						<tr>
 							<th>총 결제 금액</th>
 							<td colspan="2">
-								${ requestScope.totalPrice +  requestScope.deliveryPrice }원
+								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice"
+									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }원">
 							</td>
 						</tr>
 					</lee:otherwise>
@@ -226,9 +366,9 @@
 				<tr>
 					<th>결제 방법</th>
 					<td colspan="2">
-						신용/체크카드<input type="radio" name="ordersPayment" value="1" checked="checked">
-						실시간 계좌이체<input type="radio" name="ordersPayment" value="2">
-						무통장 입금<input type="radio" name="ordersPayment" value="3">
+						신용/체크카드<input type="radio" name="ordersPayment" value="card" checked="checked">
+						실시간 계좌이체<input type="radio" name="ordersPayment" value="noBankBook">
+						무통장 입금<input type="radio" name="ordersPayment" value="accountTransfer">
 					</td>
 				</tr>
 			</table>
@@ -237,7 +377,7 @@
 			<ul>
 				<li>
 					카드 종류 : 
-					<select>
+					<select id="cardCompany">
 						<option>신한카드</option>
 						<option>BC(비씨)카드</option>
 						<option>KB국민카드</option>
@@ -264,7 +404,7 @@
 					<lee:when test="${ requestScope.totalPrice >= 30000 }">
 						<li>
 							할부 기간 : 
-							<select>
+							<select id="month">
 								<option>일시불</option>
 								<option>2개월</option>
 								<option>3개월</option>
@@ -275,7 +415,7 @@
 					<lee:otherwise>
 						<li>
 							할부 기간 : 
-							<select disabled="disabled">
+							<select disabled="disabled" id="month">
 								<option>일시불</option>
 							</select>
 							※3만원 이상 할부 가능합니다.
@@ -288,7 +428,7 @@
 			<ul>
 				<li>
 					은행 선택 : 
-					<select>
+					<select id="bank">
 						<option>농협</option>
 						<option>국민은행</option>
 						<option>하나은행</option>
@@ -315,7 +455,7 @@
 			<ul>
 				<li>
 					은행 선택 : 
-					<select>
+					<select id="accountBank">
 						<option>농협</option>
 						<option>국민은행</option>
 						<option>하나은행</option>
@@ -340,11 +480,11 @@
 ※ 동의 거부권 등에 대한 고지 
 개인정보 제공은 서비스 이용을 위해 꼭 필요합니다. 개인정보 제공을 거부하실 수 있으나, 이 경우 서비스 이용이 제한될 수 있습니다.
 		</textarea><br>
-		<input type="checkbox">본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.<br><br>
+		<input type="checkbox" id="agreement">본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.<br><br>
 		개별 판매자가 등록한 스토어(오픈마켓) 상품에 대한 광고, 상품주문, 배송 및 환불의 의무와 책임은 <br>
 		각 판매자가 부담하고, 이에 대하여 황당플리마켓은 통신판매중개자로서 통신판매의 당사자가 아니므로 
 		일체 책임을 지지 않습니다.<br><br>
 		
-		<input type="submit" value="바로 결제하기">
+		<input type="submit" value="바로 결제하기" id="submit">
 	</div>
 </form>
