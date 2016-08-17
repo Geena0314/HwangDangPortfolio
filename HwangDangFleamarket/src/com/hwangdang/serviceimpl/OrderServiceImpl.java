@@ -252,4 +252,15 @@ public class OrderServiceImpl implements OrderService
 		// TODO Auto-generated method stub
 		return dao.selectDiliveryStatusByOrderNo(ordersNo);
 	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int updateOrderProductStatus234(int orderSeqNo, int orderProductStatus)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("orderSeqNo", orderSeqNo);
+		map.put("orderProductStatus", orderProductStatus);
+		return dao.updateOrderProductStatus234(map);
+	}
 }

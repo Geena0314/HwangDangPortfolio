@@ -104,7 +104,7 @@ ul.btns{
 				            </ul>
 				            <div class="status">
 				               <ul class="btns">
-			               			<li>배송 준비</li>
+			               			<li>결제 완료</li>
 				               </ul>
 				            </div>
 				         </li>

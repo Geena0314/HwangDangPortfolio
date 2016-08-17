@@ -205,4 +205,11 @@ public class OrderDaoImpl implements OrderDao
 		// TODO Auto-generated method stub
 		return session.selectList("orderMapper.selectDiliveryStatusByOrderNo", ordersNo);
 	}
+
+	@Override
+	public int updateOrderProductStatus234(HashMap<String, Object> map)
+	{
+		// TODO Auto-generated method stub
+		return session.update("orderMapper.updateOrderProductStatus234", map);
+	}
 }

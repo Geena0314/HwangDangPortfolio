@@ -52,4 +52,7 @@ public interface OrderService
 	
 	//주문번호로 주문내역 검색
 	List<OrderProduct> selectDiliveryStatusByOrderNo(String ordersNo);
+	
+	//주문상품 주문현황 변경.(교환승인처리 8번)
+	int updateOrderProductStatus234(int orderSeqNo, int orderProductStatus);
 }

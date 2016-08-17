@@ -388,4 +388,11 @@
 		and			op.seller_store_no = s.seller_store_no 
 		and			o.orders_no = #{ordersNo}
 	</select>
+	
+	<!-- 주문상품 주문현황 변경.(교환승인처리 8번) -->
+	<update id="updateOrderProductStatus234" parameterType="map">
+		update 	order_product
+		set		order_product_status = #{orderProductStatus}
+		where 	order_seq_no = #{orderSeqNo}
+	</update>
 </mapper>

@@ -12,6 +12,7 @@ import com.hwangdang.service.OrderService;
 import com.hwangdang.vo.ExchangeRequest;
 import com.hwangdang.vo.Member;
 import com.hwangdang.vo.RefundRequest;
+import com.hwangdang.vo.Seller;
 
 @Controller
 @RequestMapping("/order")
@@ -102,5 +103,16 @@ public class OrderController {
 		{
 			return "/WEB-INF/view/buyer/refund_success.jsp";
 		}
+	}
+	
+	//주문상품 상태변경
+	@RequestMapping("/orderStatusChange")
+	public String orderStatusChange(int orderSeqNo, int orderProductStatus, int page, HttpSession session)
+	{
+		//주문상품 상태변경 로직호출
+		service.updateOrderProductStatus234(orderSeqNo, orderProductStatus);
+		
+		int sellerStoreNo = ((Seller)session.getAttribute("seller")).getSellerStoreNo();
+		return "/seller/salesStatus.go?page=" + page + "&sellerStoreNo=" + sellerStoreNo;
 	}
 }

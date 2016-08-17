@@ -11,7 +11,7 @@
 	    <meta name="author" content="">
 	    <title>황당마켓</title>
 		<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/template.css">
-		<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/myorder/myorder_exchange_form.css">
+		<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/exchange_form.css">
 	    <!-- Bootstrap core CSS -->
 	    <link href="/HwangDangFleamarket/css/bootstrap.min.css" rel="stylesheet">
 	    <!-- Custom styles for this template -->

@@ -10,15 +10,15 @@
 				<div class="thmb">
 					<div class="store_imgs">
 						<c:choose>
-							<c:when test="${ productList.orderProductStatus == 5}">
+							<c:when test="${productList.orderProductStatus == 5}">
 								<!-- 교환신청 Controller Url주소 입력. -->
 								<a href="#" onClick="window.open('/HwangDangFleamarket/seller/sellerExchangeCheck.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&page=${ requestScope.bean.page }&ordersNo=${ productList.ordersNo }&orderSeqNo=${ productList.orderSeqNo }', '교환 신청 현황', 'scrollbars=yes width=600 height=800 left=450 top=50');">
-									<img src="../image_storage/${productList.product.productMainImage}" style="border: 2px solid blue; float: left; height: 147px;">
+									<img src="../image_storage/${productList.product.productMainImage}" style="border: 2px solid blue; float: left; height: 177px;">
 								</a>
 							</c:when>
-							<c:when test="${ productList.orderProductStatus == 6}">
+							<c:when test="${productList.orderProductStatus == 6}">
 								<a href="#" onClick="window.open('/HwangDangFleamarket/seller/sellerRefundCheck.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&page=${ requestScope.bean.page }&ordersNo=${ productList.ordersNo }&orderSeqNo=${ productList.orderSeqNo }', '환불 신청 현황', 'scrollbars=yes width=600 height=645 left=450 top=100');">
-									<img src="../image_storage/${productList.product.productMainImage}" style="border: 2px solid red; float: left; height: 147px;">
+									<img src="../image_storage/${productList.product.productMainImage}" style="border: 2px solid red; float: left; height: 177px;">
 								</a>
 							</c:when>
 							<c:otherwise>
@@ -50,6 +50,25 @@
 								요청 사항 : ${list.ordersRequest}
 							</c:if>
 						</li>
+						<c:if test="${productList.orderProductStatus<4}">
+							<div class="dropup">
+								<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+									주문현황변경
+									<span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=2&page=${requestScope.bean.page}">배송 준비중</a>
+									</li>
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=3&page=${requestScope.bean.page}">배송 중</a>
+									</li>
+									<li role="presentation">
+										<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=4&page=${requestScope.bean.page}">배송 완료</a>
+									</li>
+								</ul>
+							</div>
+						</c:if>
 					</ul>
 				</div>
 			</li>
