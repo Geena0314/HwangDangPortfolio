@@ -2,7 +2,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-		
 		//비공개시 패스워드 객체생성 
 		$("#publishedLabel").click(function(){
 			var pass = document.getElementById("password");
@@ -39,13 +38,16 @@
 		});
 	});
 </script>
-<%-- 세션아이디 : ${sessionScope.login_info.memberId } --%>
 <h2 class="page-header store_look_around">황당플리마켓 Q&A</h2>
 <form method="POST" action="" id="f1" >  
-	<input type="hidden"  name="loginId" value="${sessionScope.login_info.memberId }" />
+	<input type="hidden" name="loginId" value="${sessionScope.login_info.memberId }" />
 	<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요."/>
-	<label>공개 <input type="radio"  checked="checked" name="published"  value="t" id="public"   /></label>
-	<label id="publishedLabel" >비공개 <input type="radio"  name="published" value="f" id="private" /></label>
-	<textarea rows="10"  class="form-control"  name="content" id="content" placeholder="글내용을 입력하세요."></textarea><br/>
+	<label>
+		공개 <input type="radio" checked="checked" name="published" value="t" id="public"/>
+	</label>
+	<label id="publishedLabel">
+		비공개 <input type="radio" name="published" value="f" id="private"/>
+	</label>
+	<textarea rows="10" class="form-control" name="content" id="content" placeholder="글내용을 입력하세요."></textarea><br/>
 	<input type="button" value="문의하기" id="submitBtn">
 </form>
