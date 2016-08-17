@@ -86,6 +86,26 @@ $(document).ready(function(){
 			location.href='/HwangDangFleamarket/order/goPurchaseConfirm.go?orderSeqNo='+orderSeqNo
 		}
 	});
+	
+	//교환 신청 폼이동
+	$(".exchangeBtn").on("click", function(){
+		var orderSeqNo = $(this).next().val();
+		if(!confirm("교환 신청을 진행하시겠습니까?")){
+			return false;
+		}else{
+			window.open('/HwangDangFleamarket/order/exchangeForm.go?orderSeqNo='+orderSeqNo, '교환신청', 'resizable=no scrollbars=no width=463 height=800 left=500 top=80');
+		}
+	});
+	
+	//환불 신청 폼이동
+	$(".refundBtn").on("click", function(){
+		var orderSeqNo = $(this).next().val();
+		if(!confirm("환불 신청을 진행하시겠습니까?")){
+			return false;
+		}else{
+			window.open('/HwangDangFleamarket/order/refundForm.go?orderSeqNo='+orderSeqNo, '환불신청', 'resizable=no scrollbars=yes width=463 height=648 left=500 top=200');
+		}
+	});
 });
 </script>
 <div class="myorder-container">
@@ -147,10 +167,17 @@ $(document).ready(function(){
 		               				배송 중
 		               			</c:when>
 		               			<c:when test="${myorderList.orderProductStatus == 4}">
-		               				<li><input type="button" value="구매확정" class="confirmBtn">
+		               				<li>
+		               					<input type="button" value="구매확정" class="confirmBtn">
 		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo"></li>
-		               				<li><input type="button" value="교환신청" class="exchangeBtn"></li>
-		               				<li><input type="button" value="반품신청" class="refundBtn"></li>
+		               				<li>
+		               					<input type="button" value="교환신청" class="exchangeBtn">
+		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo">
+		               				</li>
+		               				<li>
+		               					<input type="button" value="반품신청" class="refundBtn">
+		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo">
+		               				</li>
 		               			</c:when>
 		               		</c:choose>
 		               </ul>

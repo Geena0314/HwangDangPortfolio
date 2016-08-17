@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.Constants;
 import com.hwangdang.common.util.PagingBean;
+import com.hwangdang.dao.CartDao;
 import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.dao.ProductDao;
@@ -35,6 +36,9 @@ public class OrderServiceImpl implements OrderService
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private CartDao cartDao;
 	
 	public OrderServiceImpl()
 	{
@@ -210,5 +214,53 @@ public class OrderServiceImpl implements OrderService
 	public int updateConfirmOrderProductStatus(int orderSeqNo) {
 		// TODO Auto-generated method stub
 		return dao.updateConfirmOrderProductStatus(orderSeqNo);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int buyProductsHandle(Orders orders, ArrayList<OrderProduct> list, int[] cartNo, int memberMileage)
+	{
+		// TODO Auto-generated method stub
+		//주문정보 등록
+		int result = dao.insertOrders(orders);
+		
+		OrderProduct orderProduct = new OrderProduct();
+		HashMap<String, Object> map = new HashMap<>();
+		for(int i = 0; i < list.size(); i++)
+		{
+			orderProduct = list.get(i);
+			
+			//주문상품1개등록
+			dao.insertOrderProduct(orderProduct);
+			
+			//옵션ID로 주문수량만큼 재고량 감소
+			map.put("exchangeStock", orderProduct.getOrderAmount());
+			map.put("exchangeOptionId", orderProduct.getOptionId());
+			dao.updateMinusOptionStock(map);
+			
+			if(cartNo[0] == 99999)
+				continue;
+			//cartNo로 장바구니정보 삭제
+			cartDao.deleteCart(cartNo[i]);
+		}
+		return result;
+	}
+
+	@Override
+	public List<OrderProduct> selectDiliveryStatusByOrderNo(String ordersNo)
+	{
+		// TODO Auto-generated method stub
+		return dao.selectDiliveryStatusByOrderNo(ordersNo);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public int updateOrderProductStatus234(int orderSeqNo, int orderProductStatus)
+	{
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("orderSeqNo", orderSeqNo);
+		map.put("orderProductStatus", orderProductStatus);
+		return dao.updateOrderProductStatus234(map);
 	}
 }

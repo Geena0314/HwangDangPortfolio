@@ -172,6 +172,13 @@
 		WHERE		member_id = #{memberId}
 	</update>
 	
+	<!-- 멤버 마일리지 차감 -->
+	<update id="updateMileageMinus" parameterType="map">
+		UPDATE 		member
+		SET			member_mileage = member_mileage-#{memberMileage}
+		WHERE		member_id = #{memberId}
+	</update>
+	
 	<!-- 은행명 조회 -->
 	<select id="selectBankCode" resultMap="code-basic-resultMap">
 		select code_name from code where code = 'bank' 

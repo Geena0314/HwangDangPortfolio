@@ -11,7 +11,7 @@
 	    <meta name="author" content="">
 	    <title>황당마켓</title>
 		<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/template.css">
-		<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/myorder/myorder_exchange_form.css">
+		<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/exchange_form.css">
 	    <!-- Bootstrap core CSS -->
 	    <link href="/HwangDangFleamarket/css/bootstrap.min.css" rel="stylesheet">
 	    <!-- Custom styles for this template -->
@@ -218,7 +218,7 @@
 		</script>	
 	</head>
 	<body>
-		<form method="POST" action="/HwangDangFleamarket/myorder/exchangeSuccess.go?orderSeqNo=${ param.orderSeqNo }">
+		<form method="POST" action="/HwangDangFleamarket/order/exchangeSuccess.go?orderSeqNo=${ param.orderSeqNo }">
 			<div align="center" class="refund-div">
 				<h2 class="page-header store_look_around" style="position: relative; left: -20px;">교 환 신 청</h2>
 				<table class="table table-striped refundTB">

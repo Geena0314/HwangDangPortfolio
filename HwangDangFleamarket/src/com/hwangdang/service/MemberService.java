@@ -44,4 +44,7 @@ public interface MemberService {
 	
 	//셀러정보수정
 	int updateSellerInfo(Seller seller);
+	
+	//멤버 마일리지 차감
+	int updateMileageMinus(String memberId, int memberMileage);
 }

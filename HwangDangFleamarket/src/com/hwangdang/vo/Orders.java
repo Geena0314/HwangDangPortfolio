@@ -180,7 +180,8 @@ public class Orders implements Serializable
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((memberId == null) ? 0 : memberId.hashCode());
@@ -200,7 +201,8 @@ public class Orders implements Serializable
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -208,59 +210,70 @@ public class Orders implements Serializable
 		if (getClass() != obj.getClass())
 			return false;
 		Orders other = (Orders) obj;
-		if (memberId == null) {
+		if (memberId == null)
+		{
 			if (other.memberId != null)
 				return false;
 		} else if (!memberId.equals(other.memberId))
 			return false;
-		if (orderProductList == null) {
+		if (orderProductList == null)
+		{
 			if (other.orderProductList != null)
 				return false;
 		} else if (!orderProductList.equals(other.orderProductList))
 			return false;
-		if (ordersAddress == null) {
+		if (ordersAddress == null)
+		{
 			if (other.ordersAddress != null)
 				return false;
 		} else if (!ordersAddress.equals(other.ordersAddress))
 			return false;
-		if (ordersDate == null) {
+		if (ordersDate == null)
+		{
 			if (other.ordersDate != null)
 				return false;
 		} else if (!ordersDate.equals(other.ordersDate))
 			return false;
-		if (ordersNo == null) {
+		if (ordersNo == null)
+		{
 			if (other.ordersNo != null)
 				return false;
 		} else if (!ordersNo.equals(other.ordersNo))
 			return false;
-		if (ordersPayment == null) {
+		if (ordersPayment == null)
+		{
 			if (other.ordersPayment != null)
 				return false;
 		} else if (!ordersPayment.equals(other.ordersPayment))
 			return false;
-		if (ordersPhone == null) {
+		if (ordersPhone == null)
+		{
 			if (other.ordersPhone != null)
 				return false;
 		} else if (!ordersPhone.equals(other.ordersPhone))
 			return false;
-		if (ordersReceiver == null) {
+		if (ordersReceiver == null)
+		{
 			if (other.ordersReceiver != null)
 				return false;
 		} else if (!ordersReceiver.equals(other.ordersReceiver))
 			return false;
-		if (ordersRequest == null) {
+		if (ordersRequest == null)
+		{
 			if (other.ordersRequest != null)
 				return false;
 		} else if (!ordersRequest.equals(other.ordersRequest))
 			return false;
-		if (ordersSubAddress == null) {
+		if (ordersSubAddress == null)
+		{
 			if (other.ordersSubAddress != null)
 				return false;
 		} else if (!ordersSubAddress.equals(other.ordersSubAddress))
 			return false;
 		if (ordersTotalPrice != other.ordersTotalPrice)
 			return false;
-		if (ordersZipcode == null) {
+		if (ordersZipcode == null)
+		{
 			if (other.ordersZipcode != null)
 				return false;
 		} else if (!ordersZipcode.equals(other.ordersZipcode))

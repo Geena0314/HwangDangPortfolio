@@ -11,7 +11,7 @@
 			else
 				alert("환불신청에 실패했습니다.");
 			
-				opener.parent.location.reload();
+				opener.parent.location = "/HwangDangFleamarket/order/requestStatus.go?page=1";
 				window.close();
 		</script>
 	</head>

@@ -16,7 +16,7 @@ ul .product_lists
 	border-bottom: 3px solid #EAEAEA;
 	margin: 0px;
 	padding: 0px;
-	height: 150px;
+	height: 180px;
 	width: 210px;
 }
 
@@ -29,7 +29,7 @@ div.seller_listing li#list_block{
 	float: left;
 	overflow: hidden;
 	position: relative;
-	height: 150px;
+	height: 180px;
 	min-width: 800px;
 }
 .thmb{
@@ -40,27 +40,27 @@ div.seller_listing li#list_block{
 .store_info{
 	float: left;
 	width: 400px;
-	height: 150px;
+	height: 180px;
 	border-right: 3px solid #EAEAEA;
 	border-bottom: 3px solid #EAEAEA;
 }
 .store_products{
 	float: left;
 	width: 250px;
-	height: 150px;
+	height: 180px;
 	border-bottom: 3px solid #EAEAEA;
 	font-size: 13pt;
 	text-align: center;
 	padding-right: 20px;
 }
 img{
-	width: 150px;
-	height: 150px;
+	width: 170px;
+	height: 180px;
 }
 .store_imgs{
 	width: 190px;
-	height: 150px;
-	padding-left: 20px;
+	height: 180px;
+	padding-left: 10px;
 	overflow: hidden;
 	border-bottom: 3px solid #EAEAEA;
 	border-right: 3px solid #EAEAEA;

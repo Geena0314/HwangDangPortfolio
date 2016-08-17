@@ -1,123 +1,116 @@
-<%@page import="com.hwangdang.serviceimpl.MemberServiceImpl"%>
-<%@page import="com.hwangdang.service.MemberService"%>
-<%@page import="com.hwangdang.vo.Member"%>
 <%@page contentType="text/html;charset=utf-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"  %>
-<style>
-	#layer{
-		width : 1000px;
-	}
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<style type="text/css">
+div.myorder-tabs{
+   float: left;
+   position: relative;
+   left: 16%;
+   top: -20px;
+   margin: 0px 20px 20px 20px;
+   padding: 20px 20px 20px 20px;
+   max-width: 850px;
 }
-
-.element {
-  .center-block();
+ul{
+   display: block;
+   list-style: none;
+   margin: 10px;
+}
+div.myorder-tabs li#list_block{
+   float: left;
+   overflow: hidden;
+   position: relative;
+   height: 180px;
+   min-width: 800px;
+   padding: 15px 15px 15px 15px;
+}
+.contentList li{
+   display: list-item;
+   margin: 10px;
+}
+div{
+   display: block;
+}
+.thmb{
+   float: left;
+   width: 150px;
+   height: 150px;
+}
+.product_info{
+   float: left;
+   width: 400px;
+   height: 150px;
+   border-right: 2px solid lightgray;
+}
+.status{
+   float: left;
+   width: 150px;
+   height: 150px;
+}
+p{
+   clear: both;
+}
+b{
+   font-size: 15pt;
+}
+img{
+   width: 150px;
+   height: 150px;
+}
+.product_img{
+   border-radius: 10px;
+   overflow: hidden;
+}
+ul.btns{
+	margin: 0px;
+}
+.orderSeqNo{
+	display: none;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-	$(document).ready(function(){
-		$("#gotoMainBtn").click(function(){
-			location.href = "/HwangDangFleamarket/main.go";
-			
-		});
-	});  
-
-</script>   
-    
-<div class="container">
-	<div class="center-block">
-	<div style="border: 6px solid lightgray; padding: 25px; margin: 20px; width: 500px; float: left">
-	<mark>저희 마켓을 이용해주셔서 감사합니다.</mark>
-	<input type="button" class="btn btn-default" value="확인" id="gotoMainBtn"/>
-	</div>
-	
-	
-	<div style="border: 6px solid lightgray; padding: 25px; margin: 20px; width: 500px; float: left">
-	<h2>배송정보</h2>
-	<hr>
-	받는사람 : ${sessionScope.orders.ordersReceiver } <br/>
-	배송지 :[${sessionScope.orders.ordersZipcode }] 
-	${sessionScope.orders.ordersAddress } 
-	${sessionScope.orders.ordersSubAddress } 
-	 / ${sessionScope.orders.ordersPhone }<br/>
-	 ${sessionScope.orders.ordersRequest }  
-	  <!-- 결제방식 0 무통장입금 : , 1카드결제 , 2자동이체 , 3.간편결제       -->
-	  <!--  결제여부 0 : 미결제  , 1. 결제완료  -->
-	</div>
-	
-	<div style="border: 6px solid lightgray; padding: 25px; margin: 20px; margin-bottom: 50px; width: 500px; float: left">
-	<h2>결제정보</h2>
-	<hr>
-		결제방식 :
+<div class="myorder-container">
+	<h2 class="page-header store_look_around">주문 내역</h2>
+	<div class="myorder-tabs">
 		<c:choose>
-			<c:when test="${sessionScope.orders.ordersPayment  == 0 }">무통장입금</c:when>
-			<c:when test="${sessionScope.orders.ordersPayment  == 1 }">카드</c:when>
-			<c:when test="${sessionScope.orders.ordersPayment  == 2 }">자동이체</c:when>
-			<c:otherwise>간편결제</c:otherwise>
-		</c:choose>
-		/결제여부 : 
-		<c:choose>
-			<c:when test="${sessionScope.orders.ordersPayment  == 0 }">입금전 </c:when>
-			<c:otherwise>결제 완료</c:otherwise>
-		</c:choose>
-		<br/>		
-		<c:choose>
-			<c:when test="${sessionScope.bank != null }">
-				 은행명 : ${sessionScope.bank }
-				 계좌번호 : ${sessionScope.vitualBankNo }
-		
-			</c:when>
-			<c:when test="${sessionScope.card != null }">
-				 카드회사 : ${sessionScope.card }
-				 할부 : ${sessionScope.quota }
-			</c:when>
-		</c:choose>
-		<br/>
-		<%--  <!-- 사용한 마일리지가 있다면 사용한 마일리지금액 및 남은 금액 화면에 출력-->--%>
-		사용한 마일리지 금액 :
-		<c:choose>
-			<c:when test="${sessionScope.usedMileage > 0  }">
-				 ${sessionScope.usedMileage } 점
+			<c:when test="${empty requestScope.diliveryStatus}">
+				주문에 실패했습니다.
 			</c:when>
 			<c:otherwise>
-				0점
+				<p>
+					<b>주문일자  <fmt:formatDate value="${requestScope.diliveryStatus[0].orders.ordersDate }" pattern="yyyy-MM-dd" /> │ 주문번호  ${requestScope.diliveryStatus[0].orders.ordersNo}</b>
+				</p>
+				<ul class="contentList">
+		      		<c:forEach items="${requestScope.diliveryStatus}" var="myorderList" varStatus="no">
+			      		<li id="list_block">
+			      			<div class="thmb">
+				               <div class="product_img">
+				                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+				                  	<img src="../image_storage/${myorderList.product.productMainImage}">
+			                  	  </a>
+				               </div>
+				            </div>
+				            <ul class="product_info">
+				               <li>
+				                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+				                  	[${myorderList.seller.sellerStoreName}] ${myorderList.product.productId} - ${myorderList.product.productName}
+			                  	  </a>
+				               </li>
+				               <li>
+				                  ${myorderList.productOption.optionSubName} ${myorderList.orderAmount}개
+				               </li>
+				               <li>
+				               	  ${myorderList.product.productPrice + myorderList.productOption.optionAddPrice}원
+				               </li>
+				            </ul>
+				            <div class="status">
+				               <ul class="btns">
+			               			<li>결제 완료</li>
+				               </ul>
+				            </div>
+				         </li>
+		   			</c:forEach>
+		   		 </ul>
 			</c:otherwise>
 		</c:choose>
-		<br/>
-		<font size="8px" color="blue"><fmt:formatNumber type="currency"> ${sessionScope.orders.ordersTotalPrice }
-		 </fmt:formatNumber> 원</font><br/>
-		
-		</div>
-		
-		<%  
-			// 세션정보 삭제!
-			if(session.getAttribute("bank") != null){
-				session.removeAttribute("bank");
-				session.removeAttribute("vitualBankNo");
-			}else if(session.getAttribute("card") != null){
-				session.removeAttribute("card");
-				session.removeAttribute("quota");
-			}else if(session.getAttribute("usedMileage") != null){
-				session.removeAttribute("usedMileage");
-			}
-		%>
-	<hr/>	         
-	
-		<div style="border: 6px solid lightgray; padding: 25px; margin: 20px; width: 500px; float: left">
-		<h2>주문정보</h2>
-		<hr>  
-		주문번호 : ${sessionScope.orders.ordersNo } <br/> 
-		<c:forEach  var="op" items="${sessionScope.orders.orderProductList }">
-			상품명/가격  :  ${op.product.productName } / ${op.product.productPrice } <br/>
-			수량/옵션정보 :  ${op.orderAmount}개    / ${op.productOption.optionSubName } <br/>
-		</c:forEach> 
-		</div>
-	</div> 
-</div>     
-
-
+	</div> <!-- my order tabs -->
+</div>
