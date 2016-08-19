@@ -101,18 +101,20 @@
 		 -->
 		 
 	<!-- 시퀀스 조회  -->
-	<select id="select-get-QnA-no" resultType="_int" >
+	<!-- <select id="select-get-QnA-no" resultType="_int" >
 		SELECT admin_qna_no_seq.nextval 
 		FROM dual
 	</select>
-		
+	 -->
+	 
 	<!-- QnA게시판 글등록   f : 글작성시 답변은 무조건 없으므로 !-->
-	<insert id="insert" parameterType="AdminQnA">
-		INSERT INTO  admin_qna  
-		VALUES(
-				#{adminQnaNo } ,   #{adminQnaTitle }  , #{adminQnaContent }  , 
-			    #{adminQnaWriter }  , #{adminQnaDate }  , #{adminQnaHit }  , 
-				#{adminQnaPublished }  , #{adminQnaPassword }  , 'f' 
+	<insert id="insertAdminQnA" parameterType="AdminQnA">
+		<selectKey keyProperty="adminQnaNo" resultType="_int" order="BEFORE">
+			select notice_no_seq.nextval from dual
+		</selectKey>
+		INSERT INTO  admin_qna VALUES(
+			#{adminQnaNo}, #{adminQnaTitle}, #{adminQnaContent}, #{adminQnaWriter}, #{adminQnaDate},
+			#{adminQnaHit}, #{adminQnaPublished}, #{adminQnaPassword}, 'f'
 		) 
 	</insert>
 	

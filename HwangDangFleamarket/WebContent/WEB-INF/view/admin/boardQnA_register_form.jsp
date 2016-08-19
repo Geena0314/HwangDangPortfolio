@@ -7,9 +7,10 @@
 			var pass = document.getElementById("password");
 			$(pass).show();
 			if(pass == null){
-				$("#publishedLabel").append("<input type='password' name='password' id='password' /> ");		
+				$("#publishedLabel").append("<input type='password' name='password' id='password'/> ");		
 			}
 		});
+		
 		//공개라디오버튼 누를시 패스워드 박스 숨김 
 		$("#public").click(function(){
 			var pass = document.getElementById("password");
@@ -33,7 +34,7 @@
 				return false;
 			}
 			
-			$("#f1").prop("action","/HwangDangFleamarket/admin/register.go");
+			$("#f1").prop("action","/HwangDangFleamarket/admin/registerQnA.go");
 			$("#f1").submit();
 		});
 	});

@@ -28,8 +28,8 @@ public class BoardQnAServiceImpl implements BoardQnAService{
 	//페이징 게시판 글 등록 
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public int registerNewQnA(AdminQnA newQnA){
-		return adminDao.insertQnABoard(newQnA);
+	public int insertAdminQnA(AdminQnA adminQnA){
+		return adminDao.insertAdminQnA(adminQnA);
 	}
 	
 	//페이징 게시판 리스트 조회 

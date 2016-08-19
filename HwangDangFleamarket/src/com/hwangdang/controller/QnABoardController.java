@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.BoardQnAService;
@@ -32,7 +33,8 @@ public class QnABoardController {
 	/**
 	 * QnA게시판 글등록 
 	 */
-	@RequestMapping("/register.go")
+	/*
+	@RequestMapping("/registerQnA.go")
 	public String registerQnAContent( String loginId , String title , 
 				@RequestParam(value="password",required=false) String password , 
 				@RequestParam(value="published",required=false) String published ,String content  ){
@@ -46,9 +48,11 @@ public class QnABoardController {
 			//System.out.println("글등록 성공!!!");
 			url = "/admin/boardQnADetail.go?page="+1 +"&no="+seq;
 		}
-		
 	return url;
-	} 
+	} */
+	public ModelAndView insertAdminQnA(AdminQnA adminQnA, int page){
+		return new ModelAndView();
+	}
 	
 	/**
 	 *  QnA게시판 전체목록조회 

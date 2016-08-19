@@ -12,7 +12,7 @@ public interface BoardQnADao {
 	int selectQnABoardSeq();
 
 	//게시글 insert 
-	int insertQnABoard(AdminQnA newQnA);
+	int insertAdminQnA(AdminQnA adminQnA);
 
 	//QnA게시판 전체 조회 -페이징
 	List selectAllQnABoard(int page);

@@ -14,7 +14,7 @@ public interface BoardQnAService {
 	int getQnABoardSeq();
 
 	//페이징 게시판 글 등록 
-	int registerNewQnA(AdminQnA newQnA);
+	int insertAdminQnA(AdminQnA adminQnA);
 
 	//페이징 게시판 리스트 조회 
 	List getBoardList(int page);

@@ -27,8 +27,8 @@ public class BoardQnADaoImpl implements BoardQnADao {
 	
 	//게시글 insert 
 	@Override
-	public int insertQnABoard(AdminQnA newQnA){
-		return session.insert("boardQnA.insert", newQnA);
+	public int insertAdminQnA(AdminQnA adminQnA){
+		return session.insert("boardQnA.insert", adminQnA);
 	}
 		
 	//QnA게시판 전체 조회 -페이징
