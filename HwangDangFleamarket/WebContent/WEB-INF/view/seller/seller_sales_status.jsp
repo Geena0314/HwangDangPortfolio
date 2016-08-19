@@ -1,8 +1,23 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/seller_sales_status.css">
-<h2 class="page-header store_look_around">내 스토어 판매 현황</h2>
 
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$(".statusChange").on("click", function()
+		{
+			var status = this.text;
+			if(status == '배송 완료')
+				status = status + '로';
+			else
+				status = status + '으로';
+			
+			return confirm("주문 현황을 " + status + " 변경 하시겠습니까?");
+		});
+	});
+</script>
+<h2 class="page-header store_look_around">내 스토어 판매 현황</h2>
 <div class="seller_listing">
 	<c:forEach items="${requestScope.orderList}" var="list" varStatus="no">
 		<c:forEach items="${list.orderProductList}" var="productList" varStatus="nos">
@@ -57,15 +72,43 @@
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-									<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=2&page=${requestScope.bean.page}">배송 준비중</a>
-									</li>
-									<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=3&page=${requestScope.bean.page}">배송 중</a>
-									</li>
-									<li role="presentation">
-										<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=4&page=${requestScope.bean.page}">배송 완료</a>
-									</li>
+									<c:choose>
+										<c:when test="${productList.orderProductStatus == 1}">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=2&page=${requestScope.bean.page}" class="statusChange">배송 준비중</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=3&page=${requestScope.bean.page}" class="statusChange">배송 중</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=4&page=${requestScope.bean.page}" class="statusChange">배송 완료</a>
+											</li>
+										</c:when>
+										<c:when test="${productList.orderProductStatus == 2}">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=3&page=${requestScope.bean.page}" class="statusChange">배송 중</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=4&page=${requestScope.bean.page}" class="statusChange">배송 완료</a>
+											</li>
+										</c:when>
+										<c:when test="${productList.orderProductStatus == 3}">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=2&page=${requestScope.bean.page}" class="statusChange">배송 준비중</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=4&page=${requestScope.bean.page}" class="statusChange">배송 완료</a>
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=2&page=${requestScope.bean.page}" class="statusChange">배송 준비중</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1" href="/HwangDangFleamarket/order/orderStatusChange.go?orderSeqNo=${productList.orderSeqNo}&orderProductStatus=3&page=${requestScope.bean.page}" class="statusChange">배송 중</a>
+											</li>
+										</c:otherwise>
+									</c:choose>
 								</ul>
 							</div>
 						</c:if>
