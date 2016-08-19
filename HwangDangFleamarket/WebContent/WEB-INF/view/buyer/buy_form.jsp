@@ -2,6 +2,7 @@
 <%@taglib prefix="lee"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/buy_form.css">
 <script type="text/javascript">
 	$(document).ready(function()
 	{
@@ -175,37 +176,30 @@
 	    }
 	}
 </script>
-<style>
-	#memberId, #noBankBook, #accountTransfer, .orderProducts
-	{
-		display: none;
-	}
-	#buyForm
-	{
-		margin-bottom: 50px;
-	}
+<style type="text/css">
+	
 </style>
 <form action="/HwangDangFleamarket/buy/buyProducts.go" method="POST" name="buyForm" id="buyForm">
 	<h2 class="page-header store_look_around" align="left">주문/결제</h2>
-	<div>
+	<div class="buy-form-div">
 		<fieldset>
 			<legend>구매자 정보</legend>
-				<table>
+				<table class="table">
 					<tr>
-						<th>이름</th>
+						<th class="active col-sm-3">이름</th>
 						<td colspan="2">
 							${ sessionScope.login_info.memberName }
 						</td>
 					</tr>
 					<tr>
-						<th>ID</th>
+						<th class="active">ID</th>
 						<td colspan="2">
 							${ sessionScope.login_info.memberId }
 							<input type="text" name="memberId" id="memberId" value="${ sessionScope.login_info.memberId }">
 						</td>
 					</tr>
 					<tr>
-						<th>전화번호</th>
+						<th class="active">전화번호</th>
 						<td colspan="2">
 							${ sessionScope.login_info.memberPhone }
 						</td>
@@ -214,12 +208,12 @@
 		</fieldset>
 	</div>
 	
-	<div>
+	<div class="buy-form-div">
 		<fieldset>
 			<legend>받는사람 정보</legend>
-			<table>
+			<table class="table">
 				<tr>
-					<th>받는 사람</th>
+					<th class="active col-sm-3">받는 사람</th>
 					<td colspan="2">
 						<input type="text" name="ordersReceiver" id="ordersReceiver" 
 								value="${ sessionScope.login_info.memberName }"
@@ -227,7 +221,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>전화번호</th>
+					<th class="active">전화번호</th>
 					<td colspan="2">
 						<select id="hp1" name="hp1">
 			    	        <option>010</option>
@@ -244,22 +238,22 @@
 					</td>
 				</tr>
 				<tr>
-					<th rowspan="3">배송지 주소</th>
+					<th class="active" rowspan="3">배송지 주소</th>
 				</tr>
 				<tr>
-					<td>
-						<input type="text" name="ordersZipcode" id="ordersZipcode" size="8" readonly="readonly" value="${ sessionScope.login_info.memberZipcode }">
+					<td align="center" class="address-td">
+						<input type="text" name="ordersZipcode" id="ordersZipcode" size="10" readonly="readonly" value="${ sessionScope.login_info.memberZipcode }">
 					</td>
-					<td>
-						<input type="text" name="ordersAddress" id="ordersAddress" size="13" readonly="readonly" value="${ sessionScope.login_info.memberAddress }">
-						<input id="button" type="button" value="우편번호검색" onclick="window.open('/HwangDangFleamarket/member/findBuyAddress.go', '주소검색', 'resizable=no scrollbars=yes width=700 height=500 left=500 top=200');">
+					<td class="address-td">
+						<input type="text" name="ordersAddress" id="ordersAddress" size="30" readonly="readonly" value="${ sessionScope.login_info.memberAddress }">
+						<input class="btn-default" id="button" type="button" value="우편번호검색" onclick="window.open('/HwangDangFleamarket/member/findBuyAddress.go', '주소검색', 'resizable=no scrollbars=yes width=700 height=500 left=500 top=200');">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="text" name="ordersSubAddress" id="ordersSubAddress" size="43" value="${ sessionScope.login_info.memberSubAddress }"></td>
 				</tr>
 				<tr>
-					<th>배송시 요청사항</th>
+					<th class="active">배송시 요청사항</th>
 					<td colspan="2">
 						<select id="hp1" name="ordersRequest">
 			    	        <option value="없음">배송시 요청사항을 선택해 주세요.</option>
@@ -276,16 +270,16 @@
 		</fieldset>
 	</div>
 	
-	<div>
+	<div class="buy-form-div">
 		<fieldset>
 			<legend>상품/결제 정보</legend>
-			<table>
+			<table class="table">
 				<lee:choose>
 					<lee:when test="${ not empty requestScope.cartList }">
 						<!-- 상품 1~N개구매 -->
 						<lee:forEach items="${ requestScope.cartList }" var="list">
 							<tr>
-								<th>스토어명</th>
+								<th class="active col-sm-3">스토어명</th>
 								<td colspan="2">
 									<input type="text" value="${ list.productList[0].seller.sellerStoreNo }"
 											name="sellerStoreNo" class="orderProducts">
@@ -295,7 +289,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>상품명</th>
+								<th class="active">상품명</th>
 								<td colspan="2">
 									<input type="text" value="${ list.productList[0].productId }"
 											name="productId" class="orderProducts">
@@ -303,7 +297,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>옵션정보</th>
+								<th class="active">옵션정보</th>
 								<td colspan="2">
 									<input type="text" value="${ list.productList[0].productOption.optionId }"
 											name="optionId" class="orderProducts">
@@ -311,7 +305,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th>선택수량</th>
+								<th class="active">선택수량</th>
 								<td colspan="2">
 									<input type="text" value="${ list.cartProductAmount }"
 											name="orderAmount" class="orderProducts">
@@ -320,19 +314,19 @@
 							</tr>
 						</lee:forEach>
 						<tr>
-							<th>총 상품 가격</th>
+							<th class="active">총 상품 가격</th>
 							<td colspan="2">
 								${ requestScope.totalPrice }원
 							</td>
 						</tr>
 						<tr>
-							<th>총 배송비</th>
+							<th class="active">총 배송비</th>
 							<td colspan="2">
 								${ requestScope.deliveryPrice }원
 							</td>
 						</tr>
 						<tr>
-							<th>총 결제 금액</th>
+							<th class="active">총 결제 금액</th>
 							<td colspan="2">
 								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice" class="orderProducts"
 									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }">
@@ -344,7 +338,7 @@
 					<lee:otherwise>
 						<!-- 상품1개구매 -->
 						<tr>
-							<th>스토어명</th>
+							<th class="active col-sm-3">스토어명</th>
 							<td colspan="2">
 								<input type="text" value="${ requestScope.detail.seller.sellerStoreNo }"
 										name="sellerStoreNo" class="orderProducts">
@@ -354,7 +348,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>상품명</th>
+							<th class="active">상품명</th>
 							<td colspan="2">
 								<input type="text" value="${ requestScope.detail.product.productId }"
 										name="productId" class="orderProducts">
@@ -362,7 +356,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>옵션정보</th>
+							<th class="active">옵션정보</th>
 							<td colspan="2">
 								<input type="text" value="${  requestScope.detail.productOption.optionId }"
 										name="optionId" class="orderProducts">
@@ -370,7 +364,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th>선택수량</th>
+							<th class="active">선택수량</th>
 							<td colspan="2">
 								<input type="text" value="${ requestScope.orderProduct.orderAmount }"
 										name="orderAmount" class="orderProducts">
@@ -378,19 +372,19 @@
 							</td>
 						</tr>
 						<tr>
-							<th>총 상품 가격</th>
+							<th class="active">총 상품 가격</th>
 							<td colspan="2">
 								${ requestScope.totalPrice }원
 							</td>
 						</tr>
 						<tr>
-							<th>배송비</th>
+							<th class="active">배송비</th>
 							<td colspan="2">
 								${ requestScope.deliveryPrice }원
 							</td>
 						</tr>
 						<tr>
-							<th>총 결제 금액</th>
+							<th class="active">총 결제 금액</th>
 							<td colspan="2">
 								<input type="text" name="ordersTotalPrice" id="ordersTotalPrice" class="orderProducts"
 									value="${ requestScope.totalPrice +  requestScope.deliveryPrice }">
@@ -401,13 +395,13 @@
 					</lee:otherwise>
 				</lee:choose>
 				<tr>
-					<th>마일리지 사용</th>
+					<th class="active">마일리지 사용</th>
 					<td colspan="2">
 						<input type="text" id="memberMileage" name="memberMileage" onkeydown="sellerAccountCheck(this);"> ※사용 가능 최대 마일리지 : ${ sessionScope.login_info.memberMileage }마일리지
 					</td>
 				</tr>
 				<tr>
-					<th>결제 방법</th>
+					<th class="active">결제 방법</th>
 					<td colspan="2">
 						신용/체크카드<input type="radio" name="ordersPayment" value="card" checked="checked">
 						실시간 계좌이체<input type="radio" name="ordersPayment" value="noBankBook">
@@ -515,7 +509,8 @@
 				</li>
 			</ul>
 		</div>
-		<textarea rows="5" cols="100%" readonly="readonly">개인정보 제 3자 제공 동의
+		<div class="personal-infomation-block">
+			<textarea rows="5" cols="100%" readonly="readonly">개인정보 제 3자 제공 동의
 		
 1. 회원의 개인정보는 당사의 개인정보취급방침에 따라 안전하게 보호됩니다. “회사”는 이용자들의 개인정보를 "개인정보 취급방침의 개인정보의 수집 및 이용목적"에서 고지한 범위 내에서 사용하며, 이용자의 사전 동의 없이는 동 범위를 초과하여 이용하거나 원칙적으로 이용자의 개인정보를 외부에 공개하지 않습니다. 
 회사가 제공하는 서비스를 통하여 주문 및 결제가 이루어진 경우 구매자 확인 및 해피콜 등 거래이행을 위하여 관련된 정보를 필요한 범위 내에서 거래 업체에게 제공합니다.
@@ -523,11 +518,13 @@
 ※ 동의 거부권 등에 대한 고지 
 개인정보 제공은 서비스 이용을 위해 꼭 필요합니다. 개인정보 제공을 거부하실 수 있으나, 이 경우 서비스 이용이 제한될 수 있습니다.
 		</textarea><br>
-		<input type="checkbox" id="agreement">본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.<br><br>
+		<input type="checkbox" id="agreement">본인은 개인정보 제3자 제공 동의에 관한 내용을 모두 이해하였으며 이에 동의합니다.(필수)<br><br>
 		개별 판매자가 등록한 스토어(오픈마켓) 상품에 대한 광고, 상품주문, 배송 및 환불의 의무와 책임은 <br>
 		각 판매자가 부담하고, 이에 대하여 황당플리마켓은 통신판매중개자로서 통신판매의 당사자가 아니므로 
 		일체 책임을 지지 않습니다.<br><br>
-		
-		<input type="submit" value="바로 결제하기" id="submit">
+			<div align="center" class="submit-button-block">
+				<input class="btn btn-lg btn-success" type="submit" value="바로 결제하기" id="submit">
+			</div>
+		</div>
 	</div>
 </form>
