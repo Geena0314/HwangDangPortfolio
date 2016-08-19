@@ -74,4 +74,7 @@ public interface ProductService
 	
 	//상품 (상품id로) 조회. (추천 순, Paging, sellerStoreNo로 조회.)
 	HashMap<String, Object> selectSearchProductById(String keyword, int page);
+	
+	//상품 등록 시 상품ID 중복체크
+	int selectProductIdCheck(String productId);
 }

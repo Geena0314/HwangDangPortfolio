@@ -429,6 +429,23 @@ input#sellerZipcode
 	height: 60px;
 	position: absolute;
 	left: 44%;
+	color: black;
+}
+
+.pageGroup a:HOVER
+{
+	text-decoration: none;
+	color: #8748E1;
+}
+
+.pageGroup a
+{
+	text-decoration: none;
+	color: gray;
+}
+
+.pageGroup b{
+	font-size: 15pt;
 }
 
 #main {
@@ -573,7 +590,16 @@ li {
 /*판매자 등록 신청 현황 폼*/
 
 /*header*/
-
+#searchCode
+{
+	margin: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    padding: 4px 4px;
+    color: #444;
+    background-color: #fff;
+}
 /*body*/
 .body-block{
 	padding-left: 100px;
@@ -584,7 +610,7 @@ li {
 .adminNoticePaging{
 	left: 19%;
 	bottom: 5px;
-	color: black;
+	/* color: black; */
 }
 .adminNotice{
 	margin-top: 50px;
@@ -639,7 +665,7 @@ li {
 }
 .nav.navbar-nav.navbar-right.links.fixed-menus
 {
-	padding-right: 25%;
+	padding-right: 24%;
 }
 .nav.navbar-nav.navbar-right.links a
 {

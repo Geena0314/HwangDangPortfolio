@@ -2,11 +2,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
-	$(document).ready(function(){
-		$("#forgotPasswordBtn").on("click",function(){
-			
-		});
-		
+	$(document).ready(function()
+	{
+		$("#password").focus();
 	});
 </script>
 <style>
@@ -20,10 +18,10 @@
 	<form action="/HwangDangFleamarket/member/mypage.go"  method="POST">
 		<h2>비밀번호 확인</h2>
 		<p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 확인합니다.</p>
-		<input type="password" name="memberPassword" />
-		<input type="submit" value="로그인" />
-		<c:if test="${not empty requestScope.errorMsg }">
-			<font color="red" size="3">${requestScope.errorMsg  }</font>
+		<input type="password" name="memberPassword" id="password"/>
+		<input type="submit" value="확인" />
+		<c:if test="${not empty requestScope.errorMsg}">
+			<font color="red" size="3">${requestScope.errorMsg}</font>
 		</c:if>
 		<br/><br/>
 		<p>저희마켓은 회원님의 개인정보를 신중히 취급하며, 회원님의 동의 없이는 

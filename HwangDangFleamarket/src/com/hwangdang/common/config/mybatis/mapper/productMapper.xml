@@ -338,4 +338,9 @@
 	<delete id="deleteProductById" parameterType="string">
 		delete from product where product_id = #{value}
 	</delete>
+	
+	<!-- 상품 등록 시 상품ID 중복체크 -->
+	<select id="selectProductIdCheck" parameterType="string" resultType="_int">
+		select count(product_id) from product where product_id = #{productId}
+	</select>
 </mapper>

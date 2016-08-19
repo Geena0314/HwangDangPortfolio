@@ -376,4 +376,12 @@ public class ProductController
 		return new ModelAndView("redirect:/product/list.go?page="+request.getParameter("page")+"&sellerStoreNo="+request.getParameter("sellerStoreNo")
 													+"&sellerStoreImage="+URLEncoder.encode(sellerStoreImage,"UTF-8"));
 	}
+	
+	//상품ID 중복 체크
+	@RequestMapping("productIdCheck")
+	@ResponseBody
+	public int productIdCheck(String productId)
+	{
+		return service.selectProductIdCheck(productId);
+	}
 }

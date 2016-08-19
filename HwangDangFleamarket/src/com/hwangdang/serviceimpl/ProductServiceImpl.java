@@ -322,4 +322,11 @@ public class ProductServiceImpl implements ProductService
 		
 		return map;
 	}
+
+	@Override
+	public int selectProductIdCheck(String productId)
+	{
+		// TODO Auto-generated method stub
+		return dao.selectProductIdCheck(productId);
+	}
 }
