@@ -2,6 +2,7 @@
 <%@taglib prefix="lee"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/buy_form.css">
 <script type="text/javascript">
 	$(document).ready(function()
 	{
@@ -176,85 +177,7 @@
 	}
 </script>
 <style type="text/css">
-	#memberId, #noBankBook, #accountTransfer, .orderProducts
-	{
-		display: none;
-	}
 	
-	#buyForm
-	{
-		margin-bottom: 50px;
-	}
-	
-	.buy-form-div
-	{
-		margin-left: 20%;
-		margin-bottom: 30px;
-	}
-	
-	fieldset, .personal-infomation-block
-	{
-		width: 70%;
-	}
-	
-	legend
-	{
-		border-bottom: 0px;
-		font-size: 25px;
-	}
-	
-	table
-	{
-		border-top: 3px solid #cecece;
-		width: 100%;
-	}
-	
-	table th
-	{
-		text-align: center;
-	}
-	
-	.table>tbody>tr>td
-	{
-		padding-left: 25px;
-	}
-	
-	.table>tbody>tr>td.address-td
-	{
-		padding-left: 15px;
-		padding-right: 0px;
-	}
-	
-	.table>tbody>tr>td input, .table>tbody>tr>td select, select
-	{
-	    margin: 5px;
-	    border-radius: 4px;
-	    font-size: 12px;
-	    line-height: 1.42857143;
-	    padding: 5px 8px;
-	    color: #444;
-	    background-color: #fff;
-	}
-	
-	.btn-success
-	{
-		background-color: white;
-		color: black;
-	}
-	
-	.payment
-	{
-		width: 70%;
-	    margin-bottom: 20px;
-	    padding: 10px;
-	    border: 2px solid #c5c7cd;
-		background-color: #f4f6fa;
-	}
-	
-	.personal-infomation-block textarea
-	{
-		width: 100%;
-	}
 </style>
 <form action="/HwangDangFleamarket/buy/buyProducts.go" method="POST" name="buyForm" id="buyForm">
 	<h2 class="page-header store_look_around" align="left">주문/결제</h2>
