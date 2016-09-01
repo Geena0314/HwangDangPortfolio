@@ -17,7 +17,7 @@
 					<c:if test="${not empty requestScope.errors}">
 						<tr>
 							<td class="error">
-								<form:errors path="notice.noticeTitle" delimiter=" & "/>
+								<form:errors path="notice.noticeTitle"/>
 							</td>
 						</tr>
 					</c:if>
@@ -44,4 +44,3 @@
 		</p>
 	</form>
 </div>
-

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.common.util.PagingBean;
-import com.hwangdang.service.BoardQnAService;
+import com.hwangdang.service.AdminQnAService;
 import com.hwangdang.serviceimpl.MemberServiceImpl;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
@@ -26,7 +26,7 @@ import com.hwangdang.vo.Member;
 public class QnABoardController {
 
 	@Autowired
-	private BoardQnAService service;
+	private AdminQnAService service;
 	@Autowired
 	private MemberServiceImpl memberService;
 	
@@ -50,9 +50,6 @@ public class QnABoardController {
 		}
 	return url;
 	} */
-	public ModelAndView insertAdminQnA(AdminQnA adminQnA, int page){
-		return new ModelAndView();
-	}
 	
 	/**
 	 *  QnA게시판 전체목록조회 
@@ -60,8 +57,8 @@ public class QnABoardController {
 	@RequestMapping("/boardQnAList.go")
 	public String noticeQnAList(Model model, int page){
 		//System.out.println("page: " + page);
-		PagingBean pagingBean = new PagingBean(service.getTotalItems() ,page);
-		ArrayList<AdminQnA> list = (ArrayList<AdminQnA>) service.getBoardList(page);
+		PagingBean pagingBean = new PagingBean(service.selectCountAdminQnA() ,page);
+		ArrayList<AdminQnA> list = (ArrayList<AdminQnA>) service.selectAdminQnAList(page);
 		model.addAttribute("list", list);
 		model.addAttribute("pagingBean",pagingBean);
 	return "admin/boardQnA_list.tiles";
@@ -71,11 +68,11 @@ public class QnABoardController {
 	 *  QnA게시판  비공개글에 비밀번호 불일치하면 이곳으로 이동
 	 */
 	@RequestMapping("/boardQnADetailBefore.go")
-	public String boardQnADetailBefore(int page , int no , Model model , HttpSession session){
+	public String boardQnADetailBefore(int page , int adminQnaNo , Model model , HttpSession session){
 		String url = "";
-		AdminQnA findQnA = service.getAdminQnAByNo(no);
+		AdminQnA findQnA = service.selectAdminQnAByNo(adminQnaNo);
 		if(findQnA!= null && findQnA.getAdminQnaPublished().equals("t")){
-			//문의글의 공개 
+			//문의글의 공개
 			url ="/admin/boardQnADetail.go"; 
 		}else{
 			//문의글의 비공개
@@ -98,11 +95,11 @@ public class QnABoardController {
 	 *  QnA게시판 NO번호로 세부조회  
 	 */
 	@RequestMapping("/boardQnADetail.go")
-	public String boardQnADetail(int page , int no , Model model , HttpSession session ,
+	public String boardQnADetail(int page , int adminQnaNo , Model model , HttpSession session ,
 					@RequestParam(value="password" , required=false) String password ){
 	
 		String url = "";
-		AdminQnA findQnA = service.getAdminQnAByNo(no);
+		AdminQnA findQnA = service.selectAdminQnAByNo(adminQnaNo);
 		//System.out.println("파람패스워드:"+password +" , 객체패스워드:" + findQnA.getAdminQnaPassword());
 		Member member =(Member) session.getAttribute("login_info");
 		
@@ -134,8 +131,8 @@ public class QnABoardController {
 	@RequestMapping("/boardQnASetMove.go")
 	public String boardQnASetMove( int no , int page , Model model){
 		//System.out.println(no +", " + page);
-		AdminQnA adminQnA = service.getAdminQnAByNo(no);
-		model.addAttribute("adminQnA" ,adminQnA);
+		//AdminQnA adminQnA = service.getAdminQnAByNo(no);
+		//model.addAttribute("adminQnA" ,adminQnA);
 		return "admin/boardQnASetForm.tiles";
 	}
 	
@@ -216,11 +213,11 @@ public class QnABoardController {
 		//댓글삭제
 		service.removeReplyByNo(replyNo , contentNo); 
 		
-		AdminQnA adminQnA = service.getAdminQnAByNo(contentNo);
+		//AdminQnA adminQnA = service.getAdminQnAByNo(contentNo);
 		//System.out.println("adminQnA 댓글삭제 : " + adminQnA);
-		if(adminQnA != null){
+		/*if(adminQnA != null){
 			url = "/admin/boardQnADetail.go?page="+contentPage +"&no="+contentNo+"&password="+adminQnA.getAdminQnaPassword();
-		}     
+		}   */  
 		return url;
 	}
 	 /**
@@ -239,8 +236,9 @@ public class QnABoardController {
 		//댓글수정
 		service.setReplyByNo(param);
 		//글의 비밀번호 찾는 로직
-		AdminQnA adminQnA = service.getAdminQnAByNo(contentNo);
+		//AdminQnA adminQnA = service.getAdminQnAByNo(contentNo);
 		
-	return "/admin/boardQnADetail.go?page="+contentPage +"&no="+contentNo+"&password="+adminQnA.getAdminQnaPassword();
+	//return "/admin/boardQnADetail.go?page="+contentPage +"&no="+contentNo+"&password="+adminQnA.getAdminQnaPassword();
+		return "";
 	}
 }
