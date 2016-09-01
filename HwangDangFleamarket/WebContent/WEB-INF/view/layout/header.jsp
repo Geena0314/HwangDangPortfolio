@@ -84,7 +84,7 @@
 		        <li><a href="/HwangDangFleamarket/admin/adminNotice.go?page=1" class="navbar-collapse collapse navbars main-buttons" style="margin-right: 0px;">
 		    		<img src="/HwangDangFleamarket/image_storage/notice.JPG">
 	    		</a></li>
-		        <li><a href="/HwangDangFleamarket/admin/boardQnAList.go?page=1" class="navbar-collapse collapse navbars main-buttons">
+		        <li><a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=1" class="navbar-collapse collapse navbars main-buttons">
 		        	<img src="/HwangDangFleamarket/image_storage/Q&A.JPG">
 	        	</a></li>
 	        </ul>

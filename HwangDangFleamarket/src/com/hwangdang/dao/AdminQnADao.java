@@ -6,22 +6,19 @@ import java.util.List;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
 
-public interface BoardQnADao {
-
-	//게시글 추가전  현재 시퀀스값 조회
-	int selectQnABoardSeq();
+public interface AdminQnADao {
 
 	//게시글 insert 
-	int insertQnABoard(AdminQnA newQnA);
+	int insertAdminQnA(AdminQnA adminQnA);
 
 	//QnA게시판 전체 조회 -페이징
-	List selectAllQnABoard(int page);
+	List<AdminQnA> selectAdminQnAList(int page);
 
 	//게시판 전체글갯수 조회 
-	int selectTotalItems();
+	int selectCountAdminQnA();
 
 	//글번호로 게시글 조회
-	AdminQnA selectByNo(int no);
+	AdminQnA selectAdminQnAByNo(int adminQnaNo);
 
 	//글번호로 게시글 삭제
 	int deleteByNo(int no);

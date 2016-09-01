@@ -3,6 +3,14 @@
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_notice_list.css">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".title").on("click", function(){
+			alert($(this).text());
+			return false;
+		});
+	});
+</script>
 <h2 class="page-header store_look_around">황당 플리마켓 Q&A</h2>
 <div class="table-responsive notice">
 	<table class="table table-striped" id="adminTable" style="max-width: 950px;">
@@ -19,7 +27,7 @@
 			<tr>
 				<td colspan="7">
 					<c:if test="${sessionScope.login_info.memberId != null}">
-						<input class="addBtns" type="button" value="문의하기" onclick="window.location='/HwangDangFleamarket/boardQnA_register_form.go'">
+						<input class="addBtns" type="button" value="문의하기" onclick="window.location='/HwangDangFleamarket/adminQnA/registerAdminQnAForm.go'">
 					</c:if>
 				</td>
 			</tr>
@@ -34,7 +42,7 @@
 			</tr>
 		</thead>
 		<tbody>		
-			<c:forEach var="list" items="${requestScope.list }" >
+			<c:forEach var="list" items="${requestScope.list}" >
 				<tr class="trInput">
 					<td>${list.adminQnaNo }</td>
 					<td class="tdName">
@@ -43,16 +51,16 @@
 							<c:otherwise><font color="red">미완료</font></c:otherwise>
 						</c:choose>
 					</td>  
-					<td><a  id="moveDetail" href="/HwangDangFleamarket/admin/boardQnADetailBefore.go?page=${requestScope.pasingBean.page }&no=${list.adminQnaNo }">${list.adminQnaTitle }</a></td>
+					<td><a class="title" href="/HwangDangFleamarket/adminQnA/beforeAdminQnADetail.go?page=${requestScope.pasingBean.page}&no=${list.adminQnaNo}">${list.adminQnaTitle}</a></td>
 					<td>${list.adminQnaWriter }</td>
 					<td><fmt:formatDate value="${list.adminQnaDate }" pattern="yyyy-MM-dd"/></td>
 					<td>${list.adminQnaHit }</td>
 					 <c:choose>
-						<c:when test="${list.adminQnaPublished == 't'}">
+						<c:when test="${list.adminQnaPublished == '1'}">
 							<td>공개</td>
 						</c:when>
 						<c:otherwise>
-							<td><mark>비공개</mark></td>
+							<td>비공개</td>
 						</c:otherwise>   
 					</c:choose>
 				</tr>

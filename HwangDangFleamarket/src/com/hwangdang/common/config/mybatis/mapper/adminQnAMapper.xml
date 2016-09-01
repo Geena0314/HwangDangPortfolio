@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminQnAMapper">
+	<sql id="adminQnA-columns">
+		admin_qna_no, admin_qna_title, admin_qna_content, admin_qna_writer, admin_qna_date, admin_qna_hit,
+		admin_qna_published, admin_qna_password, admin_qna_reply_exist
+	</sql>
+	
+	<sql id="select-basic">
+		SELECT  <include refid="adminQnA-columns"/> FROM admin_qna
+	</sql>
+	
+	<!-- 게시판글만 조회 , 댓글X -->
+	<resultMap type="adminQnA" id="resultmap-basic-list">
+		<id column="admin_qna_no" property="adminQnaNo"/>
+	 	<result column="admin_qna_title" property="adminQnaTitle"/>
+	 	<result column="admin_qna_content" property="adminQnaContent"/>
+	 	<result column="admin_qna_writer" property="adminQnaWriter"/>
+	 	<result column="admin_qna_date" property="adminQnaDate"/>
+	 	<result column="admin_qna_hit" property="adminQnaHit"/>
+	 	<result column="admin_qna_published" property="adminQnaPublished"/>
+	 	<result column="admin_qna_password" property="adminQnaPassword"/>
+	 	<result column="admin_qna_reply_exist" property="adminQnaReplyExist"/>
+ 	</resultMap> 
+	
+	<!-- 게시판글 조인 하여 전체 조회 -->
+	<resultMap type="adminQnA" id="resultmap-qna-reply-join">
+		<id column="admin_qna_no" property="adminQnaNo"/>
+	 	<result column="admin_qna_title" property="adminQnaTitle"/>
+	 	<result column="admin_qna_content" property="adminQnaContent"/>
+	 	<result column="admin_qna_writer" property="adminQnaWriter"/>
+	 	<result column="admin_qna_date" property="adminQnaDate"/>
+	 	<result column="admin_qna_hit" property="adminQnaHit"/>
+	 	<result column="admin_qna_published" property="adminQnaPublished"/>
+	 	<result column="admin_QnA_password" property="adminQnaPassword"/>
+	 	<result column="admin_qna_reply_exist" property="adminQnaReplyExist"/>
+	 	<association property="reply" javaType="AdminQnAReply">
+		 	<result column="admin_reply_content" property="adminReplyContent"/>
+		 	<result column="admin_reply_date" property="adminReplyDate"/>
+		 	<result column="admin_reply_no" property="adminReplyNo"/>
+	 	</association>
+	</resultMap> 
+	
+	<!-- 게시판의 글수 조회 -->
+	<select id="selectCountAdminQnA" resultType="int">
+		SELECT count(admin_qna_no) FROM admin_qna
+	</select>
+	
+	<!-- QnA 전체 목록 조회 -->
+	<select id="selectAdminQnAList" parameterType="map" resultMap="resultmap-basic-list">
+	SELECT  <include refid="adminQnA-columns"/> FROM (
+		SELECT ceil(rownum /#{itemsPerPage}) page, <include refid="adminQnA-columns"/> FROM (
+			SELECT  <include refid="adminQnA-columns"/> FROM admin_qna ORDER BY admin_qna_no DESC)
+	) WHERE page = #{page}
+	</select>
+	
+	<!-- QnA 게시판 글  조회하기 : 세부글정보 보기 --> 
+	<select id="selectAdminQnAByNo" parameterType="_int" resultMap="resultmap-qna-reply-join">
+	SELECT  q.admin_qna_no ,q.admin_qna_title ,q.admin_qna_content ,
+			q.admin_qna_writer ,q.admin_qna_date ,q.admin_qna_hit ,
+			q.admin_qna_published, q.admin_QnA_password ,q.admin_qna_reply_exist ,
+			r.admin_reply_content ,r.admin_reply_date , r.admin_reply_no	
+	FROM    ADMIN_QNA q  ,  admin_QnA_reply
+	WHERE   q.admin_qna_no = #{no}
+	AND     q.admin_qna_no =  r.admin_qna_no(+) 
+	</select>
+	
+	<!-- QnA게시판 조회수  ++1 -->
+	<update id="update-hit" parameterType="_int">
+		UPDATE admin_qna
+		SET admin_qna_hit = admin_qna_hit+1
+		WHERE admin_qna_no = #{no}
+	</update>
+	
+	<!-- QnA게시판  게시글 등록
+		     adminQnaNo   //게시판 글번호 
+			 adminQnaTitle;  //제목
+			 adminQnaContent; //글내용
+			 adminQnaWriter;  //작성자
+			 adminQnaDate;  //작성일 
+			 adminQnaHit;  //조회수 
+			 adminQnaPublished;  // 공개여부 
+			 reply;    //댓글객체 
+			 adminQnaPassword;  //비밀번고
+		 -->
+		 
+	<!-- 시퀀스 조회  -->
+	<!-- <select id="select-get-QnA-no" resultType="_int" >
+		SELECT admin_qna_no_seq.nextval 
+		FROM dual
+	</select>
+	 -->
+	 
+	<!-- QnA게시판 글등록   f : 글작성시 답변은 무조건 없으므로 -->
+	<insert id="insertAdminQnA" parameterType="adminQnA">
+		<selectKey keyProperty="adminQnaNo" resultType="_int" order="BEFORE">
+			select admin_qna_no_seq.nextval from dual
+		</selectKey>
+		INSERT INTO  admin_qna VALUES(
+			#{adminQnaNo}, #{adminQnaTitle}, #{adminQnaContent}, #{adminQnaWriter}, #{adminQnaDate},
+			#{adminQnaHit}, #{adminQnaPublished}, #{adminQnaPassword}, 'f'
+		) 
+	</insert>
+	
+	<!-- QnA게시판 글 삭제 -->
+	<delete id="delete-by-no"  parameterType="_int">
+		DELETE FROM admin_qna
+		WHERE admin_qna_no = #{no}
+	</delete>
+	
+	<!-- QnA게시판 글 수정 -->
+	<update id="update-by-no" parameterType="hashmap">
+	    UPDATE admin_qna
+		SET  admin_qna_content = #{content}  ,
+			 admin_qna_date = #{setDate}  ,
+			 admin_qna_title = #{title}  ,
+			 admin_qna_password = #{password}  ,
+			 admin_qna_published = #{publiced}
+		WHERE admin_qna_no = #{no}
+	</update>
+	  
+	<!--QnA게시판 관리자 댓글추가 -->
+	<insert id="insert-reply" parameterType="com.hwangdang.vo.AdminQnAReply">
+		INSERT INTO admin_QnA_reply
+		VALUES(
+			 admin_reply_no_seq.nextval , 
+			 #{adminReplyContent} , 
+			 #{adminReplyWriteDate } ,
+			 '관리자' ,
+			 #{adminQnaNo}  
+		)
+	</insert>
+	
+	<!-- 댓글 달때 게시판에admin_QnA_reply_exist 컬럼 't'로 변경    -->
+	<update id="update-by-no-reply-exsit" parameterType="_int">
+		UPDATE admin_QnA 
+		SET admin_QnA_reply_exist = 't'
+		WHERE admin_qna_no  = #{no}
+	</update>
+	
+	<!-- 댓글삭제  -->
+	<delete id="delete-reply-by-no" parameterType="_int">
+		DELETE FROM admin_qna_reply 
+		WHERE admin_reply_no = #{no} 
+	</delete>
+	
+	<update id="update-by-no-reply-exsit-f" parameterType="_int">
+		UPDATE admin_QnA 
+		SET admin_QnA_reply_exist = 'f'
+		WHERE admin_qna_no  = #{no}
+	</update>
+	
+	<!-- 댓글수정 -->
+	<update id="update-reply-by-no" parameterType="hashmap">
+		UPDATE admin_qna_reply 
+		SET	   admin_reply_content = #{replyTa} ,
+			   admin_reply_date = #{setDate} 
+		WHERE admin_reply_no = #{replyNo} 
+	</update>
+</mapper>

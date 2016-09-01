@@ -8,22 +8,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
 
-public interface BoardQnAService {
-
-	//QnA게시판 시퀀스값 조회 
-	int getQnABoardSeq();
+public interface AdminQnAService {
 
 	//페이징 게시판 글 등록 
-	int registerNewQnA(AdminQnA newQnA);
+	int insertAdminQnA(AdminQnA adminQnA);
 
 	//페이징 게시판 리스트 조회 
-	List getBoardList(int page);
+	List<AdminQnA> selectAdminQnAList(int page);
 
 	//게시판의 전체글 갯수 조회 
-	int getTotalItems();
+	int selectCountAdminQnA();
 
 	//글번호로 글조회
-	AdminQnA getAdminQnAByNo(int no);
+	AdminQnA selectAdminQnAByNo(int adminQnaNo);
 
 	//글번호로 글삭제
 	void removeAdminQnAByNo(int no);
