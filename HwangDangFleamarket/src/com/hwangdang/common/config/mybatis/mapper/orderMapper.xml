@@ -283,6 +283,7 @@
 		select  	count(op.order_seq_no) from orders o, order_product op 
 		where  	o.orders_no = op.orders_no
 		and 		o.member_id = #{value}
+		and		op.order_product_status IN (0,1,2,3,4)
 	</select>
 	
 	<!-- 교환/환불/취소 현황 조회 -->

@@ -3,6 +3,43 @@
 <script type="text/javascript">
 var j = 1;
 $(document).ready(function(){
+	//상품 id 중복체크
+	$("#productId").on("blur", function()
+	{
+		if(this.value == null || this.value.trim().length == 0 || this.value.length > 30)
+		{
+			//널이거나 0글자거나 30글자보다 큰 경우
+			$("#productId").val("");
+			alert("상품id를 1글자이상 30글자 이하로 입력해주세요.");
+			return false;
+		}
+		else
+		{
+			//상품id 중복 체크.
+			$.ajax(
+			{
+				"url" : "/HwangDangFleamarket/product/productIdCheck.go",
+				"type" : "POST",
+				"data" : "productId=" + this.value,
+				"dataType" : "text",
+				"success" : function(text)
+				{
+					if(text == 0)
+					{
+						return true;
+					}
+					else
+					{
+						alert("상품ID가 중복됩니다.");
+						$("#productId").val("");
+						return false;
+					}
+				},
+				"error" : function(){}
+			});
+		}
+	});
+	
 	var idx = 1;
 	$('table').on("click", '#addOptionBtn',function(){
 		if(!$('.optionName')[0].value||!$('.optionSubName')[0].value||!$('.optionStock')[0].value){

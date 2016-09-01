@@ -1,5 +1,4 @@
 @CHARSET "UTF-8";
-
 div.seller_listing{
 	float: left;
 	border-top: 3px solid #EAEAEA;
@@ -11,6 +10,7 @@ div.seller_listing{
 	position: relative;
 	left: 15%;
 }
+
 ul .product_lists
 {
 	border-bottom: 3px solid #EAEAEA;
@@ -23,8 +23,16 @@ ul .product_lists
 .seller-register-page
 {
 	margin-top: 10px;
-	left: 46%
+	left: 44%;
+	margin-bottom: 10px;
 }
+
+a
+{
+	text-decoration: none;
+	color: gray;
+}
+
 div.seller_listing li#list_block{
 	float: left;
 	overflow: hidden;
@@ -32,6 +40,7 @@ div.seller_listing li#list_block{
 	height: 180px;
 	min-width: 800px;
 }
+
 .thmb{
 	float: left;
 	width: 150px;

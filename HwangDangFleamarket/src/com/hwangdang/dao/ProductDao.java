@@ -112,4 +112,7 @@ public interface ProductDao
 	
 	//keyword로 검색된 상품 전체 갯수 조회.
 	int selectCountByKeyword(String keyword);
+	
+	//상품 등록 시 상품ID 중복체크
+	int selectProductIdCheck(String productId);
 }
