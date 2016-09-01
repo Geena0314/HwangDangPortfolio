@@ -29,9 +29,9 @@
 				<tiles:insertAttribute name="header"/> <!-- name 속성에 put-attribute 태그의 name 속성값을 호출 -->
 			</header>
 			
-		    <div class="row">
+		    <%-- <div class="row">
 				<tiles:insertAttribute name="nav"/>
-			</div> 
+			</div>  --%>
 			
 			<div id='content' class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">	
 				<tiles:insertAttribute name="body"/>

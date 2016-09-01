@@ -11,12 +11,12 @@
 				<div class="list-margins">
 					<div class="thmb">
 						<div class="store_img">
-							<a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${list.sellerStoreNo}&sellerStoreImage=${list.sellerStoreImage}"><img class="sellerListImage" src="../image_storage/${list.sellerStoreImage}"></a>
+							<a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${list.sellerStoreNo}"><img class="sellerListImage" src="../image_storage/${list.sellerStoreImage}"></a>
 						</div>
 					</div>
 					<div class="store_info">
 						<div align="center" class="store-names">
-							<a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${list.sellerStoreNo}&sellerStoreImage=${list.sellerStoreImage}">${list.sellerStoreName}</a>
+							<a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${list.sellerStoreNo}">${list.sellerStoreName}</a>
 						</div>
 						<div class="introduction">
 							${list.sellerIntroduction}

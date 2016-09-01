@@ -174,7 +174,6 @@ $(document).ready(function(){
 	<form id="productRegister" method="POST" enctype="multipart/form-data" action="/HwangDangFleamarket/product/registerProduct.go">
 		<input type="hidden" name="sellerStoreNo" value="${param.sellerStoreNo}">
 		<input type="hidden" name="page" value="${param.page}">
-		<input type="hidden" name="sellerStoreImage" value="${param.sellerStoreImage}">
 		<div class="table-responsive">
 			<table id="table" class="table table-striped">
 				<tr class="trInput">
@@ -250,7 +249,7 @@ $(document).ready(function(){
 					<td colspan="3">
 						<input class="btn btn-lg btn-success btn-block" type="submit" value="등록하기" id="submit">
 						<input class="btn btn-lg btn-primary btn-block" type="reset" value="다시입력">
-						<input class="btn btn-lg btn-danger btn-block" type="button" value="등록취소" onclick="window.location='/HwangDangFleamarket/product/list.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
+						<input class="btn btn-lg btn-danger btn-block" type="button" value="등록취소" onclick="window.location='/HwangDangFleamarket/product/list.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}'">
 					</td>
 				</tr>
 			</table>

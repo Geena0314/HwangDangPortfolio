@@ -60,15 +60,11 @@
 					</c:otherwise> 
 				</c:choose>
 				<c:if test="${ sessionScope.login_info.memberAssign == 1 && sessionScope.seller.sellerAssign == 1}">
-					<li><a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}&sellerStoreImage=${sessionScope.seller.sellerStoreImage}">내 스토어</a></li>
+					<li><a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${sessionScope.seller.sellerStoreNo}">내 스토어</a></li>
 				</c:if>
 			</ul>
 		</div>
 			<div>
-				<a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}">
-					<img style="width: 130px; height: 130px; position: relative; left: 280px; top: -139px; border-radius: 20px;" class="store-main-img" id="storeMainImage" src="../image_storage/${param.sellerStoreImage}">
-				</a>
-				
 				<div align="center" class="store-buttons col-sm-6">
 					<ul class="nav navbar-nav navbar-right links">
 						<!-- 삭제 예정 <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li> -->
@@ -78,12 +74,12 @@
 							</button>
 						</li>
 						<li>
-							<button class="navbar-collapse collapse navbars store-buttons" onclick="window.location='/HwangDangFleamarket/product/list.go?page=1&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
+							<button class="navbar-collapse collapse navbars store-buttons" onclick="window.location='/HwangDangFleamarket/product/list.go?page=1&sellerStoreNo=${param.sellerStoreNo}'">
 								<img src="/HwangDangFleamarket/image_storage/products.JPG">
 							</button>
 						</li>
 		        		<li>
-		        			<button class="navbar-collapse collapse navbars store-buttons" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=1&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
+		        			<button class="navbar-collapse collapse navbars store-buttons" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=1&sellerStoreNo=${param.sellerStoreNo}'">
 		        				<img src="/HwangDangFleamarket/image_storage/notice.JPG">
 		        			</button>
 		        		</li>

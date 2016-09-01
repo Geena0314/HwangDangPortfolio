@@ -6,7 +6,7 @@
 		<div id="product${ no.count }" class="col-sm-4 products">
 			<div class="product-lists-img">
 				<div>
-					<a href="/HwangDangFleamarket/product/detail.go?page=${ param.page }&productId=${ list.productId }&sellerStoreNo=${ param.sellerStoreNo }&sellerStoreImage=${ param.sellerStoreImage }">
+					<a href="/HwangDangFleamarket/product/detail.go?page=${ param.page }&productId=${ list.productId }&sellerStoreNo=${ param.sellerStoreNo }">
 						<img class="mainImage" src="../image_storage/${ list.productMainImage }"  style="width:200px;height:170px;">
 					</a>
 				</div>
@@ -22,7 +22,7 @@
 	-->
 		<lee:choose>
 			<lee:when test="${ requestScope.bean.previousPageGroup }">
-				<a href = "/HwangDangFleamarket/product/list.go?page=${ requestScope.bean.beginPage-1 }&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }">◀</a>
+				<a href = "/HwangDangFleamarket/product/list.go?page=${ requestScope.bean.beginPage-1 }&sellerStoreNo=${param.sellerStoreNo}">◀</a>
 			</lee:when>
 			<lee:otherwise>
 				◀
@@ -37,7 +37,7 @@
 		<lee:forEach begin="${ requestScope.bean.beginPage }" end="${ requestScope.bean.endPage }" var="page">
 			<lee:choose>
 				<lee:when test="${ page != requestScope.bean.page }">
-					<a href = "/HwangDangFleamarket/product/list.go?page=${ page }&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }"><b>${ page }</b></a>
+					<a href = "/HwangDangFleamarket/product/list.go?page=${ page }&sellerStoreNo=${param.sellerStoreNo}"><b>${ page }</b></a>
 				</lee:when>
 				<lee:otherwise>
 					${ page }
@@ -51,7 +51,7 @@
 		-->
 		<lee:choose>
 			<lee:when test="${ requestScope.bean.nextPageGroup }">
-				<a href = "/HwangDangFleamarket/product/list.go?page=${ requestScope.bean.endPage+1 }&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }">▶</a>
+				<a href = "/HwangDangFleamarket/product/list.go?page=${ requestScope.bean.endPage+1 }&sellerStoreNo=${param.sellerStoreNo}">▶</a>
 			</lee:when>
 			<lee:otherwise>
 				▶
@@ -61,7 +61,7 @@
 <div class="registerProductBtn">
 	<lee:if test="${sessionScope.seller.sellerStoreNo == param.sellerStoreNo}">
 		<span class="registerProductBtn">
-			<input class="registerProductInput" type="button" value="상품 등록" onclick="window.location='/HwangDangFleamarket/product/registerProductForm.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }'">&nbsp;&nbsp;
+			<input class="registerProductInput" type="button" value="상품 등록" onclick="window.location='/HwangDangFleamarket/product/registerProductForm.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}'">&nbsp;&nbsp;
 		</span>
 	</lee:if>
 </div>

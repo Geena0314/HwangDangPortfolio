@@ -84,14 +84,14 @@ img{
 	      		<li id="list_block">
 	      			<div class="thmb">
 		               <div class="product_img">
-		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${purchaseConfirmList.product.productId}&sellerStoreNo=${purchaseConfirmList.seller.sellerStoreNo}&sellerStoreImage=${purchaseConfirmList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${purchaseConfirmList.product.productId}&sellerStoreNo=${purchaseConfirmList.seller.sellerStoreNo}">
 		                  	<img src="../image_storage/${purchaseConfirmList.product.productMainImage}">
 	                  	  </a>
 		               </div>
 		            </div>
 		            <ul class="product_info">
 		               <li>
-		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${purchaseConfirmList.product.productId}&sellerStoreNo=${purchaseConfirmList.seller.sellerStoreNo}&sellerStoreImage=${purchaseConfirmList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${purchaseConfirmList.product.productId}&sellerStoreNo=${purchaseConfirmList.seller.sellerStoreNo}">
 		                  	[${purchaseConfirmList.seller.sellerStoreName}] ${purchaseConfirmList.product.productId} - ${purchaseConfirmList.product.productName}
 	                  	  </a>
 		               </li>

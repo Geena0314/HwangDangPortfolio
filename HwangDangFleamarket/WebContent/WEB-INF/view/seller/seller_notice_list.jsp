@@ -42,7 +42,7 @@ b {
 			<tr>
 				<td>
 					<c:if test="${sessionScope.seller.sellerStoreNo == param.sellerStoreNo}">
-						<input class="noticeBtns" type="button" id="rgstBtn" value="소식글등록" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerRegisterNoticeForm.go?sellerStoreNo=${requestScope.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
+						<input class="noticeBtns" type="button" id="rgstBtn" value="소식글등록" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerRegisterNoticeForm.go?sellerStoreNo=${requestScope.sellerStoreNo}'">
 					</c:if>
 				</td>
 			</tr>
@@ -56,7 +56,7 @@ b {
 			<c:forEach var="list" items="${requestScope.list}">
 				<tr class="trInput">
 					<td class="tdName title">
-						<a href="/HwangDangFleamarket/sellerNotice/sellerNoticeDetail.go?page=${requestScope.pagingBean.page}&sellerNoticeNo=${list.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}">
+						<a href="/HwangDangFleamarket/sellerNotice/sellerNoticeDetail.go?page=${requestScope.pagingBean.page}&sellerNoticeNo=${list.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerStoreNo}&">
 							${list.sellerNoticeTitle}
 						</a>
 					</td>
@@ -73,7 +73,7 @@ b {
 		<%-- ◀이전 페이지 그룹 처리 --%>
 	<c:choose>
 		<c:when test="${requestScope.pagingBean.previousPageGroup}">
-			<a href="/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${requestScope.pagingBean.beginPage-1}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }">
+			<a href="/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${requestScope.pagingBean.beginPage-1}&sellerStoreNo=${param.sellerStoreNo}">
 				◀ 
 			</a>
 		</c:when>
@@ -88,7 +88,7 @@ b {
 	  				<b>${page}</b>
 	 			</c:when>
 			<c:otherwise>
-				<a href="/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }">
+				<a href="/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${page}&sellerStoreNo=${param.sellerStoreNo}">
 					${page} 
 				</a>
 			</c:otherwise>
@@ -98,7 +98,7 @@ b {
 		<%--다음 페이지 그룹 처리 ▶--%>
 		<c:choose>
 			<c:when test="${requestScope.pagingBean.nextPageGroup}">
-				<a href="/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${requestScope.pagingBean.endPage+1}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }">
+				<a href="/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${requestScope.pagingBean.endPage+1}&sellerStoreNo=${param.sellerStoreNo}">
 					▶
 				</a>
 			</c:when>

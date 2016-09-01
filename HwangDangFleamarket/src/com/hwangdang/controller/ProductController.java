@@ -56,7 +56,7 @@ public class ProductController
 	}
 	
 	@RequestMapping("detail")
-	public ModelAndView productDetail(int page, String productId, int sellerStoreNo, String sellerStoreImage)
+	public ModelAndView productDetail(int page, String productId, int sellerStoreNo)
 	{
 		return new ModelAndView("seller/seller/product_detail.tiles", service.selectProductDetailById(page, productId, sellerStoreNo));
 	}
@@ -224,7 +224,7 @@ public class ProductController
 	}
 	
 	// 상품 등록
-	@RequestMapping("registerProduct") 
+	@RequestMapping("registerProduct")
 	public ModelAndView registerProduct(@ModelAttribute Product product, ProductOption productOption, HttpServletRequest request, String sellerStoreImage) throws UnsupportedEncodingException {
 		
 		String mainImage = "";
@@ -371,10 +371,9 @@ public class ProductController
 	
 	// 상품 삭제
 	@RequestMapping("deleteProduct")
-	public ModelAndView deleteProduct(String productId, String sellerStoreImage, HttpServletRequest request) throws UnsupportedEncodingException{
+	public ModelAndView deleteProduct(String productId, HttpServletRequest request){
 		service.deleteProductById(productId);
-		return new ModelAndView("redirect:/product/list.go?page="+request.getParameter("page")+"&sellerStoreNo="+request.getParameter("sellerStoreNo")
-													+"&sellerStoreImage="+URLEncoder.encode(sellerStoreImage,"UTF-8"));
+		return new ModelAndView("redirect:/product/list.go?page="+request.getParameter("page")+"&sellerStoreNo="+request.getParameter("sellerStoreNo"));
 	}
 	
 	//상품ID 중복 체크

@@ -135,14 +135,14 @@ $(document).ready(function(){
 	      		<li id="list_block">
 	      			<div class="thmb">
 		               <div class="product_img">
-		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}">
 		                  	<img src="../image_storage/${myorderList.product.productMainImage}">
 	                  	  </a>
 		               </div>
 		            </div>
 		            <ul class="product_info">
 		               <li>
-		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}&sellerStoreImage=${myorderList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${myorderList.product.productId}&sellerStoreNo=${myorderList.seller.sellerStoreNo}">
 		                  	[${myorderList.seller.sellerStoreName}] ${myorderList.product.productId} - ${myorderList.product.productName}
 	                  	  </a>
 		               </li>

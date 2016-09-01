@@ -90,14 +90,14 @@ img{
 	      		<li id="list_block">
 	      			<div class="thmb">
 		               <div class="product_img">
-		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${requestList.product.productId}&sellerStoreNo=${requestList.seller.sellerStoreNo}&sellerStoreImage=${requestList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${requestList.product.productId}&sellerStoreNo=${requestList.seller.sellerStoreNo}">
 		                  	<img src="../image_storage/${requestList.product.productMainImage}">
 	                  	  </a>
 		               </div>
 		            </div>
 		            <ul class="product_info">
 		               <li>
-		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${requestList.product.productId}&sellerStoreNo=${requestList.seller.sellerStoreNo}&sellerStoreImage=${requestList.seller.sellerStoreImage}">
+		                  <a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${requestList.product.productId}&sellerStoreNo=${requestList.seller.sellerStoreNo}">
 		                  	[${requestList.seller.sellerStoreName}] ${requestList.product.productId} - ${requestList.product.productName}
 	                  	  </a>
 		               </li>

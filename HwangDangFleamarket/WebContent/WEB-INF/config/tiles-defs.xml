@@ -17,9 +17,9 @@ c. extends : 기존 definition 태그의 내용을 상속받아 사용할때 사
 <tiles-definitions>
 	<definition name="template" template="/WEB-INF/view/layout/template.jsp" >
 		<put-attribute name="header" value="/WEB-INF/view/layout/header.jsp" />
-		<put-attribute name="nav"  value="/WEB-INF/view/layout/side_menu.jsp" />
+		<!-- <put-attribute name="nav"  value="/WEB-INF/view/layout/side_menu.jsp" /> -->
 		<put-attribute name="footer"  value="/WEB-INF/view/layout/footer.jsp" />
-		<put-attribute name="searchBar"  value="/WEB-INF/view/layout/searchBar.jsp" />
+		<!-- <put-attribute name="searchBar"  value="/WEB-INF/view/layout/searchBar.jsp" /> -->
 	</definition>  
 
 	<definition name="*/*.tiles"  extends="template">
@@ -28,13 +28,11 @@ c. extends : 기존 definition 태그의 내용을 상속받아 사용할때 사
 	
 	<definition name="seller/*/*.tiles"  extends="template">
 		<put-attribute name="header"  value="/WEB-INF/view/layout/store_header.jsp" />
-		<put-attribute name="nav"  value="/WEB-INF/view/layout/side_menu.jsp" />
+		<!-- <put-attribute name="nav"  value="/WEB-INF/view/layout/side_menu.jsp" /> -->
 		<put-attribute name="body"  value="/WEB-INF/view/{1}/{2}.jsp" />
 	</definition>
 	
 	<definition name="*.tiles"  extends="template">
 		<put-attribute name="body"  value="/WEB-INF/view/{1}.jsp" />
 	</definition>
-
 </tiles-definitions>
-

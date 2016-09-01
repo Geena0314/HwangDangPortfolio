@@ -16,8 +16,6 @@
 		p:dataSource-ref="dataSource" />
 	<tx:annotation-driven transaction-manager="txmanager"/>
 	
-	<!-- Spring, Mybatis 연동. -->
-	
 	<!-- BasicDataSource Bean으로 등록. -->
 	<bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
 			 p:driverClassName="oracle.jdbc.driver.OracleDriver"
@@ -49,7 +47,7 @@
 	
 	<!-- 메인페이지 설정. -->
 	<mvc:view-controller path="/main.go" view-name="main.tiles" />
-	<mvc:view-controller path="/boardQnA_register_form.go"  view-name="admin/boardQnA_register_form.tiles"/>
+	<!-- <mvc:view-controller path="/boardQnA_register_form.go"  view-name="admin/boardQnA_register_form.tiles"/> -->
 	    
 	<bean name="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">

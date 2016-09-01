@@ -123,7 +123,6 @@ $(document).ready(function(){
 	<form method="POST" enctype="multipart/form-data" action="/HwangDangFleamarket/product/editProduct.go">
 		<input type="hidden" name="sellerStoreNo" value="${param.sellerStoreNo}">
 		<input type="hidden" name="page" value="${param.page}">
-		<input type="hidden" name="sellerStoreImage" value="${param.sellerStoreImage}">
 			<div class="table-responsive">
 				<table id="table" class="table table-striped">
 					<tr class="trInput">
@@ -189,7 +188,7 @@ $(document).ready(function(){
 					<td colspan="3">
 						<input class="btn btn-lg btn-success btn-block" type="submit" value="수정완료" id="submit">
 						<input class="btn btn-lg btn-primary btn-block" type="reset" value="다시입력">
-						<input class="btn btn-lg btn-danger btn-block" type="button" value="수정취소" onclick="window.location='/HwangDangFleamarket/product/detail.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}&productId=${param.productId}'">
+						<input class="btn btn-lg btn-danger btn-block" type="button" value="수정취소" onclick="window.location='/HwangDangFleamarket/product/detail.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&productId=${param.productId}'">
 					</td>
 				</tr>
 			</table>

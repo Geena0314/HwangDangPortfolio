@@ -417,12 +417,12 @@ function error(xhr, status, err)
 										<li id="listBlock">
 											<div class="thmb">
 												<div class="storeImg">
-													<a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${product.productId}&sellerStoreNo=${product.seller.sellerStoreNo}&sellerStoreImage=${product.seller.sellerStoreImage}">
+													<a href="/HwangDangFleamarket/product/detail.go?page=1&productId=${product.productId}&sellerStoreNo=${product.seller.sellerStoreNo}">
 													<img src="../image_storage/${product.productMainImage}"></a>
 												</div>
 											</div>
 											<ul class="storeInfo">
-												<li><a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${product.seller.sellerStoreNo}&sellerStoreImage=${product.seller.sellerStoreImage}">${product.seller.sellerStoreName}</a>
+												<li><a href="/HwangDangFleamarket/seller/sellerStore.go?sellerStoreNo=${product.seller.sellerStoreNo}">${product.seller.sellerStoreName}</a>
 												</li><br>
 												<li>
 													${product.productName}/${product.productOption.optionSubName}

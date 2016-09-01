@@ -108,11 +108,6 @@
 	margin-bottom: 40px;
 }
 
-/*스토어 사이드바 이미지*/
-#storeMainImage {
-	width: 100%;
-	height: 350px;
-}
 /********* address & seller_address ********/
 .form-post {
 	width: 430px;
@@ -734,13 +729,6 @@ li {
 	height: 200px;
 	left: 55%;
 }
-.store-main-img{
-	display: none;
-	opacity: 0.5;
-}
-.store-main-img:hover{
-	opacity: 1;
-}
 /* 스토어 상품 등록 */
 #productRegister{
 	max-width: 700px;
@@ -793,4 +781,11 @@ li {
 .error-message
 {
 	color: #FF5A5A;
+}
+
+/*스토어 메인 가운데정렬*/
+.store-main
+{
+	position: relative;
+	left: -2%;
 }

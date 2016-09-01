@@ -37,10 +37,10 @@ td{
 		<tfoot>
 			<tr>
 				<td colspan="3" style="border-top: none;">
-					<input class="noticeBtns" type="button" value="목록으로" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${page}&sellerStoreNo=${requestScope.sellerNotice.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
+					<input class="noticeBtns" type="button" value="목록으로" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerNotice.go?page=${page}&sellerStoreNo=${requestScope.sellerNotice.sellerStoreNo}'">
 					<c:if test="${sessionScope.seller.sellerStoreNo == param.sellerStoreNo}">
-						<input class="noticeBtns" type="button" value="공지수정" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerEditNoticeForm.go?page=${page}&sellerNoticeNo=${requestScope.sellerNotice.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerNotice.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
-						<input class="noticeBtns" type="button" value="공지삭제" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerRemoveNotice.go?page=${page}&sellerNoticeNo=${requestScope.sellerNotice.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerNotice.sellerStoreNo}&sellerStoreImage=${param.sellerStoreImage}'">
+						<input class="noticeBtns" type="button" value="공지수정" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerEditNoticeForm.go?page=${page}&sellerNoticeNo=${requestScope.sellerNotice.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerNotice.sellerStoreNo}'">
+						<input class="noticeBtns" type="button" value="공지삭제" onclick="window.location='/HwangDangFleamarket/sellerNotice/sellerRemoveNotice.go?page=${page}&sellerNoticeNo=${requestScope.sellerNotice.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerNotice.sellerStoreNo}'">
 					</c:if>
 				</td>
 			</tr>

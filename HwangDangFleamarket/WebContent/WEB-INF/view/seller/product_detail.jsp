@@ -923,7 +923,7 @@ $(document).ready(function(){
 		if(!confirm("이 상품을 정말 삭제하시겠습니까?")){
 			return false;
 		}else{
-			location.href='/HwangDangFleamarket/product/deleteProduct.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }&productId=${ requestScope.product.productId }'
+			location.href='/HwangDangFleamarket/product/deleteProduct.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&productId=${ requestScope.product.productId }'
 		}
 	});
 });
@@ -982,12 +982,12 @@ function error(xhr, status, err)
 						<input type="button" value="장바구니" id="cartBtn">
 						<input type="submit" value="바로구매" id="buyBtn" >
 						<input type="button" id="listBtn" value="목록으로" 
-							   onclick="window.location='/HwangDangFleamarket/product/list.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }'">
+							   onclick="window.location='/HwangDangFleamarket/product/list.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}'">
 					</td>
 				</tr>
 				<lee:if test="${sessionScope.seller.sellerStoreNo == param.sellerStoreNo}">
 					<tr>
-						<td colspan="2"><input type="button"  id="editBtn" value="상품 수정" onclick="window.location='/HwangDangFleamarket/product/editProductForm.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&sellerStoreImage=${ param.sellerStoreImage }&productId=${ requestScope.product.productId }'">
+						<td colspan="2"><input type="button"  id="editBtn" value="상품 수정" onclick="window.location='/HwangDangFleamarket/product/editProductForm.go?page=${param.page}&sellerStoreNo=${param.sellerStoreNo}&productId=${ requestScope.product.productId }'">
 						<input type="button" value="상품 삭제" id="deleteBtn"></td>
 					</tr>
 				</lee:if>

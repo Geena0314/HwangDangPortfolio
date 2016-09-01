@@ -6,7 +6,7 @@
 		<div id="product${ no.count }" class="col-sm-4 products">
 			<div class="product-lists-img">
 				<div>
-					<a href="/HwangDangFleamarket/product/detail.go?page=${ param.page }&productId=${ list.productId }&sellerStoreNo=${ list.sellerStoreNo }&sellerStoreImage=${ list.seller.sellerStoreImage }">
+					<a href="/HwangDangFleamarket/product/detail.go?page=${ param.page }&productId=${ list.productId }&sellerStoreNo=${ list.sellerStoreNo }">
 						<img class="mainImage" src="../image_storage/${ list.productMainImage }"  style="width:200px;height:170px;">
 					</a>
 				</div>
