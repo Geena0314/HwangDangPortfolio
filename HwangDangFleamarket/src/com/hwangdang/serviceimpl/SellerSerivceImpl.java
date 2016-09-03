@@ -52,6 +52,7 @@ public class SellerSerivceImpl implements SellerService{
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int insertSeller(Seller seller)
 	{
 		// TODO Auto-generated method stub

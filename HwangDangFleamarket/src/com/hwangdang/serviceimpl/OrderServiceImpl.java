@@ -195,6 +195,7 @@ public class OrderServiceImpl implements OrderService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int updateCancelOrderProductStatus(int orderSeqNo) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
@@ -211,6 +212,7 @@ public class OrderServiceImpl implements OrderService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int updateConfirmOrderProductStatus(int orderSeqNo) {
 		// TODO Auto-generated method stub
 		return dao.updateConfirmOrderProductStatus(orderSeqNo);

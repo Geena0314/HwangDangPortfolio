@@ -38,19 +38,20 @@ public class SellerNoticeServiceImpl implements SellerNoticeService{
 		return dao.selectSellerNoticeByNoticeNo(sellerNoticeNo);
 	}
 	
-	@Transactional
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int sellerRegisterNotice(SellerNotice sellerNotice) {
 		return dao.insertSellerNotice(sellerNotice);
 	}
 
-	@Transactional
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int sellerEditNotice(SellerNotice sellerNotice) {
 		return dao.updateSellerNotice(sellerNotice);
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int removeSellerNotice(int sellerNoticeNo) {
 		return dao.deleteSellerNotice(sellerNoticeNo);
 	}
