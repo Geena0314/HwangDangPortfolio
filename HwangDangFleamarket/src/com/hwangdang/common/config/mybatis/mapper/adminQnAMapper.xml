@@ -66,7 +66,7 @@
 	</select>
 	
 	<!-- QnA게시판 조회수  ++1 -->
-	<update id="update-hit" parameterType="_int">
+	<update id="updateAdminQnAHit" parameterType="_int">
 		UPDATE admin_qna
 		SET admin_qna_hit = admin_qna_hit+1
 		WHERE admin_qna_no = #{no}

@@ -42,7 +42,7 @@ public class AdminQnADaoImpl implements AdminQnADao {
 	//글번호로 게시글 조회
 	@Override
 	public AdminQnA selectAdminQnAByNo(int adminQnaNo){
-		session.update("adminQnAMapper.update-hit", adminQnaNo);
+		session.update("adminQnAMapper.updateAdminQnAHit", adminQnaNo);
 		return session.selectOne("adminQnAMapper.selectAdminQnAByNo" , adminQnaNo);
 	}
 	
