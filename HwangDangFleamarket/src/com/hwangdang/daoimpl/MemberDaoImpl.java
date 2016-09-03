@@ -25,6 +25,7 @@ public class MemberDaoImpl implements MemberDao{
 	public MemberDaoImpl(SqlSessionTemplate session) {
 		this.session = session;
 	}
+	
 	@Override
 	public int insert(Member member) {
 		return session.insert("memberMapper.insert", member);
@@ -46,26 +47,8 @@ public class MemberDaoImpl implements MemberDao{
 	}
 
 	@Override
-	public List selectList() {
-		return session.selectList("memberMapper.selectAll");
-	}
-
-	@Override
-	public List selectList(int page) {
-		HashMap param = new HashMap();
-		param.put("itemPerPage", 10);
-		param.put("page", page);
-		return session.selectList("memberMapper.selectList", param);
-	}
-
-	@Override
 	public int selectCountById(String memberId) {
 		return session.selectOne("memberMapper.selectCountById", memberId);
-	}
-
-	@Override
-	public int selectMemberCount() {
-		return session.selectOne("memberMapper.selectMemberCount");
 	}
 
 	@Override
@@ -105,8 +88,8 @@ public class MemberDaoImpl implements MemberDao{
 	  
 	@Transactional
 	@Override
-	public int updateMemberInfoByMemberId(Member setMember){
-		return session.update("memberMapper.update-member-by-memberId", setMember);
+	public int updateMemberById(Member member){
+		return session.update("memberMapper.updateMemberById", member);
 	}
 
 	@Override

@@ -27,20 +27,10 @@ public interface MemberDao {
 	/**
 	 * Id로 회원 select
 	 */
-	
 	Member selectById(String memberId);
-
-	/**
-	 */
-	List selectList();
-
-	List selectList(int page);
-	
 
 	int selectCountById(String memberId);
 
-	int selectMemberCount();
-	
 	//멤버id로 셀러정보찾기.
 	Seller selectSellerById(String memberId);
 	
@@ -60,7 +50,7 @@ public interface MemberDao {
 	List<Zipcode> selectZipcode(String dong);
 	
 	//회원정보 수정 
-	public int updateMemberInfoByMemberId(Member setMember);
+	public int updateMemberById(Member member);
 	
 	//멤버 이름과 전화번호로 멤버아이디 찾기.
 	Member selectMemeberByName(HashMap<String, Object> map);

@@ -52,11 +52,6 @@
 		select count(notice_no) from notice
 	</select>
 	
-	<!-- <select id="selectAllNotice"  resultMap="notice-basic-resultmap">
-		<include refid="select-basic"/> 
-		ORDER BY notice_no_seq DESC
-	</select> paging처리 해줘야함 -->
-	
 	<select id="selectNoticeByNoticeNo" parameterType="_int" resultMap="notice-basic-resultmap">
 		<include refid="select-basic"/>
 		where notice_no = #{value}		
