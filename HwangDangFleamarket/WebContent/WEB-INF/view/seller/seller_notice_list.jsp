@@ -56,7 +56,7 @@ b {
 			<c:forEach var="list" items="${requestScope.list}">
 				<tr class="trInput">
 					<td class="tdName title">
-						<a href="/HwangDangFleamarket/sellerNotice/sellerNoticeDetail.go?page=${requestScope.pagingBean.page}&sellerNoticeNo=${list.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerStoreNo}&">
+						<a href="/HwangDangFleamarket/sellerNotice/sellerNoticeDetail.go?page=${requestScope.pagingBean.page}&sellerNoticeNo=${list.sellerNoticeNo}&sellerStoreNo=${requestScope.sellerStoreNo}">
 							${list.sellerNoticeTitle}
 						</a>
 					</td>

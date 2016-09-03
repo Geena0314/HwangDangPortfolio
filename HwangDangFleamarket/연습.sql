@@ -64,3 +64,9 @@ where  	p.seller_store_no = s.seller_store_no
 and	   	p.product_id = 'ironMan07'
 and    	p.product_id = po.product_id
 and		po.option_id = 23
+
+
+insert into admin_QnA_reply values(1, 'asdf', '19901126', 'adsfasdf', 1)
+update admin_QnA_reply
+set	  admin_reply_no = 3
+where  admin_QnA_no = 1

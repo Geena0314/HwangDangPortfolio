@@ -233,12 +233,14 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int insertProduct(Product product) {
 		// TODO Auto-generated method stub
 		return dao.insertProduct(product);
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int insertOption(List<ProductOption> productOptionList, String productId) {
 		for(ProductOption options : productOptionList){
 			options.setProductId(productId);
@@ -248,6 +250,7 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int insertDetailImage(ProductDetailImage productDetailImage) {
 		// TODO Auto-generated method stub
 		return detailImageDao.insertDetailImage(productDetailImage);
@@ -288,6 +291,7 @@ public class ProductServiceImpl implements ProductService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int deleteProductById(String productId) {
 		// TODO Auto-generated method stub
 		return dao.deleteProductById(productId);

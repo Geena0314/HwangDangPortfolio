@@ -2,6 +2,7 @@ package com.hwangdang.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.dao.StoreQnADao;
 import com.hwangdang.service.StoreQnAService;
@@ -19,6 +20,7 @@ public class StoreQnAServiceImpl implements StoreQnAService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int insertStoreQnA(StoreQnA qna)
 	{
 		// TODO Auto-generated method stub
@@ -47,6 +49,7 @@ public class StoreQnAServiceImpl implements StoreQnAService
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int deleteQnAByno(int storeQnANo)
 	{
 		// TODO Auto-generated method stub
