@@ -26,3 +26,7 @@ b{
 	white-space: nowrap;
 	text-overflow : ellipsis;
 }
+#wrongPwd{
+	color: red;
+	font-size: 10pt;
+}

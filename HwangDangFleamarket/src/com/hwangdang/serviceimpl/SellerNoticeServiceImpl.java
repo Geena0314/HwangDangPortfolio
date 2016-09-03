@@ -34,7 +34,9 @@ public class SellerNoticeServiceImpl implements SellerNoticeService{
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public SellerNotice getSellerNoticeByNoticeNo(int sellerNoticeNo) {
+		dao.updateSellerNoticeHit(sellerNoticeNo);
 		return dao.selectSellerNoticeByNoticeNo(sellerNoticeNo);
 	}
 	

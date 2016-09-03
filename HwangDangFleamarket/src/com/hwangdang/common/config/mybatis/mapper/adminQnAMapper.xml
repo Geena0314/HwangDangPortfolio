@@ -10,7 +10,7 @@
 		SELECT  <include refid="adminQnA-columns"/> FROM admin_qna
 	</sql>
 	
-	<!-- 게시판글만 조회 , 댓글X -->
+	<!-- 게시판글만 조회 , 답글X -->
 	<resultMap type="adminQnA" id="resultmap-basic-list">
 		<id column="admin_qna_no" property="adminQnaNo"/>
 	 	<result column="admin_qna_title" property="adminQnaTitle"/>
@@ -60,7 +60,7 @@
 			q.admin_qna_writer ,q.admin_qna_date ,q.admin_qna_hit ,
 			q.admin_qna_published, q.admin_QnA_password ,q.admin_qna_reply_exist ,
 			r.admin_reply_content ,r.admin_reply_date , r.admin_reply_no	
-	FROM    ADMIN_QNA q  ,  admin_QnA_reply
+	FROM    ADMIN_QNA q  ,  admin_QnA_reply r
 	WHERE   q.admin_qna_no = #{no}
 	AND     q.admin_qna_no =  r.admin_qna_no(+) 
 	</select>
@@ -72,26 +72,7 @@
 		WHERE admin_qna_no = #{no}
 	</update>
 	
-	<!-- QnA게시판  게시글 등록
-		     adminQnaNo   //게시판 글번호 
-			 adminQnaTitle;  //제목
-			 adminQnaContent; //글내용
-			 adminQnaWriter;  //작성자
-			 adminQnaDate;  //작성일 
-			 adminQnaHit;  //조회수 
-			 adminQnaPublished;  // 공개여부 
-			 reply;    //댓글객체 
-			 adminQnaPassword;  //비밀번고
-		 -->
-		 
-	<!-- 시퀀스 조회  -->
-	<!-- <select id="select-get-QnA-no" resultType="_int" >
-		SELECT admin_qna_no_seq.nextval 
-		FROM dual
-	</select>
-	 -->
-	 
-	<!-- QnA게시판 글등록   f : 글작성시 답변은 무조건 없으므로 -->
+	<!-- QnA게시판 글등록 -->
 	<insert id="insertAdminQnA" parameterType="adminQnA">
 		<selectKey keyProperty="adminQnaNo" resultType="_int" order="BEFORE">
 			select admin_qna_no_seq.nextval from dual
@@ -103,58 +84,49 @@
 	</insert>
 	
 	<!-- QnA게시판 글 삭제 -->
-	<delete id="delete-by-no"  parameterType="_int">
+	<delete id="deleteAdminQnA"  parameterType="_int">
 		DELETE FROM admin_qna
-		WHERE admin_qna_no = #{no}
+		WHERE admin_qna_no = #{value}
 	</delete>
 	
 	<!-- QnA게시판 글 수정 -->
-	<update id="update-by-no" parameterType="hashmap">
-	    UPDATE admin_qna
-		SET  admin_qna_content = #{content}  ,
-			 admin_qna_date = #{setDate}  ,
-			 admin_qna_title = #{title}  ,
-			 admin_qna_password = #{password}  ,
-			 admin_qna_published = #{publiced}
-		WHERE admin_qna_no = #{no}
+	<update id="updateAdminQnA" parameterType="adminQnA">
+	    UPDATE 	admin_qna
+		SET  	admin_qna_title = #{adminQnaTitle},
+			 	admin_qna_content = #{adminQnaContent},
+			 	admin_qna_date = #{adminQnaDate},
+			 	admin_qna_published = #{adminQnaPublished},
+			 	admin_qna_password = #{adminQnaPassword}
+		WHERE	admin_qna_no = #{adminQnaNo}
 	</update>
 	  
-	<!--QnA게시판 관리자 댓글추가 -->
-	<insert id="insert-reply" parameterType="com.hwangdang.vo.AdminQnAReply">
+	<!--QnA게시판 관리자 답글 등록 -->
+	<insert id="insertAdminQnAReply" parameterType="adminQnAReply">
+		<selectKey keyProperty="adminReplyNo" resultType="_int" order="BEFORE">
+			select admin_reply_no_seq.nextval from dual
+		</selectKey>
 		INSERT INTO admin_QnA_reply
-		VALUES(
-			 admin_reply_no_seq.nextval , 
-			 #{adminReplyContent} , 
-			 #{adminReplyWriteDate } ,
-			 '관리자' ,
-			 #{adminQnaNo}  
-		)
+		VALUES( #{adminReplyNo}, #{adminReplyContent}, #{adminReplyDate}, #{adminReplyWriter}, #{adminQnaNo} )
 	</insert>
 	
-	<!-- 댓글 달때 게시판에admin_QnA_reply_exist 컬럼 't'로 변경    -->
-	<update id="update-by-no-reply-exsit" parameterType="_int">
+	<!-- 답글 달때 게시판에admin_QnA_reply_exist 컬럼 변경 -->
+	<update id="updateReplyExsitByNo" parameterType="map">
 		UPDATE admin_QnA 
-		SET admin_QnA_reply_exist = 't'
-		WHERE admin_qna_no  = #{no}
+		SET admin_QnA_reply_exist = #{adminQnaReplyExist}
+		WHERE admin_qna_no = #{adminQnaNo}
 	</update>
 	
-	<!-- 댓글삭제  -->
-	<delete id="delete-reply-by-no" parameterType="_int">
-		DELETE FROM admin_qna_reply 
-		WHERE admin_reply_no = #{no} 
-	</delete>
-	
-	<update id="update-by-no-reply-exsit-f" parameterType="_int">
-		UPDATE admin_QnA 
-		SET admin_QnA_reply_exist = 'f'
-		WHERE admin_qna_no  = #{no}
-	</update>
-	
-	<!-- 댓글수정 -->
-	<update id="update-reply-by-no" parameterType="hashmap">
+	<!-- 답글수정 -->
+	<update id="updateAdminQnAReply" parameterType="adminQnAReply">
 		UPDATE admin_qna_reply 
-		SET	   admin_reply_content = #{replyTa} ,
-			   admin_reply_date = #{setDate} 
-		WHERE admin_reply_no = #{replyNo} 
+		SET	   admin_reply_content = #{adminReplyContent} ,
+			   admin_reply_date = #{adminReplyDate} 
+		WHERE admin_reply_no = #{adminReplyNo} 
 	</update>
+	
+	<!-- 답글삭제  -->
+	<delete id="deleteAdminQnAReply" parameterType="_int">
+		DELETE FROM admin_qna_reply 
+		WHERE admin_reply_no = #{value} 
+	</delete>
 </mapper>

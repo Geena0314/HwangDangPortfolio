@@ -18,15 +18,12 @@ public interface AdminNoticeService {
 	public Notice getNoticeByNoticeNo(int noticeNo);
 	
 	//관리자 게시글 등록
-	@Transactional
 	public int adminRegisterNotice(Notice notice);
 	
 	//관리자 게시글 수정
-	@Transactional
 	public int adminEditNotice(Notice notice);
 	
 	//관리자 게시글 삭제
-	@Transactional
 	public int removNotice(int noticeNo);
 
 }

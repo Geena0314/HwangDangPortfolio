@@ -38,14 +38,14 @@
 </script>
 <h2 class="page-header store_look_around">황당플리마켓 Q&A</h2>
 <div class="table-responsive notice">
-	<form action="/HwangDangFleamarket/adminQnA/registerAdminQnA.go" method="post">
-		<input type="hidden" name="adminQnaWriter" value="${sessionScope.login_info.memberId}">
-		<input type="hidden" name='page' value="1">
+	<form action="/HwangDangFleamarket/adminQnA/adminQnAEdit.go" method="post">
+		<input type="hidden" name='adminQnaNo' value="${requestScope.adminQnA.adminQnaNo}">
+		<input type="hidden" name='page' value="${param.page}">
 			<table class="table" id="adminTable">
 				<thead>
 					<tr>
 						<td>
-							<b><input id="title" type="text" name="adminQnaTitle" size="71" placeholder="제목을 입력하세요."></b>
+							<b><input id="title" type="text" name="adminQnaTitle" size="71" value="${requestScope.adminQnA.adminQnaTitle}"></b>
 						</td>
 					</tr>
 					<c:if test="${not empty requestScope.errors}">
@@ -59,7 +59,7 @@
 				<tbody>
 					<tr>
 						<td>
-							<textarea rows="20" cols="70" name="adminQnaContent"></textarea>
+							<textarea rows="20" cols="70" name="adminQnaContent">${requestScope.adminQnA.adminQnaContent}</textarea>
 						</td>
 					</tr>
 					<c:if test="${not empty requestScope.errors}">
@@ -78,9 +78,9 @@
 				비공개 <input type="radio" name="adminQnaPublished" value="0" id="private">
 			</label>
 		<p align="left">
-		<input class="noticeBtns" id="submitBtn" type="submit" value="등록">
+		<input class="noticeBtns" id="submitBtn" type="submit" value="수정">
 		<input class="noticeBtns" type="reset" value="다시작성">
-		<input class="noticeBtns" type="button" value="취소" onclick="window.location='/HwangDangFleamarket/adminQnA/adminQnAList.go?page=1'">
+		<input class="noticeBtns" type="button" value="취소" onclick="window.location='/HwangDangFleamarket/adminQnA/adminQnADetail.go?page=${param.page}&adminQnaNo=${requestScope.adminQnA.adminQnaNo}'">
 		</p>
 	</form>
 </div>

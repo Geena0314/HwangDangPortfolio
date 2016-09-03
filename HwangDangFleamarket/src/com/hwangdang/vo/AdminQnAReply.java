@@ -10,7 +10,6 @@ public class AdminQnAReply implements Serializable
 	private Date adminReplyDate;
 	private String adminReplyWriter;
 	private int adminQnaNo;
-	private String adminReplyWriteDate;
 	
 	public AdminQnAReply()
 	{
@@ -27,26 +26,6 @@ public class AdminQnAReply implements Serializable
 		this.adminReplyWriter = adminReplyWriter;
 		this.adminQnaNo = adminQnaNo;
 	}
-
-	public AdminQnAReply(String adminReplyContent, Date adminReplyDate, String adminReplyWriter,
-			int adminQnaNo) 
-	{
-		super();
-		this.adminReplyContent = adminReplyContent;
-		this.adminReplyDate = adminReplyDate;
-		this.adminReplyWriter = adminReplyWriter;
-		this.adminQnaNo = adminQnaNo;
-	}
-	public AdminQnAReply(String adminReplyContent, String adminReplyWriteDate , String adminReplyWriter,
-			int adminQnaNo) 
-	{
-		super();
-		this.adminReplyContent = adminReplyContent;
-		this.adminReplyWriteDate = adminReplyWriteDate;
-		this.adminReplyWriter = adminReplyWriter;
-		this.adminQnaNo = adminQnaNo;
-	}
-	
 	
 	public int getAdminReplyNo() 
 	{
@@ -98,18 +77,8 @@ public class AdminQnAReply implements Serializable
 		this.adminQnaNo = adminQnaNo;
 	}
 
-	
-	public String getAdminReplyWriteDate() {
-		return adminReplyWriteDate;
-	}
-
-	public void setAdminReplyWriteDate(String adminReplyWriteDate) {
-		this.adminReplyWriteDate = adminReplyWriteDate;
-	}
-
 	@Override
-	public int hashCode() 
-	{
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + adminQnaNo;
@@ -121,8 +90,7 @@ public class AdminQnAReply implements Serializable
 	}
 
 	@Override
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -132,38 +100,28 @@ public class AdminQnAReply implements Serializable
 		AdminQnAReply other = (AdminQnAReply) obj;
 		if (adminQnaNo != other.adminQnaNo)
 			return false;
-		if (adminReplyContent == null) 
-		{
+		if (adminReplyContent == null) {
 			if (other.adminReplyContent != null)
 				return false;
-		}
-		else if (!adminReplyContent.equals(other.adminReplyContent))
+		} else if (!adminReplyContent.equals(other.adminReplyContent))
 			return false;
-		if (adminReplyDate == null) 
-		{
+		if (adminReplyDate == null) {
 			if (other.adminReplyDate != null)
 				return false;
-		} 
-		else if (!adminReplyDate.equals(other.adminReplyDate))
+		} else if (!adminReplyDate.equals(other.adminReplyDate))
 			return false;
 		if (adminReplyNo != other.adminReplyNo)
 			return false;
-		if (adminReplyWriter == null) 
-		{
+		if (adminReplyWriter == null) {
 			if (other.adminReplyWriter != null)
 				return false;
-		} 
-		else if (!adminReplyWriter.equals(other.adminReplyWriter))
+		} else if (!adminReplyWriter.equals(other.adminReplyWriter))
 			return false;
 		return true;
 	}
 
-	
-	
-	
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "AdminQnAReply [adminReplyNo=" + adminReplyNo + ", adminReplyContent=" + adminReplyContent
 				+ ", adminReplyDate=" + adminReplyDate + ", adminReplyWriter=" + adminReplyWriter + ", adminQnaNo="
 				+ adminQnaNo + "]";

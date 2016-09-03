@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.common.util.MailSender;
 import com.hwangdang.dao.MemberDao;
@@ -45,6 +46,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public void add(Member member) {
 		// TODO Auto-generated method stub
 		dao.insert(member);
@@ -79,6 +81,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int deleteMemberByMemberId(String memberId) {
 		// TODO Auto-generated method stub
 		return dao.deleteById(memberId);
@@ -86,6 +89,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	//회원정보수정
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int setMemberInfoByMemberId(Member setMember) {
 		return  dao.updateMemberInfoByMemberId(setMember);
 	}
@@ -109,6 +113,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int updateSellerInfo(Seller seller)
 	{
 		// TODO Auto-generated method stub
@@ -116,6 +121,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int updateMileageMinus(String memberId, int memberMileage)
 	{
 		// TODO Auto-generated method stub

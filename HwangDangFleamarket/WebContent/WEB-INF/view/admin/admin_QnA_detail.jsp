@@ -1,95 +1,109 @@
-<%@page contentType="text/html;charset=UTF-8"%>
-<%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/HwangDangFleamarket/js/admin/boardQnA_detail.js"></script>
-<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/boardQnA_detail.css">
-
+<%@ page contentType="text/html;charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_QnA_detail.css">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#registerReply').on("click", function(){
+			if($('#adminReplyContent').val()){
+				location.href="/HwangDangFleamarket/adminQnA/registerAdminQnAReply.go?adminReplyContent="
+							  +$('#adminReplyContent').val()+"&adminQnaNo=${requestScope.adminQnA.adminQnaNo}"
+							  +"&page=${page}";
+				return true;
+			}
+			$('#reply').html("<textarea name='adminReplyContent' rows='4' cols='70' id='adminReplyContent'></textarea>");
+			$('#adminReplyContent').focus();
+		});
+		
+		$('#deleteQnABtn').on("click", function(){
+			if(confirm("글을 삭제하시겠습니까?")){
+				location.href='/HwangDangFleamarket/adminQnA/adminQnADelete.go?page=${page}&adminQnaNo=${requestScope.adminQnA.adminQnaNo}';
+			}else{
+				return false;
+			}
+		});
+		
+		$('#editReply').on("click", function(){
+			$('.afterReply').show();
+			$('.beforeReply').hide();
+			$('#replyBox').removeProp("readonly").focus();
+		});
+		
+		$('#cancelBtn').on("click", function(){
+			$('.afterReply').hide();
+			$('.beforeReply').show();
+			$('#replyBox').prop("readonly", "readonly");
+		});
+		
+		$('#completeBtn').on("click", function(){
+			var adminReplyContent = $('#replyBox').val();
+			location.href="/HwangDangFleamarket/adminQnA/editAdminQnAReply.go?page=${page}"
+			+"&adminReplyNo=${requestScope.adminQnA.reply.adminReplyNo}"
+			+"&adminReplyContent="+adminReplyContent
+			+"&adminQnaNo=${requestScope.adminQnA.adminQnaNo}"
+		});
+		
+		$('#deleteReply').on("click", function(){
+			if(confirm("답글을 삭제하시겠습니까?")){
+				location.href="/HwangDangFleamarket/adminQnA/deleteAdminQnAReply.go?page=${page}"
+						+"&adminQnaNo=${requestScope.adminQnA.adminQnaNo}"
+						+"&adminReplyNo=${requestScope.adminQnA.reply.adminReplyNo}";
+			}else{
+				return false;
+			}
+		});
+	});
+</script>
 <h2 class="page-header store_look_around">황당플리마켓 Q&A</h2>
-<div class="table-responsive adminNotice">
-	<form method="POST" action="#" id="myform">
-		<%-- <input type="hidden" id="contentPage" name="contentPage" value="${requestScope.page }" />
-		<input type="hidden" id= "contentNo" name ="contentNo" value="${param.no }" /> --%>
-	<section>
-		<header>
-			<div id="title">${requestScope.findQnA.adminQnaTitle }</div>
-			<div id="info"><span id="writeDate">
-			<fmt:formatDate value="${requestScope.findQnA.adminQnaDate }" pattern="yyyy-MM-dd"/></span> 
-			| 조회수 : ${requestScope.findQnA.adminQnaHit } 
-			| ${requestScope.findQnA.adminQnaWriter } 
-			| <c:choose>  
-				<c:when test="${requestScope.findQnA.adminQnaPublished eq 't' }">공개</c:when>
-				<c:otherwise>비공개</c:otherwise>
-			 </c:choose> 
-			</div>
-		</header>
-		
-		
-		<textarea id="insertContent" rows="30" cols="75" hidden="true" ></textarea>
-		 	<article id="content">
-		 	 <p class="text-center">${requestScope.findQnA.adminQuaContent }</p>
-		 	 </article>
-		<br/>
-	
-		<!-- 작성자만 수정 삭제가능!  -->
-		<c:if test="${sessionScope.login_info.memberId == requestScope.findQnA.adminQnaWriter   }">
-			<p class="text-center">       
-				<a id="setFormMoveBtn" href="/HwangDangFleamarket/admin/boardQnASetMove.go?no=${requestScope.findQnA.adminQnaNo}&page=${param.page}" class="btn btn-default" role="button" >수정하기</a>
-				<a id="removeBtn" href="/HwangDangFleamarket/admin/boardQnARemove.go?no=${requestScope.findQnA.adminQnaNo}&page=${param.page}" class="btn btn-default"role="button">삭제하기</a>
-				<a class="btn btn-default"role="button" href="/HwangDangFleamarket/admin/boardQnAList.go?page=${param.page }">목록</a>
-			</p>
-		</c:if>
-		<hr>
-	
-		<c:choose>
-			<c:when test="${requestScope.findQnA.adminQnaReplyExist == 't' }">
-					<p class="text-center">
-				 <input type="hidden" name="replyNo" value="${requestScope.findQnA.reply.adminReplyNo }">
-				<fmt:formatDate value="${requestScope.findQnA.reply.adminReplyDate }" pattern="yyyy-MM-dd"/>
-				<mark>관리자</mark><br/>
-					<p id="response" class="text-center">
-						<strong>${requestScope.findQnA.reply.adminReplyContent }</strong>
-					</p>
-				</p>
-			</c:when>
-			<c:otherwise>
-				<p id="response" class="text-center">관리자가 답변전 입니다.</p>
-			</c:otherwise>
-		</c:choose>
-		
-		<br/><br/><br/><br/>
-				  
-				  
-		<p class="text-center">  
-		<!-- 관리자일경우만 댓글달기 가능 버튼및 TA 보이기 -->
-		<%--<c:if test="${sessionScope.login_info.memberId == 'admin@admin.com' }"> 	 --%>
- 		 <c:if test="${sessionScope.login_info.memberId == 'kinghwang@gmail.com' }">	
- 				<textarea class="form-control" rows="3" name="replyTa" id="replyTa"></textarea><br/>
-			
-				<!-- 댓글달려있는지 유무 -->
-			<c:choose>			
-				<c:when test="${requestScope.findQnA.adminQnaReplyExist  eq 't'}">
-					<input type="button" class="btn btn-default" value="답변수정" id="setReplyBtn"  />
-					<input type="button" class="btn btn-default" value="답변삭제" id="removeReplyBtn"  />
-					<a class="btn btn-default"role="button" href="/HwangDangFleamarket/admin/boardQnAList.go?page=${param.page }">목록</a>
-				</c:when>
-				<c:otherwise>
-					<input type="button" class="btn btn-default" value="답변등록" id="addReplyBtn" />
-					<a class="btn btn-default"role="button" href="/HwangDangFleamarket/admin/boardQnAList.go?page=${param.page }">목록</a>
-				</c:otherwise>
-			</c:choose>			
-		</c:if>  
-		
-		<!-- 비로그인상태에 글목록 버튼보이기 -->
-		<c:if test="${sessionScope.login_info == null }">
-			<a class="btn btn-default"role="button" href="/HwangDangFleamarket/admin/boardQnAList.go?page=${param.page }">목록</a>
-		</c:if>
-		
-	 </p>
-	</section>
-	</form>  
-	</div>
-	<p>  
-
-
-	
+<div class="table-responsive notice">
+	<table class="table" id="adminTable">
+		<thead>
+			<tr style="background-color: whitesmoke;">
+				<td width="550px" style="word-break: break-word;"><b> ${requestScope.adminQnA.adminQnaTitle}</b></td>
+				<td width="150px" style="font-size: 10pt; vertical-align: middle;">등록일 │ <fmt:formatDate value="${requestScope.adminQnA.adminQnaDate}" pattern="yyyy-MM-dd"/></td>
+				<td width="100px" style="font-size: 10pt; vertical-align: middle;">조회수 │ ${requestScope.adminQnA.adminQnaHit}</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="tbodyTR">
+				<td colspan="3">
+					${requestScope.adminQnA.adminQnaContent}
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" style="border-bottom: 1px solid lightgray;">
+					<c:choose>
+						<c:when test="${empty requestScope.adminQnA.reply}">
+							<span id="reply">등록된 답글이 없습니다.</span>
+							<c:if test="${sessionScope.login_info.memberId == 'kinghwang@gmail.com'}">
+								<input type="button" value="답글등록" id="registerReply">
+							</c:if>
+						</c:when>
+						<c:otherwise>
+							<textarea id="replyBox" class="reply-box" rows='4' cols='70' name="adminReplyContent" readonly="readonly">${requestScope.adminQnA.reply.adminReplyContent}</textarea><br>
+							<input type="button" value="답글수정" id="editReply" class="noticeBtns beforeReply">
+							<input type="button" value="답글삭제" id="deleteReply" class="noticeBtns beforeReply">
+							<input type='button' value='수정완료' id='completeBtn' class="noticeBtns afterReply">
+							<input type='button' value='수정취소' id='cancelBtn' class="noticeBtns afterReply">
+						</c:otherwise>
+					</c:choose>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3" style="border-top: none;">
+					<input class="noticeBtns" type="button" value="목록으로" onclick="window.location='/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${page}'">
+					<c:if test="${sessionScope.login_info.memberId == 'kinghwang@gmail.com'}">
+						<input id="deleteQnABtn" class="noticeBtns" type="button" value="문의삭제">	
+					</c:if>
+					<c:if test="${sessionScope.login_info.memberId == requestScope.adminQnA.adminQnaWriter}">
+						<input class="noticeBtns" type="button" value="문의수정" onclick="window.location='/HwangDangFleamarket/adminQnA/adminQnAEditForm.go?page=${page}&adminQnaNo=${requestScope.adminQnA.adminQnaNo}'">
+						<input id="deleteQnABtn" class="noticeBtns" type="button" value="문의삭제">
+					</c:if>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>

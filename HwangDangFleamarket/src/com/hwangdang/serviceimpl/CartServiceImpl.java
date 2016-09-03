@@ -33,6 +33,7 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public int removeCart(int cartNo) {
 		return dao.deleteCart(cartNo);
 	}

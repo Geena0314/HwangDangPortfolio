@@ -45,36 +45,46 @@ public class AdminQnADaoImpl implements AdminQnADao {
 		session.update("adminQnAMapper.update-hit", adminQnaNo);
 		return session.selectOne("adminQnAMapper.selectAdminQnAByNo" , adminQnaNo);
 	}
-	//글번호로 게시글 삭제
+	
+	//글삭제
 	@Override
-	public int deleteByNo(int no){
-		int cnt = session.delete("adminQnAMapper.delete-by-no", no);
-		return cnt;
+	public int deleteAdminQnA(int adminQnaNo) {
+		// TODO Auto-generated method stub
+		return session.delete("adminQnAMapper.deleteAdminQnA", adminQnaNo);
 	}
-	//글번호로 게시글 수정변경 
+
+	//글수정
 	@Override
-	public int updateByNo(HashMap param){
-		return session.update("adminQnAMapper.update-by-no", param);
+	public int updateAdminQnA(AdminQnA adminQnA) {
+		// TODO Auto-generated method stub
+		return session.update("adminQnAMapper.updateAdminQnA", adminQnA);
 	}
-	//댓글등록 add
+
+	//답글등록
 	@Override
-	public int insertReploy(AdminQnAReply reply){
-		//System.out.println("글번호 : " + reply.getAdminQnaNo());
-		int cnt = session.update("adminQnAMapper.update-by-no-reply-exsit", reply.getAdminQnaNo());
-		cnt =session.insert("adminQnAMapper.insert-reply", reply);
-		return cnt;
-	}  
-	//댓글삭제 remove
-	@Override
-	public void deleteReployByNo(int replyNo , int contentNo){ 
-		//adminQnA 컬럼 'f'으로 변경 
-		session.update("adminQnAMapper.update-by-no-reply-exsit-f",contentNo);
-		//댓글삭제
-		session.delete("adminQnAMapper.delete-reply-by-no", replyNo);
+	public int insertAdminQnAReply(AdminQnAReply adminQnAReply) {
+		// TODO Auto-generated method stub
+		return session.insert("adminQnAMapper.insertAdminQnAReply", adminQnAReply);
 	}
-	//댓글수정 update
+
+	//답글 수정
 	@Override
-	public void updateReployByNo(HashMap param){
-		session.update("adminQnAMapper.update-reply-by-no", param);
+	public int updateAdminQnAReply(AdminQnAReply adminQnAReply) {
+		// TODO Auto-generated method stub
+		return session.update("adminQnAMapper.updateAdminQnAReply", adminQnAReply);
+	}
+
+	//답글 삭제
+	@Override
+	public int deleteAdminQnAReply(int adminReplyNo) {
+		// TODO Auto-generated method stub
+		return session.delete("adminQnAMapper.deleteAdminQnAReply", adminReplyNo);
+	}
+
+	//답글 등록 시 답변 여부 상태 변경
+	@Override
+	public int updateReplyExsitByNo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.update("adminQnAMapper.updateReplyExsitByNo", map);
 	}
 }

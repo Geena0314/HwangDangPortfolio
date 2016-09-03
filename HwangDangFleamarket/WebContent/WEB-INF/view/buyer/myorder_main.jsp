@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=utf-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt"  %>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
 <style type="text/css">
 div.myorder-tabs{
    float: left;
@@ -160,7 +161,7 @@ $(document).ready(function(){
 		               				<c:if test="${myorderList.orderProductStatus == 0}">입금 대기</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 1}">결제 완료</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 2}">배송 준비</c:if>
-		               				<li><input type="button" value="구매취소" class="cancelBtn">
+		               				<li><input type="button" value="구매취소" class="noticeBtns cancelBtn">
 		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo"></li>
 		               			</c:when>
 		               			<c:when test="${myorderList.orderProductStatus == 3}">
@@ -168,14 +169,14 @@ $(document).ready(function(){
 		               			</c:when>
 		               			<c:when test="${myorderList.orderProductStatus == 4}">
 		               				<li>
-		               					<input type="button" value="구매확정" class="confirmBtn">
+		               					<input type="button" value="구매확정" class="noticeBtns confirmBtn">
 		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo"></li>
 		               				<li>
-		               					<input type="button" value="교환신청" class="exchangeBtn">
+		               					<input type="button" value="교환신청" class="noticeBtns exchangeBtn">
 		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo">
 		               				</li>
 		               				<li>
-		               					<input type="button" value="반품신청" class="refundBtn">
+		               					<input type="button" value="반품신청" class="noticeBtns refundBtn">
 		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo">
 		               				</li>
 		               			</c:when>

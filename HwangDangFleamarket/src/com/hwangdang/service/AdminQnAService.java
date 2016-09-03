@@ -22,19 +22,18 @@ public interface AdminQnAService {
 	//글번호로 글조회
 	AdminQnA selectAdminQnAByNo(int adminQnaNo);
 
-	//글번호로 글삭제
-	void removeAdminQnAByNo(int no);
+	//글삭제
+	int deleteAdminQnA(int adminQnaNo);
 
-	//글번호로 글삭제
-	int setAdminQnAByNo(HashMap param);
+	//글수정
+	int updateAdminQnA(AdminQnA adminQnA);
 
-	//댓글 입력 add
-	int addReply(AdminQnAReply reply);
+	//답글등록
+	int insertAdminQnAReply(AdminQnAReply adminQnAReply);
 
-	//댓글 삭제 remove
-	void removeReplyByNo(int replyNo, int contentNo);
-
-	//댓글 수정 remove
-	void setReplyByNo(HashMap param);
-
+	//답글수정
+	int updateAdminQnAReply(AdminQnAReply adminQnAReply);
+		
+	//답글삭제
+	int deleteAdminQnAReply(int adminReplyNo);
 }

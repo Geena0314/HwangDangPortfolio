@@ -18,14 +18,11 @@ public interface SellerNoticeService {
 	public SellerNotice getSellerNoticeByNoticeNo(int sellerNoticeNo);
 
 	//판매자 소식글 등록
-	@Transactional
 	public int sellerRegisterNotice(SellerNotice sellerNotice);
 
 	//판매자 소식글 수정
-	@Transactional
 	public int sellerEditNotice(SellerNotice sellerNotice);
 
 	//판매자 소식글 삭제
-	@Transactional
 	public int removeSellerNotice(int sellerNoticeNo);
 }

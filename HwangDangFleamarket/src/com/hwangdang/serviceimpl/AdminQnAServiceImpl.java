@@ -11,7 +11,6 @@ import com.hwangdang.service.AdminQnAService;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
 
-
 @org.springframework.stereotype.Service
 public class AdminQnAServiceImpl implements AdminQnAService{
 	
@@ -48,45 +47,51 @@ public class AdminQnAServiceImpl implements AdminQnAService{
 	
 	//글번호로 글조회
 	@Override
-	@Transactional(rollbackFor=Exception.class)
 	public AdminQnA selectAdminQnAByNo(int adminQnaNo){
 		return dao.selectAdminQnAByNo(adminQnaNo);
 	}
 
-	//글번호로 글삭제
+	//글수정
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-		public void removeAdminQnAByNo(int no){
-			int cnt = dao.deleteByNo(no);
-			/*if(cnt ==1){
-				System.out.println("삭제성공");
-			}*/
-		}
-	//글번호로 글삭제
+	public int updateAdminQnA(AdminQnA adminQnA) {
+		// TODO Auto-generated method stub
+		return dao.updateAdminQnA(adminQnA);
+	}
+
+	//글삭제
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public int setAdminQnAByNo(HashMap param){
-		return dao.updateByNo(param);
+	public int deleteAdminQnA(int adminQnaNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteAdminQnA(adminQnaNo);
 	}
 	
-	//댓글 입력 add
+	//답글 등록
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public int addReply(AdminQnAReply reply){
-		return dao.insertReploy(reply);
-	}	
+	public int insertAdminQnAReply(AdminQnAReply adminQnAReply) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("adminQnaReplyExist", "t");
+		map.put("adminQnaNo", adminQnAReply.getAdminQnaNo());
+		dao.updateReplyExsitByNo(map);
+		return dao.insertAdminQnAReply(adminQnAReply);
+	}
 	
-	//댓글 삭제 remove
+	//답글 수정
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public void removeReplyByNo(int replyNo , int contentNo ){
-		dao.deleteReployByNo(replyNo ,contentNo );
+	public int updateAdminQnAReply(AdminQnAReply adminQnAReply) {
+		// TODO Auto-generated method stub
+		return dao.updateAdminQnAReply(adminQnAReply);
+	}
+
+	//답글 삭제
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public int deleteAdminQnAReply(int adminReplyNo) {
+		// TODO Auto-generated method stub
+		return dao.deleteAdminQnAReply(adminReplyNo);
 	}	
-	
-	//댓글 수정 remove
-	@Override
-	@Transactional(rollbackFor=Exception.class)
-	public void setReplyByNo(HashMap param ){
-		dao.updateReployByNo(param);
-	}		  
 }

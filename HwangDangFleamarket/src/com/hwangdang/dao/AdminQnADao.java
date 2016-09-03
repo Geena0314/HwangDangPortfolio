@@ -20,19 +20,21 @@ public interface AdminQnADao {
 	//글번호로 게시글 조회
 	AdminQnA selectAdminQnAByNo(int adminQnaNo);
 
-	//글번호로 게시글 삭제
-	int deleteByNo(int no);
+	//글삭제
+	int deleteAdminQnA(int adminQnaNo);
 
-	//글번호로 게시글 수정변경 
-	int updateByNo(HashMap param);
+	//글수정
+	int updateAdminQnA(AdminQnA adminQnA);
 
-	//댓글등록 add
-	int insertReploy(AdminQnAReply reply);
+	//답글등록
+	int insertAdminQnAReply(AdminQnAReply adminQnAReply);
 
-	//댓글삭제 remove
-	void deleteReployByNo(int replyNo, int contentNo);
+	//답글수정
+	int updateAdminQnAReply(AdminQnAReply adminQnAReply);
 
-	//댓글수정 update
-	void updateReployByNo(HashMap param);
-
+	//답글삭제
+	int deleteAdminQnAReply(int adminReplyNo);
+	
+	//답변 등록 시 답변 여부 상태 변경
+	int updateReplyExsitByNo(HashMap<String, Object> map);
 }
