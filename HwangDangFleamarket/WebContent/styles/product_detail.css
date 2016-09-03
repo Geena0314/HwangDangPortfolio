@@ -71,7 +71,18 @@ input[type=button]:hover, input[type=submit]:hover
 	position: relative;
 	left: 5%;
 }
-#info{
+#info
+{
 	position: relative;
 	bottom: -200px;
+}
+
+#qnaTable:hover
+{
+	cursor: pointer;
+}
+
+#paging a:hover
+{
+	cursor: pointer;
 }
