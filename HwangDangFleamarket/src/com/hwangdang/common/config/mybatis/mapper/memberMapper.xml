@@ -72,6 +72,7 @@
 			   	member_assign=#{memberAssign}
 		WHERE member_id=#{memberId}
 	</update>
+	
 	<delete id="deleteById" parameterType="string">
 		DELETE FROM MEMBER WHERE member_id=#{memberId}
 	</delete>
@@ -81,25 +82,7 @@
 		<include refid="select-basic"/>
 		WHERE member_id = #{memberId}
 	</select>
-	<!-- 전체 회원 select -->
-	<select id="selectAll" resultType="member">
-		<include refid="select-basic"/>
-	</select>
-	
-	<!-- Select 페이징 처리 -->
-	<select id="selectList" parameterType="map" resultType="member">
-		SELECT <include refid="member-columns"/> 
-		FROM(SELECT CEIL(rownum/#{itemPerPage}) page, <include refid="member-columns"/> 
-			     FROM(SELECT <include refid="member-columns"/> 
-					     FROM member order by id desc
-					     )
-				 )
-		WHERE page = #{page}
-	</select>
-	
-	<select id="selectMemberCount" resultType="_int">
-		SELECT count(member_id) FROM MEMBER
-	</select>
+
 	<!-- 등록시 중복검사에서 사용해서 추가 -->
 	<select id="selectCountById" parameterType="string" resultType="_int">
 		SELECT count(member_id) FROM MEMBER WHERE member_id=#{memberId}
@@ -142,7 +125,7 @@
 		select * from zipcode where dong like #{dong}||'%'
 	</select>
 	
-	<update id="update-member-by-memberId"  parameterType="member">
+	<update id="updateMemberById"  parameterType="member">
 		UPDATE  member 
 		SET 	member_password = #{memberPassword} ,
 				member_name = #{memberName } , member_phone = #{memberPhone } , 

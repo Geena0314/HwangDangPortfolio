@@ -187,6 +187,7 @@ public class MemberController {
 		model.addAttribute("bank", service.selectBankCode());
 		return "member/member_info_update.tiles";
 	}
+	
 	//비밀번호  수정 : 예전 비밀번호 검증
 	@RequestMapping("/oldPasswordChecked.go")
 	@ResponseBody

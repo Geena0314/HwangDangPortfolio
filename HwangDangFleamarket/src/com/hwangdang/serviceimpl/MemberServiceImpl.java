@@ -90,8 +90,8 @@ public class MemberServiceImpl implements MemberService{
 	//회원정보수정
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public int setMemberInfoByMemberId(Member setMember) {
-		return  dao.updateMemberInfoByMemberId(setMember);
+	public int setMemberInfoByMemberId(Member member) {
+		return  dao.updateMemberById(member);
 	}
 
 	@Override

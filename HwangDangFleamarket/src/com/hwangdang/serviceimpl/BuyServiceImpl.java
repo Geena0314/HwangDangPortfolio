@@ -2,12 +2,9 @@ package com.hwangdang.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.dao.BuyDao;
 import com.hwangdang.dao.CartDao;
@@ -16,11 +13,6 @@ import com.hwangdang.dao.ProductDao;
 import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.BuyService;
 import com.hwangdang.vo.Cart;
-import com.hwangdang.vo.OrderProduct;
-import com.hwangdang.vo.Orders;
-import com.hwangdang.vo.Product;
-import com.hwangdang.vo.ProductOption;
-import com.hwangdang.vo.Seller;
 
 @Service
 public class BuyServiceImpl implements BuyService {
