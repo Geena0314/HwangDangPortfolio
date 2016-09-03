@@ -1,5 +1,6 @@
 package com.hwangdang.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.hwangdang.vo.SellerNotice;
@@ -22,7 +23,7 @@ public interface SellerNoticeDao {
 	int selectCountSellerNotice(int sellerStoreNo);
 
 	//스토어 소식글 목록 조회
-	List<SellerNotice> selectAllSellerNotice(int page, int sellerStoreNo);
+	List<SellerNotice> selectAllSellerNotice(HashMap<String, Object> map);
 
 	//스토어 소식글 번호로 소식글 조회
 	SellerNotice selectSellerNoticeByNoticeNo(int sellerNoticeNo);

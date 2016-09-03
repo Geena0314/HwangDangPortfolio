@@ -2,14 +2,12 @@ package com.hwangdang.service;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.hwangdang.vo.Notice;
 
 public interface AdminNoticeService {
 	
 	//관리자 게시글 전체 목록 조회
-	public List getAllNotice(int page);
+	public List<Notice> getAllNotice(int page);
 	
 	//관리자 게시글 카운트
 	public int getCountNotice();

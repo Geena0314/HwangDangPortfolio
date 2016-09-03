@@ -2,15 +2,8 @@ package com.hwangdang.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import com.hwangdang.vo.Cart;
-import com.hwangdang.vo.OrderProduct;
-import com.hwangdang.vo.Orders;
-import com.hwangdang.vo.Product;
-import com.hwangdang.vo.ProductOption;
-import com.hwangdang.vo.Seller;
 
 public interface BuyService {
 	//상품, 상품옵션 조회

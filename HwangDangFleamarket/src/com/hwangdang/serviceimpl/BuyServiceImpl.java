@@ -6,7 +6,6 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hwangdang.dao.BuyDao;
 import com.hwangdang.dao.CartDao;
 import com.hwangdang.dao.OrderDao;
 import com.hwangdang.dao.ProductDao;
@@ -17,9 +16,6 @@ import com.hwangdang.vo.Cart;
 @Service
 public class BuyServiceImpl implements BuyService {
 
-	@Autowired
-	private BuyDao dao;
-	
 	@Autowired
 	private ProductDao productDao;
 	

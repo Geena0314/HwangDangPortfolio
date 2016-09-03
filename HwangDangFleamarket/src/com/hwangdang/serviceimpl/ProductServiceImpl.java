@@ -188,7 +188,6 @@ public class ProductServiceImpl implements ProductService
 	public StoreQnA selectQnAByNo(int storeQnANo)
 	{
 		// TODO Auto-generated method stub
-		StoreQnA qna = dao.selectQnAByNo(storeQnANo);
 		return dao.selectQnAByNo(storeQnANo);
 	}
 

@@ -14,9 +14,7 @@ import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.OrderService;
 import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.Member;
-import com.hwangdang.vo.OrderProduct;
 import com.hwangdang.vo.Orders;
-import com.hwangdang.vo.ProductOption;
 import com.hwangdang.vo.Seller;
 
 
@@ -32,7 +30,7 @@ public class SellerController {
 	
 	@RequestMapping("/sellerList")
 	public ModelAndView sellerList(int page){
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		PagingBean pagingBean = new PagingBean(service.getCountSeller(), page);
 		ArrayList list = (ArrayList)service.getAllSeller(page);
 		map.put("list", list);
@@ -43,7 +41,7 @@ public class SellerController {
 	@RequestMapping("/sellerStore")
 	public ModelAndView sellerStore(int sellerStoreNo){
 		Seller seller = service.getSellerBySellerStoreNo(sellerStoreNo);
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("seller", seller);
 		return new ModelAndView("seller/seller/seller_store_main.tiles", map);
 	}

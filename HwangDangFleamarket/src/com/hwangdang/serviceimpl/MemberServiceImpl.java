@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hwangdang.common.util.MailSender;
 import com.hwangdang.dao.MemberDao;
 import com.hwangdang.dao.SellerDao;
 import com.hwangdang.service.MemberService;

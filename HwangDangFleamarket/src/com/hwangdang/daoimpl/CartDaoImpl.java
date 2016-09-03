@@ -1,13 +1,11 @@
 package com.hwangdang.daoimpl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.CartDao;
 import com.hwangdang.vo.Cart;
 

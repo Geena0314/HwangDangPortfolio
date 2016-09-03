@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.SellerNoticeDao;
 import com.hwangdang.vo.SellerNotice;
 
@@ -43,11 +42,7 @@ public class SellerNoticeDaoImpl implements SellerNoticeDao{
 	}
 
 	@Override
-	public List<SellerNotice> selectAllSellerNotice(int page, int sellerStoreNo) {
-		HashMap map = new HashMap<>();
-		map.put("page", page);
-		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
-		map.put("sellerStoreNo", sellerStoreNo);
+	public List<SellerNotice> selectAllSellerNotice(HashMap<String, Object> map) {
 		return session.selectList("sellerNoticeMapper.selectSellerNoticePaging", map);
 	}
 

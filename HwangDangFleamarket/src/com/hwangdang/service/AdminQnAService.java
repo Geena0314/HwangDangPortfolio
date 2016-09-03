@@ -1,9 +1,6 @@
 package com.hwangdang.service;
 
-import java.util.HashMap;
 import java.util.List;
-
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;

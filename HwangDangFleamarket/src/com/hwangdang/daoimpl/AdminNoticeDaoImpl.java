@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.AdminNoticeDao;
 import com.hwangdang.vo.Notice;
 
@@ -44,10 +43,7 @@ public class AdminNoticeDaoImpl implements AdminNoticeDao{
 	}
 
 	@Override
-	public List<Notice> selectAllNotice(int page) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("page", page);
-		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+	public List<Notice> selectAllNotice(HashMap<String, Object> map) {
 		return session.selectList("adminNoticeMapper.selectNoticePaging", map);
 	}
 

@@ -54,7 +54,7 @@ public class StoreQnAController
 			if(((Member)session.getAttribute("login_info")).getMemberId().equals(service.selectSellerByNo(sellerStoreNo)) || 
 					((Member)session.getAttribute("login_info")).getMemberId().equals(service.selectQnAWriterByNo(storeQnANo)))
 			{
-				int i = service.deleteQnAByno(storeQnANo);
+				service.deleteQnAByno(storeQnANo);
 				map = productService.selectStoreQnAPaging(1, productId);
 				map.put("result", "succes");
 				return map;

@@ -12,7 +12,7 @@ public interface AdminQnADao {
 	int insertAdminQnA(AdminQnA adminQnA);
 
 	//QnA게시판 전체 조회 -페이징
-	List<AdminQnA> selectAdminQnAList(int page);
+	List<AdminQnA> selectAdminQnAList(HashMap<String, Object> map);
 
 	//게시판 전체글갯수 조회 
 	int selectCountAdminQnA();

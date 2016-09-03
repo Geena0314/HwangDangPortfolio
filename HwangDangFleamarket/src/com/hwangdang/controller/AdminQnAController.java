@@ -19,7 +19,6 @@ import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.AdminQnAService;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
-import com.hwangdang.vo.Notice;
 
 @Controller
 @RequestMapping("/adminQnA")

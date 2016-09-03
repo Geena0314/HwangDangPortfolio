@@ -34,7 +34,7 @@ public class SellerSerivceImpl implements SellerService{
 	}
 
 	@Override
-	public List getAllSeller(int page) {
+	public List<Seller> getAllSeller(int page) {
 		List<Seller> list = dao.selectAllSeller(page);
 		for(Seller seller : list){
 			seller.setSellerIntroduction(seller.getSellerIntroduction().replace(">", "&gt;"));

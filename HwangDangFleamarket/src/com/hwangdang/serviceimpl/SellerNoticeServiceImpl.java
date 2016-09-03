@@ -1,11 +1,13 @@
 package com.hwangdang.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.SellerNoticeDao;
 import com.hwangdang.service.SellerNoticeService;
 import com.hwangdang.vo.SellerNotice;
@@ -17,8 +19,13 @@ public class SellerNoticeServiceImpl implements SellerNoticeService{
 	private SellerNoticeDao dao;
 
 	@Override
-	public List getAllSellerNotice(int page, int sellerStoreNo) {
-		List<SellerNotice> list = dao.selectAllSellerNotice(page, sellerStoreNo);
+	public List<SellerNotice> getAllSellerNotice(int page, int sellerStoreNo) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+		map.put("sellerStoreNo", sellerStoreNo);
+		List<SellerNotice> list = dao.selectAllSellerNotice(map);
+		
 		for(SellerNotice sellerNotice : list){
 			sellerNotice.setSellerNoticeTitle(sellerNotice.getSellerNoticeTitle().replace(">", "&gt;"));
 			sellerNotice.setSellerNoticeTitle(sellerNotice.getSellerNoticeTitle().replace("<", "&lt;"));

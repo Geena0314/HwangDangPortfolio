@@ -25,7 +25,6 @@ import com.hwangdang.common.util.MailSender;
 import com.hwangdang.service.MemberService;
 import com.hwangdang.service.ProductService;
 import com.hwangdang.service.SellerService;
-import com.hwangdang.vo.Code;
 import com.hwangdang.vo.Member;
 import com.hwangdang.vo.Seller;
 import com.hwangdang.vo.Zipcode;

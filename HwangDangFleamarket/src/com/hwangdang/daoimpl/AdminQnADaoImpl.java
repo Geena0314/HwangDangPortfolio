@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.AdminQnADao;
 import com.hwangdang.vo.AdminQnA;
 import com.hwangdang.vo.AdminQnAReply;
@@ -26,10 +25,7 @@ public class AdminQnADaoImpl implements AdminQnADao {
 		
 	//QnA게시판 전체 조회 -페이징
 	@Override
-	public List<AdminQnA> selectAdminQnAList(int page){
-		HashMap<String ,Object> map = new HashMap<>();
-		map.put("page", page);
-		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+	public List<AdminQnA> selectAdminQnAList(HashMap<String, Object> map){
 		return session.selectList("adminQnAMapper.selectAdminQnAList" , map);
 	}
 	

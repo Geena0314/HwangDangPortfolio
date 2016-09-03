@@ -1,11 +1,13 @@
 package com.hwangdang.serviceimpl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.AdminNoticeDao;
 import com.hwangdang.service.AdminNoticeService;
 import com.hwangdang.vo.Notice;
@@ -39,8 +41,12 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 
  	//게시글 목록
 	@Override
-	public List getAllNotice(int page) {
-		List<Notice> list = dao.selectAllNotice(page);
+	public List<Notice> getAllNotice(int page) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+		List<Notice> list = dao.selectAllNotice(map);
+		
 		for(Notice notice : list){
 			notice.setNoticeTitle(notice.getNoticeTitle().replace(">", "&gt;"));
 			notice.setNoticeTitle(notice.getNoticeTitle().replace("<", "&lt;"));

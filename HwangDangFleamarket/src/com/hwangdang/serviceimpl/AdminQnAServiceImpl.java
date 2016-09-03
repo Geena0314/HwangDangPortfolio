@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hwangdang.common.util.Constants;
 import com.hwangdang.dao.AdminQnADao;
 import com.hwangdang.service.AdminQnAService;
 import com.hwangdang.vo.AdminQnA;
@@ -35,7 +36,11 @@ public class AdminQnAServiceImpl implements AdminQnAService{
 	@Override
 	public List<AdminQnA> selectAdminQnAList(int page) {
 		// TODO Auto-generated method stub
-		List<AdminQnA> list = dao.selectAdminQnAList(page);
+		HashMap<String ,Object> map = new HashMap<>();
+		map.put("page", page);
+		map.put("itemsPerPage", Constants.ITEMS_PER_PAGE);
+		List<AdminQnA> list = dao.selectAdminQnAList(map);
+		
 		for(AdminQnA adminQnA : list){
 			adminQnA.setAdminQnaTitle(adminQnA.getAdminQnaTitle().replace(">", "&gt;"));
 			adminQnA.setAdminQnaTitle(adminQnA.getAdminQnaTitle().replace("<", "&lt;"));

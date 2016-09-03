@@ -2,8 +2,6 @@ package com.hwangdang.service;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import com.hwangdang.vo.Cart;
 
 public interface CartService {

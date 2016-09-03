@@ -28,7 +28,7 @@ public class AdminNoticeController{
 	// 관리자 소식글 전체 목록 조회
 	@RequestMapping("/adminNotice")
 	public ModelAndView noticeList(int page){
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		PagingBean pagingBean = new PagingBean(service.getCountNotice(),page);
 		ArrayList list = (ArrayList) service.getAllNotice(page);
 		map.put("list", list);
@@ -41,7 +41,7 @@ public class AdminNoticeController{
 	public ModelAndView noticeDetail(int page, int noticeNo){
 		Notice notice = service.getNoticeByNoticeNo(noticeNo);
 		notice = convertor(notice);
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("notice", notice);
 		map.put("page", page);
 		return new ModelAndView("admin/admin_notice_detail.tiles", map);
@@ -63,7 +63,7 @@ public class AdminNoticeController{
 		notice.setNoticeDate(new Date());
 		service.adminRegisterNotice(notice);
 		notice = convertor(notice);
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("notice", notice);
 		map.put("page", page);
 		return new ModelAndView("admin/admin_notice_detail.tiles", map);
@@ -73,7 +73,7 @@ public class AdminNoticeController{
 	@RequestMapping("/adminEditForm")
 	public ModelAndView editForm(int page, int noticeNo){
 		Notice notice = service.getNoticeByNoticeNo(noticeNo);
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("notice", notice);
 		map.put("page", page);
 		return new ModelAndView("admin/admin_edit_notice.tiles", map);
@@ -89,7 +89,7 @@ public class AdminNoticeController{
 		notice.setNoticeDate(new Date());
 		service.adminEditNotice(notice);
 		notice = convertor(notice);
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		map.put("notice", notice);
 		map.put("page", page);
 		return new ModelAndView("admin/admin_notice_detail.tiles", map);
@@ -99,7 +99,7 @@ public class AdminNoticeController{
 	@RequestMapping("/adminRemoveNotice")
 	public ModelAndView removeNotice(int page, int noticeNo){
 		service.removNotice(noticeNo);
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		PagingBean pagingBean = new PagingBean(service.getCountNotice(),page);
 		ArrayList list = (ArrayList) service.getAllNotice(page);
 		map.put("list", list);

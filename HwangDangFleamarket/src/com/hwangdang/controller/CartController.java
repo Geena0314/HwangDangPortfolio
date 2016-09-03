@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.CartService;
-import com.hwangdang.service.SellerService;
 import com.hwangdang.vo.Cart;
 import com.hwangdang.vo.Member;
-import com.hwangdang.vo.Product;
 
 @Controller
 @RequestMapping("/cart")
@@ -30,7 +27,7 @@ public class CartController {
 	@RequestMapping("/cartList")
 	public ModelAndView cartList(String memberId){
 		int sum = 0;
-		HashMap map = new HashMap<>();
+		HashMap<String, Object> map = new HashMap<>();
 		ArrayList list = (ArrayList)service.getAllCart(memberId);
 		map.put("cartList", list);
 		Cart cart = new Cart();

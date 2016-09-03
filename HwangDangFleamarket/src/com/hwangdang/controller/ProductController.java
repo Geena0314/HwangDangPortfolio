@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.common.util.Constants;
-import com.hwangdang.common.util.PagingBean;
 import com.hwangdang.service.ProductService;
 import com.hwangdang.service.StoreQnAService;
 import com.hwangdang.vo.Category;
