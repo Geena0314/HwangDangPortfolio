@@ -100,8 +100,8 @@ public class AdminNoticeController{
 	public ModelAndView removeNotice(int page, int noticeNo){
 		service.removNotice(noticeNo);
 		HashMap<String, Object> map = new HashMap<>();
-		PagingBean pagingBean = new PagingBean(service.getCountNotice(),page);
-		ArrayList list = (ArrayList) service.getAllNotice(page);
+		PagingBean pagingBean = new PagingBean(service.getCountNotice(),1);
+		ArrayList list = (ArrayList) service.getAllNotice(1);
 		map.put("list", list);
 		map.put("pagingBean",pagingBean);
 		return new ModelAndView("admin/admin_notice_list.tiles", map);

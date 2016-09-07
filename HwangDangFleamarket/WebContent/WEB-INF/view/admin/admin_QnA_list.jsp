@@ -118,7 +118,7 @@
 		<%-- ◀이전 페이지 그룹 처리 --%>
 		<c:choose>
 			<c:when test="${requestScope.pagingBean.previousPageGroup}">
-				<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${requestScope.pagingBean.beginPage-1}">
+				<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${requestScope.pagingBean.beginPage-1}">
 					◀ 
 				</a>
 			</c:when>
@@ -133,7 +133,7 @@
 		  				<b>${page}</b>
 		 			</c:when>
 				<c:otherwise>
-					<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${page}">
+					<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${page}">
 						${page} 
 					</a>
 				</c:otherwise>
@@ -143,7 +143,7 @@
 		<%--다음 페이지 그룹 처리 ▶--%>
 		<c:choose>
 			<c:when test="${requestScope.pagingBean.nextPageGroup}">
-				<a href="/HwangDangFleamarket/admin/boardQnAList.go?page=${requestScope.pagingBean.endPage+1}">
+				<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${requestScope.pagingBean.endPage+1}">
 					▶
 				</a>
 			</c:when>

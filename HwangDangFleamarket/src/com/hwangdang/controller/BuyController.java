@@ -83,7 +83,8 @@ public class BuyController {
 		model.addAttribute("hp2", phone[2]);
 		
 		//product, productOption 각각의 id로 조회.
-		model.addAttribute("detail", service.selectProductProductOption(orderProduct.getProductId(), orderProduct.getOptionId(), orderProduct.getSellerStoreNo()));
+		model.addAttribute("detail", service.selectProductProductOption
+				(orderProduct.getProductId(), orderProduct.getOptionId(), orderProduct.getSellerStoreNo()));
 		model.addAttribute("orderProduct", orderProduct);
 		model.addAttribute("totalPrice", totalPrice);
 		
@@ -159,7 +160,8 @@ public class BuyController {
 				{
 					//비교당할 cart
 					Cart cart2 = cartList.get(j);
-					if(cart1.getProductList().get(0).getSellerStoreNo() == cart2.getProductList().get(0).getSellerStoreNo())
+					if(cart1.getProductList().get(0).getSellerStoreNo() 
+							== cart2.getProductList().get(0).getSellerStoreNo())
 					{
 						//같은 스토어의 상품인경우
 						sameStorePrice = sameStorePrice 
@@ -190,7 +192,8 @@ public class BuyController {
 	@RequestMapping("/buyProducts")
 	public String buyProducts(HttpSession session, HttpServletRequest request, Orders orders, 
 			String hp1, String hp2, String hp3, int[] orderAmount, String[] productId, int[] optionId, 
-			int[] sellerStoreNo, int[] cartNo, @RequestParam(value="memberMileage" ,defaultValue= "0")int memberMileage)
+			int[] sellerStoreNo, int[] cartNo, 
+			@RequestParam(value="memberMileage" ,defaultValue= "0")int memberMileage)
 	{
 		//주문번호 생성
 		String ordersNo = new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
@@ -205,10 +208,11 @@ public class BuyController {
 		ArrayList<OrderProduct> list = new ArrayList<>();
 		for(int i = 0; i < orderAmount.length; i++)
 		{
-			list.add(new OrderProduct(orderAmount[i], ordersNo, productId[i], optionId[i], sellerStoreNo[i], 1));
+			list.add(new OrderProduct(orderAmount[i], ordersNo, productId[i], 
+															optionId[i], sellerStoreNo[i], 1));
 		}
 		
-		int result = orderService.buyProductsHandle(orders, list, cartNo, memberMileage);
+		int result = service.buyProductsHandle(orders, list, cartNo, memberMileage);
 		
 		if(memberMileage != 0)
 		{
@@ -228,7 +232,7 @@ public class BuyController {
 	{
 		if(Integer.parseInt(request.getParameter("result")) == 1)
 		{
-			return new ModelAndView("buyer/buy_success.tiles", "diliveryStatus", orderService.selectDiliveryStatusByOrderNo(request.getParameter("ordersNo")));
+			return new ModelAndView("buyer/buy_success.tiles", "diliveryStatus", service.selectDiliveryStatusByOrderNo(request.getParameter("ordersNo")));
 		}
 		return new ModelAndView("buyer/buy_success.tiles");
 	}

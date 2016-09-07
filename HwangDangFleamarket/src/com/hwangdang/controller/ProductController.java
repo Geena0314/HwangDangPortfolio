@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hwangdang.common.util.Constants;
 import com.hwangdang.service.ProductService;
+import com.hwangdang.service.SellerService;
 import com.hwangdang.service.StoreQnAService;
 import com.hwangdang.vo.Category;
 import com.hwangdang.vo.Member;
@@ -40,6 +41,9 @@ public class ProductController
 	
 	@Autowired
 	private StoreQnAService qnaService;
+	
+	@Autowired
+	private SellerService sellerService;
 	
 	public ProductController()
 	{
@@ -224,7 +228,7 @@ public class ProductController
 	
 	// 상품 등록
 	@RequestMapping("registerProduct")
-	public ModelAndView registerProduct(@ModelAttribute Product product, ProductOption productOption, HttpServletRequest request, String sellerStoreImage) throws UnsupportedEncodingException {
+	public ModelAndView registerProduct(@ModelAttribute Product product, ProductOption productOption, HttpServletRequest request) throws UnsupportedEncodingException {
 		
 		String mainImage = "";
 		String detailImage = "";
@@ -280,6 +284,7 @@ public class ProductController
 		
 		HashMap<String, Object> map = service.selectAllProduct(1, product.getSellerStoreNo());
 		int pages = (int) Math.ceil((double)((int)map.get("allItems"))/Constants.ITEMS_PER_PAGE);
+		String sellerStoreImage = sellerService.getSellerBySellerStoreNo(product.getSellerStoreNo()).getSellerStoreImage();
 		return new ModelAndView("redirect:/product/list.go?page="+ pages +"&sellerStoreNo="+product.getSellerStoreNo()
 														+"&sellerStoreImage="+URLEncoder.encode(sellerStoreImage,"UTF-8"));
 	}
@@ -372,7 +377,7 @@ public class ProductController
 	@RequestMapping("deleteProduct")
 	public ModelAndView deleteProduct(String productId, HttpServletRequest request){
 		service.deleteProductById(productId);
-		return new ModelAndView("redirect:/product/list.go?page="+request.getParameter("page")+"&sellerStoreNo="+request.getParameter("sellerStoreNo"));
+		return new ModelAndView("redirect:/product/list.go?page=1&sellerStoreNo="+request.getParameter("sellerStoreNo"));
 	}
 	
 	//상품ID 중복 체크

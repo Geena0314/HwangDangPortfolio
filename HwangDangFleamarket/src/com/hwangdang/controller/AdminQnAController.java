@@ -93,7 +93,7 @@ public class AdminQnAController {
 	@RequestMapping("/adminQnADelete")
 	public String adminQnADelete(int page, int adminQnaNo){
 		service.deleteAdminQnA(adminQnaNo);
-		return "redirect:/adminQnA/adminQnAList.go?page="+page;
+		return "redirect:/adminQnA/adminQnAList.go?page=1";
 	}
 	
 	//QnA 조회

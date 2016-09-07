@@ -186,27 +186,6 @@ public class OrderDaoImpl implements OrderDao
 	}
 
 	@Override
-	public int insertOrderProduct(OrderProduct orderProduct)
-	{
-		// TODO Auto-generated method stub
-		return session.insert("orderMapper.insertOrderProduct", orderProduct);
-	}
-
-	@Override
-	public int insertOrders(Orders orders)
-	{
-		// TODO Auto-generated method stub
-		return session.insert("orderMapper.insertOrders", orders);
-	}
-
-	@Override
-	public List<OrderProduct> selectDiliveryStatusByOrderNo(String ordersNo)
-	{
-		// TODO Auto-generated method stub
-		return session.selectList("orderMapper.selectDiliveryStatusByOrderNo", ordersNo);
-	}
-
-	@Override
 	public int updateOrderProductStatus234(HashMap<String, Object> map)
 	{
 		// TODO Auto-generated method stub
