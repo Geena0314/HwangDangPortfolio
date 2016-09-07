@@ -160,7 +160,7 @@ $(document).ready(function(){
 		               			<c:when test="${myorderList.orderProductStatus < 3}">
 		               				<c:if test="${myorderList.orderProductStatus == 0}">입금 대기</c:if>
 		               				<c:if test="${myorderList.orderProductStatus == 1}">결제 완료</c:if>
-		               				<c:if test="${myorderList.orderProductStatus == 2}">배송 준비</c:if>
+		               				<c:if test="${myorderList.orderProductStatus == 2}">배송 준비 중</c:if>
 		               				<li><input type="button" value="구매취소" class="noticeBtns cancelBtn">
 		               					<input type="text" value="${myorderList.orderSeqNo}" class="orderSeqNo"></li>
 		               			</c:when>
