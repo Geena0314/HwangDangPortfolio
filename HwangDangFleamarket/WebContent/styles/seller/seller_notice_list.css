@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+a {
+	text-decoration: none;
+	color: gray;
+}
+a:HOVER {
+	text-decoration: underline;
+}
+b {
+	font-size: 15pt;
+}
+.main{
+	min-height: 600px;
+}
+#adminTable{
+	width: 700px;
+	font-size: 13pt;
+	table-layout: fixed;
+}
+.table-responsive{
+	overflow-x: hidden; 
+}
+.tdName.title{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow : ellipsis;
+}

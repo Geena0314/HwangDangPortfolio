@@ -2,49 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
-<style type="text/css">
-/* table, td {
-	border: 1px solid gray;
-	text-align: center;
-}
-
-table {
-	border-collapse: collapse;
-	width: 650px;
-}
-
-span, td {
-	padding: 5px;
-	height: auto;
-} */
-span{
-	font-size: 11pt;
-	color: red;
-}
-#title {
-	border: none;
-	background-color: whitesmoke;
-}
-textarea {
-	border: none;
-	background-color: whitesmoke;
-}
-span{
-	font-size: 11pt;
-	color: red;
-}
-#adminTable{
-	width: 500px;
-	min-height: 300px;
-	font-size: 13pt;
-	border-top: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
-	border-collapse: separate;
-}
-.noticeRnE{
-	width: 800px;
-}
-</style>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/seller/seller_register_notice.css">
 <h2 class="page-header store_look_around">스토어 소식통</h2>
 <div class="table-responsive notice">
 	<form action="/HwangDangFleamarket/sellerNotice/sellerRegisterNotice.go" method="post">

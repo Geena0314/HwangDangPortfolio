@@ -2,65 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
-<style type="text/css">
-table, td, th {
-	border-top: 2px solid lightgray;
-	border-bottom: 2px solid lightgray;
-	border-left: none;
-	border-right: none;
-	text-align: center;
-}
-table {
-	width: 100%;
-}
-.thead{
-	background-color: whitesmoke;
-}
-.tfoot{
-	background-color: whitesmoke;
-}
-td {
-	border: none;
-}
-a {
-	text-decoration: none;
-	color: gray;
-}
-
-a:HOVER {
-	text-decoration: underline;
-}
-
-b {
-	font-size: 15pt;
-}
-img{
-	width: 100px;
-	height: 100px; 
-	float: left;
-}
-ul li{
-	list-style: none;
-}
-.estimatedPrice{
-	display: block;
-	border: 2px solid lightgray;
-	text-align: right;
-}
-.bottomBtn{
-	float: right;
-}
-.cartListSection{
-	width: 70%;
-	margin-bottom: 70px;
-	position: relative;
-	left: 14%;
-	color: gray;
-}
-.bottomBtn input{
-	width: 110px;
-}
-</style>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/cart_list.css">
 <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
 <script type="text/javascript">
 $( document ).ready( function(){

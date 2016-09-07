@@ -1,15 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-
-<style type="text/css">
-	.table.table-striped.editInfoTB
-	{
-		width: 60%;
-		position: relative;
-		left: 20%;
-	}
-</style>
-
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/member/updateSuccess.css">
 <h2 class="page-header store_look_around">회원정보수정완료</h2>
 <c:if test="${not empty sessionScope.login_info}">
 	<table width='600' class="table table-striped editInfoTB">
@@ -23,7 +14,7 @@
 		
 		<!-- password  -->
 		<tr class="trInput">
-			<td width='150' class='tdName'>비밀전호</td>
+			<td width='150' class='tdName'>비밀번호</td>
 			<td>
 				 ${sessionScope.login_info.memberPassword } 
 			</td>
