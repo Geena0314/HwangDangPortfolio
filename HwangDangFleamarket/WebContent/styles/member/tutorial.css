@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+.tutorial-img{
+	padding-left: 250px;
+	position: relative;
+	top: -40px;
+	margin-bottom: 30px;
+	width: 1000px;
+	height: 500px;
+}

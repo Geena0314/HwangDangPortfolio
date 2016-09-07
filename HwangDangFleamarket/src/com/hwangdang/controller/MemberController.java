@@ -41,6 +41,10 @@ public class MemberController {
 	@Autowired
 	private ProductService productService;
 	
+	@RequestMapping("/tutorial")
+	public String tutorial(){
+		return "tutorial.tiles";
+	}
 	@RequestMapping("/register") //회원가입 창이 나오게 함
 	public ModelAndView register(){
 		//이메일 셀렉트.

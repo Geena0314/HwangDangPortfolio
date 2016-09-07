@@ -74,8 +74,7 @@
 		</div>
 		<div align="center" class="main-buttons col-sm-6">
 			<ul class="nav navbar-nav navbar-right links">
-				<!-- 삭제 예정 <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li> -->
-				<li><a href="#" class="navbar-collapse collapse navbars main-buttons">
+				<li><a href="/HwangDangFleamarket/member/tutorial.go" class="navbar-collapse collapse navbars main-buttons">
 					<img src="/HwangDangFleamarket/image_storage/tutorial.JPG">
 				</a></li>
 		        <li><a href="/HwangDangFleamarket/seller/sellerList.go?page=1" class="navbar-collapse collapse navbars main-buttons" style="margin-right: 30px;">
