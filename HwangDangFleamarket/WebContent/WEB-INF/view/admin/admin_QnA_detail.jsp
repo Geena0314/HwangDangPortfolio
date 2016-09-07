@@ -77,15 +77,17 @@
 						<c:when test="${empty requestScope.adminQnA.reply}">
 							<span id="reply">등록된 답글이 없습니다.</span>
 							<c:if test="${sessionScope.login_info.memberId == 'kinghwang@gmail.com'}">
-								<input type="button" value="답글등록" id="registerReply">
+								<input type="button" value="답글등록" id="registerReply" class="noticeBtns">
 							</c:if>
 						</c:when>
 						<c:otherwise>
 							<textarea id="replyBox" class="reply-box" rows='4' cols='70' name="adminReplyContent" readonly="readonly">${requestScope.adminQnA.reply.adminReplyContent}</textarea><br>
-							<input type="button" value="답글수정" id="editReply" class="noticeBtns beforeReply">
-							<input type="button" value="답글삭제" id="deleteReply" class="noticeBtns beforeReply">
-							<input type='button' value='수정완료' id='completeBtn' class="noticeBtns afterReply">
-							<input type='button' value='수정취소' id='cancelBtn' class="noticeBtns afterReply">
+							<c:if test="${sessionScope.login_info.memberId == 'kinghwang@gmail.com'}">
+								<input type="button" value="답글수정" id="editReply" class="noticeBtns beforeReply">
+								<input type="button" value="답글삭제" id="deleteReply" class="noticeBtns beforeReply">
+								<input type='button' value='수정완료' id='completeBtn' class="noticeBtns afterReply">
+								<input type='button' value='수정취소' id='cancelBtn' class="noticeBtns afterReply">
+							</c:if>
 						</c:otherwise>
 					</c:choose>
 				</td>

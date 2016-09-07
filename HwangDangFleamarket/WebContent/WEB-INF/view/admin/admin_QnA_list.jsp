@@ -2,7 +2,7 @@
 <%@taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt"   uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/notice.css">
-<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_notice_list.css">
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/admin/admin_QnA_list.css">
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".title").on("click", function(){
@@ -112,42 +112,41 @@
 				</c:forEach>
 		</tbody>
 	</table>
-
-	<%-- 페이징 처리 --%>
-	<div class="pageGroup adminNoticePaging" align="center">
-		<%-- ◀이전 페이지 그룹 처리 --%>
+</div>
+<%-- 페이징 처리 --%>
+<div class="pageGroup adminNoticePaging" align="center">
+	<%-- ◀이전 페이지 그룹 처리 --%>
+	<c:choose>
+		<c:when test="${requestScope.pagingBean.previousPageGroup}">
+			<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${requestScope.pagingBean.beginPage-1}">
+				◀ 
+			</a>
+		</c:when>
+		<c:otherwise>◀</c:otherwise>
+	</c:choose>
+	&nbsp;&nbsp;
+	<%--페이지 처리 --%>
+	<c:forEach begin="${requestScope.pagingBean.beginPage}"
+		end="${requestScope.pagingBean.endPage}" var="page">
 		<c:choose>
-			<c:when test="${requestScope.pagingBean.previousPageGroup}">
-				<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${requestScope.pagingBean.beginPage-1}">
-					◀ 
+			<c:when test="${page == requestScope.pagingBean.page}">
+	  				<b>${page}</b>
+	 			</c:when>
+			<c:otherwise>
+				<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${page}">
+					${page} 
 				</a>
-			</c:when>
-			<c:otherwise>◀</c:otherwise>
+			</c:otherwise>
 		</c:choose>
-		&nbsp;&nbsp;
-		<%--페이지 처리 --%>
-		<c:forEach begin="${requestScope.pagingBean.beginPage}"
-			end="${requestScope.pagingBean.endPage}" var="page">
-			<c:choose>
-				<c:when test="${page == requestScope.pagingBean.page}">
-		  				<b>${page}</b>
-		 			</c:when>
-				<c:otherwise>
-					<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${page}">
-						${page} 
-					</a>
-				</c:otherwise>
-			</c:choose>
-		&nbsp;&nbsp;
-		</c:forEach>
-		<%--다음 페이지 그룹 처리 ▶--%>
-		<c:choose>
-			<c:when test="${requestScope.pagingBean.nextPageGroup}">
-				<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${requestScope.pagingBean.endPage+1}">
-					▶
-				</a>
-			</c:when>
-			<c:otherwise>▶</c:otherwise>
-		</c:choose>
-	</div>
-</div>	
+	&nbsp;&nbsp;
+	</c:forEach>
+	<%--다음 페이지 그룹 처리 ▶--%>
+	<c:choose>
+		<c:when test="${requestScope.pagingBean.nextPageGroup}">
+			<a href="/HwangDangFleamarket/adminQnA/adminQnAList.go?page=${requestScope.pagingBean.endPage+1}">
+				▶
+			</a>
+		</c:when>
+		<c:otherwise>▶</c:otherwise>
+	</c:choose>
+</div>
