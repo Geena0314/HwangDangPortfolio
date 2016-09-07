@@ -7,12 +7,7 @@
 		$("#password").focus();
 	});
 </script>
-<style>
-#pwdConfirm{
-	padding-left: 250px;
-	padding-top: 50px;
-}
-</style>
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/member/passwordConfirm.css">
 <h2 class="page-header store_look_around">황당 플리마켓 MyPage</h2>
 <div id="pwdConfirm">
 	<form action="/HwangDangFleamarket/member/mypage.go"  method="POST">

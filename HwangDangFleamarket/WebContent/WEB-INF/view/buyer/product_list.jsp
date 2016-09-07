@@ -1,24 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<style>
-	img {
-		width : 160px;
-		height : 160px;
-	}
-	
-	#layer {
-		min-height:  300px;
-		min-width: 300px;
-	}   
-	
-	.media{
-		margin:  40px;
-		padding : 30px;
-	}
-	
-</style>
-
+<link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/product_list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){

@@ -17,18 +17,8 @@
     <script type="text/javascript" src="/HwangDangFleamarket/scripts/jquery.js"></script>
     <script src="/HwangDangFleamarket/js/bootstrap.min.js"></script>
     <script src="/HwangDangFleamarket/js/vendor/holder.js"></script>
+    <link type="text/css" rel="stylesheet" href="/HwangDangFleamarket/styles/buyer/seller_register_info.css">
 	<title>판매자 신청 정보</title>
-	<style type="text/css">
-		.seller-register-info
-		{
-			margin-top: 0px;
-		}
-		.seller-info-TB
-		{
-			width: 530px;
-		}
-	</style>
-
 	<body>
 		<h2 class="form-signin-heading seller-register-info" align="center">판매자 등록 신청</h2>
 		<div align="center" class="table-responsive seller-info-TB">

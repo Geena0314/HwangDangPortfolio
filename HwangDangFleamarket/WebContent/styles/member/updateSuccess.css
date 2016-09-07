@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.table.table-striped.editInfoTB
+{
+	width: 60%;
+	position: relative;
+	left: 20%;
+}
